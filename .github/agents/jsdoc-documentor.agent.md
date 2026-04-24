@@ -1,6 +1,6 @@
 ---
 name: jsdoc-documentor
-description: Add or improve JSDoc in src/ files — @param, @returns, @throws, @typedef, @fileoverview. Only documents non-obvious contracts; never alters runtime behavior or adds noise to simple code.
+description: Use when adding or improving JSDoc in src/ files — @param, @returns, @throws, @typedef, @fileoverview. Only documents non-obvious contracts; never alters runtime behavior or adds noise to simple code.
 ---
 
 [Project instructions](../copilot-instructions.md)

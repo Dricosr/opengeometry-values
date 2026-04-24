@@ -11,6 +11,7 @@
     "src"
   ],
   "scripts": {
+    "check:customizations": "node ./scripts/check-customizations.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"

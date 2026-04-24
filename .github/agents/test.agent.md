@@ -1,6 +1,6 @@
 ---
 name: test
-description: Write, update, or debug tests in tests/ using Vitest and .mjs files.
+description: Use when writing, updating, or debugging tests in tests/. Mirrors src/ structure, uses Vitest, .mjs files only.
 ---
 
 [Project instructions](../copilot-instructions.md)

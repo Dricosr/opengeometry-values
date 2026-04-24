@@ -45,3 +45,9 @@
 - Test files use `.mjs` and are named `<module-name>.test.mjs`
 - Use Vitest as the test runner
 - Every public function must have tests covering the happy path and relevant edge cases
+
+## Customization sync
+
+- Keep `.github/agents/*.agent.md` and `.claude/agents/*.md` with matching names semantically aligned
+- Keep `.github/prompts/*.prompt.md` mirrored in `.claude/commands/*.md` when the workflow should be available in both Copilot and Claude
+- Keep `memory/MEMORY.md` and the files it indexes aligned with these shared project rules when they change

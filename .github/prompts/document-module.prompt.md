@@ -1,6 +1,6 @@
 ---
 name: "Document Module"
-description: "Add or improve JSDoc in a src/ file: @fileoverview, @typedef, @param, @returns, @throws. Only documents non-obvious contracts; never alters runtime behavior."
+description: "Use when documenting a JavaScript module in src/ or improving JSDoc with @fileoverview, @typedef, @param, @returns, or @throws without changing runtime behavior."
 agent: "jsdoc-documentor"
 argument-hint: "Path to the .mjs file to document (e.g. src/core/create-value.mjs). Leave blank to use the active file."
 ---

@@ -1,6 +1,6 @@
 ---
 name: naming-reviewer
-description: Review and standardize naming across src/ — file names, exported functions, constants, and internal identifiers. Ensures names are clear, semantically accurate, and consistent with project conventions before applying any rename.
+description: Use when reviewing or standardizing naming across src/ — file names, exported function names, constant names, and internal identifiers. Ensures names are clear, semantically accurate, and consistent with the project conventions before applying any rename.
 ---
 
 [Project instructions](../copilot-instructions.md)

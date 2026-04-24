@@ -1,5 +1,6 @@
 @.github/copilot-instructions.md
 @.claude/agents/index.md
+@memory/MEMORY.md
 
 ## Responses
 

@@ -21,6 +21,12 @@ npm install
 npm test
 ```
 
+Validate Copilot and Claude customization sync:
+
+```bash
+npm run check:customizations
+```
+
 Watch mode during development:
 
 ```bash
@@ -51,6 +57,7 @@ test: add coverage for formatEditValue with mm unit
 - One concern per PR
 - Include tests for any new behavior
 - Update `CHANGELOG.md` under `[Unreleased]`
+- Run `npm run check:customizations` when editing `.github/`, `.claude/`, or `memory/`
 - Keep the diff focused — no unrelated cleanup
 
 ## Reporting issues

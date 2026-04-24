@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Implement or modify source files in src/ following opengeometry-values conventions.
+description: Use when implementing or modifying source files in src/ — constants, core functions, or the public index. Follows the project's .mjs/ES6+ conventions and keeps git docs aligned.
 ---
 
 [Project instructions](../copilot-instructions.md)

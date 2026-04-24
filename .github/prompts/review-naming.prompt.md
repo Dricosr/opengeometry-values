@@ -1,6 +1,6 @@
 ---
 name: "Review Naming"
-description: "Review and standardize naming conventions across a file or folder in src/: file names, exported functions, constants, and internal identifiers."
+description: "Use when reviewing or renaming file names, exported functions, constants, or internal identifiers in src/ for clarity, semantic accuracy, and convention alignment."
 agent: "naming-reviewer"
 argument-hint: "Path to the file or folder to review (e.g. src/core). Leave blank to use the active file."
 ---
