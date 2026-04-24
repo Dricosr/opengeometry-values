@@ -39,6 +39,12 @@ Run the local demo workspace:
 npm run demo:start
 ```
 
+Run the local demo workspace with automatic restart:
+
+```bash
+npm run demo:dev
+```
+
 ## Code conventions
 
 - All source files use `.mjs` and ES Module syntax (`import`/`export`)

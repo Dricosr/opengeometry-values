@@ -239,10 +239,17 @@ Run the local Express demo to browse samples, tweak output presets, create inter
 npm run demo:start
 ```
 
+For local development with automatic restart on changes in `src/` and `demo/`:
+
+```bash
+npm run demo:dev
+```
+
 Then open `http://localhost:4173`.
 
 Useful commands:
 
+- `npm run demo:dev` starts the local API with nodemon and auto-reload
 - `npm run demo:start` starts the local API and interactive web page
 - `npm run test:visual` runs the engineering visual suite directly
 

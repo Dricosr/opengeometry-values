@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Nodemon-powered demo development startup for automatic server restart while editing `src/` and `demo/`
 - Local Express demo with interactive BIM and AEC parameter/output previews and browser-triggered visual test execution
 - Reusable parameter samples grouped by quantity and a curated output preset mini library for common engineering views
 - Public preview helpers for building interactive UIs: `createValuePreview`, `buildOutput`, `OUTPUT_PRESETS`, and `PARAMETER_SAMPLES`

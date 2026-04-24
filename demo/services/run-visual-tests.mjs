@@ -4,11 +4,10 @@ import { fileURLToPath } from "node:url";
 
 const serviceDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(serviceDirectory, "../..");
-
-const resolveCommand = () => process.platform === "win32" ? "npx.cmd" : "npx";
+const vitestEntrypoint = path.join(repositoryRoot, "node_modules", "vitest", "vitest.mjs");
 
 export const runVisualTests = () => new Promise((resolve) => {
-  const child = spawn(resolveCommand(), ["vitest", "run", "tests/visual"], {
+  const child = spawn(process.execPath, [vitestEntrypoint, "run", "tests/visual"], {
     cwd: repositoryRoot,
     stdio: ["ignore", "pipe", "pipe"]
   });
