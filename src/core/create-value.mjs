@@ -1,0 +1,304 @@
+import { DOMAIN_STRINGS } from "../constants/domain-string-catalog.mjs";
+import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
+import { VALUE_TYPES } from "../constants/value-types.mjs";
+import { internalResolutionApplier } from "./apply-internal-resolution.mjs";
+import { ValueInputError } from "./errors/value-input-error.mjs";
+import { booleanTextParser } from "./parsers/boolean-text-parser.mjs";
+import { strictNumberParser } from "./parsers/strict-number-parser.mjs";
+import { InternalValue } from "./models/internal-value.mjs";
+import { OpenGeometryValue } from "./models/opengeometry-value.mjs";
+import { Output } from "./models/output.mjs";
+import { ValueInput } from "./models/value-input.mjs";
+import { quantityProfileRegistry } from "./quantities/quantity-profile-registry.mjs";
+import { unitConverter } from "./convert-value.mjs";
+
+export class ValueFactory {
+  constructor({
+    numberParser = strictNumberParser,
+    booleanParser = booleanTextParser,
+    converter = unitConverter,
+    resolutionApplier = internalResolutionApplier,
+    quantityProfiles = quantityProfileRegistry
+  } = {}) {
+    this.numberParser = numberParser;
+    this.booleanParser = booleanParser;
+    this.converter = converter;
+    this.resolutionApplier = resolutionApplier;
+    this.quantityProfiles = quantityProfiles;
+  }
+
+  create({ id, output, outputId, value, valueType, quantity, unit }) {
+    const inputUnit = unit ?? QUANTITY_TYPES.NONE;
+    const resolvedQuantity = quantity ?? QUANTITY_TYPES.NONE;
+
+    if (valueType === VALUE_TYPES.STRING) {
+      const internalValue = new InternalValue({ value });
+
+      return new OpenGeometryValue({
+        valueType,
+        quantity: resolvedQuantity,
+        input: new ValueInput({
+          id,
+          value,
+          unit: inputUnit,
+          quantity: resolvedQuantity,
+          internal: internalValue,
+          output: this.resolveOutput({
+            output,
+            outputId,
+            inputUnit,
+            internalValue
+          })
+        }),
+        internal: internalValue
+      });
+    }
+
+    if (valueType === VALUE_TYPES.BOOLEAN) {
+      const parsedValue = this.booleanParser.parse(value);
+      const internalValue = new InternalValue({ value: parsedValue });
+
+      return new OpenGeometryValue({
+        valueType,
+        quantity: resolvedQuantity,
+        input: new ValueInput({
+          id,
+          value: parsedValue,
+          unit: inputUnit,
+          quantity: resolvedQuantity,
+          internal: internalValue,
+          output: this.resolveOutput({
+            output,
+            outputId,
+            inputUnit,
+            internalValue
+          })
+        }),
+        internal: internalValue
+      });
+    }
+
+    const numericValue = this.parseNumericValue({ value, valueType, quantity: resolvedQuantity, unit: inputUnit });
+
+    if (valueType === VALUE_TYPES.INTEGER && !Number.isInteger(numericValue)) {
+      throw this.createInputError({
+        code: DOMAIN_STRINGS.ERROR_CODE_INVALID_INTEGER_VALUE,
+        field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+        message: `${DOMAIN_STRINGS.ERROR_INVALID_INTEGER_VALUE_PREFIX}: ${value}`,
+        value,
+        valueType,
+        quantity: resolvedQuantity,
+        unit: inputUnit
+      });
+    }
+
+    const quantityProfile = this.quantityProfiles.getProfile(resolvedQuantity);
+    this.assertSupportedUnit({ quantityProfile, value, valueType, quantity: resolvedQuantity, unit: inputUnit });
+
+    const normalizedInternal = this.normalizeNumericValue({
+      quantityProfile,
+      numericValue,
+      value,
+      valueType,
+      quantity: resolvedQuantity,
+      unit: inputUnit
+    });
+
+    const internalValue = new InternalValue({
+      value: normalizedInternal.value,
+      unit: normalizedInternal.unit
+    });
+
+    if (normalizedInternal.unit === inputUnit || (!normalizedInternal.unit && !inputUnit)) {
+      return new OpenGeometryValue({
+        valueType,
+        quantity: resolvedQuantity,
+        input: new ValueInput({
+          id,
+          value: numericValue,
+          unit: inputUnit,
+          quantity: resolvedQuantity,
+          internal: internalValue,
+          output: this.resolveOutput({
+            output,
+            outputId,
+            inputUnit,
+            internalValue
+          })
+        }),
+        internal: internalValue
+      });
+    }
+
+    return new OpenGeometryValue({
+      valueType,
+      quantity: resolvedQuantity,
+      input: new ValueInput({
+        id,
+        value: numericValue,
+        unit: inputUnit,
+        quantity: resolvedQuantity,
+        internal: internalValue,
+        output: this.resolveOutput({
+          output,
+          outputId,
+          inputUnit,
+          internalValue
+        })
+      }),
+      internal: internalValue
+    });
+  }
+
+  tryCreate(options) {
+    try {
+      return {
+        ok: true,
+        value: this.create(options),
+        error: null
+      };
+    } catch (error) {
+      if (error instanceof ValueInputError) {
+        return {
+          ok: false,
+          value: null,
+          error
+        };
+      }
+
+      throw error;
+    }
+  }
+
+  parseNumericValue({ value, valueType, quantity, unit }) {
+    try {
+      return this.numberParser.parse(value);
+    } catch (error) {
+      throw this.normalizeInputError(error, {
+        code: DOMAIN_STRINGS.ERROR_CODE_INVALID_NUMERIC_VALUE,
+        field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+        value,
+        valueType,
+        quantity,
+        unit,
+        fallbackMessage: `${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${value}`
+      });
+    }
+  }
+
+  normalizeNumericValue({ quantityProfile, numericValue, value, valueType, quantity, unit }) {
+    try {
+      return quantityProfile?.normalizeNumericValue(
+        numericValue,
+        unit === QUANTITY_TYPES.NONE ? undefined : unit,
+        this.converter,
+        this.resolutionApplier
+      ) ?? { value: numericValue, unit: unit === QUANTITY_TYPES.NONE ? undefined : unit };
+    } catch (error) {
+      throw this.normalizeUnitError(error, {
+        value,
+        valueType,
+        quantity,
+        unit
+      });
+    }
+  }
+
+  assertSupportedUnit({ quantityProfile, value, valueType, quantity, unit }) {
+    if (!quantityProfile || !unit || unit === QUANTITY_TYPES.NONE) {
+      return;
+    }
+
+    const supportedUnits = quantityProfile.getSupportedUnits();
+
+    if (supportedUnits.length === 0 || quantityProfile.supportsUnit(unit)) {
+      return;
+    }
+
+    const isKnownUnit = this.converter.isKnownUnit(unit);
+    const code = isKnownUnit
+      ? DOMAIN_STRINGS.ERROR_CODE_UNSUPPORTED_INPUT_UNIT
+      : DOMAIN_STRINGS.ERROR_CODE_UNKNOWN_INPUT_UNIT;
+    const prefix = isKnownUnit
+      ? DOMAIN_STRINGS.ERROR_UNSUPPORTED_INPUT_UNIT_PREFIX
+      : DOMAIN_STRINGS.ERROR_UNKNOWN_INPUT_UNIT_PREFIX;
+
+    throw this.createInputError({
+      code,
+      field: DOMAIN_STRINGS.ERROR_FIELD_UNIT,
+      message: `${prefix}: ${unit}`,
+      value,
+      valueType,
+      quantity,
+      unit
+    });
+  }
+
+  normalizeInputError(error, { code, field, value, valueType, quantity, unit, fallbackMessage }) {
+    if (error instanceof ValueInputError) {
+      return error;
+    }
+
+    return this.createInputError({
+      code,
+      field,
+      message: error instanceof Error ? error.message : fallbackMessage,
+      value,
+      valueType,
+      quantity,
+      unit,
+      cause: error
+    });
+  }
+
+  normalizeUnitError(error, { value, valueType, quantity, unit }) {
+    if (error instanceof ValueInputError) {
+      return error;
+    }
+
+    const message = error instanceof Error ? error.message : `${DOMAIN_STRINGS.ERROR_INCOMPATIBLE_INPUT_UNIT_PREFIX}: ${quantity}`;
+
+    return this.createInputError({
+      code: DOMAIN_STRINGS.ERROR_CODE_INCOMPATIBLE_INPUT_UNIT,
+      field: DOMAIN_STRINGS.ERROR_FIELD_UNIT,
+      message,
+      value,
+      valueType,
+      quantity,
+      unit,
+      cause: error
+    });
+  }
+
+  createInputError({ code, field, message, value, valueType, quantity, unit, cause }) {
+    return new ValueInputError({
+      code,
+      field,
+      message,
+      value,
+      valueType,
+      quantity,
+      unit,
+      cause
+    });
+  }
+
+  resolveOutput({ output, outputId, inputUnit, internalValue }) {
+    if (output instanceof Output) {
+      return output;
+    }
+
+    const outputUnit = inputUnit !== QUANTITY_TYPES.NONE ? inputUnit : (internalValue.unit ?? QUANTITY_TYPES.NONE);
+
+    return new Output({
+      id: outputId,
+      unit: outputUnit,
+      showUnit: outputUnit !== QUANTITY_TYPES.NONE
+    });
+  }
+}
+
+export const valueFactory = new ValueFactory();
+
+export const createValue = (options) => valueFactory.create(options);
+export const tryCreateValue = (options) => valueFactory.tryCreate(options);

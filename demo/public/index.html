@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenGeometry Value Studio</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero-panel">
+        <div>
+          <p class="eyebrow">OpenGeometry Values</p>
+          <h1>Interactive BIM and AEC Output Studio</h1>
+          <p class="hero-copy">
+            Combine parameter samples, engineering output presets, and live formatting previews in one local workspace.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="runVisualTestsButton" class="primary-button" type="button">Run Visual Tests</button>
+          <button id="saveScenarioButton" class="secondary-button" type="button">Save Current Setup</button>
+        </div>
+      </header>
+
+      <main class="workspace-grid">
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">1. Parameter</p>
+            <h2>Parameter Workspace</h2>
+          </div>
+
+          <form class="form-grid">
+            <label>
+              Quantity
+              <select id="quantitySelect" name="quantity"></select>
+            </label>
+
+            <label>
+              Sample
+              <select id="sampleSelect" name="sample"></select>
+            </label>
+
+            <label>
+              Parameter Name
+              <input id="parameterNameInput" name="parameterName" type="text" placeholder="Beam Span" />
+            </label>
+
+            <label>
+              Parameter Id
+              <input id="parameterIdInput" name="parameterId" type="text" placeholder="length:beam-span" />
+            </label>
+
+            <label>
+              Numeric Value
+              <input id="parameterValueInput" name="parameterValue" type="text" inputmode="decimal" placeholder="7.2" />
+            </label>
+
+            <label>
+              Input Unit
+              <select id="inputUnitSelect" name="inputUnit"></select>
+            </label>
+          </form>
+        </section>
+
+        <section class="panel form-panel accent-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">2. Output</p>
+            <h2>Output Library</h2>
+          </div>
+
+          <form class="form-grid">
+            <label>
+              Preset
+              <select id="presetSelect" name="preset"></select>
+            </label>
+
+            <label>
+              Output Unit
+              <select id="outputUnitSelect" name="outputUnit"></select>
+            </label>
+
+            <label>
+              Precision
+              <input id="precisionInput" name="precision" type="number" min="0" max="12" step="1" value="0" />
+            </label>
+
+            <label>
+              Suffix Mode
+              <select id="suffixModeSelect" name="suffixMode"></select>
+            </label>
+
+            <label>
+              Prefix
+              <input id="prefixInput" name="prefix" type="text" placeholder="~ " />
+            </label>
+
+            <label>
+              Custom Suffix
+              <input id="suffixInput" name="suffix" type="text" placeholder=" MPa(g)" />
+            </label>
+
+            <label class="checkbox-field">
+              <input id="showUnitCheckbox" name="showUnit" type="checkbox" checked />
+              <span>Show Unit</span>
+            </label>
+          </form>
+        </section>
+
+        <section class="panel results-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">3. Preview</p>
+            <h2>Interactive Outputs</h2>
+          </div>
+
+          <div id="previewStatus" class="status-banner">Select a sample or enter a parameter to generate live previews.</div>
+
+          <div class="summary-grid">
+            <article class="summary-card">
+              <span class="summary-label">Input</span>
+              <strong id="inputSummary">-</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-label">Internal</span>
+              <strong id="internalSummary">-</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-label">Preset</span>
+              <strong id="presetSummary">-</strong>
+            </article>
+          </div>
+
+          <div class="preview-grid">
+            <article class="preview-card">
+              <span>Display</span>
+              <strong id="displayPreview">-</strong>
+            </article>
+            <article class="preview-card">
+              <span>Composition</span>
+              <strong id="compositionPreview">-</strong>
+            </article>
+            <article class="preview-card">
+              <span>Friendly</span>
+              <strong id="friendlyPreview">-</strong>
+            </article>
+            <article class="preview-card highlight-card">
+              <span>Edit</span>
+              <strong id="editPreview">-</strong>
+            </article>
+          </div>
+
+          <pre id="previewJson" class="json-block">{}</pre>
+        </section>
+
+        <section class="panel shelf-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Library</p>
+            <h2>Saved Setups</h2>
+          </div>
+          <div id="savedSetups" class="saved-list"></div>
+        </section>
+
+        <section class="panel shelf-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Validation</p>
+            <h2>Visual Test Runner</h2>
+          </div>
+          <pre id="visualTestOutput" class="json-block">Run the visual suite to verify the engineering previews.</pre>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.mjs"></script>
+  </body>
+</html>

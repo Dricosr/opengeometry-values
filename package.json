@@ -12,7 +12,9 @@
   ],
   "scripts": {
     "check:customizations": "node ./scripts/check-customizations.mjs",
+    "demo:start": "node ./demo/server.mjs",
     "test": "vitest run",
+    "test:visual": "vitest run tests/visual",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
@@ -36,6 +38,7 @@
   },
   "homepage": "https://github.com/opengeometry/opengeometry-values#readme",
   "dependencies": {
+    "express": "5.2.1",
     "mathjs": "15.2.0"
   },
   "devDependencies": {

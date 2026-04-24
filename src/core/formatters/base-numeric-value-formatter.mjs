@@ -1,0 +1,32 @@
+import { format } from "mathjs";
+import { MATHJS_STRINGS } from "../../constants/mathjs-string-catalog.mjs";
+import { displayPrecisionResolver } from "../resolve-display-precision.mjs";
+import { unitConverter } from "../convert-value.mjs";
+
+export class BaseNumericValueFormatter {
+  constructor(converter = unitConverter, precisionResolver = displayPrecisionResolver) {
+    this.converter = converter;
+    this.precisionResolver = precisionResolver;
+  }
+
+  formatNumber(ogValue, displayUnit, requestedPrecision) {
+    const convertedValue = this.converter.convert({
+      value: ogValue.internal.value,
+      fromUnit: ogValue.internal.unit,
+      toUnit: displayUnit
+    });
+
+    const precision = this.precisionResolver.resolve(
+      ogValue.quantity,
+      displayUnit,
+      requestedPrecision
+    );
+
+    return format(convertedValue, {
+      notation: MATHJS_STRINGS.FIXED_NOTATION,
+      precision
+    });
+  }
+}
+
+export const baseNumericValueFormatter = new BaseNumericValueFormatter();

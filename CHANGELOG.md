@@ -9,7 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Local Express demo with interactive BIM and AEC parameter/output previews and browser-triggered visual test execution
+- Reusable parameter samples grouped by quantity and a curated output preset mini library for common engineering views
+- Public preview helpers for building interactive UIs: `createValuePreview`, `buildOutput`, `OUTPUT_PRESETS`, and `PARAMETER_SAMPLES`
 - Customization sync check for mirrored Copilot, Claude, and memory guidance files
+- Initial class-oriented implementation for values, catalogs, parsing, conversion, precision resolution, and formatting in `src/`
+- Vitest coverage for constants, value creation, conversion, precision, formatting, and the public index
+- Specialist quantity profiles for `length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, and `time`, wired into normalization and precision decisions
+- Visual engineering I/O tests covering raw user-facing value flows such as `90 deg`, `2000 mm`, `200 cm`, `30 in`, `12.5 kg`, `1.5 kN`, `250 kPa`, `2 h`, and temperature conversion
+- Structured `tryCreateValue` validation results for UI-facing input rejection, including numeric and unit errors
+- Expanded specialist visual tests with valid multi-unit scenarios and invalid input cases for engineering UIs
+- Public value creation input is now structurally `{ value, unit }`, and `ValueInput` no longer stores raw text
+- `Output` and typed affix models with ids, so each `ValueInput` now stores normalized internal data together with its display configuration
 
 ### Changed
 
