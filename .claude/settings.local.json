@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm info *)",
+      "WebSearch",
+      "WebFetch(domain:code.visualstudio.com)",
+      "Bash(gh auth *)",
+      "PowerShell(gh auth status)",
+      "PowerShell(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" remote -v)",
+      "PowerShell(winget list GitHub.cli)",
+      "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\GitHub CLI\" -ErrorAction SilentlyContinue; Get-ChildItem \"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\" -ErrorAction SilentlyContinue)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\GitHub CLI\"; gh --version)",
+      "PowerShell($env:PATH += \";C:\\\\Program Files\\\\GitHub CLI\"; gh auth status)",
+      "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" log --oneline -10)",
+      "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" status)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}
