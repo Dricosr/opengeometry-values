@@ -8,6 +8,8 @@ Always use `.mjs` files and ES6+ syntax (import/export, arrow functions, const/l
 
 All code, comments, variable names, and documentation must be in English (en-US).
 
+Commit messages, PR descriptions, issue templates, and changelog entries must be in English (en-US), and commit messages must not include `Co-Authored-By:` trailers or other co-author metadata unless the user explicitly asks for it.
+
 Pin exact dependency versions in package.json - no `^` or `~`. Node.js minimum version must track the current stable release.
 
 **Why:** Supply chain security and predictability. The user explicitly called out ^ prefixes as a risk.

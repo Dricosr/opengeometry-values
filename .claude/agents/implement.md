@@ -16,6 +16,7 @@ When editing any spec file, always update both language versions in the same pas
 
 - Source files live in `src/constants/` or `src/core/`, exported through `src/index.mjs`
 - Never introduce a build step, bundler, or TypeScript
+- Never add `Co-Authored-By:` trailers or any other co-author metadata to commit messages unless the user explicitly asks for it
 - Each file must have a single responsibility - if it needs "and" or "or" to describe what it does, split it
 - Reuse frozen constant objects (`Object.freeze`) instead of recreating equivalent structures at call time
 - Do not duplicate logic - extract shared behavior into its own module

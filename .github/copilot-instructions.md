@@ -5,6 +5,10 @@
 - All code, comments, variable names, and documentation must be in **English (en-US)**
 - Commit messages, PR descriptions, issue templates, and changelog entries in English
 
+## Git metadata
+
+- Never add `Co-Authored-By:` trailers or any other co-author metadata to commit messages unless the user explicitly asks for it
+
 ## File conventions
 
 - Always use `.mjs` extension for JavaScript source files
