@@ -377,9 +377,16 @@ Base structure:
   quantity: "length",
 
   input: {
-    text: "2002",
+    id: "input:length:beam-1",
     value: 2002,
-    unit: "mm"
+    unit: "mm",
+
+    internal: {
+      value: 2.002,
+      unit: "m"
+    },
+
+    output: { /* Output instance */ }
   },
 
   internal: {
@@ -389,15 +396,7 @@ Base structure:
 }
 ```
 
-This model preserves:
-
-```txt
-text typed by the user
-typed value
-typed unit
-value converted to internal unit
-internal unit used by the system
-```
+Each `ValueInput` stores its own `id`, the original numeric `value` and `unit`, the normalized `internal` snapshot, and the attached `Output` instance that drives display and edit formatting.
 
 Important rule:
 
@@ -409,77 +408,11 @@ The UI may display the original input, but calculations, geometry, and interoper
 
 # 12. Create value from input
 
-File:
+`createValue` parses a `{ id, value, unit, valueType, quantity, output }` payload, converts to the internal unit, applies resolution, and returns a structured value with `input` and `internal` fields.
 
-```txt
-src/core/create-value.mjs
-```
+`tryCreateValue` wraps `createValue` and returns `{ ok, value, error }` instead of throwing, suitable for UI validation flows.
 
-```js
-import { unit } from "mathjs";
-import { INTERNAL_UNITS } from "../constants/internal-units.mjs";
-import { applyInternalResolution } from "./apply-internal-resolution.mjs";
-
-export function createValue({ text, valueType, quantity, inputUnit }) {
-  if (valueType === "string") {
-    return {
-      valueType,
-      quantity,
-      input: { text, value: text },
-      internal: { value: text }
-    };
-  }
-
-  if (valueType === "boolean") {
-    const value = parseBoolean(text);
-
-    return {
-      valueType,
-      quantity,
-      input: { text, value },
-      internal: { value }
-    };
-  }
-
-  const numericValue = parseNumber(text);
-  const internalUnit = INTERNAL_UNITS[quantity];
-
-  if (!internalUnit || !inputUnit) {
-    return {
-      valueType,
-      quantity,
-      input: { text, value: numericValue, unit: inputUnit },
-      internal: { value: numericValue, unit: inputUnit }
-    };
-  }
-
-  const convertedValue = unit(numericValue, inputUnit).toNumber(internalUnit);
-  const internalValue = applyInternalResolution(convertedValue, quantity);
-
-  return {
-    valueType,
-    quantity,
-    input: { text, value: numericValue, unit: inputUnit },
-    internal: { value: internalValue, unit: internalUnit }
-  };
-}
-
-function parseNumber(text) {
-  const value = String(text).trim();
-
-  if (!/^-?\d+(\.\d+)?$/.test(value)) {
-    throw new Error(`Invalid numeric value: ${text}`);
-  }
-
-  return Number(value);
-}
-
-function parseBoolean(text) {
-  const value = String(text).trim().toLowerCase();
-
-  return value === "true" || value === "yes" || value === "1";
-}
-```
+For current signatures see the [README](../../README.md).
 
 ---
 
@@ -518,45 +451,37 @@ convertValue({
 
 # 14. UI symbols
 
-File:
+`UNIT_SYMBOLS` maps Math.js unit codes to display characters. Current entries:
 
-```txt
-src/constants/unit-symbols.mjs
-```
-
-```js
-export const UNIT_SYMBOLS = Object.freeze({
-  m: "m",
-  cm: "cm",
-  mm: "mm",
-
-  "m^2": "m²",
-  "m^3": "m³",
-
-  rad: "rad",
-  deg: "°",
-
-  degC: "°C",
-  degF: "°F",
-  K: "K",
-
-  kg: "kg",
-
-  N: "N",
-  kN: "kN",
-
-  Pa: "Pa",
-  kPa: "kPa",
-  MPa: "MPa",
-  bar: "bar",
-
-  s: "s",
-  min: "min",
-  h: "h",
-
-  percent: "%"
-});
-```
+| Math.js code | Display |
+| ------------ | ------- |
+| `m`          | `m`     |
+| `cm`         | `cm`    |
+| `mm`         | `mm`    |
+| `in`         | `in`    |
+| `cm^2`       | `cm²`   |
+| `m^2`        | `m²`    |
+| `in^2`       | `in²`   |
+| `cm^3`       | `cm³`   |
+| `m^3`        | `m³`    |
+| `in^3`       | `in³`   |
+| `L`          | `L`     |
+| `rad`        | `rad`   |
+| `deg`        | `°`     |
+| `degC`       | `°C`    |
+| `degF`       | `°F`    |
+| `K`          | `K`     |
+| `kg`         | `kg`    |
+| `N`          | `N`     |
+| `kN`         | `kN`    |
+| `Pa`         | `Pa`    |
+| `kPa`        | `kPa`   |
+| `MPa`        | `MPa`   |
+| `bar`        | `bar`   |
+| `s`          | `s`     |
+| `min`        | `min`   |
+| `h`          | `h`     |
+| `percent`    | `%`     |
 
 ---
 
@@ -848,57 +773,22 @@ The unit must appear in the label, select, or adornment of the field.
 
 # 20. Family property
 
-Example:
+A parameter definition carries the quantity, value type, default unit, and display configuration. The library does not define the parameter schema itself — that belongs to the consuming application.
+
+Example of what the consumer passes to `createValue`:
 
 ```js
-const outsideDiameterProperty = {
+createValue({
   id: "outsideDiameter",
-  name: "Outside Diameter",
+  value: 200.25,
+  unit: "mm",
   valueType: "float",
   quantity: "length",
-
-  defaultInputUnit: "mm",
-
-  display: {
-    unit: "mm",
-    precision: 1,
-    editPrecision: 1
-  }
-};
-```
-
-Creating a value:
-
-```js
-const value = createValue({
-  text: "200.25",
-  valueType: outsideDiameterProperty.valueType,
-  quantity: outsideDiameterProperty.quantity,
-  inputUnit: outsideDiameterProperty.defaultInputUnit
+  output: new Output({ unit: "mm", precision: 1 })
 });
 ```
 
-Internal result:
-
-```js
-{
-  valueType: "float",
-  quantity: "length",
-
-  input: {
-    text: "200.25",
-    value: 200.25,
-    unit: "mm"
-  },
-
-  internal: {
-    value: 0.2003,
-    unit: "m"
-  }
-}
-```
-
-Because `200.25 mm` rounds to `200.3 mm`, respecting the `0.1 mm` resolution.
+Because `200.25 mm` rounds to `200.3 mm`, respecting the `0.1 mm` internal resolution.
 
 ---
 
@@ -933,75 +823,43 @@ Display unit resolution order:
 
 # 22. Central export
 
-File:
+All public symbols are exported from `src/index.mjs`. The surface has grown beyond the original MVP to include:
 
-```txt
-src/index.mjs
-```
+- Domain constants: `VALUE_TYPES`, `QUANTITY_TYPES`, `INTERNAL_UNITS`, `INTERNAL_RESOLUTION`, `UNIT_SYMBOLS`, `OUTPUT_SUFFIX_MODES`, `OUTPUT_AFFIX_TYPES`
+- Core functions: `createValue`, `tryCreateValue`, `convertValue`, `formatDisplayValue`, `formatEditValue`, `applyInternalResolution`, `getMaxDisplayPrecision`, `resolveDisplayPrecision`, `buildOutput`, `createValuePreview`
+- Models: `Output`, `OutputAffix`, `CustomOutputAffix`, `EmptyOutputAffix`, `UnitCodeOutputAffix`, `UnitSymbolOutputAffix`
+- Catalogs: `OUTPUT_PRESETS`, `PARAMETER_SAMPLES`, `QUANTITY_PROFILES`
+- Quantity profiles: `LengthQuantityProfile`, `AreaQuantityProfile`, `VolumeQuantityProfile`, `AngleQuantityProfile`, `TemperatureQuantityProfile`, `MassQuantityProfile`, `ForceQuantityProfile`, `PressureQuantityProfile`, `TimeQuantityProfile`
+- Parsers: `parseNumber`, `parseBoolean`
 
-```js
-export { VALUE_TYPES } from "./constants/value-types.mjs";
-export { QUANTITY_TYPES } from "./constants/quantity-types.mjs";
-export { INTERNAL_UNITS } from "./constants/internal-units.mjs";
-export { INTERNAL_RESOLUTION } from "./constants/internal-resolution.mjs";
-export { UNIT_SYMBOLS } from "./constants/unit-symbols.mjs";
-
-export { createValue } from "./core/create-value.mjs";
-export { convertValue } from "./core/convert-value.mjs";
-export { applyInternalResolution } from "./core/apply-internal-resolution.mjs";
-export { getMaxDisplayPrecision } from "./core/get-max-display-precision.mjs";
-export { resolveDisplayPrecision } from "./core/resolve-display-precision.mjs";
-export { formatDisplayValue } from "./core/format-display-value.mjs";
-export { formatEditValue } from "./core/format-edit-value.mjs";
-```
-
-Usage:
-
-```js
-import {
-  createValue,
-  formatDisplayValue,
-  formatEditValue
-} from "./opengeometry-values/src/index.mjs";
-```
+For the full list with descriptions see the [README](../../README.md).
 
 ---
 
 # 23. Full example
 
 ```js
-import {
-  createValue,
-  formatDisplayValue,
-  formatEditValue
-} from "./src/index.mjs";
+import { createValue, Output, formatDisplayValue, formatEditValue } from "opengeometry-values";
 
 const value = createValue({
-  text: "2002",
+  id: "beam-span",
+  value: 2002,
+  unit: "mm",
   valueType: "float",
   quantity: "length",
-  inputUnit: "mm"
+  output: new Output({ unit: "m", precision: 0 })
 });
 
 console.log(value.internal);
 // { value: 2.002, unit: "m" }
 
-console.log(formatDisplayValue(value, {
-  unit: "m",
-  precision: 0
-}));
+console.log(value.input.formatForDisplay());
 // "2 m"
 
-console.log(formatEditValue(value, {
-  unit: "m",
-  precision: 4
-}));
+console.log(formatEditValue(value, { unit: "m", precision: 4 }));
 // "2.0020"
 
-console.log(formatEditValue(value, {
-  unit: "mm",
-  precision: 4
-}));
+console.log(formatEditValue(value, { unit: "mm", precision: 4 }));
 // "2002.0"
 ```
 
@@ -1055,39 +913,26 @@ Consolidated decisions:
 
 # 25. MVP scope
 
-Implement now:
+The original MVP has been delivered. All items below are implemented.
 
-```txt
-value types:
-string
-integer
-float
-boolean
+**Value types:** `string`, `integer`, `float`, `boolean`
 
-quantities:
-none
-length
-area
-volume
-angle
-temperature
-mass
-force
-pressure
-time
-ratio
+**Quantities:** `none`, `length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`, `ratio`
 
-core:
-createValue()
-convertValue()
-applyInternalResolution()
-getMaxDisplayPrecision()
-resolveDisplayPrecision()
-formatDisplayValue()
-formatEditValue()
-```
+**Core functions:** `createValue`, `tryCreateValue`, `convertValue`, `applyInternalResolution`, `getMaxDisplayPrecision`, `resolveDisplayPrecision`, `formatDisplayValue`, `formatEditValue`
 
-Do not implement yet:
+**Additions beyond the original MVP:**
+
+- `Output` model with typed affixes (`CustomOutputAffix`, `UnitCodeOutputAffix`, `UnitSymbolOutputAffix`, `EmptyOutputAffix`)
+- `buildOutput` service for constructing outputs from preset definitions
+- `createValuePreview` service for inspector and playground UIs
+- `OUTPUT_PRESETS` — curated BIM/AEC output preset catalog
+- `PARAMETER_SAMPLES` — engineering parameter sample catalog
+- `QUANTITY_PROFILES` / specialist quantity profile classes
+- `parseNumber`, `parseBoolean` parsers exposed for consumer reuse
+- `ValueInputError` structured error for UI validation
+
+**Still not in scope:**
 
 ```txt
 formulas

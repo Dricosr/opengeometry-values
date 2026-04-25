@@ -1,7 +1,9 @@
 
-# OpenGeometry Values
+# OpenGeometry Values — Especificação
 
-Lib em  **JavaScript puro** , usando arquivos  **`.mjs`** , padrão  **ES Modules** , acoplada ao **Math.js** para conversão, unidade e formatação numérica.
+> Este documento define as regras de domínio da biblioteca. Para a API pública atual, exemplos de uso e instalação, consulte o [README](../../README.md).
+
+Lib em **JavaScript puro**, usando arquivos **`.mjs`**, padrão **ES Modules**, acoplada ao **Math.js** para conversão, unidade e formatação numérica.
 
 Objetivo:
 
@@ -65,7 +67,7 @@ O OpenGeometry define as regras de domínio.
 {
   "type": "module",
   "dependencies": {
-    "mathjs": "^14.0.0"
+    "mathjs": "15.2.0"
   }
 }
 ```
@@ -84,31 +86,9 @@ import { unit, format } from "mathjs";
 
 ---
 
-# 4. Estrutura inicial do repo
+# 4. Estrutura do repo
 
-```txt
-opengeometry-values/
-  package.json
-
-  src/
-    constants/
-      value-types.mjs
-      quantity-types.mjs
-      internal-units.mjs
-      internal-resolution.mjs
-      unit-symbols.mjs
-
-    core/
-      create-value.mjs
-      convert-value.mjs
-      apply-internal-resolution.mjs
-      get-max-display-precision.mjs
-      resolve-display-precision.mjs
-      format-display-value.mjs
-      format-edit-value.mjs
-
-    index.mjs
-```
+O código-fonte fica em `src/`, dividido entre `constants/` (catálogos de domínio congelados) e `core/` (funções puras e classes especialistas). Os exports públicos são centralizados em `src/index.mjs`. Consulte o [README](../../README.md) para a superfície completa da API.
 
 ---
 
@@ -398,9 +378,16 @@ Estrutura base:
   quantity: "length",
 
   input: {
-    text: "2002",
+    id: "input:length:beam-1",
     value: 2002,
-    unit: "mm"
+    unit: "mm",
+
+    internal: {
+      value: 2.002,
+      unit: "m"
+    },
+
+    output: { /* instância de Output */ }
   },
 
   internal: {
@@ -410,15 +397,7 @@ Estrutura base:
 }
 ```
 
-Esse modelo preserva:
-
-```txt
-texto digitado pelo usuário
-valor digitado
-unidade digitada
-valor convertido para unidade interna
-unidade interna usada pelo sistema
-```
+Cada `ValueInput` armazena seu próprio `id`, o `value` e `unit` originais, o snapshot `internal` normalizado e a instância `Output` que controla a formatação de display e edição.
 
 Regra importante:
 
@@ -430,77 +409,11 @@ A UI pode mostrar o input original, mas cálculo, geometria e interoperabilidade
 
 # 12. Criar valor a partir do input
 
-Arquivo:
+`createValue` recebe `{ id, value, unit, valueType, quantity, output }`, converte para a unidade interna, aplica a resolução e retorna um valor estruturado com `input` e `internal`.
 
-```txt
-src/core/create-value.mjs
-```
+`tryCreateValue` envolve `createValue` e retorna `{ ok, value, error }` em vez de lançar exceção, adequado para validação em formulários de UI.
 
-```js
-import { unit } from "mathjs";
-import { INTERNAL_UNITS } from "../constants/internal-units.mjs";
-import { applyInternalResolution } from "./apply-internal-resolution.mjs";
-
-export function createValue({ text, valueType, quantity, inputUnit }) {
-  if (valueType === "string") {
-    return {
-      valueType,
-      quantity,
-      input: { text, value: text },
-      internal: { value: text }
-    };
-  }
-
-  if (valueType === "boolean") {
-    const value = parseBoolean(text);
-
-    return {
-      valueType,
-      quantity,
-      input: { text, value },
-      internal: { value }
-    };
-  }
-
-  const numericValue = parseNumber(text);
-  const internalUnit = INTERNAL_UNITS[quantity];
-
-  if (!internalUnit || !inputUnit) {
-    return {
-      valueType,
-      quantity,
-      input: { text, value: numericValue, unit: inputUnit },
-      internal: { value: numericValue, unit: inputUnit }
-    };
-  }
-
-  const convertedValue = unit(numericValue, inputUnit).toNumber(internalUnit);
-  const internalValue = applyInternalResolution(convertedValue, quantity);
-
-  return {
-    valueType,
-    quantity,
-    input: { text, value: numericValue, unit: inputUnit },
-    internal: { value: internalValue, unit: internalUnit }
-  };
-}
-
-function parseNumber(text) {
-  const value = String(text).trim();
-
-  if (!/^-?\d+(\.\d+)?$/.test(value)) {
-    throw new Error(`Invalid numeric value: ${text}`);
-  }
-
-  return Number(value);
-}
-
-function parseBoolean(text) {
-  const value = String(text).trim().toLowerCase();
-
-  return value === "true" || value === "yes" || value === "1";
-}
-```
+Para as assinaturas atuais consulte o [README](../../README.md).
 
 ---
 
@@ -539,45 +452,37 @@ convertValue({
 
 # 14. Símbolos de UI
 
-Arquivo:
+`UNIT_SYMBOLS` mapeia códigos Math.js para caracteres de exibição. Entradas atuais:
 
-```txt
-src/constants/unit-symbols.mjs
-```
-
-```js
-export const UNIT_SYMBOLS = Object.freeze({
-  m: "m",
-  cm: "cm",
-  mm: "mm",
-
-  "m^2": "m²",
-  "m^3": "m³",
-
-  rad: "rad",
-  deg: "°",
-
-  degC: "°C",
-  degF: "°F",
-  K: "K",
-
-  kg: "kg",
-
-  N: "N",
-  kN: "kN",
-
-  Pa: "Pa",
-  kPa: "kPa",
-  MPa: "MPa",
-  bar: "bar",
-
-  s: "s",
-  min: "min",
-  h: "h",
-
-  percent: "%"
-});
-```
+| Código Math.js | Display |
+| -------------- | ------- |
+| `m`            | `m`     |
+| `cm`           | `cm`    |
+| `mm`           | `mm`    |
+| `in`           | `in`    |
+| `cm^2`         | `cm²`   |
+| `m^2`          | `m²`    |
+| `in^2`         | `in²`   |
+| `cm^3`         | `cm³`   |
+| `m^3`          | `m³`    |
+| `in^3`         | `in³`   |
+| `L`            | `L`     |
+| `rad`          | `rad`   |
+| `deg`          | `°`     |
+| `degC`         | `°C`    |
+| `degF`         | `°F`    |
+| `K`            | `K`     |
+| `kg`           | `kg`    |
+| `N`            | `N`     |
+| `kN`           | `kN`    |
+| `Pa`           | `Pa`    |
+| `kPa`          | `kPa`   |
+| `MPa`          | `MPa`   |
+| `bar`          | `bar`   |
+| `s`            | `s`     |
+| `min`          | `min`   |
+| `h`            | `h`     |
+| `percent`      | `%`     |
 
 ---
 
@@ -869,57 +774,22 @@ A unidade deve aparecer no label, select ou adornment do campo.
 
 # 20. Propriedade de família
 
-Exemplo:
+Uma definição de parâmetro carrega grandeza, tipo de valor, unidade padrão e configuração de display. A biblioteca não define o schema do parâmetro — isso pertence à aplicação consumidora.
+
+Exemplo do que o consumidor passa para `createValue`:
 
 ```js
-const outsideDiameterProperty = {
+createValue({
   id: "outsideDiameter",
-  name: "Outside Diameter",
+  value: 200.25,
+  unit: "mm",
   valueType: "float",
   quantity: "length",
-
-  defaultInputUnit: "mm",
-
-  display: {
-    unit: "mm",
-    precision: 1,
-    editPrecision: 1
-  }
-};
-```
-
-Criando valor:
-
-```js
-const value = createValue({
-  text: "200.25",
-  valueType: outsideDiameterProperty.valueType,
-  quantity: outsideDiameterProperty.quantity,
-  inputUnit: outsideDiameterProperty.defaultInputUnit
+  output: new Output({ unit: "mm", precision: 1 })
 });
 ```
 
-Resultado interno:
-
-```js
-{
-  valueType: "float",
-  quantity: "length",
-
-  input: {
-    text: "200.25",
-    value: 200.25,
-    unit: "mm"
-  },
-
-  internal: {
-    value: 0.2003,
-    unit: "m"
-  }
-}
-```
-
-Porque `200.25 mm` arredonda para `200.3 mm`, respeitando a resolução de `0.1 mm`.
+Porque `200.25 mm` arredonda para `200.3 mm`, respeitando a resolução interna de `0.1 mm`.
 
 ---
 
@@ -954,75 +824,43 @@ Ordem de resolução da unidade de display:
 
 # 22. Export central
 
-Arquivo:
+Todos os símbolos públicos são exportados por `src/index.mjs`. A superfície cresceu além do MVP original e inclui:
 
-```txt
-src/index.mjs
-```
+- Constantes de domínio: `VALUE_TYPES`, `QUANTITY_TYPES`, `INTERNAL_UNITS`, `INTERNAL_RESOLUTION`, `UNIT_SYMBOLS`, `OUTPUT_SUFFIX_MODES`, `OUTPUT_AFFIX_TYPES`
+- Funções principais: `createValue`, `tryCreateValue`, `convertValue`, `formatDisplayValue`, `formatEditValue`, `applyInternalResolution`, `getMaxDisplayPrecision`, `resolveDisplayPrecision`, `buildOutput`, `createValuePreview`
+- Modelos: `Output`, `OutputAffix`, `CustomOutputAffix`, `EmptyOutputAffix`, `UnitCodeOutputAffix`, `UnitSymbolOutputAffix`
+- Catálogos: `OUTPUT_PRESETS`, `PARAMETER_SAMPLES`, `QUANTITY_PROFILES`
+- Perfis de grandeza: `LengthQuantityProfile`, `AreaQuantityProfile`, `VolumeQuantityProfile`, `AngleQuantityProfile`, `TemperatureQuantityProfile`, `MassQuantityProfile`, `ForceQuantityProfile`, `PressureQuantityProfile`, `TimeQuantityProfile`
+- Parsers: `parseNumber`, `parseBoolean`
 
-```js
-export { VALUE_TYPES } from "./constants/value-types.mjs";
-export { QUANTITY_TYPES } from "./constants/quantity-types.mjs";
-export { INTERNAL_UNITS } from "./constants/internal-units.mjs";
-export { INTERNAL_RESOLUTION } from "./constants/internal-resolution.mjs";
-export { UNIT_SYMBOLS } from "./constants/unit-symbols.mjs";
-
-export { createValue } from "./core/create-value.mjs";
-export { convertValue } from "./core/convert-value.mjs";
-export { applyInternalResolution } from "./core/apply-internal-resolution.mjs";
-export { getMaxDisplayPrecision } from "./core/get-max-display-precision.mjs";
-export { resolveDisplayPrecision } from "./core/resolve-display-precision.mjs";
-export { formatDisplayValue } from "./core/format-display-value.mjs";
-export { formatEditValue } from "./core/format-edit-value.mjs";
-```
-
-Uso:
-
-```js
-import {
-  createValue,
-  formatDisplayValue,
-  formatEditValue
-} from "./opengeometry-values/src/index.mjs";
-```
+Para a lista completa com descrições consulte o [README](../../README.md).
 
 ---
 
 # 23. Exemplo completo
 
 ```js
-import {
-  createValue,
-  formatDisplayValue,
-  formatEditValue
-} from "./src/index.mjs";
+import { createValue, Output, formatDisplayValue, formatEditValue } from "opengeometry-values";
 
 const value = createValue({
-  text: "2002",
+  id: "beam-span",
+  value: 2002,
+  unit: "mm",
   valueType: "float",
   quantity: "length",
-  inputUnit: "mm"
+  output: new Output({ unit: "m", precision: 0 })
 });
 
 console.log(value.internal);
 // { value: 2.002, unit: "m" }
 
-console.log(formatDisplayValue(value, {
-  unit: "m",
-  precision: 0
-}));
+console.log(value.input.formatForDisplay());
 // "2 m"
 
-console.log(formatEditValue(value, {
-  unit: "m",
-  precision: 4
-}));
+console.log(formatEditValue(value, { unit: "m", precision: 4 }));
 // "2.0020"
 
-console.log(formatEditValue(value, {
-  unit: "mm",
-  precision: 4
-}));
+console.log(formatEditValue(value, { unit: "mm", precision: 4 }));
 // "2002.0"
 ```
 
@@ -1076,39 +914,26 @@ As decisões consolidadas:
 
 # 25. Escopo MVP
 
-Implementar agora:
+O MVP original foi entregue. Todos os itens abaixo estão implementados.
 
-```txt
-value types:
-string
-integer
-float
-boolean
+**Tipos de valor:** `string`, `integer`, `float`, `boolean`
 
-quantities:
-none
-length
-area
-volume
-angle
-temperature
-mass
-force
-pressure
-time
-ratio
+**Grandezas:** `none`, `length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`, `ratio`
 
-core:
-createValue()
-convertValue()
-applyInternalResolution()
-getMaxDisplayPrecision()
-resolveDisplayPrecision()
-formatDisplayValue()
-formatEditValue()
-```
+**Funções principais:** `createValue`, `tryCreateValue`, `convertValue`, `applyInternalResolution`, `getMaxDisplayPrecision`, `resolveDisplayPrecision`, `formatDisplayValue`, `formatEditValue`
 
-Não implementar ainda:
+**Adições além do MVP original:**
+
+- Modelo `Output` com affixes tipados (`CustomOutputAffix`, `UnitCodeOutputAffix`, `UnitSymbolOutputAffix`, `EmptyOutputAffix`)
+- Serviço `buildOutput` para construir outputs a partir de definições de preset
+- Serviço `createValuePreview` para UIs de inspetor e playground
+- `OUTPUT_PRESETS` — catálogo de presets BIM/AEC
+- `PARAMETER_SAMPLES` — catálogo de amostras de parâmetros de engenharia
+- `QUANTITY_PROFILES` / classes de perfil de grandeza especialistas
+- Parsers `parseNumber` e `parseBoolean` expostos para reuso
+- `ValueInputError` para validação estruturada em formulários de UI
+
+**Ainda fora do escopo:**
 
 ```txt
 fórmulas
