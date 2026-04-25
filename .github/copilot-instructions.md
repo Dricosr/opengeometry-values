@@ -10,13 +10,13 @@
 - Always use `.mjs` extension for JavaScript source files
 - Always use ES6+ syntax: `import`/`export`, arrow functions, `const`/`let`, optional chaining, etc.
 - No CommonJS (`require`, `module.exports`)
-- No TypeScript — plain JavaScript only
-- No build step — source is shipped as-is
-- Always import dependencies by their package name (bare specifier) — never by relative path into `node_modules/`
+- No TypeScript - plain JavaScript only
+- No build step - source is shipped as-is
+- Always import dependencies by their package name (bare specifier) - never by relative path into `node_modules/`
 
 ## Dependencies
 
-- Pin **exact versions** in `package.json` — no `^` or `~` prefixes
+- Pin **exact versions** in `package.json` - no `^` or `~` prefixes
 - Check the latest published version before adding or updating a dependency
 - Node.js minimum version must track the current stable release (currently 24)
 
@@ -27,15 +27,15 @@
 
 ## Decimal separator
 
-- Only `.` is accepted as the decimal separator in numeric input — never `,`
+- Only `.` is accepted as the decimal separator in numeric input - never `,`
 - Thousands separators are not supported
 
 ## Code design
 
-- Each file must have a single, clearly defined responsibility — if a file needs a conjunction ("and", "or") to describe what it does, it should be split
+- Each file must have a single, clearly defined responsibility - if a file needs a conjunction ("and", "or") to describe what it does, it should be split
 - Keep files small and focused; prefer many small files over one large file that does several things
 - Reuse frozen constant objects (`Object.freeze`) instead of recreating equivalent structures at call time
-- Do not duplicate logic across files — extract shared behavior into its own module in `src/core/` or `src/constants/`
+- Do not duplicate logic across files - extract shared behavior into its own module in `src/core/` or `src/constants/`
 - Prefer pure functions with no side effects; avoid hidden state
 - Do not add features, abstractions, or generalization beyond what the current task requires
 

@@ -29,8 +29,6 @@ export class ValuePreviewService {
       output: builtOutput.config,
       previews: Object.freeze({
         display: value.input.formatForDisplay(),
-        composition: value.input.formatForComposition(),
-        friendly: value.input.formatForFriendlyValue(),
         edit: value.input.formatForEdit()
       })
     });

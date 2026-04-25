@@ -1,6 +1,6 @@
 ---
 name: implement
-description: Use when implementing or modifying source files in src/ — constants, core functions, or the public index. Follows the project's .mjs/ES6+ conventions and keeps git docs aligned.
+description: Use when implementing or modifying source files in src/ - constants, core functions, or the public index. Follows the project's .mjs/ES6+ conventions and keeps git docs aligned.
 ---
 
 [Project instructions](../copilot-instructions.md)
@@ -17,9 +17,9 @@ When editing any spec file, always update both language versions in the same pas
 
 - Source files live in `src/constants/` or `src/core/`, exported through `src/index.mjs`
 - Never introduce a build step, bundler, or TypeScript
-- Each file must have a single responsibility — if it needs "and" or "or" to describe what it does, split it
+- Each file must have a single responsibility - if it needs "and" or "or" to describe what it does, split it
 - Reuse frozen constant objects (`Object.freeze`) instead of recreating equivalent structures at call time
-- Do not duplicate logic — extract shared behavior into its own module
+- Do not duplicate logic - extract shared behavior into its own module
 - Prefer pure functions with no side effects; avoid hidden state
 - After any change to a public function or constant, check `README.md`, `CONTRIBUTING.md`, and `CHANGELOG.md` for alignment
 - Add the change to `CHANGELOG.md` under `[Unreleased]` before finishing

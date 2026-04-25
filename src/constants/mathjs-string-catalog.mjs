@@ -11,6 +11,7 @@ const MATHJS_STRING_ENTRIES = Object.freeze({
   CUBIC_CENTIMETER: "cm^3",
   CUBIC_METER: "m^3",
   CUBIC_INCH: "in^3",
+  LITER: "L",
   RADIAN: "rad",
   DEGREE: "deg",
   DEGREE_CELSIUS: "degC",

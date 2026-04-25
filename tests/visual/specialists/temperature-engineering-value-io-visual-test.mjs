@@ -36,8 +36,6 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
         internal: "30 degC",
         outputs: {
           display: "86 degF",
-          composition: "86 degF",
-          friendly: "86 degF",
           edit: "86"
         }
       },
@@ -46,8 +44,6 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
         internal: "0 degC",
         outputs: {
           display: "0 degC",
-          composition: "0 degC",
-          friendly: "0 degC",
           edit: "0"
         }
       },
@@ -56,8 +52,6 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
         internal: "0 degC",
         outputs: {
           display: "0 degC",
-          composition: "0 degC",
-          friendly: "0 degC",
           edit: "0"
         }
       }

@@ -68,13 +68,13 @@ O browser carrega `/mathjs/index.js`. Todos os imports relativos internos do mat
 
 ## A única regra de authoring que faz tudo funcionar
 
-Todo arquivo em `src/` deve importar dependências usando bare specifiers — nunca paths relativos para dentro do `node_modules`:
+Todo arquivo em `src/` deve importar dependências usando bare specifiers - nunca paths relativos para dentro do `node_modules`:
 
 ```js
 // correto
 import { unit, format } from "mathjs"
 
-// errado — quebra o browser
+// errado - quebra o browser
 import { unit } from "../../node_modules/mathjs/lib/esm/index.js"
 ```
 

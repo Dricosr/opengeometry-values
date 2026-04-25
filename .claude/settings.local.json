@@ -14,7 +14,11 @@
       "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" log --oneline -10)",
       "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" status)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(npm test *)",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:br.linkedin.com)",
+      "PowerShell(Copy-Item -Recurse \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\\\\demo\\\\public\" \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values-demo\\\\public\")"
     ]
   }
 }

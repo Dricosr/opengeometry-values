@@ -25,14 +25,6 @@ export class Output {
     return this.withOverrides(options).composeFormattedValue(input, true);
   }
 
-  formatComposition(input, options = {}) {
-    return this.formatDisplay(input, options);
-  }
-
-  formatFriendlyValue(input, options = {}) {
-    return this.formatDisplay(input, options);
-  }
-
   formatEdit(input, options = {}) {
     return this.withOverrides({
       ...options,
@@ -80,6 +72,10 @@ export class Output {
 
     if (!suffixText) {
       return "";
+    }
+
+    if (this.suffix.type === OUTPUT_AFFIX_TYPES.UNIT_SYMBOL && suffixText === "°") {
+      return suffixText;
     }
 
     if (this.suffix.type === OUTPUT_AFFIX_TYPES.UNIT_CODE || this.suffix.type === OUTPUT_AFFIX_TYPES.UNIT_SYMBOL) {

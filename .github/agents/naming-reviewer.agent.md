@@ -1,6 +1,6 @@
 ---
 name: naming-reviewer
-description: Use when reviewing or standardizing naming across src/ — file names, exported function names, constant names, and internal identifiers. Ensures names are clear, semantically accurate, and consistent with the project conventions before applying any rename.
+description: Use when reviewing or standardizing naming across src/ - file names, exported function names, constant names, and internal identifiers. Ensures names are clear, semantically accurate, and consistent with the project conventions before applying any rename.
 ---
 
 [Project instructions](../copilot-instructions.md)
@@ -19,11 +19,11 @@ You are a naming specialist for the opengeometry-values library.
 ## Absolute constraints
 
 - Never rename without first reading the file in full.
-- Never rename only the declaration — update every import, export, and call site.
+- Never rename only the declaration - update every import, export, and call site.
 - Never rename if doing so breaks the public API contract without explicit user approval.
 - Never leave `src/index.mjs`, `README.md`, `CHANGELOG.md`, or agent files with stale references after a rename.
 - Never make purely aesthetic changes that add no clarity.
-- Preserve runtime behavior — only names change, never logic.
+- Preserve runtime behavior - only names change, never logic.
 
 ## Approach
 

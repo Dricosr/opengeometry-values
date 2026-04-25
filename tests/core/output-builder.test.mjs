@@ -22,7 +22,7 @@ describe("outputBuilder", () => {
 
     expect(built.config.unit).toBe(MATHJS_STRINGS.DEGREE);
     expect(built.config.suffixMode).toBe(OUTPUT_SUFFIX_MODES.SYMBOL);
-    expect(value.input.formatForDisplay()).toBe("90 °");
+    expect(value.input.formatForDisplay()).toBe("90°");
   });
 
   it("supports direct overrides for custom prefixes and suffixes", () => {

@@ -22,8 +22,6 @@ export class MassEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         internal: "12.5 kg",
         outputs: {
           display: "12.5 kg",
-          composition: "12.5 kg",
-          friendly: "12.5 kg",
           edit: "12.5"
         }
       }

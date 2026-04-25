@@ -45,6 +45,18 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.CODE
   }),
+  "length:process-meter": createPreset({
+    id: "length:process-meter",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Process Length (m)",
+    description: "Meter output with balanced precision for industrial equipment and piping packages.",
+    unit: MATHJS_STRINGS.METER,
+    precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
   "area:schedule-square-meter": createPreset({
     id: "area:schedule-square-meter",
     quantity: QUANTITY_TYPES.AREA,
@@ -52,6 +64,18 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     description: "Area schedule output with symbol suffix for room and slab takeoffs.",
     unit: MATHJS_STRINGS.SQUARE_METER,
     precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
+  "area:coating-square-meter": createPreset({
+    id: "area:coating-square-meter",
+    quantity: QUANTITY_TYPES.AREA,
+    name: "Coating Area (m2)",
+    description: "Higher-precision area output for coatings, finishes, and surface treatment packages.",
+    unit: MATHJS_STRINGS.SQUARE_METER,
+    precision: 3,
     showUnit: true,
     prefix: "",
     suffix: "",
@@ -69,6 +93,18 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
   }),
+  "area:fabrication-square-inch": createPreset({
+    id: "area:fabrication-square-inch",
+    quantity: QUANTITY_TYPES.AREA,
+    name: "Fabrication Area (in2)",
+    description: "Imperial area output for fabrication sheets, gaskets, and supplier details.",
+    unit: MATHJS_STRINGS.SQUARE_INCH,
+    precision: 1,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
   "volume:concrete-cubic-meter": createPreset({
     id: "volume:concrete-cubic-meter",
     quantity: QUANTITY_TYPES.VOLUME,
@@ -81,12 +117,48 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
   }),
+  "volume:process-cubic-meter": createPreset({
+    id: "volume:process-cubic-meter",
+    quantity: QUANTITY_TYPES.VOLUME,
+    name: "Process Volume (m3)",
+    description: "Higher-precision cubic-meter output for tanks, process skids, and utility systems.",
+    unit: MATHJS_STRINGS.CUBIC_METER,
+    precision: 3,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
   "volume:detail-cubic-centimeter": createPreset({
     id: "volume:detail-cubic-centimeter",
     quantity: QUANTITY_TYPES.VOLUME,
     name: "Detailed Volume (cm3)",
     description: "Compact cubic-centimeter output for small component volumes.",
     unit: MATHJS_STRINGS.CUBIC_CENTIMETER,
+    precision: 0,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
+  "volume:fabrication-cubic-inch": createPreset({
+    id: "volume:fabrication-cubic-inch",
+    quantity: QUANTITY_TYPES.VOLUME,
+    name: "Fabrication Volume (in3)",
+    description: "Imperial cubic-inch output for small parts, resin doses, and vendor documentation.",
+    unit: MATHJS_STRINGS.CUBIC_INCH,
+    precision: 1,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
+  "volume:tank-liter": createPreset({
+    id: "volume:tank-liter",
+    quantity: QUANTITY_TYPES.VOLUME,
+    name: "Tank Volume (L)",
+    description: "Liter output for tanks, vessels, and process fluid volumes.",
+    unit: MATHJS_STRINGS.LITER,
     precision: 0,
     showUnit: true,
     prefix: "",
@@ -117,6 +189,30 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
   }),
+  "angle:process-radian": createPreset({
+    id: "angle:process-radian",
+    quantity: QUANTITY_TYPES.ANGLE,
+    name: "Process Angle (rad)",
+    description: "Radian output for industrial geometry, robotics, and calculation traces.",
+    unit: MATHJS_STRINGS.RADIAN,
+    precision: 3,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "angle:slope-symbol": createPreset({
+    id: "angle:slope-symbol",
+    quantity: QUANTITY_TYPES.ANGLE,
+    name: "Slope Angle (°)",
+    description: "Degree symbol output with one decimal for ramps, drains, and process slopes.",
+    unit: MATHJS_STRINGS.DEGREE,
+    precision: 1,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
   "temperature:celsius-room": createPreset({
     id: "temperature:celsius-room",
     quantity: QUANTITY_TYPES.TEMPERATURE,
@@ -124,6 +220,18 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     description: "Degree Celsius output for HVAC and occupancy scenarios.",
     unit: MATHJS_STRINGS.DEGREE_CELSIUS,
     precision: 0,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
+  "temperature:celsius-process": createPreset({
+    id: "temperature:celsius-process",
+    quantity: QUANTITY_TYPES.TEMPERATURE,
+    name: "Process Temperature (°C)",
+    description: "Higher-precision Celsius output for HVAC plants and industrial process loops.",
+    unit: MATHJS_STRINGS.DEGREE_CELSIUS,
+    precision: 1,
     showUnit: true,
     prefix: "",
     suffix: "",
@@ -141,6 +249,18 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
   }),
+  "temperature:process-kelvin": createPreset({
+    id: "temperature:process-kelvin",
+    quantity: QUANTITY_TYPES.TEMPERATURE,
+    name: "Process Temperature (K)",
+    description: "Kelvin output for thermodynamic calculations and industrial process datasets.",
+    unit: MATHJS_STRINGS.KELVIN,
+    precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
   "mass:schedule-kilogram": createPreset({
     id: "mass:schedule-kilogram",
     quantity: QUANTITY_TYPES.MASS,
@@ -153,6 +273,30 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.CODE
   }),
+  "mass:shipping-kilogram": createPreset({
+    id: "mass:shipping-kilogram",
+    quantity: QUANTITY_TYPES.MASS,
+    name: "Shipping Mass (kg)",
+    description: "Rounded kilogram output for logistics, transport manifests, and crane plans.",
+    unit: MATHJS_STRINGS.KILOGRAM,
+    precision: 0,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "mass:rigging-kilogram": createPreset({
+    id: "mass:rigging-kilogram",
+    quantity: QUANTITY_TYPES.MASS,
+    name: "Rigging Mass (kg)",
+    description: "Higher-precision kilogram output for lift studies and handling envelopes.",
+    unit: MATHJS_STRINGS.KILOGRAM,
+    precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
   "force:structural-kilonewton": createPreset({
     id: "force:structural-kilonewton",
     quantity: QUANTITY_TYPES.FORCE,
@@ -160,6 +304,30 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     description: "Kilonewton output for anchors, supports, and reactions.",
     unit: MATHJS_STRINGS.KILONEWTON,
     precision: 1,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "force:equipment-newton": createPreset({
+    id: "force:equipment-newton",
+    quantity: QUANTITY_TYPES.FORCE,
+    name: "Equipment Force (N)",
+    description: "Newton output for actuators, mechanisms, and industrial equipment internals.",
+    unit: MATHJS_STRINGS.NEWTON,
+    precision: 0,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "force:loadcase-kilonewton": createPreset({
+    id: "force:loadcase-kilonewton",
+    quantity: QUANTITY_TYPES.FORCE,
+    name: "Load Case Force (kN)",
+    description: "Higher-precision kilonewton output for structural and rigging load cases.",
+    unit: MATHJS_STRINGS.KILONEWTON,
+    precision: 2,
     showUnit: true,
     prefix: "",
     suffix: "",
@@ -189,6 +357,30 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.CODE
   }),
+  "pressure:vessel-megapascal": createPreset({
+    id: "pressure:vessel-megapascal",
+    quantity: QUANTITY_TYPES.PRESSURE,
+    name: "Vessel Pressure (MPa)",
+    description: "Megapascal output for pressure vessels, skids, and design calculations.",
+    unit: MATHJS_STRINGS.MEGAPASCAL,
+    precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "pressure:instrumentation-pascal": createPreset({
+    id: "pressure:instrumentation-pascal",
+    quantity: QUANTITY_TYPES.PRESSURE,
+    name: "Instrumentation Pressure (Pa)",
+    description: "Pascal output for fine-grained sensors, filters, and air-side diagnostics.",
+    unit: MATHJS_STRINGS.PASCAL,
+    precision: 0,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
   "time:schedule-hour": createPreset({
     id: "time:schedule-hour",
     quantity: QUANTITY_TYPES.TIME,
@@ -212,6 +404,54 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     prefix: "",
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "time:curing-hour": createPreset({
+    id: "time:curing-hour",
+    quantity: QUANTITY_TYPES.TIME,
+    name: "Curing Duration (h)",
+    description: "Higher-precision hour output for curing, drying, and staging instructions.",
+    unit: MATHJS_STRINGS.HOUR,
+    precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "ratio:dashboard-percent": createPreset({
+    id: "ratio:dashboard-percent",
+    quantity: QUANTITY_TYPES.RATIO,
+    name: "Dashboard Ratio (%)",
+    description: "Whole-percent output for dashboards, BIM operations panels, and room-performance views.",
+    unit: MATHJS_STRINGS.PERCENT,
+    precision: 0,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
+  "ratio:process-percent": createPreset({
+    id: "ratio:process-percent",
+    quantity: QUANTITY_TYPES.RATIO,
+    name: "Process Ratio (%)",
+    description: "One-decimal percentage output for commissioning, control loops, and industrial KPIs.",
+    unit: MATHJS_STRINGS.PERCENT,
+    precision: 1,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
+  }),
+  "ratio:utilization-percent": createPreset({
+    id: "ratio:utilization-percent",
+    quantity: QUANTITY_TYPES.RATIO,
+    name: "Utilization Ratio (%)",
+    description: "Two-decimal percentage output for utilization, efficiency, and QA tracking.",
+    unit: MATHJS_STRINGS.PERCENT,
+    precision: 2,
+    showUnit: true,
+    prefix: "",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL
   })
 });
 

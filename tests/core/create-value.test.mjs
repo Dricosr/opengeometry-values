@@ -81,8 +81,6 @@ describe("createValue", () => {
     expect(value.input.output.prefix.id).toBe("prefix:approx");
     expect(value.input.output.suffix.id).toBe("suffix:custom-unit");
     expect(value.input.formatForDisplay()).toBe("~ 2 m ref");
-    expect(value.input.formatForComposition()).toBe("~ 2 m ref");
-    expect(value.input.formatForFriendlyValue()).toBe("~ 2 m ref");
   });
 
   it("rejects decimal values for integer type", () => {

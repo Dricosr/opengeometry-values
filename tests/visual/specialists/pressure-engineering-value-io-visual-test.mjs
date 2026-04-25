@@ -36,8 +36,6 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
         internal: "250000 Pa",
         outputs: {
           display: "250 kPa",
-          composition: "250 kPa",
-          friendly: "250 kPa",
           edit: "250"
         }
       },
@@ -46,8 +44,6 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
         internal: "250000 Pa",
         outputs: {
           display: "250 kPa",
-          composition: "250 kPa",
-          friendly: "250 kPa",
           edit: "250"
         }
       },
@@ -56,8 +52,6 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
         internal: "2500000 Pa",
         outputs: {
           display: "25 bar",
-          composition: "25 bar",
-          friendly: "25 bar",
           edit: "25"
         }
       }

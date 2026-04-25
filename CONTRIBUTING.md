@@ -49,10 +49,10 @@ npm run demo:dev
 
 - All source files use `.mjs` and ES Module syntax (`import`/`export`)
 - No CommonJS (`require`, `module.exports`)
-- No TypeScript — plain JavaScript only
-- No build step — source is shipped as-is
+- No TypeScript - plain JavaScript only
+- No build step - source is shipped as-is
 - Only `.` is accepted as the decimal separator in numeric input
-- Numeric value creation uses separate `value` and `unit` fields — never concatenate them into a single text payload like `"90 mm"`
+- Numeric value creation uses separate `value` and `unit` fields - never concatenate them into a single text payload like `"90 mm"`
 
 ## Commit messages
 
@@ -72,7 +72,7 @@ test: add coverage for formatEditValue with mm unit
 - Update `CHANGELOG.md` under `[Unreleased]`
 - Run `npm run check:customizations` when editing `.github/`, `.claude/`, or `memory/`
 - Run `npm run test:visual` after changing engineering samples, output presets, or the local demo preview flow
-- Keep the diff focused — no unrelated cleanup
+- Keep the diff focused - no unrelated cleanup
 
 ## Reporting issues
 

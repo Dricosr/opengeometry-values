@@ -29,8 +29,6 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         internal: "7200 s",
         outputs: {
           display: "2 h",
-          composition: "2 h",
-          friendly: "2 h",
           edit: "2"
         }
       },
@@ -39,8 +37,6 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         internal: "5400 s",
         outputs: {
           display: "1.5 h",
-          composition: "1.5 h",
-          friendly: "1.5 h",
           edit: "1.5"
         }
       }

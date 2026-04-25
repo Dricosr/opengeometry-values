@@ -43,8 +43,6 @@ export class LengthEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         internal: "2 m",
         outputs: {
           display: "2000 mm",
-          composition: "2000 mm",
-          friendly: "2000 mm",
           edit: "2000"
         }
       },
@@ -53,8 +51,6 @@ export class LengthEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         internal: "2 m",
         outputs: {
           display: "200 cm",
-          composition: "200 cm",
-          friendly: "200 cm",
           edit: "200"
         }
       },
@@ -63,8 +59,6 @@ export class LengthEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         internal: "0.762 m",
         outputs: {
           display: "30 in",
-          composition: "30 in",
-          friendly: "30 in",
           edit: "30"
         }
       },
@@ -73,8 +67,6 @@ export class LengthEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         internal: "0.762 m",
         outputs: {
           display: "762.0 mm",
-          composition: "762.0 mm",
-          friendly: "762.0 mm",
           edit: "762.0"
         }
       }

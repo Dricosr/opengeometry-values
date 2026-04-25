@@ -29,8 +29,6 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         internal: "2 m^2",
         outputs: {
           display: "2.00 m^2",
-          composition: "2.00 m^2",
-          friendly: "2.00 m^2",
           edit: "2.00"
         }
       },
@@ -39,8 +37,6 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         internal: "2 m^2",
         outputs: {
           display: "20000 cm^2",
-          composition: "20000 cm^2",
-          friendly: "20000 cm^2",
           edit: "20000"
         }
       }

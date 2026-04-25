@@ -10,7 +10,8 @@ export class VolumeQuantityProfile extends QuantityProfile {
       supportedUnits: [
         MATHJS_STRINGS.CUBIC_CENTIMETER,
         MATHJS_STRINGS.CUBIC_METER,
-        MATHJS_STRINGS.CUBIC_INCH
+        MATHJS_STRINGS.CUBIC_INCH,
+        MATHJS_STRINGS.LITER
       ]
     });
   }

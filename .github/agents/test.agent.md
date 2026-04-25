@@ -16,5 +16,5 @@ The source of truth is `spec/en-us/spec.md`. Use it as the reference for expecte
 - Test files live in `tests/`, mirroring `src/` (e.g. `tests/core/create-value.test.mjs`)
 - Use Vitest: `import { describe, it, expect } from "vitest"`
 - Cover the happy path and edge cases for every public function
-- Never mock mathjs — test against the real implementation
+- Never mock mathjs - test against the real implementation
 - Run `npm test` after writing tests and fix any failures before finishing

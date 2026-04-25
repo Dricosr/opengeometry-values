@@ -18,6 +18,20 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         unit: MATHJS_STRINGS.CUBIC_METER,
         outputUnit: MATHJS_STRINGS.CUBIC_CENTIMETER,
         precision: 0
+      },
+      {
+        value: 50000,
+        quantity: QUANTITY_TYPES.VOLUME,
+        unit: MATHJS_STRINGS.LITER,
+        outputUnit: MATHJS_STRINGS.LITER,
+        precision: 0
+      },
+      {
+        value: 18.75,
+        quantity: QUANTITY_TYPES.VOLUME,
+        unit: MATHJS_STRINGS.CUBIC_METER,
+        outputUnit: MATHJS_STRINGS.LITER,
+        precision: 0
       }
     ];
   }
@@ -29,8 +43,6 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         internal: "0.003 m^3",
         outputs: {
           display: "3000 cm^3",
-          composition: "3000 cm^3",
-          friendly: "3000 cm^3",
           edit: "3000"
         }
       },
@@ -39,9 +51,23 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         internal: "0.003 m^3",
         outputs: {
           display: "3000 cm^3",
-          composition: "3000 cm^3",
-          friendly: "3000 cm^3",
           edit: "3000"
+        }
+      },
+      {
+        input: { value: 50000, unit: "L" },
+        internal: "50 m^3",
+        outputs: {
+          display: "50000 L",
+          edit: "50000"
+        }
+      },
+      {
+        input: { value: 18.75, unit: "m^3" },
+        internal: "18.75 m^3",
+        outputs: {
+          display: "18750 L",
+          edit: "18750"
         }
       }
     ];

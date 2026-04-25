@@ -8,7 +8,7 @@ Always use `.mjs` files and ES6+ syntax (import/export, arrow functions, const/l
 
 All code, comments, variable names, and documentation must be in English (en-US).
 
-Pin exact dependency versions in package.json — no `^` or `~`. Node.js minimum version must track the current stable release.
+Pin exact dependency versions in package.json - no `^` or `~`. Node.js minimum version must track the current stable release.
 
 **Why:** Supply chain security and predictability. The user explicitly called out ^ prefixes as a risk.
 

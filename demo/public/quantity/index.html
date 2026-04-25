@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantity Workspace - OpenGeometry Value Studio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet" href="/shared/styles.css" />
+    <link rel="stylesheet" href="/quantity/quantity.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="page-nav" aria-label="Studio sections">
+        <div id="navLinks" class="nav-links"></div>
+      </nav>
+
+      <main class="quantity-layout">
+
+        <section class="panel quantity-intro-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Quantity Workspace</p>
+            <h2 id="quantityWorkspaceTitle">-</h2>
+          </div>
+          <div id="quantityWorkspaceDescription"></div>
+        </section>
+
+        <section class="panel workspace-panel">
+          <div class="workspace-grid">
+
+            <section class="workspace-col">
+              <div class="col-heading">
+                <p class="eyebrow">1. Parameter</p>
+                <button id="parameterHelpButton" class="help-button" type="button">Samples</button>
+              </div>
+              <form class="form-grid">
+                <label>
+                  Sample
+                  <select id="sampleSelect" name="sample"></select>
+                </label>
+                <label>
+                  Parameter Name
+                  <input id="parameterNameInput" name="parameterName" type="text" placeholder="Beam Span" />
+                </label>
+                <label>
+                  Parameter Id
+                  <input id="parameterIdInput" name="parameterId" type="text" placeholder="length:beam-span" />
+                </label>
+                <label>
+                  Numeric Value
+                  <input id="parameterValueInput" name="parameterValue" type="text" inputmode="decimal" placeholder="7.2" />
+                </label>
+                <label>
+                  Input Unit
+                  <select id="inputUnitSelect" name="inputUnit"></select>
+                </label>
+              </form>
+            </section>
+
+            <section class="workspace-col workspace-col--accent">
+              <div class="col-heading">
+                <p class="eyebrow">2. Output</p>
+                <button id="outputHelpButton" class="help-button" type="button">Presets</button>
+              </div>
+              <form class="form-grid">
+                <label>
+                  Preset
+                  <select id="presetSelect" name="preset"></select>
+                </label>
+                <label>
+                  Output Unit
+                  <select id="outputUnitSelect" name="outputUnit"></select>
+                </label>
+                <label>
+                  Precision
+                  <input id="precisionInput" name="precision" type="number" min="0" max="12" step="1" value="0" />
+                </label>
+                <label>
+                  Suffix Mode
+                  <select id="suffixModeSelect" name="suffixMode"></select>
+                </label>
+                <label>
+                  Prefix
+                  <input id="prefixInput" name="prefix" type="text" placeholder="~ " />
+                </label>
+                <label>
+                  Custom Suffix
+                  <input id="suffixInput" name="suffix" type="text" placeholder=" MPa(g)" />
+                </label>
+                <label class="checkbox-field">
+                  <input id="showUnitCheckbox" name="showUnit" type="checkbox" checked />
+                  <span>Show Unit</span>
+                </label>
+              </form>
+            </section>
+
+            <section class="workspace-col workspace-col--preview">
+              <div class="col-heading">
+                <p class="eyebrow">3. Preview</p>
+              </div>
+
+              <div id="previewStatus" class="status-banner" hidden></div>
+
+              <dl class="preview-dl">
+                <div class="preview-dl-row">
+                  <dt>Input</dt>
+                  <dd id="inputSummary">-</dd>
+                </div>
+                <div class="preview-dl-row">
+                  <dt>Internal</dt>
+                  <dd id="internalSummary">-</dd>
+                </div>
+                <div class="preview-dl-row">
+                  <dt>Preset</dt>
+                  <dd id="presetSummary">-</dd>
+                </div>
+                <div class="preview-dl-row preview-dl-row--accent">
+                  <dt>Display</dt>
+                  <dd id="displayPreview">-</dd>
+                </div>
+                <div class="preview-dl-row preview-dl-row--accent">
+                  <dt>Edit</dt>
+                  <dd id="editPreview">-</dd>
+                </div>
+              </dl>
+
+            </section>
+
+            <section class="workspace-col workspace-col--json">
+              <div class="col-heading">
+                <p class="eyebrow">4. Raw Payload</p>
+              </div>
+              <pre id="previewJson" class="json-block workspace-json-block">{}</pre>
+            </section>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <dialog id="sampleModal" class="catalog-modal">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">1. Parameter</p>
+          <h2 id="sampleCatalogTitle">-</h2>
+        </div>
+        <button id="closeSampleModal" class="close-button" type="button" aria-label="Close">✕</button>
+      </div>
+      <div id="sampleCatalog" class="catalog-grid modal-catalog-grid"></div>
+    </dialog>
+
+    <dialog id="presetModal" class="catalog-modal">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">2. Output</p>
+          <h2 id="presetCatalogTitle">-</h2>
+        </div>
+        <button id="closePresetModal" class="close-button" type="button" aria-label="Close">✕</button>
+      </div>
+      <div id="presetCatalog" class="catalog-grid modal-catalog-grid"></div>
+    </dialog>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script type="module" src="/quantity/app.mjs"></script>
+  </body>
+</html>

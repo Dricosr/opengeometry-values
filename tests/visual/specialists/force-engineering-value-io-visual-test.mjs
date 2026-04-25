@@ -29,8 +29,6 @@ export class ForceEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         internal: "1500 N",
         outputs: {
           display: "1.5 kN",
-          composition: "1.5 kN",
-          friendly: "1.5 kN",
           edit: "1.5"
         }
       },
@@ -39,8 +37,6 @@ export class ForceEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         internal: "2500 N",
         outputs: {
           display: "2500 N",
-          composition: "2500 N",
-          friendly: "2500 N",
           edit: "2500"
         }
       }

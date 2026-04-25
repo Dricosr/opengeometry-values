@@ -45,8 +45,10 @@ describe("createDemoApp", () => {
     expect(response.ok).toBe(true);
     expect(Array.isArray(payload.quantities)).toBe(true);
     expect(Object.keys(payload.samples)).toContain("length");
+    expect(Object.keys(payload.samples)).toContain("ratio");
     expect(Object.keys(payload.outputPresets)).toContain("pressure");
-    expect(payload.samples.length[0].id).toBe("length:wall-thickness");
+    expect(payload.samples.length.length).toBeGreaterThanOrEqual(4);
+    expect(payload.outputPresets.length.length).toBeGreaterThanOrEqual(3);
   });
 
   it("returns live preview payloads and visual test execution results", async () => {

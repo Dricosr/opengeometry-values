@@ -68,13 +68,13 @@ The browser loads `/mathjs/index.js`. All of mathjs's internal relative imports 
 
 ## The one authoring rule that makes it work
 
-Every file in `src/` must import dependencies using bare specifiers — never relative paths into `node_modules`:
+Every file in `src/` must import dependencies using bare specifiers - never relative paths into `node_modules`:
 
 ```js
 // correct
 import { unit, format } from "mathjs"
 
-// wrong — breaks the browser path
+// wrong - breaks the browser path
 import { unit } from "../../node_modules/mathjs/lib/esm/index.js"
 ```
 

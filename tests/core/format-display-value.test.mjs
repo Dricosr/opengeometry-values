@@ -49,6 +49,6 @@ describe("formatDisplayValue", () => {
       })
     });
 
-    expect(formatDisplayValue(value)).toBe("90 °");
+    expect(formatDisplayValue(value)).toBe("90°");
   });
 });

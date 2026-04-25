@@ -1,6 +1,6 @@
 # opengeometry-values
 
-Structured engineering values for the OpenGeometry ecosystem — type, quantity, unit, internal normalization, and UI-friendly formatting.
+Structured engineering values for the OpenGeometry ecosystem - type, quantity, unit, internal normalization, and UI-friendly formatting.
 
 Built with pure JavaScript ES Modules (`.mjs`) and [Math.js](https://mathjs.org/) for unit conversion and numeric formatting.
 
@@ -97,7 +97,7 @@ console.log(value.input.formatForDisplay());
 // "~ 2 m"
 
 console.log(formatEditValue(value, { unit: "mm", precision: 4 }));
-// "2002.0"  — capped at 1 decimal because mm resolution is 0.1
+// "2002.0"  - capped at 1 decimal because mm resolution is 0.1
 
 const invalidValueResult = tryCreateValue({
   value: "10,5",
@@ -157,8 +157,8 @@ console.log(preview.previews.display);
 | `force`       | `N`           |
 | `pressure`    | `Pa`          |
 | `time`        | `s`           |
-| `ratio`       | —             |
-| `none`        | —             |
+| `ratio`       | -             |
+| `none`        | -             |
 
 ---
 
@@ -188,7 +188,7 @@ Provides parameter samples grouped by quantity so local tools and demos can boot
 
 ### `createValuePreview({ parameter, output })`
 
-Builds a structured preview payload with normalized `internal` data plus `display`, `composition`, `friendly`, and `edit` outputs. Useful for inspectors, playgrounds, and interactive engineering editors.
+Builds a structured preview payload with normalized `internal` data plus `display` and `edit` outputs. Useful for inspectors, playgrounds, and interactive engineering editors.
 
 ### `CustomOutputAffix`
 
@@ -229,7 +229,7 @@ Examples validated there include raw engineering inputs and outputs such as:
 - `2 h`
 - Invalid inputs such as `ninety deg`, `2,000 mm`, `250k Pa`, and unknown units like `foo`
 
-Each `ValueInput` now stores its own `id`, the normalized `internal` value, and the attached `output` instance used to format display, composition, and backend-friendly strings.
+Each `ValueInput` now stores its own `id`, the normalized `internal` value, and the attached `output` instance used to format display and edit strings.
 
 ## Local demo
 
@@ -330,4 +330,4 @@ The browser loads `/mathjs/index.js` and resolves all of mathjs's internal relat
 
 ## License
 
-[MIT](./LICENSE) — © 2026 Adriano Ribeiro
+[MIT](./LICENSE) - © 2026 Adriano Ribeiro

@@ -29,8 +29,6 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         internal: "1.570796326795 rad",
         outputs: {
           display: "90 deg",
-          composition: "90 deg",
-          friendly: "90 deg",
           edit: "90"
         }
       },
@@ -39,8 +37,6 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         internal: "1.570796326795 rad",
         outputs: {
           display: "90 deg",
-          composition: "90 deg",
-          friendly: "90 deg",
           edit: "90"
         }
       }

@@ -21,8 +21,6 @@ describe("createValuePreview", () => {
     });
     expect(preview.previews).toEqual({
       display: "7.200 m",
-      composition: "7.200 m",
-      friendly: "7.200 m",
       edit: "7.200"
     });
   });
@@ -34,5 +32,41 @@ describe("createValuePreview", () => {
     expect(sampleGroups[QUANTITY_TYPES.LENGTH].length).toBeGreaterThan(0);
     expect(sampleGroups[QUANTITY_TYPES.PRESSURE][0].input.unit).toBeDefined();
     expect(presetGroups[QUANTITY_TYPES.ANGLE].some((preset) => preset.id === "angle:annotation-symbol")).toBe(true);
+  });
+
+  it("covers common AEC and industrial cases for each supported interactive quantity", () => {
+    const sampleGroups = parameterSampleCatalog.groupByQuantity();
+    const presetGroups = outputPresetCatalog.groupByQuantity();
+    const coveredQuantities = [
+      QUANTITY_TYPES.LENGTH,
+      QUANTITY_TYPES.AREA,
+      QUANTITY_TYPES.VOLUME,
+      QUANTITY_TYPES.ANGLE,
+      QUANTITY_TYPES.TEMPERATURE,
+      QUANTITY_TYPES.MASS,
+      QUANTITY_TYPES.FORCE,
+      QUANTITY_TYPES.PRESSURE,
+      QUANTITY_TYPES.TIME,
+      QUANTITY_TYPES.RATIO
+    ];
+
+    for (const quantity of coveredQuantities) {
+      expect(sampleGroups[quantity]?.length ?? 0).toBeGreaterThanOrEqual(3);
+      expect(presetGroups[quantity]?.length ?? 0).toBeGreaterThanOrEqual(3);
+
+      for (const sample of sampleGroups[quantity]) {
+        expect(sample.recommendedOutputPresetIds.length).toBeGreaterThan(0);
+
+        const preview = createValuePreview({
+          parameter: sample,
+          output: {
+            presetId: sample.recommendedOutputPresetIds[0]
+          }
+        });
+
+        expect(preview.parameter.quantity).toBe(quantity);
+        expect(typeof preview.previews.display).toBe("string");
+      }
+    }
   });
 });

@@ -30,8 +30,6 @@ export class EngineeringValueIoVisualTestBase {
       internal: createdValue.input.internal.unit ? `${createdValue.input.internal.value} ${createdValue.input.internal.unit}` : String(createdValue.input.internal.value),
       outputs: {
         display: createdValue.input.formatForDisplay(),
-        composition: createdValue.input.formatForComposition(),
-        friendly: createdValue.input.formatForFriendlyValue(),
         edit: createdValue.input.formatForEdit()
       }
     };

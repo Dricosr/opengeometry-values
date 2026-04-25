@@ -15,14 +15,6 @@ export class ValueInput {
         return this.output.formatDisplay(this, options);
     }
 
-    formatForComposition(options = {}) {
-        return this.output.formatComposition(this, options);
-    }
-
-    formatForFriendlyValue(options = {}) {
-        return this.output.formatFriendlyValue(this, options);
-    }
-
     formatForEdit(options = {}) {
         return this.output.formatEdit(this, options);
     }

@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- `formatForComposition` and `formatForFriendlyValue` from `ValueInput` - both delegated identically to `formatDisplay`, making them redundant aliases with no distinct behavior
+- `formatComposition` and `formatFriendlyValue` from `Output` for the same reason
+- `composition` and `friendly` keys from the `createValuePreview` response payload
+
 ### Added
 
+- Version `0.1.0-alpha.1` tag in `package.json`; version exposed via `/api/library` payload and displayed in the demo site nav bar
+- Liter (`L`) as a supported volume unit: added `LITER` to `mathjs-string-catalog.mjs`, `unit-symbols.mjs`, `VolumeQuantityProfile`, a `volume:tank-liter` output preset, a `volume:storage-tank-liter` parameter sample, and two liter visual test scenarios
 - Nodemon-powered demo development startup for automatic server restart while editing `src/` and `demo/`
 - Local Express demo with interactive BIM and AEC parameter/output previews and browser-triggered visual test execution
 - Reusable parameter samples grouped by quantity and a curated output preset mini library for common engineering views
@@ -25,9 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Demo restructured from a single-page SPA into separate pages per domain (`/home`, `/quantity?q=<id>`, `/visual-tests`), each with its own focused HTML, JS, and shared modules (`shared/api.mjs`, `shared/nav.mjs`, `shared/styles.css`)
 - Improved agent and prompt discovery text for Copilot and Claude customization files
 
-## [0.1.0] — 2026-04-24
+## [0.1.0] - 2026-04-24
 
 ### Added
 

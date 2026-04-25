@@ -1,5 +1,6 @@
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, URL } from "node:url";
+import { readFileSync } from "node:fs";
 import express from "express";
 import {
   OUTPUT_SUFFIX_MODES,
@@ -14,6 +15,7 @@ import { runVisualTests } from "./services/run-visual-tests.mjs";
 
 const demoDirectory = path.dirname(fileURLToPath(import.meta.url));
 const publicDirectory = path.join(demoDirectory, "public");
+const { version } = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 
 const formatLabel = (value) => value.charAt(0).toUpperCase() + value.slice(1);
 
@@ -24,12 +26,16 @@ const createQuantitySummary = (quantity) => ({
 });
 
 const createLibraryPayload = () => ({
+  version,
   quantities: Object.values(QUANTITY_TYPES).map(createQuantitySummary),
   valueTypes: Object.values(VALUE_TYPES),
   outputSuffixModes: Object.values(OUTPUT_SUFFIX_MODES),
   samples: parameterSampleCatalog.groupByQuantity(),
   outputPresets: outputPresetCatalog.groupByQuantity()
 });
+
+const serveHtml = (file) => (_request, response) =>
+  response.sendFile(path.join(publicDirectory, file));
 
 export const createDemoApp = ({ visualTestRunner = runVisualTests } = {}) => {
   const app = express();
@@ -84,14 +90,11 @@ export const createDemoApp = ({ visualTestRunner = runVisualTests } = {}) => {
 
   app.use(express.static(publicDirectory));
 
-  app.use((request, response, next) => {
-    if (request.path.startsWith("/api/")) {
-      next();
-      return;
-    }
-
-    response.sendFile(path.join(publicDirectory, "index.html"));
-  });
+  app.get("/", (_request, response) => response.redirect("/home"));
+  app.get("/home", serveHtml("home/index.html"));
+  app.get("/quantity", serveHtml("quantity/index.html"));
+  app.get("/visual-tests", serveHtml("visual-tests/index.html"));
+  app.get("/about", serveHtml("about/index.html"));
 
   return app;
 };
