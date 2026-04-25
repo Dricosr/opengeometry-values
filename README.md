@@ -139,28 +139,28 @@ console.log(preview.previews.display);
 
 ## Supported value types
 
-| Type      | Description              |
-| --------- | ------------------------ |
-| `string`  | Free text                |
-| `integer` | Whole number             |
-| `float`   | Decimal number           |
-| `boolean` | true / false             |
+| Type        | Description    |
+| ----------- | -------------- |
+| `string`  | Free text      |
+| `integer` | Whole number   |
+| `float`   | Decimal number |
+| `boolean` | true / false   |
 
 ---
 
 ## Supported quantities
 
-| Quantity      | Internal unit |
-| ------------- | ------------- |
-| `length`      | `m`           |
-| `area`        | `m^2`         |
-| `volume`      | `m^3`         |
-| `angle`       | `rad`         |
-| `temperature` | `degC`        |
-| `mass`        | `kg`          |
-| `force`       | `N`           |
-| `pressure`    | `Pa`          |
-| `time`        | `s`           |
+| Quantity        | Internal unit |
+| --------------- | ------------- |
+| `length`      | `m`         |
+| `area`        | `m^2`       |
+| `volume`      | `m^3`       |
+| `angle`       | `rad`       |
+| `temperature` | `degC`      |
+| `mass`        | `kg`        |
+| `force`       | `N`         |
+| `pressure`    | `Pa`        |
+| `time`        | `s`         |
 | `ratio`       | -             |
 | `none`        | -             |
 
@@ -318,7 +318,7 @@ Please note that this project follows a [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Live demo
 
-[opengeometryvalues.runcod.es](https://opengeometryvalues.runcod.es)
+[og-values.runcod.es](https://og-values.runcod.es)
 
 ## Author
 
