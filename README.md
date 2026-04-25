@@ -55,7 +55,14 @@ The geometry engine always uses `internal.value`. The user always sees a unit-aw
 ## Install
 
 ```bash
-npm install opengeometry-values
+npm install @dricosr/opengeometry-values
+```
+
+This package is published through GitHub Packages. Consumers need a GitHub token with package read access and a scoped registry entry such as:
+
+```ini
+@dricosr:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
 ```
 
 ---
@@ -73,7 +80,7 @@ import {
   tryCreateValue,
   formatDisplayValue,
   formatEditValue
-} from "opengeometry-values";
+} from "@dricosr/opengeometry-values";
 
 const value = createValue({
   id: "input:length:beam-1",
@@ -271,7 +278,7 @@ The library works in the browser without a build step, using [import maps](https
 ```js
 // Serve mathjs ESM files and the library as static
 app.use("/mathjs", express.static("node_modules/mathjs/lib/esm"))
-app.use("/opengeometry-values", express.static("node_modules/opengeometry-values/src"))
+app.use("/opengeometry-values", express.static("node_modules/@dricosr/opengeometry-values/src"))
 ```
 
 **HTML:**
@@ -281,13 +288,13 @@ app.use("/opengeometry-values", express.static("node_modules/opengeometry-values
 {
   "imports": {
     "mathjs": "/mathjs/index.js",
-    "opengeometry-values": "/opengeometry-values/index.mjs"
+    "@dricosr/opengeometry-values": "/opengeometry-values/index.mjs"
   }
 }
 </script>
 
 <script type="module">
-  import { createValue, formatDisplayValue } from "opengeometry-values"
+  import { createValue, formatDisplayValue } from "@dricosr/opengeometry-values"
 </script>
 ```
 

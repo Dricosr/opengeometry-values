@@ -1,11 +1,14 @@
 {
-  "name": "opengeometry-values",
+  "name": "@dricosr/opengeometry-values",
   "version": "0.1.0-alpha.1",
   "description": "Structured engineering values with type, quantity, unit conversion, internal normalization and UI formatting for OpenGeometry.",
   "type": "module",
   "main": "./src/index.mjs",
   "exports": {
     ".": "./src/index.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "files": [
     "src"
@@ -30,12 +33,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opengeometry/opengeometry-values.git"
+    "url": "git+https://github.com/Dricosr/opengeometry-values.git"
   },
   "bugs": {
-    "url": "https://github.com/opengeometry/opengeometry-values/issues"
+    "url": "https://github.com/Dricosr/opengeometry-values/issues"
   },
-  "homepage": "https://github.com/opengeometry/opengeometry-values#readme",
+  "homepage": "https://github.com/Dricosr/opengeometry-values#readme",
   "dependencies": {
     "mathjs": "15.2.0"
   },

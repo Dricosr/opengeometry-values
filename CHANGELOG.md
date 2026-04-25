@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Improved agent and prompt discovery text for Copilot and Claude customization files
+- Package distribution is now published as `@dricosr/opengeometry-values` via GitHub Packages, with repository metadata aligned to the `Dricosr/opengeometry-values` repository and README install instructions updated accordingly
 
 ## [0.1.0] - 2026-04-24
 
