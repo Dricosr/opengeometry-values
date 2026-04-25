@@ -1,4 +1,6 @@
-# OpenGeometry Values
+# OpenGeometry Values — Specification
+
+> This document defines the domain rules for the library. For the current public API, usage examples, and installation, see the [README](../../README.md).
 
 Library in **pure JavaScript**, using **`.mjs`** files, **ES Modules** standard, coupled with **Math.js** for unit conversion and numeric formatting.
 
@@ -64,7 +66,7 @@ OpenGeometry defines the domain rules.
 {
   "type": "module",
   "dependencies": {
-    "mathjs": "^14.0.0"
+    "mathjs": "15.2.0"
   }
 }
 ```
@@ -83,31 +85,9 @@ import { unit, format } from "mathjs";
 
 ---
 
-# 4. Initial repo structure
+# 4. Repo structure
 
-```txt
-opengeometry-values/
-  package.json
-
-  src/
-    constants/
-      value-types.mjs
-      quantity-types.mjs
-      internal-units.mjs
-      internal-resolution.mjs
-      unit-symbols.mjs
-
-    core/
-      create-value.mjs
-      convert-value.mjs
-      apply-internal-resolution.mjs
-      get-max-display-precision.mjs
-      resolve-display-precision.mjs
-      format-display-value.mjs
-      format-edit-value.mjs
-
-    index.mjs
-```
+The source lives in `src/`, split between `constants/` (frozen domain catalogs) and `core/` (pure functions and specialist classes). Public exports are gathered in `src/index.mjs`. See the [README](../../README.md) for the full API surface.
 
 ---
 

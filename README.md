@@ -4,6 +4,8 @@ Structured engineering values for the OpenGeometry ecosystem - type, quantity, u
 
 Built with pure JavaScript ES Modules (`.mjs`) and [Math.js](https://mathjs.org/) for unit conversion and numeric formatting.
 
+The domain rules behind this library — quantities, internal units, resolution, and display constraints — are documented in the [specification](./spec/en-us/spec.md).
+
 ---
 
 ## What it does
@@ -229,7 +231,7 @@ Examples validated there include raw engineering inputs and outputs such as:
 - `2 h`
 - Invalid inputs such as `ninety deg`, `2,000 mm`, `250k Pa`, and unknown units like `foo`
 
-Each `ValueInput` now stores its own `id`, the normalized `internal` value, and the attached `output` instance used to format display and edit strings.
+## Precision internals
 
 ### `applyInternalResolution(value, quantity)`
 

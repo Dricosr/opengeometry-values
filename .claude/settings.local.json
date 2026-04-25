@@ -18,7 +18,9 @@
       "Bash(npm test *)",
       "WebFetch(domain:www.linkedin.com)",
       "WebFetch(domain:br.linkedin.com)",
-      "PowerShell(Copy-Item -Recurse \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\\\\demo\\\\public\" \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values-demo\\\\public\")"
+      "PowerShell(Copy-Item -Recurse \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\\\\demo\\\\public\" \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values-demo\\\\public\")",
+      "Bash(git push *)",
+      "WebFetch(domain:opensource.guide)"
     ]
   }
 }
