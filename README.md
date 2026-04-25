@@ -314,6 +314,14 @@ Contributions are welcome — bug reports, documentation improvements, new quant
 
 Please note that this project follows a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to abide by its terms.
 
+## Live demo
+
+[opengeometryvalues.runcod.es](https://opengeometryvalues.runcod.es)
+
+## Author
+
+Adriano Ribeiro — [linkedin.com/in/dricosr](https://www.linkedin.com/in/dricosr/)
+
 ## License
 
 [MIT](./LICENSE) - © 2026 Adriano Ribeiro
