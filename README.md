@@ -55,15 +55,10 @@ The geometry engine always uses `internal.value`. The user always sees a unit-aw
 ## Install
 
 ```bash
-npm install @dricosr/opengeometry-values
+npm install @dricosr/opengeometry-values@alpha
 ```
 
-This package is published through GitHub Packages. Consumers need a GitHub token with package read access and a scoped registry entry such as:
-
-```ini
-@dricosr:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
-```
+The current release line is published on the public npm registry under the `alpha` dist-tag.
 
 ---
 

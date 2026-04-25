@@ -20,7 +20,7 @@ Please read and follow the [Code of Conduct](./CODE_OF_CONDUCT.md) in all intera
 ## Setup
 
 ```bash
-git clone https://github.com/opengeometry/opengeometry-values.git
+git clone https://github.com/Dricosr/opengeometry-values.git
 cd opengeometry-values
 npm install
 ```
@@ -74,4 +74,4 @@ test: add coverage for formatEditValue with mm unit
 
 ## Reporting issues
 
-Open an issue at [github.com/opengeometry/opengeometry-values/issues](https://github.com/opengeometry/opengeometry-values/issues) with a minimal reproduction.
+Open an issue at [github.com/Dricosr/opengeometry-values/issues](https://github.com/Dricosr/opengeometry-values/issues) with a minimal reproduction.
