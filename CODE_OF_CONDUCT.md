@@ -22,11 +22,22 @@ Examples of unacceptable behavior:
 - Publishing others' private information without explicit permission
 - Any conduct that would reasonably be considered inappropriate in a professional setting
 
+## Scope
+
+This Code of Conduct applies within all project spaces — GitHub issues, pull requests, discussions, and any other official communication channel associated with this project.
+
 ## Enforcement
 
 Instances of unacceptable behavior may be reported by contacting the maintainer at **dricosr@gmail.com**. All complaints will be reviewed and investigated promptly and fairly. The maintainer is obligated to maintain confidentiality with regard to the reporter.
 
-Maintainers who do not follow or enforce this Code of Conduct may face temporary or permanent repercussions as determined by other members of the project leadership.
+Enforcement actions may include, in increasing severity:
+
+1. **Correction** — a private written warning with clarity about the violation and expected behavior
+2. **Warning** — a formal warning with consequences for continued behavior
+3. **Temporary ban** — temporary exclusion from project spaces
+4. **Permanent ban** — permanent exclusion from all project spaces
+
+Maintainers who do not follow or enforce this Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project leadership.
 
 ## Attribution
 

@@ -306,6 +306,12 @@ The browser loads `/mathjs/index.js` and resolves all of mathjs's internal relat
 
 ---
 
+## Contributing
+
+Contributions are welcome — bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
+
+Please note that this project follows a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to abide by its terms.
+
 ## License
 
 [MIT](./LICENSE) - © 2026 Adriano Ribeiro

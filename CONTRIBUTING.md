@@ -1,6 +1,16 @@
 # Contributing
 
-Thank you for your interest in contributing to opengeometry-values.
+Thank you for your interest in contributing to opengeometry-values. Contributions of all kinds are welcome: bug reports, documentation improvements, new quantity profiles, test coverage, and code changes.
+
+Please read and follow the [Code of Conduct](./CODE_OF_CONDUCT.md) in all interactions.
+
+## Ways to contribute
+
+- **Report a bug** — open an issue with a minimal reproduction
+- **Suggest a feature** — open an issue describing the use case and expected behavior
+- **Improve documentation** — fix typos, clarify examples, or expand the README
+- **Write tests** — increase coverage for existing behavior
+- **Implement a fix or feature** — pick an open issue or propose your own
 
 ## Requirements
 
@@ -21,16 +31,16 @@ npm install
 npm test
 ```
 
-Validate Copilot and Claude customization sync:
-
-```bash
-npm run check:customizations
-```
-
 Watch mode during development:
 
 ```bash
 npm run test:watch
+```
+
+Validate Copilot and Claude customization sync:
+
+```bash
+npm run check:customizations
 ```
 
 ## Code conventions
