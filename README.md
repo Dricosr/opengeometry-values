@@ -231,28 +231,6 @@ Examples validated there include raw engineering inputs and outputs such as:
 
 Each `ValueInput` now stores its own `id`, the normalized `internal` value, and the attached `output` instance used to format display and edit strings.
 
-## Local demo
-
-Run the local Express demo to browse samples, tweak output presets, create interactive parameter previews, and trigger the visual suite from the browser:
-
-```bash
-npm run demo:start
-```
-
-For local development with automatic restart on changes in `src/` and `demo/`:
-
-```bash
-npm run demo:dev
-```
-
-Then open `http://localhost:4173`.
-
-Useful commands:
-
-- `npm run demo:dev` starts the local API with nodemon and auto-reload
-- `npm run demo:start` starts the local API and interactive web page
-- `npm run test:visual` runs the engineering visual suite directly
-
 ### `applyInternalResolution(value, quantity)`
 
 Rounds a value to the system's internal resolution for the given quantity.

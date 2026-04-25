@@ -33,18 +33,6 @@ Watch mode during development:
 npm run test:watch
 ```
 
-Run the local demo workspace:
-
-```bash
-npm run demo:start
-```
-
-Run the local demo workspace with automatic restart:
-
-```bash
-npm run demo:dev
-```
-
 ## Code conventions
 
 - All source files use `.mjs` and ES Module syntax (`import`/`export`)
@@ -71,7 +59,7 @@ test: add coverage for formatEditValue with mm unit
 - Include tests for any new behavior
 - Update `CHANGELOG.md` under `[Unreleased]`
 - Run `npm run check:customizations` when editing `.github/`, `.claude/`, or `memory/`
-- Run `npm run test:visual` after changing engineering samples, output presets, or the local demo preview flow
+- Run `npm run test:visual` after changing engineering samples or output presets
 - Keep the diff focused - no unrelated cleanup
 
 ## Reporting issues
