@@ -4,7 +4,7 @@ Structured engineering values for the OpenGeometry ecosystem - type, quantity, u
 
 Built with pure JavaScript ES Modules (`.mjs`) and [Math.js](https://mathjs.org/) for unit conversion and numeric formatting.
 
-The domain rules behind this library — quantities, internal units, resolution, and display constraints — are documented in the [specification](./spec/en-us/spec.md).
+The domain rules behind this library - quantities, internal units, resolution, and display constraints - are documented in the [specification](./spec/en-us/spec.md).
 
 ---
 
@@ -310,7 +310,7 @@ The browser loads `/mathjs/index.js` and resolves all of mathjs's internal relat
 
 ## Contributing
 
-Contributions are welcome — bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
+Contributions are welcome - bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
 
 Please note that this project follows a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to abide by its terms.
 
@@ -320,7 +320,7 @@ Please note that this project follows a [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Author
 
-Adriano Ribeiro — [linkedin.com/in/dricosr](https://www.linkedin.com/in/dricosr/)
+Adriano Ribeiro - [linkedin.com/in/dricosr](https://www.linkedin.com/in/dricosr/)
 
 ## License
 

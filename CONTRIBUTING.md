@@ -6,11 +6,11 @@ Please read and follow the [Code of Conduct](./CODE_OF_CONDUCT.md) in all intera
 
 ## Ways to contribute
 
-- **Report a bug** — open an issue with a minimal reproduction
-- **Suggest a feature** — open an issue describing the use case and expected behavior
-- **Improve documentation** — fix typos, clarify examples, or expand the README
-- **Write tests** — increase coverage for existing behavior
-- **Implement a fix or feature** — pick an open issue or propose your own
+- **Report a bug** - open an issue with a minimal reproduction
+- **Suggest a feature** - open an issue describing the use case and expected behavior
+- **Improve documentation** - fix typos, clarify examples, or expand the README
+- **Write tests** - increase coverage for existing behavior
+- **Implement a fix or feature** - pick an open issue or propose your own
 
 ## Requirements
 

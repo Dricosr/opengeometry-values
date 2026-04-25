@@ -1,4 +1,4 @@
-# OpenGeometry Values — Specification
+# OpenGeometry Values - Specification
 
 > This document defines the domain rules for the library. For the current public API, usage examples, and installation, see the [README](../../README.md).
 
@@ -773,7 +773,7 @@ The unit must appear in the label, select, or adornment of the field.
 
 # 20. Family property
 
-A parameter definition carries the quantity, value type, default unit, and display configuration. The library does not define the parameter schema itself — that belongs to the consuming application.
+A parameter definition carries the quantity, value type, default unit, and display configuration. The library does not define the parameter schema itself - that belongs to the consuming application.
 
 Example of what the consumer passes to `createValue`:
 
@@ -926,8 +926,8 @@ The original MVP has been delivered. All items below are implemented.
 - `Output` model with typed affixes (`CustomOutputAffix`, `UnitCodeOutputAffix`, `UnitSymbolOutputAffix`, `EmptyOutputAffix`)
 - `buildOutput` service for constructing outputs from preset definitions
 - `createValuePreview` service for inspector and playground UIs
-- `OUTPUT_PRESETS` — curated BIM/AEC output preset catalog
-- `PARAMETER_SAMPLES` — engineering parameter sample catalog
+- `OUTPUT_PRESETS` - curated BIM/AEC output preset catalog
+- `PARAMETER_SAMPLES` - engineering parameter sample catalog
 - `QUANTITY_PROFILES` / specialist quantity profile classes
 - `parseNumber`, `parseBoolean` parsers exposed for consumer reuse
 - `ValueInputError` structured error for UI validation

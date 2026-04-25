@@ -1,5 +1,5 @@
 
-# OpenGeometry Values — Especificação
+# OpenGeometry Values - Especificação
 
 > Este documento define as regras de domínio da biblioteca. Para a API pública atual, exemplos de uso e instalação, consulte o [README](../../README.md).
 
@@ -774,7 +774,7 @@ A unidade deve aparecer no label, select ou adornment do campo.
 
 # 20. Propriedade de família
 
-Uma definição de parâmetro carrega grandeza, tipo de valor, unidade padrão e configuração de display. A biblioteca não define o schema do parâmetro — isso pertence à aplicação consumidora.
+Uma definição de parâmetro carrega grandeza, tipo de valor, unidade padrão e configuração de display. A biblioteca não define o schema do parâmetro - isso pertence à aplicação consumidora.
 
 Exemplo do que o consumidor passa para `createValue`:
 
@@ -927,8 +927,8 @@ O MVP original foi entregue. Todos os itens abaixo estão implementados.
 - Modelo `Output` com affixes tipados (`CustomOutputAffix`, `UnitCodeOutputAffix`, `UnitSymbolOutputAffix`, `EmptyOutputAffix`)
 - Serviço `buildOutput` para construir outputs a partir de definições de preset
 - Serviço `createValuePreview` para UIs de inspetor e playground
-- `OUTPUT_PRESETS` — catálogo de presets BIM/AEC
-- `PARAMETER_SAMPLES` — catálogo de amostras de parâmetros de engenharia
+- `OUTPUT_PRESETS` - catálogo de presets BIM/AEC
+- `PARAMETER_SAMPLES` - catálogo de amostras de parâmetros de engenharia
 - `QUANTITY_PROFILES` / classes de perfil de grandeza especialistas
 - Parsers `parseNumber` e `parseBoolean` expostos para reuso
 - `ValueInputError` para validação estruturada em formulários de UI
