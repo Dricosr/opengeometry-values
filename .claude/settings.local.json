@@ -31,7 +31,14 @@
       "Bash(echo \"exit: $?\")",
       "PowerShell(cd \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\"; npx vitest --version 2>&1; Write-Host \"exit: $LASTEXITCODE\")",
       "Bash(npm show *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npm whoami *)",
+      "Bash(npm pack *)",
+      "Bash(npm version *)",
+      "Bash(npm publish *)",
+      "Bash(curl -s https://api.ipify.org)",
+      "Bash(npm config *)",
+      "Bash(npm login *)"
     ]
   }
 }

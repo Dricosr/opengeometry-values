@@ -2,7 +2,7 @@ import { evaluate, typeOf, unit as mathjsUnit } from "mathjs";
 
 const FORMULA_PREFIX = "=";
 
-// mathjs `min` is a function — replace standalone `min` unit tokens before evaluating
+// mathjs `min` is a function - replace standalone `min` unit tokens before evaluating
 const MIN_UNIT_RE = /\bmin\b(?!\s*\()/g;
 
 const normalizeExpression = (expr) => expr.replace(MIN_UNIT_RE, "minute");

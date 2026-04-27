@@ -1,6 +1,6 @@
 ---
 name: Windows shell compatibility for Vitest
-description: Vitest 4.x fails under cmd.exe on Windows — always use PowerShell or bash
+description: Vitest 4.x fails under cmd.exe on Windows - always use PowerShell or bash
 type: feedback
 ---
 

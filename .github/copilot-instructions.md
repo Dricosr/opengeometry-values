@@ -49,7 +49,7 @@
 - Test files use `.mjs` and are named `<module-name>.test.mjs`
 - Use Vitest as the test runner
 - Every public function must have tests covering the happy path and relevant edge cases
-- Always run Vitest commands from **PowerShell**, not `cmd.exe` — `cmd.exe` has known incompatibilities with Vite/Vitest 4.x on Windows that cause `TypeError: Cannot read properties of undefined (reading 'config')` even on minimal test files
+- Always run Vitest commands from **PowerShell**, not `cmd.exe` - `cmd.exe` has known incompatibilities with Vite/Vitest 4.x on Windows that cause `TypeError: Cannot read properties of undefined (reading 'config')` even on minimal test files
 
 ## Build
 

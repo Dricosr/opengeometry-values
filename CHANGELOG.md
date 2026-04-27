@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Formula input support: numeric values can now be entered as mathjs expressions prefixed with `=` (e.g. `"=sqrt(3^2 + 4^2)"`, `"=2 * pi"`). The original formula text is preserved in `input.value`; the evaluated number enters the standard pipeline (unit conversion, internal resolution, type validation). Applies to `float` and `integer` value types across all quantities. Invalid or non-finite results throw `ValueInputError` with code `invalid_formula_expression`.
 - `FormulaParser` class, `formulaParser` singleton, and `parseFormula` function exported from `src/index.mjs`
 - `ERROR_CODE_INVALID_FORMULA_EXPRESSION` and `ERROR_INVALID_FORMULA_EXPRESSION_PREFIX` added to `domain-string-catalog.mjs`
-- `spec/en-us/formulas.md` and `spec/pt-br/formulas.md` — full expression reference covering all input forms, arithmetic operators, math functions, trigonometric functions, constants, embedded unit formulas, edit behavior, error conditions, and known limitations
+- `spec/en-us/formulas.md` and `spec/pt-br/formulas.md` - full expression reference covering all input forms, arithmetic operators, math functions, trigonometric functions, constants, embedded unit formulas, edit behavior, error conditions, and known limitations
 - `vitest.config.mjs` added to the project root: sets `isolate: false` and `maxWorkers: 1`, reducing test suite runtime from ~8s to ~2s
 - Visual test specialists (`length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`) hydrated with embedded unit formula scenarios, plain formula scenarios, and unit-embedded numeric input scenarios
 - Windows shell compatibility note added to `CLAUDE.md`, `.claude/agents/test.md`, `.github/agents/test.agent.md`, `.github/copilot-instructions.md`, and `memory/feedback_windows_shell.md`: Vitest 4.x fails under `cmd.exe` on Windows; always use PowerShell or bash
@@ -38,20 +38,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Build
 
 - Rollup build system added: `npm run build` generates three distribution formats in `dist/`
-  - `dist/index.esm.js` — ES module, tree-shakeable, mathjs kept external (~85 KB)
-  - `dist/index.cjs.js` — CommonJS, mathjs kept external (~88 KB)
-  - `dist/index.iife.min.js` — self-contained IIFE, mathjs bundled and minified (~687 KB), for CDN and direct `<script>` use
+  - `dist/index.esm.js` - ES module, tree-shakeable, mathjs kept external (~85 KB)
+  - `dist/index.cjs.js` - CommonJS, mathjs kept external (~88 KB)
+  - `dist/index.iife.min.js` - self-contained IIFE, mathjs bundled and minified (~687 KB), for CDN and direct `<script>` use
 - `package.json` exports updated: `"import"` → ESM build, `"require"` → CJS build, `"browser"` → IIFE build
 - `mathjs` declared as `peerDependency` (required, `>=15.0.0`) in addition to `dependencies`
 - `dist/` added to `.gitignore`; `dist/` added to `files` so built artifacts are included in the npm package
 - `prepublishOnly` script runs tests then build automatically before every `npm publish`
-- `.github/workflows/release.yml` — GitHub Actions workflow that runs tests, builds, and publishes to npm on every GitHub Release
+- `.github/workflows/release.yml` - GitHub Actions workflow that runs tests, builds, and publishes to npm on every GitHub Release
 - New dev dependencies: `rollup 4.60.2`, `@rollup/plugin-node-resolve 16.0.3`, `@rollup/plugin-commonjs 29.0.2`, `@rollup/plugin-terser 1.0.0`
 
 ### Fixed
 
-- `FormulaParser`: standalone `min` unit token (e.g. `=1 h + 30 min`) conflicted with mathjs's `min()` function and caused evaluation errors — now normalized to `minute` before evaluation; `min()` function calls are unaffected
-- `resolveUnitInput` in `create-value.mjs`: error messages from the unit input parser leaked into `ValueInputError`, breaking the consistent `invalid_numeric_value` contract — now always uses the internal fallback message
+- `FormulaParser`: standalone `min` unit token (e.g. `=1 h + 30 min`) conflicted with mathjs's `min()` function and caused evaluation errors - now normalized to `minute` before evaluation; `min()` function calls are unaffected
+- `resolveUnitInput` in `create-value.mjs`: error messages from the unit input parser leaked into `ValueInputError`, breaking the consistent `invalid_numeric_value` contract - now always uses the internal fallback message
 
 ### Removed
 

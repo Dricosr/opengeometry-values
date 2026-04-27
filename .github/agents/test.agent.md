@@ -18,4 +18,4 @@ The source of truth is `spec/en-us/spec.md`. Use it as the reference for expecte
 - Cover the happy path and edge cases for every public function
 - Never mock mathjs - test against the real implementation
 - Run `npx vitest run` after writing tests and fix any failures before finishing
-- Always run Vitest from PowerShell or bash — never from `cmd.exe`. The `cmd.exe` shell on Windows causes `TypeError: Cannot read properties of undefined (reading 'config')` with Vitest 4.x even on minimal test files
+- Always run Vitest from PowerShell or bash - never from `cmd.exe`. The `cmd.exe` shell on Windows causes `TypeError: Cannot read properties of undefined (reading 'config')` with Vitest 4.x even on minimal test files

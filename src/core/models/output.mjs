@@ -29,7 +29,7 @@ export class Output {
 
   formatEdit(input, options = {}) {
     if (typeof input.value === "string" && input.value.startsWith("=")) {
-      // Formulas with embedded units are always self-contained — return as-is
+      // Formulas with embedded units are always self-contained - return as-is
       if (input.formulaHasEmbeddedUnits) {
         return input.value;
       }
@@ -68,7 +68,7 @@ export class Output {
    */
   resolveEditPrecision(input, editUnit, requestedPrecision) {
     // If no unit conversion is happening (edit unit matches input unit),
-    // use the requested precision as-is — no risk of information loss
+    // use the requested precision as-is - no risk of information loss
     if (!editUnit || !input.unit || editUnit === input.unit) {
       return requestedPrecision;
     }

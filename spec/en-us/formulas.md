@@ -91,7 +91,7 @@ System creates:
 
 ```txt
 User types:        =4 m + 200 cm
-Parameter unit:    m  (ignored — inline units win)
+Parameter unit:    m  (ignored - inline units win)
 Quantity:          length
 
 Formula evaluates to: 6 m  (mathjs unit result)
@@ -107,7 +107,7 @@ System creates:
 
 ```txt
 User types:        4000mm
-Parameter unit:    m  (ignored — inline unit wins)
+Parameter unit:    m  (ignored - inline unit wins)
 Quantity:          length
 
 System creates:
@@ -131,9 +131,9 @@ When the user later edits a value in a different unit, the edit text differs by 
 | Formula with embedded units | `=4 m + 200 cm` | cm | `=4 m + 200 cm` |
 
 Rules:
-- **Formula with embedded units** — always returns the formula text as-is.
-- **Plain formula** — appends the original unit when the edit unit differs from the original (`=2*3 m`). Returns formula text unchanged when the edit unit matches.
-- **Plain number / unit-embedded number** — converts to the edit unit and returns the numeric text.
+- **Formula with embedded units** - always returns the formula text as-is.
+- **Plain formula** - appends the original unit when the edit unit differs from the original (`=2*3 m`). Returns formula text unchanged when the edit unit matches.
+- **Plain number / unit-embedded number** - converts to the edit unit and returns the numeric text.
 
 ---
 
@@ -144,7 +144,7 @@ Formulas apply to numeric value types only:
 | Value type | Accepts formula |
 | ---------- | --------------- |
 | `float`    | yes             |
-| `integer`  | yes — result must be a whole number |
+| `integer`  | yes - result must be a whole number |
 | `string`   | no              |
 | `boolean`  | no              |
 
@@ -265,7 +265,7 @@ const slab = createValue({
   value: "4000mm",
   valueType: "float",
   quantity: "length",
-  unit: "m"   // parameter unit — overridden by inline mm
+  unit: "m"   // parameter unit - overridden by inline mm
 });
 // internal.value = 4, internal.unit = "m"
 

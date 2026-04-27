@@ -243,7 +243,7 @@ export class ValueFactory {
       };
     }
 
-    // Plain number formula — unit comes from parameter
+    // Plain number formula - unit comes from parameter
     return {
       numericValue: parsed.value,
       inputValue: parsed.cleanText,

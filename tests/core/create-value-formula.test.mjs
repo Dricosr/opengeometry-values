@@ -31,10 +31,10 @@ function editInDifferent(inputValue, inputUnit, editUnit, quantity = QUANTITY_TY
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Plain number input — unchanged behavior
+// Plain number input - unchanged behavior
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe("createValue — plain number input (unchanged behavior)", () => {
+describe("createValue - plain number input (unchanged behavior)", () => {
   it("stores numeric input value and converts to internal unit", () => {
     const v = make(200, MATHJS_STRINGS.CENTIMETER);
     expect(v.input.value).toBe(200);
@@ -60,7 +60,7 @@ describe("createValue — plain number input (unchanged behavior)", () => {
 // Unit-embedded numeric input ("2m", "4000mm")
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe("createValue — unit-embedded numeric input", () => {
+describe("createValue - unit-embedded numeric input", () => {
   it("parses 4000mm and converts to internal unit", () => {
     const v = make("4000mm", MATHJS_STRINGS.MILLIMETER);
     expect(v.input.value).toBe("4000mm");
@@ -106,10 +106,10 @@ describe("createValue — unit-embedded numeric input", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Formula — plain number (no embedded units)
+// Formula - plain number (no embedded units)
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe("createValue — formula with plain number result", () => {
+describe("createValue - formula with plain number result", () => {
   it("stores formula text in input.value and computes internal", () => {
     const v = make("=sqrt(4)", MATHJS_STRINGS.METER);
     expect(v.input.value).toBe("=sqrt(4)");
@@ -157,10 +157,10 @@ describe("createValue — formula with plain number result", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Formula — embedded units (all quantities)
+// Formula - embedded units (all quantities)
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe("createValue — formula with embedded units — length", () => {
+describe("createValue - formula with embedded units - length", () => {
   it("resolves 4m + 2cm to 4.02 m", () => {
     const v = make("=4m + 2cm", MATHJS_STRINGS.METER);
     expect(v.internal.value).toBeCloseTo(4.02, 10);
@@ -189,7 +189,7 @@ describe("createValue — formula with embedded units — length", () => {
     expect(v.input.formulaHasEmbeddedUnits).toBe(true);
   });
 
-  it("resolves sqrt(4) mm — converts to m", () => {
+  it("resolves sqrt(4) mm - converts to m", () => {
     const v = make("=sqrt(4) mm", MATHJS_STRINGS.MILLIMETER);
     expect(v.internal.value).toBeCloseTo(0.002, 10);
   });
@@ -206,7 +206,7 @@ describe("createValue — formula with embedded units — length", () => {
   });
 });
 
-describe("createValue — formula with embedded units — area", () => {
+describe("createValue - formula with embedded units - area", () => {
   it("resolves 2 m^2", () => {
     const v = createValue({ value: "=2 m^2", unit: MATHJS_STRINGS.SQUARE_METER, quantity: QUANTITY_TYPES.AREA, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(2, 10);
@@ -230,7 +230,7 @@ describe("createValue — formula with embedded units — area", () => {
   });
 });
 
-describe("createValue — formula with embedded units — volume", () => {
+describe("createValue - formula with embedded units - volume", () => {
   it("resolves 1 m^3", () => {
     const v = createValue({ value: "=1 m^3", unit: MATHJS_STRINGS.CUBIC_METER, quantity: QUANTITY_TYPES.VOLUME, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(1, 10);
@@ -247,7 +247,7 @@ describe("createValue — formula with embedded units — volume", () => {
   });
 });
 
-describe("createValue — formula with embedded units — angle", () => {
+describe("createValue - formula with embedded units - angle", () => {
   it("resolves 90 deg to radians", () => {
     const v = createValue({ value: "=90 deg", unit: MATHJS_STRINGS.RADIAN, quantity: QUANTITY_TYPES.ANGLE, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(Math.PI / 2, 8);
@@ -280,7 +280,7 @@ describe("createValue — formula with embedded units — angle", () => {
   });
 });
 
-describe("createValue — formula with embedded units — temperature", () => {
+describe("createValue - formula with embedded units - temperature", () => {
   it("resolves 100 degF to degC", () => {
     const v = createValue({ value: "=100 degF", unit: MATHJS_STRINGS.DEGREE_CELSIUS, quantity: QUANTITY_TYPES.TEMPERATURE, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(37.778, 2);
@@ -308,7 +308,7 @@ describe("createValue — formula with embedded units — temperature", () => {
   });
 });
 
-describe("createValue — formula with embedded units — mass", () => {
+describe("createValue - formula with embedded units - mass", () => {
   it("resolves 5 kg", () => {
     const v = createValue({ value: "=5 kg", unit: MATHJS_STRINGS.KILOGRAM, quantity: QUANTITY_TYPES.MASS, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(5, 10);
@@ -320,7 +320,7 @@ describe("createValue — formula with embedded units — mass", () => {
   });
 });
 
-describe("createValue — formula with embedded units — force", () => {
+describe("createValue - formula with embedded units - force", () => {
   it("resolves 1 kN to N", () => {
     const v = createValue({ value: "=1 kN", unit: MATHJS_STRINGS.NEWTON, quantity: QUANTITY_TYPES.FORCE, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(1000, 10);
@@ -337,7 +337,7 @@ describe("createValue — formula with embedded units — force", () => {
   });
 });
 
-describe("createValue — formula with embedded units — pressure", () => {
+describe("createValue - formula with embedded units - pressure", () => {
   it("resolves 1 bar to Pa", () => {
     const v = createValue({ value: "=1 bar", unit: MATHJS_STRINGS.PASCAL, quantity: QUANTITY_TYPES.PRESSURE, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(100000, 10);
@@ -354,7 +354,7 @@ describe("createValue — formula with embedded units — pressure", () => {
   });
 });
 
-describe("createValue — formula with embedded units — time", () => {
+describe("createValue - formula with embedded units - time", () => {
   it("resolves 1 h to seconds", () => {
     const v = createValue({ value: "=1 h", unit: MATHJS_STRINGS.SECOND, quantity: QUANTITY_TYPES.TIME, valueType: VALUE_TYPES.FLOAT });
     expect(v.internal.value).toBeCloseTo(3600, 5);
@@ -391,7 +391,7 @@ describe("createValue — formula with embedded units — time", () => {
 // Error cases
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe("createValue — formula error cases", () => {
+describe("createValue - formula error cases", () => {
   it("throws invalid_formula_expression for invalid expression", () => {
     const result = tryCreateValue({ value: "=2 + invalid", unit: MATHJS_STRINGS.METER, quantity: QUANTITY_TYPES.LENGTH, valueType: VALUE_TYPES.FLOAT });
     expect(result.ok).toBe(false);

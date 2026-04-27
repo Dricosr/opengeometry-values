@@ -26,7 +26,7 @@ describe("FormulaParser", () => {
     });
   });
 
-  describe("parse — plain number formulas", () => {
+  describe("parse - plain number formulas", () => {
     describe("arithmetic", () => {
       it("adds two numbers", () => {
         expect(formulaParser.parse("=2 + 3")).toBe(5);
@@ -200,7 +200,7 @@ describe("FormulaParser", () => {
     });
   });
 
-  describe("parseWithUnit — embedded unit formulas", () => {
+  describe("parseWithUnit - embedded unit formulas", () => {
     describe("length", () => {
       it("returns hasEmbeddedUnits true for single unit expression", () => {
         const result = formulaParser.parseWithUnit("=4 m");

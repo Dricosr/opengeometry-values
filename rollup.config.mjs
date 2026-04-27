@@ -5,12 +5,12 @@ import terser from "@rollup/plugin-terser";
 const input = "src/index.mjs";
 const name = "OpenGeometryValues";
 
-// mathjs is a peer dependency — kept external in ESM and CJS builds
+// mathjs is a peer dependency - kept external in ESM and CJS builds
 // so consumers don't get a duplicate copy when they already have it.
 const external = ["mathjs"];
 
 export default [
-  // ESM — tree-shakeable, for bundlers (Vite, webpack, Rollup, esbuild)
+  // ESM - tree-shakeable, for bundlers (Vite, webpack, Rollup, esbuild)
   {
     input,
     external,
@@ -21,7 +21,7 @@ export default [
     }
   },
 
-  // CJS — for Node.js and CommonJS environments
+  // CJS - for Node.js and CommonJS environments
   {
     input,
     external,
@@ -33,7 +33,7 @@ export default [
     }
   },
 
-  // IIFE — self-contained, minified, for CDN / direct <script> use.
+  // IIFE - self-contained, minified, for CDN / direct <script> use.
   // mathjs is bundled here because there is no bundler to resolve it.
   // Approximate size: ~500 KB minified (mathjs accounts for most of it).
   {

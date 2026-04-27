@@ -91,7 +91,7 @@ Sistema cria:
 
 ```txt
 Usuário digita:     =4 m + 200 cm
-Unidade do parâmetro: m  (ignorado — unidades inline prevalecem)
+Unidade do parâmetro: m  (ignorado - unidades inline prevalecem)
 Grandeza:           length
 
 Fórmula avalia para: 6 m  (resultado Unit do mathjs)
@@ -107,7 +107,7 @@ Sistema cria:
 
 ```txt
 Usuário digita:     4000mm
-Unidade do parâmetro: m  (ignorado — unidade inline prevalece)
+Unidade do parâmetro: m  (ignorado - unidade inline prevalece)
 Grandeza:           length
 
 Sistema cria:
@@ -131,9 +131,9 @@ Quando o usuário edita o valor em uma unidade diferente, o texto de edit varia 
 | Fórmula com unidades embutidas | `=4 m + 200 cm` | cm | `=4 m + 200 cm` |
 
 Regras:
-- **Fórmula com unidades embutidas** — sempre retorna o texto da fórmula sem alteração.
-- **Fórmula simples** — acrescenta a unidade original quando a unidade de edit difere da original (`=2*3 m`). Retorna o texto sem alteração quando as unidades coincidem.
-- **Número puro / número com unidade embutida** — converte para a unidade de edit e retorna o texto numérico.
+- **Fórmula com unidades embutidas** - sempre retorna o texto da fórmula sem alteração.
+- **Fórmula simples** - acrescenta a unidade original quando a unidade de edit difere da original (`=2*3 m`). Retorna o texto sem alteração quando as unidades coincidem.
+- **Número puro / número com unidade embutida** - converte para a unidade de edit e retorna o texto numérico.
 
 ---
 
@@ -144,7 +144,7 @@ Fórmulas se aplicam apenas a tipos de valor numéricos:
 | Tipo de valor | Aceita fórmula |
 | ------------- | -------------- |
 | `float`       | sim            |
-| `integer`     | sim — resultado deve ser número inteiro |
+| `integer`     | sim - resultado deve ser número inteiro |
 | `string`      | não            |
 | `boolean`     | não            |
 
@@ -265,7 +265,7 @@ const laje = createValue({
   value: "4000mm",
   valueType: "float",
   quantity: "length",
-  unit: "m"   // unidade do parâmetro — sobrescrita pelo mm inline
+  unit: "m"   // unidade do parâmetro - sobrescrita pelo mm inline
 });
 // internal.value = 4, internal.unit = "m"
 
