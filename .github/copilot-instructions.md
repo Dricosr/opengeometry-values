@@ -50,6 +50,8 @@
 - Use Vitest as the test runner
 - Every public function must have tests covering the happy path and relevant edge cases
 - Always run Vitest commands from **PowerShell**, not `cmd.exe` - `cmd.exe` has known incompatibilities with Vite/Vitest 4.x on Windows that cause `TypeError: Cannot read properties of undefined (reading 'config')` even on minimal test files
+- **Hydrate samples and tests together**: whenever you add or modify a feature (new quantity, new value type, new parser, new formatter, etc.), also add representative entries to `src/samples/parameter-sample-catalog.mjs` and update tests in `tests/` in the same pass
+- **Research real-world usage**: before adding samples or tests for a quantity, look up real AEC/industrial values (e.g. typical pipe spool lengths, common vessel pressures, standard beam spans) so samples reflect genuine engineering scenarios rather than arbitrary numbers
 
 ## Build
 

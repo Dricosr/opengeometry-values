@@ -59,6 +59,90 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
   }),
+  "length:pipe-od": createSample({
+    id: "length:pipe-od",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Pipe OD",
+    description: "Nominal pipe outside diameter for piping isometric spools and fabrication spools.",
+    input: {
+      value: 168.3,
+      unit: MATHJS_STRINGS.MILLIMETER
+    },
+    recommendedOutputPresetIds: ["length:diameter-mm", "length:detail-inch"]
+  }),
+  "length:vessel-nozzle": createSample({
+    id: "length:vessel-nozzle",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Vessel Nozzle OD",
+    description: "Pressure vessel nozzle outside diameter for vessel GA and nozzle schedule coordination.",
+    input: {
+      value: 0.508,
+      unit: MATHJS_STRINGS.METER
+    },
+    recommendedOutputPresetIds: ["length:diameter-meter", "length:diameter-mm"]
+  }),
+  "length:rebar-diameter": createSample({
+    id: "length:rebar-diameter",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Rebar Diameter",
+    description: "Steel reinforcement bar diameter for structural detailing and bar bending schedules.",
+    input: {
+      value: 25,
+      unit: MATHJS_STRINGS.MILLIMETER
+    },
+    recommendedOutputPresetIds: ["length:diameter-mm"]
+  }),
+  "length:hole-diameter": createSample({
+    id: "length:hole-diameter",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Hole Diameter",
+    description: "Penetration or opening diameter for MEP coordination and structural embeds.",
+    input: {
+      value: 2.5,
+      unit: MATHJS_STRINGS.INCH
+    },
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+  }),
+  "length:formula-embedded-units": createSample({
+    id: "length:formula-embedded-units",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Pipe Run (Formula)",
+    description: "Pipe segment sum with embedded units — 7200 mm + 150 mm.",
+    input: {
+      value: "=7200 mm + 150 mm",
+      unit: MATHJS_STRINGS.MILLIMETER
+    },
+    recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
+  }),
+  "length:formula-plain": createSample({
+    id: "length:formula-plain",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Offset Diff (Formula)",
+    description: "Plain numeric formula without embedded units — 2500 - 150.",
+    input: {
+      value: "=2500 - 150",
+      unit: MATHJS_STRINGS.MILLIMETER
+    },
+    recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
+  }),
+  "length:inline-unit": createSample({
+    id: "length:inline-unit",
+    quantity: QUANTITY_TYPES.LENGTH,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Spool Length (Inline)",
+    description: "Numeric value with inline unit suffix — 4000mm.",
+    input: {
+      value: "4000mm",
+      unit: MATHJS_STRINGS.MILLIMETER
+    },
+    recommendedOutputPresetIds: ["length:model-mm", "length:detail-inch"]
+  }),
   "area:slab-zone": createSample({
     id: "area:slab-zone",
     quantity: QUANTITY_TYPES.AREA,
@@ -106,6 +190,42 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
       unit: MATHJS_STRINGS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
+  }),
+  "area:formula-embedded-units": createSample({
+    id: "area:formula-embedded-units",
+    quantity: QUANTITY_TYPES.AREA,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Slab Dimensions (Formula)",
+    description: "Area from length x width with embedded units — 8 m * 5 m.",
+    input: {
+      value: "=8 m * 5 m",
+      unit: MATHJS_STRINGS.SQUARE_METER
+    },
+    recommendedOutputPresetIds: ["area:schedule-square-meter"]
+  }),
+  "area:formula-plain": createSample({
+    id: "area:formula-plain",
+    quantity: QUANTITY_TYPES.AREA,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Zone Sum (Formula)",
+    description: "Plain numeric formula without embedded units — 2.5 * 1.8.",
+    input: {
+      value: "=2.5 * 1.8",
+      unit: MATHJS_STRINGS.SQUARE_METER
+    },
+    recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
+  }),
+  "area:inline-unit": createSample({
+    id: "area:inline-unit",
+    quantity: QUANTITY_TYPES.AREA,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Gasket Area (Inline)",
+    description: "Numeric value with inline unit suffix — 2400cm^2.",
+    input: {
+      value: "2400cm^2",
+      unit: MATHJS_STRINGS.SQUARE_CENTIMETER
+    },
+    recommendedOutputPresetIds: ["area:detail-square-centimeter", "area:fabrication-square-inch"]
   }),
   "volume:concrete-pour": createSample({
     id: "volume:concrete-pour",
@@ -167,6 +287,42 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     },
     recommendedOutputPresetIds: ["volume:process-cubic-meter", "volume:concrete-cubic-meter"]
   }),
+  "volume:formula-embedded-units": createSample({
+    id: "volume:formula-embedded-units",
+    quantity: QUANTITY_TYPES.VOLUME,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Duct Section (Formula)",
+    description: "Volume from L x W x H with embedded units — 4 m * 0.8 m * 0.3 m.",
+    input: {
+      value: "=4 m * 0.8 m * 0.3 m",
+      unit: MATHJS_STRINGS.CUBIC_METER
+    },
+    recommendedOutputPresetIds: ["volume:process-cubic-meter", "volume:concrete-cubic-meter"]
+  }),
+  "volume:formula-plain": createSample({
+    id: "volume:formula-plain",
+    quantity: QUANTITY_TYPES.VOLUME,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Tank Sum (Formula)",
+    description: "Plain numeric formula without embedded units — 15000 + 35000.",
+    input: {
+      value: "=15000 + 35000",
+      unit: MATHJS_STRINGS.LITER
+    },
+    recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter"]
+  }),
+  "volume:inline-unit": createSample({
+    id: "volume:inline-unit",
+    quantity: QUANTITY_TYPES.VOLUME,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Cartridge Volume (Inline)",
+    description: "Numeric value with inline unit suffix — 950cm^3.",
+    input: {
+      value: "950cm^3",
+      unit: MATHJS_STRINGS.CUBIC_CENTIMETER
+    },
+    recommendedOutputPresetIds: ["volume:detail-cubic-centimeter", "volume:fabrication-cubic-inch"]
+  }),
   "angle:roof-pitch": createSample({
     id: "angle:roof-pitch",
     quantity: QUANTITY_TYPES.ANGLE,
@@ -214,6 +370,42 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
       unit: MATHJS_STRINGS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-symbol", "angle:slope-symbol"]
+  }),
+  "angle:formula-embedded-units": createSample({
+    id: "angle:formula-embedded-units",
+    quantity: QUANTITY_TYPES.ANGLE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Bend Sum (Formula)",
+    description: "Angle sum with embedded units — 30 deg + 15 deg.",
+    input: {
+      value: "=30 deg + 15 deg",
+      unit: MATHJS_STRINGS.DEGREE
+    },
+    recommendedOutputPresetIds: ["angle:annotation-degree", "angle:annotation-symbol"]
+  }),
+  "angle:formula-plain": createSample({
+    id: "angle:formula-plain",
+    quantity: QUANTITY_TYPES.ANGLE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Turn Diff (Formula)",
+    description: "Plain numeric formula without embedded units — 90 - 5.",
+    input: {
+      value: "=90 - 5",
+      unit: MATHJS_STRINGS.DEGREE
+    },
+    recommendedOutputPresetIds: ["angle:annotation-degree", "angle:slope-symbol"]
+  }),
+  "angle:inline-unit": createSample({
+    id: "angle:inline-unit",
+    quantity: QUANTITY_TYPES.ANGLE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Nozzle Rotation (Inline)",
+    description: "Numeric value with inline unit suffix — 1.0472rad.",
+    input: {
+      value: "1.0472rad",
+      unit: MATHJS_STRINGS.RADIAN
+    },
+    recommendedOutputPresetIds: ["angle:process-radian", "angle:annotation-symbol"]
   }),
   "temperature:room-setpoint": createSample({
     id: "temperature:room-setpoint",
@@ -263,6 +455,30 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     },
     recommendedOutputPresetIds: ["temperature:process-kelvin", "temperature:celsius-process"]
   }),
+  "temperature:formula-plain": createSample({
+    id: "temperature:formula-plain",
+    quantity: QUANTITY_TYPES.TEMPERATURE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Temp Rise (Formula)",
+    description: "Plain numeric formula without embedded units — 22 + 8.",
+    input: {
+      value: "=22 + 8",
+      unit: MATHJS_STRINGS.DEGREE_CELSIUS
+    },
+    recommendedOutputPresetIds: ["temperature:celsius-room", "temperature:celsius-process"]
+  }),
+  "temperature:inline-unit": createSample({
+    id: "temperature:inline-unit",
+    quantity: QUANTITY_TYPES.TEMPERATURE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Furnace Limit (Inline)",
+    description: "Numeric value with inline unit suffix — 180degF.",
+    input: {
+      value: "180degF",
+      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+    },
+    recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
+  }),
   "mass:equipment-panel": createSample({
     id: "mass:equipment-panel",
     quantity: QUANTITY_TYPES.MASS,
@@ -307,6 +523,30 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Skid package mass for rigging, transport, and structural support checks.",
     input: {
       value: 1840,
+      unit: MATHJS_STRINGS.KILOGRAM
+    },
+    recommendedOutputPresetIds: ["mass:shipping-kilogram", "mass:rigging-kilogram"]
+  }),
+  "mass:formula-plain": createSample({
+    id: "mass:formula-plain",
+    quantity: QUANTITY_TYPES.MASS,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Assembly Sum (Formula)",
+    description: "Plain numeric formula without embedded units — 12.5 + 48.3 + 520.",
+    input: {
+      value: "=12.5 + 48.3 + 520",
+      unit: MATHJS_STRINGS.KILOGRAM
+    },
+    recommendedOutputPresetIds: ["mass:schedule-kilogram", "mass:shipping-kilogram"]
+  }),
+  "mass:inline-unit": createSample({
+    id: "mass:inline-unit",
+    quantity: QUANTITY_TYPES.MASS,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Reel Mass (Inline)",
+    description: "Numeric value with inline unit suffix — 520kg.",
+    input: {
+      value: "520kg",
       unit: MATHJS_STRINGS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:shipping-kilogram", "mass:rigging-kilogram"]
@@ -359,6 +599,30 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     },
     recommendedOutputPresetIds: ["force:loadcase-kilonewton", "force:structural-kilonewton"]
   }),
+  "force:formula-plain": createSample({
+    id: "force:formula-plain",
+    quantity: QUANTITY_TYPES.FORCE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Load Sum (Formula)",
+    description: "Plain numeric formula without embedded units — 125 + 18 + 42.5.",
+    input: {
+      value: "=125 + 18 + 42.5",
+      unit: MATHJS_STRINGS.KILONEWTON
+    },
+    recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
+  }),
+  "force:inline-unit": createSample({
+    id: "force:inline-unit",
+    quantity: QUANTITY_TYPES.FORCE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Thrust (Inline)",
+    description: "Numeric value with inline unit suffix — 3500N.",
+    input: {
+      value: "3500N",
+      unit: MATHJS_STRINGS.NEWTON
+    },
+    recommendedOutputPresetIds: ["force:equipment-newton", "force:structural-kilonewton"]
+  }),
   "pressure:duct-static": createSample({
     id: "pressure:duct-static",
     quantity: QUANTITY_TYPES.PRESSURE,
@@ -407,6 +671,42 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
+  "pressure:formula-embedded-units": createSample({
+    id: "pressure:formula-embedded-units",
+    quantity: QUANTITY_TYPES.PRESSURE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Vessel Test (Formula)",
+    description: "Pressure sum with embedded units — 1.6 MPa + 0.5 bar.",
+    input: {
+      value: "=1.6 MPa + 0.5 bar",
+      unit: MATHJS_STRINGS.MEGAPASCAL
+    },
+    recommendedOutputPresetIds: ["pressure:vessel-megapascal", "pressure:piping-bar"]
+  }),
+  "pressure:formula-plain": createSample({
+    id: "pressure:formula-plain",
+    quantity: QUANTITY_TYPES.PRESSURE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Header Sum (Formula)",
+    description: "Plain numeric formula without embedded units — 250 + 690.",
+    input: {
+      value: "=250 + 690",
+      unit: MATHJS_STRINGS.KILOPASCAL
+    },
+    recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
+  }),
+  "pressure:inline-unit": createSample({
+    id: "pressure:inline-unit",
+    quantity: QUANTITY_TYPES.PRESSURE,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Discharge (Inline)",
+    description: "Numeric value with inline unit suffix — 8.5bar.",
+    input: {
+      value: "8.5bar",
+      unit: MATHJS_STRINGS.BAR
+    },
+    recommendedOutputPresetIds: ["pressure:piping-bar", "pressure:vessel-megapascal"]
+  }),
   "time:fire-rating": createSample({
     id: "time:fire-rating",
     quantity: QUANTITY_TYPES.TIME,
@@ -454,6 +754,54 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
       unit: MATHJS_STRINGS.HOUR
     },
     recommendedOutputPresetIds: ["time:schedule-hour", "time:curing-hour"]
+  }),
+  "time:formula-plain": createSample({
+    id: "time:formula-plain",
+    quantity: QUANTITY_TYPES.TIME,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Duration Sum (Formula)",
+    description: "Plain numeric formula without embedded units — 120 + 72 + 45.",
+    input: {
+      value: "=120 + 72 + 45",
+      unit: MATHJS_STRINGS.MINUTE
+    },
+    recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
+  }),
+  "time:formula-embedded-units": createSample({
+    id: "time:formula-embedded-units",
+    quantity: QUANTITY_TYPES.TIME,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Shutdown (Formula)",
+    description: "Duration sum with embedded units — 3 days + 8 h.",
+    input: {
+      value: "=3 days + 8 h",
+      unit: MATHJS_STRINGS.HOUR
+    },
+    recommendedOutputPresetIds: ["time:schedule-hour", "time:curing-hour"]
+  }),
+  "time:inline-unit": createSample({
+    id: "time:inline-unit",
+    quantity: QUANTITY_TYPES.TIME,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Dwell (Inline)",
+    description: "Numeric value with inline unit suffix — 45min.",
+    input: {
+      value: "45min",
+      unit: MATHJS_STRINGS.MINUTE
+    },
+    recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
+  }),
+  "ratio:formula-plain": createSample({
+    id: "ratio:formula-plain",
+    quantity: QUANTITY_TYPES.RATIO,
+    valueType: VALUE_TYPES.FLOAT,
+    name: "Setpoint (Formula)",
+    description: "Plain numeric formula — =85 (percentual).",
+    input: {
+      value: "=85",
+      unit: MATHJS_STRINGS.PERCENT
+    },
+    recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:process-percent"]
   }),
   "ratio:valve-opening": createSample({
     id: "ratio:valve-opening",

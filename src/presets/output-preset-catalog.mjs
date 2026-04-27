@@ -57,6 +57,42 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.CODE
   }),
+  "length:diameter-mm": createPreset({
+    id: "length:diameter-mm",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Diameter (mm)",
+    description: "Diameter annotation in millimeters with ⌀ prefix for pipe, bolt, and hole callouts.",
+    unit: MATHJS_STRINGS.MILLIMETER,
+    precision: 0,
+    showUnit: true,
+    prefix: "⌀ ",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "length:diameter-meter": createPreset({
+    id: "length:diameter-meter",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Diameter (m)",
+    description: "Diameter annotation in meters with ⌀ prefix for large vessel and tank callouts.",
+    unit: MATHJS_STRINGS.METER,
+    precision: 3,
+    showUnit: true,
+    prefix: "⌀ ",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "length:diameter-inch": createPreset({
+    id: "length:diameter-inch",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Diameter (in)",
+    description: "Diameter annotation in inches with ⌀ prefix for fabrication and supplier details.",
+    unit: MATHJS_STRINGS.INCH,
+    precision: 2,
+    showUnit: true,
+    prefix: "⌀ ",
+    suffix: "",
+    suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
   "area:schedule-square-meter": createPreset({
     id: "area:schedule-square-meter",
     quantity: QUANTITY_TYPES.AREA,

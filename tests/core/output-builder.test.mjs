@@ -46,6 +46,53 @@ describe("outputBuilder", () => {
     expect(value.input.formatForDisplay()).toBe("~ 0.25 MPa(g)");
   });
 
+  it("builds diameter presets with the ⌀ prefix for pipe, bolt, and vessel callouts", () => {
+    const builtMm = outputBuilder.build({
+      presetId: "length:diameter-mm"
+    });
+
+    const valueMm = createValue({
+      value: 168.3,
+      valueType: VALUE_TYPES.FLOAT,
+      quantity: QUANTITY_TYPES.LENGTH,
+      unit: MATHJS_STRINGS.MILLIMETER,
+      output: builtMm.output
+    });
+
+    expect(builtMm.config.prefix).toBe("⌀ ");
+    expect(valueMm.input.formatForDisplay()).toBe("⌀ 168 mm");
+
+    const builtMeter = outputBuilder.build({
+      presetId: "length:diameter-meter"
+    });
+
+    const valueMeter = createValue({
+      value: 0.508,
+      valueType: VALUE_TYPES.FLOAT,
+      quantity: QUANTITY_TYPES.LENGTH,
+      unit: MATHJS_STRINGS.METER,
+      output: builtMeter.output
+    });
+
+    expect(builtMeter.config.prefix).toBe("⌀ ");
+    expect(valueMeter.input.formatForDisplay()).toBe("⌀ 0.508 m");
+
+    const builtInch = outputBuilder.build({
+      presetId: "length:diameter-inch"
+    });
+
+    const valueInch = createValue({
+      value: 2.5,
+      valueType: VALUE_TYPES.FLOAT,
+      quantity: QUANTITY_TYPES.LENGTH,
+      unit: MATHJS_STRINGS.INCH,
+      output: builtInch.output
+    });
+
+    expect(builtInch.config.prefix).toBe("⌀ ");
+    expect(valueInch.input.formatForDisplay()).toBe("⌀ 2.50 in");
+  });
+
   it("fails fast for unknown output presets", () => {
     expect(() => outputBuilder.build({
       presetId: "pressure:unknown"
