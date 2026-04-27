@@ -4,9 +4,31 @@ opengeometry-values foi projetado para funcionar tanto no Node.js quanto no brow
 
 ---
 
+## Exports do mathjs necessários
+
+A biblioteca usa exatamente quatro exports nomeados do mathjs. Esses são os únicos símbolos que um shim ou import map precisa expor:
+
+| Símbolo | Usado em |
+| ------- | -------- |
+| `unit` | conversão de unidades, precisão, parsing de input |
+| `format` | formatação numérica para exibição |
+| `evaluate` | avaliação de fórmulas |
+| `typeOf` | detecção do tipo de resultado de fórmulas |
+
+A fonte canônica da verdade é [`src/core/mathjs-api.mjs`](../../src/core/mathjs-api.mjs) — ele re-exporta os quatro e nada mais. Quando um novo símbolo do mathjs for necessário em qualquer lugar da biblioteca, ele deve ser adicionado lá primeiro, tornando a mudança visível nos diffs.
+
+Consumidores também podem importar o contrato diretamente em runtime:
+
+```js
+import { mathjsApi } from "@dricosr/opengeometry-values";
+// mathjsApi: { evaluate, format, typeOf, unit }
+```
+
+---
+
 ## O problema
 
-`import { unit, format } from "mathjs"` é um bare specifier. Ele resolve corretamente no Node.js via `node_modules`, mas o browser não consegue resolvê-lo sem configuração adicional.
+`import { unit, format, evaluate, typeOf } from "mathjs"` usa bare specifiers. Eles resolvem corretamente no Node.js via `node_modules`, mas o browser não consegue resolvê-los sem configuração adicional.
 
 ---
 
@@ -72,7 +94,7 @@ Todo arquivo em `src/` deve importar dependências usando bare specifiers - nunc
 
 ```js
 // correto
-import { unit, format } from "mathjs"
+import { unit, format, evaluate, typeOf } from "mathjs"
 
 // errado - quebra o browser
 import { unit } from "../../node_modules/mathjs/lib/esm/index.js"

@@ -1,4 +1,4 @@
-import { unit as mathjsUnit } from "mathjs";
+import { unit as mathjsUnit } from "../mathjs-api.mjs";
 
 // Matches a number (with optional decimal) followed by optional whitespace and a unit token.
 // Examples: "2m", "4000mm", "2.5 m^2", "100 degC", "-5 degF"

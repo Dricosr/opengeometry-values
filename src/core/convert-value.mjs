@@ -1,4 +1,4 @@
-import { unit } from "mathjs";
+import { unit } from "./mathjs-api.mjs";
 
 export class UnitConverter {
   convert({ value, fromUnit, toUnit }) {

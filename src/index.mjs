@@ -42,3 +42,4 @@ export { parseBoolean, BooleanTextParser, booleanTextParser } from "./core/parse
 export { parseFormula, FormulaParser, formulaParser } from "./core/parsers/formula-parser.mjs";
 export { parseUnitInput, UnitInputParser, unitInputParser } from "./core/parsers/unit-input-parser.mjs";
 export { parseNumber, StrictNumberParser, strictNumberParser } from "./core/parsers/strict-number-parser.mjs";
+export * as mathjsApi from "./core/mathjs-api.mjs";

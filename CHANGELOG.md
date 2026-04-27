@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `src/core/mathjs-api.mjs`: canonical re-export of the four mathjs symbols used by the library (`unit`, `format`, `evaluate`, `typeOf`). All internal imports now route through this file instead of importing directly from `"mathjs"`, making the contract visible in diffs when new symbols are added.
+- `mathjsApi` namespace export from `src/index.mjs`: consumers can import `{ mathjsApi }` to get the exact set of mathjs symbols the library depends on — useful for building browser shims without guessing.
+- Browser integration section in `README.md` and `spec/en-us/browser-and-backend.md` (+ PT-BR mirror) documenting the required mathjs exports and referencing `src/core/mathjs-api.mjs` as the canonical source of truth.
 - Formula input with embedded units: formulas can now include mathjs unit tokens directly (e.g. `"=4 m + 200 cm"`, `"=1 h + 30 min"`, `"=1 kN + 500 N"`). The mathjs unit arithmetic is resolved at parse time; the result is converted to the quantity's internal unit. The flag `formulaHasEmbeddedUnits` is stored on `ValueInput` and controls edit behavior.
 - Unit-embedded numeric input: a string like `"4000mm"` or `"7h"` (number + recognized unit, no `=`) is now a valid input form. The inline unit wins over the parameter unit. Parsed by the new `UnitInputParser`.
 - `UnitInputParser` class, `unitInputParser` singleton, and `parseUnitInput` function exported from `src/index.mjs`

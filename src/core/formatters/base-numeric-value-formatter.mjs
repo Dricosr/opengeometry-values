@@ -1,4 +1,4 @@
-import { format } from "mathjs";
+import { format } from "../mathjs-api.mjs";
 import { MATHJS_STRINGS } from "../../constants/mathjs-string-catalog.mjs";
 import { displayPrecisionResolver } from "../resolve-display-precision.mjs";
 import { unitConverter } from "../convert-value.mjs";

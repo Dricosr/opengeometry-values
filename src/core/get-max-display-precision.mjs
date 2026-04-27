@@ -1,4 +1,4 @@
-import { unit } from "mathjs";
+import { unit } from "./mathjs-api.mjs";
 import { BASE_VALUES } from "../constants/base-value-catalog.mjs";
 import { quantityProfileRegistry } from "./quantities/quantity-profile-registry.mjs";
 

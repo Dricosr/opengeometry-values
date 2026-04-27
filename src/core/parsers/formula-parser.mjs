@@ -1,4 +1,4 @@
-import { evaluate, typeOf, unit as mathjsUnit } from "mathjs";
+import { evaluate, typeOf, unit as mathjsUnit } from "../mathjs-api.mjs";
 
 const FORMULA_PREFIX = "=";
 

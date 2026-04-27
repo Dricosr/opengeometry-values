@@ -4,9 +4,31 @@ opengeometry-values is designed to work in both Node.js and the browser from the
 
 ---
 
+## Required mathjs exports
+
+The library uses exactly four named exports from mathjs. These are the only symbols a shim or import map needs to expose:
+
+| Symbol | Used in |
+| ------ | ------- |
+| `unit` | unit conversion, precision, input parsing |
+| `format` | numeric display formatting |
+| `evaluate` | formula evaluation |
+| `typeOf` | formula result type detection |
+
+The canonical source of truth is [`src/core/mathjs-api.mjs`](../../src/core/mathjs-api.mjs) — it re-exports all four and nothing else. When a new mathjs symbol is needed anywhere in the library, it must be added there first, making the change visible in diffs.
+
+Consumers can also import the contract directly at runtime:
+
+```js
+import { mathjsApi } from "@dricosr/opengeometry-values";
+// mathjsApi: { evaluate, format, typeOf, unit }
+```
+
+---
+
 ## The problem
 
-`import { unit, format } from "mathjs"` is a bare specifier. It resolves correctly in Node.js via `node_modules`, but the browser module loader cannot resolve it without additional configuration.
+`import { unit, format, evaluate, typeOf } from "mathjs"` uses bare specifiers. They resolve correctly in Node.js via `node_modules`, but the browser module loader cannot resolve them without additional configuration.
 
 ---
 
@@ -72,7 +94,7 @@ Every file in `src/` must import dependencies using bare specifiers - never rela
 
 ```js
 // correct
-import { unit, format } from "mathjs"
+import { unit, format, evaluate, typeOf } from "mathjs"
 
 // wrong - breaks the browser path
 import { unit } from "../../node_modules/mathjs/lib/esm/index.js"

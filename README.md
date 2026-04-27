@@ -268,6 +268,24 @@ This ensures compatibility with JavaScript, JSON, Math.js, and external APIs.
 
 The library works in the browser without a build step, using [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) to resolve dependencies locally from your Express server.
 
+**Required mathjs exports**
+
+The library uses exactly four named exports from mathjs. Any shim or import map must expose all of them:
+
+| Symbol | Purpose |
+| ------ | ------- |
+| `unit` | unit conversion, precision, input parsing |
+| `format` | numeric display formatting |
+| `evaluate` | formula evaluation |
+| `typeOf` | formula result type detection |
+
+The canonical source is [`src/core/mathjs-api.mjs`](src/core/mathjs-api.mjs). Adding a new mathjs symbol to the library requires updating that file first, making the contract change visible in diffs. Consumers can also import the object at runtime:
+
+```js
+import { mathjsApi } from "@dricosr/opengeometry-values";
+// mathjsApi: { evaluate, format, typeOf, unit }
+```
+
 **Express setup (in the consuming app):**
 
 ```js
