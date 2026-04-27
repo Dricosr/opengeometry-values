@@ -34,7 +34,7 @@ npm whoami
 Choose the appropriate bump for the release:
 
 ```powershell
-# Prerelease (0.1.0-alpha.1 → 0.1.0-alpha.2)
+# Prerelease (0.1.0-alpha.3 → 0.1.0-alpha.3)
 npm version prerelease --preid=alpha --no-git-tag-version
 
 # Patch (0.1.0 → 0.1.1)
@@ -79,20 +79,20 @@ npm dist-tag add @dricosr/opengeometry-values@<version> latest
 Example:
 
 ```powershell
-npm dist-tag add @dricosr/opengeometry-values@0.1.0-alpha.2 latest
+npm dist-tag add @dricosr/opengeometry-values@0.1.0-alpha.3 latest
 ```
 
 Verify:
 
 ```powershell
 npm dist-tag ls @dricosr/opengeometry-values
-# Expected: alpha: 0.1.0-alpha.2
-#           latest: 0.1.0-alpha.2
+# Expected: alpha: 0.1.0-alpha.3
+#           latest: 0.1.0-alpha.3
 ```
 
 ---
 
-## Full example - publishing 0.1.0-alpha.2
+## Full example - publishing 0.1.0-alpha.3
 
 ```powershell
 cd "e:\Cloud\Git\og\opengeometry-values"
@@ -100,9 +100,9 @@ cd "e:\Cloud\Git\og\opengeometry-values"
 npm login
 npm whoami                                          # dricosr
 
-npm version prerelease --preid=alpha --no-git-tag-version  # → 0.1.0-alpha.2
+npm version prerelease --preid=alpha --no-git-tag-version  # → 0.1.0-alpha.3  (current: 0.1.0-alpha.2)
 npm publish --access public --tag alpha
-npm dist-tag add @dricosr/opengeometry-values@0.1.0-alpha.2 latest
+npm dist-tag add @dricosr/opengeometry-values@0.1.0-alpha.3 latest
 
 npm dist-tag ls @dricosr/opengeometry-values        # confirm tags
 ```
