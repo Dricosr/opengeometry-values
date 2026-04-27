@@ -39,7 +39,9 @@
       "Bash(curl -s https://api.ipify.org)",
       "Bash(npm config *)",
       "Bash(npm login *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(node -e \"const p = JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json'\\)\\); console.log\\(p.version\\)\")",
+      "Bash(node -e \"console.log\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json'\\)\\).version\\)\")"
     ]
   }
 }
