@@ -18,6 +18,13 @@ export class ForceEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         unit: MATHJS_STRINGS.KILONEWTON,
         outputUnit: MATHJS_STRINGS.NEWTON,
         precision: 0
+      },
+      {
+        value: "=1 kN + 500 N",
+        quantity: QUANTITY_TYPES.FORCE,
+        unit: MATHJS_STRINGS.KILONEWTON,
+        outputUnit: MATHJS_STRINGS.KILONEWTON,
+        precision: 1
       }
     ];
   }
@@ -38,6 +45,14 @@ export class ForceEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         outputs: {
           display: "2500 N",
           edit: "2500"
+        }
+      },
+      {
+        input: { value: "=1 kN + 500 N", unit: "kN" },
+        internal: "1500 N",
+        outputs: {
+          display: "1.5 kN",
+          edit: "=1 kN + 500 N"
         }
       }
     ];

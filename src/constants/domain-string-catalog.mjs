@@ -9,6 +9,7 @@ const DOMAIN_STRING_ENTRIES = Object.freeze({
   ERROR_CODE_UNKNOWN_INPUT_UNIT: "unknown_input_unit",
   ERROR_CODE_UNSUPPORTED_INPUT_UNIT: "unsupported_input_unit",
   ERROR_CODE_INCOMPATIBLE_INPUT_UNIT: "incompatible_input_unit",
+  ERROR_CODE_INVALID_FORMULA_EXPRESSION: "invalid_formula_expression",
   ERROR_FIELD_VALUE: "value",
   ERROR_FIELD_UNIT: "unit",
   ERROR_INVALID_NUMERIC_VALUE_PREFIX: "Invalid numeric value",
@@ -16,6 +17,7 @@ const DOMAIN_STRING_ENTRIES = Object.freeze({
   ERROR_UNKNOWN_INPUT_UNIT_PREFIX: "Unknown input unit",
   ERROR_UNSUPPORTED_INPUT_UNIT_PREFIX: "Unsupported input unit",
   ERROR_INCOMPATIBLE_INPUT_UNIT_PREFIX: "Input unit is not compatible with quantity",
+  ERROR_INVALID_FORMULA_EXPRESSION_PREFIX: "Invalid formula expression",
   SPACE: " "
 });
 

@@ -25,6 +25,13 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
         unit: MATHJS_STRINGS.MEGAPASCAL,
         outputUnit: MATHJS_STRINGS.BAR,
         precision: 0
+      },
+      {
+        value: "=1 MPa + 500 kPa",
+        quantity: QUANTITY_TYPES.PRESSURE,
+        unit: MATHJS_STRINGS.MEGAPASCAL,
+        outputUnit: MATHJS_STRINGS.MEGAPASCAL,
+        precision: 2
       }
     ];
   }
@@ -53,6 +60,14 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
         outputs: {
           display: "25 bar",
           edit: "25"
+        }
+      },
+      {
+        input: { value: "=1 MPa + 500 kPa", unit: "MPa" },
+        internal: "1500000 Pa",
+        outputs: {
+          display: "1.50 MPa",
+          edit: "=1 MPa + 500 kPa"
         }
       }
     ];

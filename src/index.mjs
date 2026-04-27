@@ -39,4 +39,6 @@ export { PressureQuantityProfile } from "./core/quantities/pressure-quantity-pro
 export { TimeQuantityProfile } from "./core/quantities/time-quantity-profile.mjs";
 export { resolveDisplayPrecision, DisplayPrecisionResolver, displayPrecisionResolver } from "./core/resolve-display-precision.mjs";
 export { parseBoolean, BooleanTextParser, booleanTextParser } from "./core/parsers/boolean-text-parser.mjs";
+export { parseFormula, FormulaParser, formulaParser } from "./core/parsers/formula-parser.mjs";
+export { parseUnitInput, UnitInputParser, unitInputParser } from "./core/parsers/unit-input-parser.mjs";
 export { parseNumber, StrictNumberParser, strictNumberParser } from "./core/parsers/strict-number-parser.mjs";

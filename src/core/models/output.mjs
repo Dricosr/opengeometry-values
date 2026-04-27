@@ -26,6 +26,22 @@ export class Output {
   }
 
   formatEdit(input, options = {}) {
+    if (typeof input.value === "string" && input.value.startsWith("=")) {
+      // Formulas with embedded units are always self-contained — return as-is
+      if (input.formulaHasEmbeddedUnits) {
+        return input.value;
+      }
+
+      // Dimensionless formula: append original unit when editing in a different unit
+      const editUnit = options.unit ?? this.unit;
+
+      if (input.unit && input.unit !== QUANTITY_TYPES.NONE && editUnit !== input.unit) {
+        return `${input.value} ${input.unit}`;
+      }
+
+      return input.value;
+    }
+
     return this.withOverrides({
       ...options,
       showUnit: false,

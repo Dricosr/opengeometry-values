@@ -18,6 +18,13 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         unit: MATHJS_STRINGS.RADIAN,
         outputUnit: MATHJS_STRINGS.DEGREE,
         precision: 0
+      },
+      {
+        value: "=90 deg + 45 deg",
+        quantity: QUANTITY_TYPES.ANGLE,
+        unit: MATHJS_STRINGS.DEGREE,
+        outputUnit: MATHJS_STRINGS.DEGREE,
+        precision: 0
       }
     ];
   }
@@ -38,6 +45,14 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         outputs: {
           display: "90 deg",
           edit: "90"
+        }
+      },
+      {
+        input: { value: "=90 deg + 45 deg", unit: "deg" },
+        internal: "2.356194490192 rad",
+        outputs: {
+          display: "135 deg",
+          edit: "=90 deg + 45 deg"
         }
       }
     ];

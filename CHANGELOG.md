@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Formula input with embedded units: formulas can now include mathjs unit tokens directly (e.g. `"=4 m + 200 cm"`, `"=1 h + 30 min"`, `"=1 kN + 500 N"`). The mathjs unit arithmetic is resolved at parse time; the result is converted to the quantity's internal unit. The flag `formulaHasEmbeddedUnits` is stored on `ValueInput` and controls edit behavior.
+- Unit-embedded numeric input: a string like `"4000mm"` or `"7h"` (number + recognized unit, no `=`) is now a valid input form. The inline unit wins over the parameter unit. Parsed by the new `UnitInputParser`.
+- `UnitInputParser` class, `unitInputParser` singleton, and `parseUnitInput` function exported from `src/index.mjs`
+- `formulaHasEmbeddedUnits` field on `ValueInput` (default `false`); `true` when the input was a formula whose expression carried mathjs unit tokens
+- Edit behavior for plain formulas: when the output unit differs from the formula's original unit, `formatEdit` appends the original unit to the formula text (e.g. `"=2*3 m"`). Formulas with embedded units always return the formula as-is.
+- Formula input support: numeric values can now be entered as mathjs expressions prefixed with `=` (e.g. `"=sqrt(3^2 + 4^2)"`, `"=2 * pi"`). The original formula text is preserved in `input.value`; the evaluated number enters the standard pipeline (unit conversion, internal resolution, type validation). Applies to `float` and `integer` value types across all quantities. Invalid or non-finite results throw `ValueInputError` with code `invalid_formula_expression`.
+- `FormulaParser` class, `formulaParser` singleton, and `parseFormula` function exported from `src/index.mjs`
+- `ERROR_CODE_INVALID_FORMULA_EXPRESSION` and `ERROR_INVALID_FORMULA_EXPRESSION_PREFIX` added to `domain-string-catalog.mjs`
+- `spec/en-us/formulas.md` and `spec/pt-br/formulas.md` — full expression reference covering all input forms, arithmetic operators, math functions, trigonometric functions, constants, embedded unit formulas, edit behavior, error conditions, and known limitations
+
 ### Removed
 
 - `formatForComposition` and `formatForFriendlyValue` from `ValueInput` - both delegated identically to `formatDisplay`, making them redundant aliases with no distinct behavior

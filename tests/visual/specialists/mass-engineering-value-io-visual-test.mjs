@@ -11,6 +11,13 @@ export class MassEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         unit: MATHJS_STRINGS.KILOGRAM,
         outputUnit: MATHJS_STRINGS.KILOGRAM,
         precision: 1
+      },
+      {
+        value: "=5 kg + 500 g",
+        quantity: QUANTITY_TYPES.MASS,
+        unit: MATHJS_STRINGS.KILOGRAM,
+        outputUnit: MATHJS_STRINGS.KILOGRAM,
+        precision: 2
       }
     ];
   }
@@ -23,6 +30,14 @@ export class MassEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         outputs: {
           display: "12.5 kg",
           edit: "12.5"
+        }
+      },
+      {
+        input: { value: "=5 kg + 500 g", unit: "kg" },
+        internal: "5.5 kg",
+        outputs: {
+          display: "5.50 kg",
+          edit: "=5 kg + 500 g"
         }
       }
     ];

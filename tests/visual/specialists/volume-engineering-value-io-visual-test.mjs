@@ -32,6 +32,13 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         unit: MATHJS_STRINGS.CUBIC_METER,
         outputUnit: MATHJS_STRINGS.LITER,
         precision: 0
+      },
+      {
+        value: "=1 m^3 + 500 L",
+        quantity: QUANTITY_TYPES.VOLUME,
+        unit: MATHJS_STRINGS.CUBIC_METER,
+        outputUnit: MATHJS_STRINGS.LITER,
+        precision: 0
       }
     ];
   }
@@ -68,6 +75,14 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         outputs: {
           display: "18750 L",
           edit: "18750"
+        }
+      },
+      {
+        input: { value: "=1 m^3 + 500 L", unit: "m^3" },
+        internal: "1.5 m^3",
+        outputs: {
+          display: "1500 L",
+          edit: "=1 m^3 + 500 L"
         }
       }
     ];

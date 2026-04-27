@@ -122,7 +122,6 @@ Future:
 ```txt
 enum
 date
-formula
 reference
 json
 ```
@@ -416,7 +415,24 @@ For current signatures see the [README](../../README.md).
 
 ---
 
-# 13. Direct conversion
+# 13. Formula input
+
+A formula is a numeric input prefixed with `=`. It is evaluated at creation time using mathjs `evaluate()`, and the resulting number enters the standard pipeline (unit conversion, resolution, type validation). The original formula text is preserved in `input.value`.
+
+```js
+createValue({ value: "=sqrt(3^2 + 4^2)", unit: "m", valueType: "float", quantity: "length" });
+// input.value   = "=sqrt(3^2 + 4^2)"
+// internal.value = 5
+// internal.unit  = "m"
+```
+
+Formulas apply to `float` and `integer` value types, for all quantities. An invalid or non-finite result throws a `ValueInputError` with code `invalid_formula_expression`.
+
+For the full expression reference see [`spec/en-us/formulas.md`](formulas.md).
+
+---
+
+# 14. Direct conversion
 
 File:
 
@@ -449,7 +465,7 @@ convertValue({
 
 ---
 
-# 14. UI symbols
+# 15. UI symbols
 
 `UNIT_SYMBOLS` maps Math.js unit codes to display characters. Current entries:
 
@@ -485,7 +501,7 @@ convertValue({
 
 ---
 
-# 15. Maximum UI precision
+# 16. Maximum UI precision
 
 The UI must not display or edit with more precision than the system stores.
 
@@ -539,7 +555,7 @@ function countDecimals(value) {
 
 ---
 
-# 16. Resolve final precision
+# 17. Resolve final precision
 
 File:
 
@@ -586,7 +602,7 @@ If the system only guarantees:
 
 ---
 
-# 17. Formatting for reading
+# 18. Formatting for reading
 
 Read mode is the user-friendly value.
 
@@ -665,7 +681,7 @@ formatDisplayValue(value, {
 
 ---
 
-# 18. Formatting for editing
+# 19. Formatting for editing
 
 Edit mode must not mix number with unit.
 
@@ -732,7 +748,7 @@ formatEditValue(value, {
 
 ---
 
-# 19. UI flow
+# 20. UI flow
 
 ## On input
 
@@ -771,7 +787,7 @@ The unit must appear in the label, select, or adornment of the field.
 
 ---
 
-# 20. Family property
+# 21. Family property
 
 A parameter definition carries the quantity, value type, default unit, and display configuration. The library does not define the parameter schema itself - that belongs to the consuming application.
 
@@ -792,7 +808,7 @@ Because `200.25 mm` rounds to `200.3 mm`, respecting the `0.1 mm` internal resol
 
 ---
 
-# 21. Unit preference per user/project
+# 22. Unit preference per user/project
 
 UI preferences must not be stored inside each value.
 
@@ -821,7 +837,7 @@ Display unit resolution order:
 
 ---
 
-# 22. Central export
+# 23. Central export
 
 All public symbols are exported from `src/index.mjs`. The surface has grown beyond the original MVP to include:
 
@@ -836,7 +852,7 @@ For the full list with descriptions see the [README](../../README.md).
 
 ---
 
-# 23. Full example
+# 24. Full example
 
 ```js
 import { createValue, Output, formatDisplayValue, formatEditValue } from "opengeometry-values";
@@ -867,7 +883,7 @@ The last call returns only one decimal place because, in `mm`, the maximum allow
 
 ---
 
-# 24. Final module rules
+# 25. Final module rules
 
 Consolidated decisions:
 
@@ -911,7 +927,7 @@ Consolidated decisions:
 
 ---
 
-# 25. MVP scope
+# 26. MVP scope
 
 The original MVP has been delivered. All items below are implemented.
 
@@ -935,7 +951,6 @@ The original MVP has been delivered. All items below are implemented.
 **Still not in scope:**
 
 ```txt
-formulas
 DMS for angle
 enum
 custom units
@@ -948,7 +963,7 @@ normative catalogs
 
 ---
 
-# 26. Architectural summary
+# 27. Architectural summary
 
 ```txt
 Math.js

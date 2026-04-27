@@ -123,7 +123,6 @@ Futuro:
 ```txt
 enum
 date
-formula
 reference
 json
 ```
@@ -417,7 +416,24 @@ Para as assinaturas atuais consulte o [README](../../README.md).
 
 ---
 
-# 13. Conversão direta
+# 13. Entrada por fórmula
+
+Uma fórmula é um input numérico prefixado com `=`. É avaliada no momento da criação usando mathjs `evaluate()`, e o número resultante entra no pipeline padrão (conversão de unidade, resolução interna, validação de tipo). O texto original da fórmula é preservado em `input.value`.
+
+```js
+createValue({ value: "=sqrt(3^2 + 4^2)", unit: "m", valueType: "float", quantity: "length" });
+// input.value    = "=sqrt(3^2 + 4^2)"
+// internal.value = 5
+// internal.unit  = "m"
+```
+
+Fórmulas se aplicam aos tipos `float` e `integer`, para todas as grandezas. Um resultado inválido ou não-finito lança `ValueInputError` com código `invalid_formula_expression`.
+
+Para a referência completa de expressões veja [`spec/pt-br/formulas.md`](formulas.md).
+
+---
+
+# 14. Conversão direta
 
 Arquivo:
 
@@ -450,7 +466,7 @@ convertValue({
 
 ---
 
-# 14. Símbolos de UI
+# 15. Símbolos de UI
 
 `UNIT_SYMBOLS` mapeia códigos Math.js para caracteres de exibição. Entradas atuais:
 
@@ -486,7 +502,7 @@ convertValue({
 
 ---
 
-# 15. Precisão máxima da UI
+# 16. Precisão máxima da UI
 
 A UI não pode exibir/editar com mais precisão do que o sistema armazena.
 
@@ -540,7 +556,7 @@ function countDecimals(value) {
 
 ---
 
-# 16. Resolver precisão final
+# 17. Resolver precisão final
 
 Arquivo:
 
@@ -587,7 +603,7 @@ Se o sistema só garante:
 
 ---
 
-# 17. Formatação para leitura
+# 18. Formatação para leitura
 
 Modo leitura é o valor user friendly.
 
@@ -666,7 +682,7 @@ formatDisplayValue(value, {
 
 ---
 
-# 18. Formatação para edição
+# 19. Formatação para edição
 
 Modo edição não deve misturar número com unidade.
 
@@ -733,7 +749,7 @@ formatEditValue(value, {
 
 ---
 
-# 19. Fluxo de UI
+# 20. Fluxo de UI
 
 ## Ao digitar
 
@@ -772,7 +788,7 @@ A unidade deve aparecer no label, select ou adornment do campo.
 
 ---
 
-# 20. Propriedade de família
+# 21. Propriedade de família
 
 Uma definição de parâmetro carrega grandeza, tipo de valor, unidade padrão e configuração de display. A biblioteca não define o schema do parâmetro - isso pertence à aplicação consumidora.
 
@@ -793,7 +809,7 @@ Porque `200.25 mm` arredonda para `200.3 mm`, respeitando a resolução interna 
 
 ---
 
-# 21. Preferência de unidade por usuário/projeto
+# 22. Preferência de unidade por usuário/projeto
 
 As preferências de UI não devem ficar salvas dentro de cada valor.
 
@@ -822,7 +838,7 @@ Ordem de resolução da unidade de display:
 
 ---
 
-# 22. Export central
+# 23. Export central
 
 Todos os símbolos públicos são exportados por `src/index.mjs`. A superfície cresceu além do MVP original e inclui:
 
@@ -837,7 +853,7 @@ Para a lista completa com descrições consulte o [README](../../README.md).
 
 ---
 
-# 23. Exemplo completo
+# 24. Exemplo completo
 
 ```js
 import { createValue, Output, formatDisplayValue, formatEditValue } from "opengeometry-values";
@@ -868,7 +884,7 @@ O último retorna apenas uma casa decimal porque, em `mm`, o máximo permitido �
 
 ---
 
-# 24. Regras finais do módulo
+# 25. Regras finais do módulo
 
 As decisões consolidadas:
 
@@ -912,7 +928,7 @@ As decisões consolidadas:
 
 ---
 
-# 25. Escopo MVP
+# 26. Escopo MVP
 
 O MVP original foi entregue. Todos os itens abaixo estão implementados.
 
@@ -936,7 +952,6 @@ O MVP original foi entregue. Todos os itens abaixo estão implementados.
 **Ainda fora do escopo:**
 
 ```txt
-fórmulas
 DMS para ângulo
 enum
 unidades customizadas
@@ -949,7 +964,7 @@ catálogos normativos
 
 ---
 
-# 26. Resumo arquitetural
+# 27. Resumo arquitetural
 
 ```txt
 Math.js

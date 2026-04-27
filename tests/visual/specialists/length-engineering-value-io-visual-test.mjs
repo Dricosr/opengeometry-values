@@ -32,6 +32,27 @@ export class LengthEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         unit: MATHJS_STRINGS.INCH,
         outputUnit: MATHJS_STRINGS.MILLIMETER,
         precision: 1
+      },
+      {
+        value: "=4 m + 200 cm",
+        quantity: QUANTITY_TYPES.LENGTH,
+        unit: MATHJS_STRINGS.METER,
+        outputUnit: MATHJS_STRINGS.CENTIMETER,
+        precision: 0
+      },
+      {
+        value: "=2*3",
+        quantity: QUANTITY_TYPES.LENGTH,
+        unit: MATHJS_STRINGS.METER,
+        outputUnit: MATHJS_STRINGS.CENTIMETER,
+        precision: 0
+      },
+      {
+        value: "4000mm",
+        quantity: QUANTITY_TYPES.LENGTH,
+        unit: MATHJS_STRINGS.METER,
+        outputUnit: MATHJS_STRINGS.CENTIMETER,
+        precision: 0
       }
     ];
   }
@@ -68,6 +89,30 @@ export class LengthEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         outputs: {
           display: "762.0 mm",
           edit: "762.0"
+        }
+      },
+      {
+        input: { value: "=4 m + 200 cm", unit: "m" },
+        internal: "6 m",
+        outputs: {
+          display: "600 cm",
+          edit: "=4 m + 200 cm"
+        }
+      },
+      {
+        input: { value: "=2*3", unit: "m" },
+        internal: "6 m",
+        outputs: {
+          display: "600 cm",
+          edit: "=2*3 m"
+        }
+      },
+      {
+        input: { value: "4000mm", unit: "m" },
+        internal: "4 m",
+        outputs: {
+          display: "400 cm",
+          edit: "400"
         }
       }
     ];

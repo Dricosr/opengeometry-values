@@ -18,6 +18,20 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         unit: MATHJS_STRINGS.MINUTE,
         outputUnit: MATHJS_STRINGS.HOUR,
         precision: 1
+      },
+      {
+        value: "7h",
+        quantity: QUANTITY_TYPES.TIME,
+        unit: MATHJS_STRINGS.HOUR,
+        outputUnit: MATHJS_STRINGS.HOUR,
+        precision: 0
+      },
+      {
+        value: "=1 h + 30 min",
+        quantity: QUANTITY_TYPES.TIME,
+        unit: MATHJS_STRINGS.HOUR,
+        outputUnit: MATHJS_STRINGS.HOUR,
+        precision: 1
       }
     ];
   }
@@ -39,17 +53,28 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
           display: "1.5 h",
           edit: "1.5"
         }
+      },
+      {
+        input: { value: "7h", unit: "h" },
+        internal: "25200 s",
+        outputs: {
+          display: "7 h",
+          edit: "7"
+        }
+      },
+      {
+        input: { value: "=1 h + 30 min", unit: "h" },
+        internal: "5400 s",
+        outputs: {
+          display: "1.5 h",
+          edit: "=1 h + 30 min"
+        }
       }
     ];
   }
 
   getInvalidScenarios() {
     return [
-      {
-        value: "7h",
-        quantity: QUANTITY_TYPES.TIME,
-        unit: MATHJS_STRINGS.HOUR
-      },
       {
         value: 7200,
         quantity: QUANTITY_TYPES.TIME,
@@ -60,12 +85,6 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
 
   getExpectedInvalidPreviews() {
     return [
-      {
-        input: { value: "7h", unit: "h" },
-        errorCode: "invalid_numeric_value",
-        errorField: "value",
-        errorMessage: "Invalid numeric value: 7h"
-      },
       {
         input: { value: 7200, unit: "kg" },
         errorCode: "unsupported_input_unit",

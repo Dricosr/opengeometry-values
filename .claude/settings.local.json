@@ -20,7 +20,9 @@
       "WebFetch(domain:br.linkedin.com)",
       "PowerShell(Copy-Item -Recurse \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\\\\demo\\\\public\" \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values-demo\\\\public\")",
       "Bash(git push *)",
-      "WebFetch(domain:opensource.guide)"
+      "WebFetch(domain:opensource.guide)",
+      "Bash(cat tests/visual/specialists/time-engineering-value-io-visual-test.mjs)",
+      "Bash(find tests/visual -name \"*time*\")"
     ]
   }
 }

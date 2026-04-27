@@ -4,7 +4,9 @@ import { VALUE_TYPES } from "../constants/value-types.mjs";
 import { internalResolutionApplier } from "./apply-internal-resolution.mjs";
 import { ValueInputError } from "./errors/value-input-error.mjs";
 import { booleanTextParser } from "./parsers/boolean-text-parser.mjs";
+import { formulaParser } from "./parsers/formula-parser.mjs";
 import { strictNumberParser } from "./parsers/strict-number-parser.mjs";
+import { unitInputParser } from "./parsers/unit-input-parser.mjs";
 import { InternalValue } from "./models/internal-value.mjs";
 import { OpenGeometryValue } from "./models/opengeometry-value.mjs";
 import { Output } from "./models/output.mjs";
@@ -16,12 +18,16 @@ export class ValueFactory {
   constructor({
     numberParser = strictNumberParser,
     booleanParser = booleanTextParser,
+    formulaParser: formulaParserArg = formulaParser,
+    unitInputParser: unitInputParserArg = unitInputParser,
     converter = unitConverter,
     resolutionApplier = internalResolutionApplier,
     quantityProfiles = quantityProfileRegistry
   } = {}) {
     this.numberParser = numberParser;
     this.booleanParser = booleanParser;
+    this.formulaParser = formulaParserArg;
+    this.unitInputParser = unitInputParserArg;
     this.converter = converter;
     this.resolutionApplier = resolutionApplier;
     this.quantityProfiles = quantityProfiles;
@@ -78,7 +84,12 @@ export class ValueFactory {
       });
     }
 
-    const numericValue = this.parseNumericValue({ value, valueType, quantity: resolvedQuantity, unit: inputUnit });
+    const { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits } = this.resolveNumericInput({
+      value,
+      valueType,
+      quantity: resolvedQuantity,
+      unit: inputUnit
+    });
 
     if (valueType === VALUE_TYPES.INTEGER && !Number.isInteger(numericValue)) {
       throw this.createInputError({
@@ -88,12 +99,12 @@ export class ValueFactory {
         value,
         valueType,
         quantity: resolvedQuantity,
-        unit: inputUnit
+        unit: effectiveUnit
       });
     }
 
     const quantityProfile = this.quantityProfiles.getProfile(resolvedQuantity);
-    this.assertSupportedUnit({ quantityProfile, value, valueType, quantity: resolvedQuantity, unit: inputUnit });
+    this.assertSupportedUnit({ quantityProfile, value, valueType, quantity: resolvedQuantity, unit: effectiveUnit });
 
     const normalizedInternal = this.normalizeNumericValue({
       quantityProfile,
@@ -101,7 +112,7 @@ export class ValueFactory {
       value,
       valueType,
       quantity: resolvedQuantity,
-      unit: inputUnit
+      unit: effectiveUnit
     });
 
     const internalValue = new InternalValue({
@@ -109,40 +120,20 @@ export class ValueFactory {
       unit: normalizedInternal.unit
     });
 
-    if (normalizedInternal.unit === inputUnit || (!normalizedInternal.unit && !inputUnit)) {
-      return new OpenGeometryValue({
-        valueType,
-        quantity: resolvedQuantity,
-        input: new ValueInput({
-          id,
-          value: numericValue,
-          unit: inputUnit,
-          quantity: resolvedQuantity,
-          internal: internalValue,
-          output: this.resolveOutput({
-            output,
-            outputId,
-            inputUnit,
-            internalValue
-          })
-        }),
-        internal: internalValue
-      });
-    }
-
     return new OpenGeometryValue({
       valueType,
       quantity: resolvedQuantity,
       input: new ValueInput({
         id,
-        value: numericValue,
-        unit: inputUnit,
+        value: inputValue,
+        unit: effectiveUnit,
         quantity: resolvedQuantity,
         internal: internalValue,
+        formulaHasEmbeddedUnits: hasEmbeddedUnits,
         output: this.resolveOutput({
           output,
           outputId,
-          inputUnit,
+          inputUnit: effectiveUnit,
           internalValue
         })
       }),
@@ -170,9 +161,101 @@ export class ValueFactory {
     }
   }
 
-  parseNumericValue({ value, valueType, quantity, unit }) {
+  // Returns { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits }
+  resolveNumericInput({ value, valueType, quantity, unit }) {
+    // --- Formula path (starts with =) ---
+    if (this.formulaParser.isFormula(value)) {
+      return this.resolveFormulaInput({ value, valueType, quantity, unit });
+    }
+
+    // --- Strict number path (unchanged behavior) ---
+    const strictResult = this.tryStrictNumber(value);
+
+    if (strictResult !== null) {
+      return { numericValue: strictResult, inputValue: strictResult, effectiveUnit: unit, hasEmbeddedUnits: false };
+    }
+
+    // --- Number-with-unit path ("2m", "4000mm", "100 degC") ---
+    return this.resolveUnitInput({ value, valueType, quantity, unit });
+  }
+
+  tryStrictNumber(value) {
     try {
       return this.numberParser.parse(value);
+    } catch {
+      return null;
+    }
+  }
+
+  resolveFormulaInput({ value, valueType, quantity, unit }) {
+    let parsed;
+
+    try {
+      parsed = this.formulaParser.parseWithUnit(value);
+    } catch (error) {
+      throw this.normalizeInputError(error, {
+        code: DOMAIN_STRINGS.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
+        field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+        value,
+        valueType,
+        quantity,
+        unit,
+        fallbackMessage: `${DOMAIN_STRINGS.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`
+      });
+    }
+
+    if (parsed.hasEmbeddedUnits) {
+      const quantityProfile = this.quantityProfiles.getProfile(quantity);
+      const internalUnit = quantityProfile?.getInternalUnit() ?? null;
+      let numericValue;
+
+      try {
+        numericValue = parsed.mathjsUnit.toNumber(internalUnit);
+      } catch {
+        throw this.createInputError({
+          code: DOMAIN_STRINGS.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
+          field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+          message: `${DOMAIN_STRINGS.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`,
+          value,
+          valueType,
+          quantity,
+          unit
+        });
+      }
+
+      if (!isFinite(numericValue)) {
+        throw this.createInputError({
+          code: DOMAIN_STRINGS.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
+          field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+          message: `${DOMAIN_STRINGS.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`,
+          value,
+          valueType,
+          quantity,
+          unit
+        });
+      }
+
+      return {
+        numericValue,
+        inputValue: parsed.cleanText,
+        effectiveUnit: internalUnit ?? unit,
+        hasEmbeddedUnits: true
+      };
+    }
+
+    // Plain number formula — unit comes from parameter
+    return {
+      numericValue: parsed.value,
+      inputValue: parsed.cleanText,
+      effectiveUnit: unit,
+      hasEmbeddedUnits: false
+    };
+  }
+
+  resolveUnitInput({ value, valueType, quantity, unit }) {
+    try {
+      const parsed = this.unitInputParser.parse(value);
+      return { numericValue: parsed.value, inputValue: value, effectiveUnit: parsed.unit, hasEmbeddedUnits: false };
     } catch (error) {
       throw this.normalizeInputError(error, {
         code: DOMAIN_STRINGS.ERROR_CODE_INVALID_NUMERIC_VALUE,
@@ -242,7 +325,7 @@ export class ValueFactory {
     return this.createInputError({
       code,
       field,
-      message: error instanceof Error ? error.message : fallbackMessage,
+      message: fallbackMessage,
       value,
       valueType,
       quantity,

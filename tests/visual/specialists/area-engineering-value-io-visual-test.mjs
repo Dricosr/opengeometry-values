@@ -18,6 +18,13 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         unit: MATHJS_STRINGS.SQUARE_METER,
         outputUnit: MATHJS_STRINGS.SQUARE_CENTIMETER,
         precision: 0
+      },
+      {
+        value: "=2 m^2 + 5000 cm^2",
+        quantity: QUANTITY_TYPES.AREA,
+        unit: MATHJS_STRINGS.SQUARE_METER,
+        outputUnit: MATHJS_STRINGS.SQUARE_METER,
+        precision: 2
       }
     ];
   }
@@ -38,6 +45,14 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         outputs: {
           display: "20000 cm^2",
           edit: "20000"
+        }
+      },
+      {
+        input: { value: "=2 m^2 + 5000 cm^2", unit: "m^2" },
+        internal: "2.5 m^2",
+        outputs: {
+          display: "2.50 m^2",
+          edit: "=2 m^2 + 5000 cm^2"
         }
       }
     ];

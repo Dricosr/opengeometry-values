@@ -1,13 +1,14 @@
 import { createReferenceId } from "../base/create-reference-id.mjs";
 
 export class ValueInput {
-    constructor({ id, value, unit, quantity, internal, output }) {
+    constructor({ id, value, unit, quantity, internal, output, formulaHasEmbeddedUnits = false }) {
         this.id = createReferenceId("input", id);
         this.value = value;
         this.unit = unit;
         this.quantity = quantity;
         this.internal = internal;
         this.output = output;
+        this.formulaHasEmbeddedUnits = formulaHasEmbeddedUnits;
         Object.freeze(this);
     }
 

@@ -25,6 +25,13 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
         unit: MATHJS_STRINGS.KELVIN,
         outputUnit: MATHJS_STRINGS.DEGREE_CELSIUS,
         precision: 0
+      },
+      {
+        value: "=100 - 32",
+        quantity: QUANTITY_TYPES.TEMPERATURE,
+        unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT,
+        outputUnit: MATHJS_STRINGS.DEGREE_CELSIUS,
+        precision: 0
       }
     ];
   }
@@ -54,6 +61,14 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
           display: "0 degC",
           edit: "0"
         }
+      },
+      {
+        input: { value: "=100 - 32", unit: "degF" },
+        internal: "20 degC",
+        outputs: {
+          display: "20 degC",
+          edit: "=100 - 32 degF"
+        }
       }
     ];
   }
@@ -77,9 +92,9 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
     return [
       {
         input: { value: "30C", unit: "degC" },
-        errorCode: "invalid_numeric_value",
-        errorField: "value",
-        errorMessage: "Invalid numeric value: 30C"
+        errorCode: "unsupported_input_unit",
+        errorField: "unit",
+        errorMessage: "Unsupported input unit: C"
       },
       {
         input: { value: 30, unit: "m" },
