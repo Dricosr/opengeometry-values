@@ -1,0 +1,10 @@
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    include: ["tests/**/*.test.mjs"],
+    globals: false,
+    isolate: false,
+    maxWorkers: 1
+  }
+});

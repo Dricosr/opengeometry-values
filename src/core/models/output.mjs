@@ -1,8 +1,10 @@
 import { OUTPUT_AFFIX_TYPES } from "../../constants/output-affix-types.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { DOMAIN_STRINGS } from "../../constants/domain-string-catalog.mjs";
+import { BASE_VALUES } from "../../constants/base-value-catalog.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
 import { baseNumericValueFormatter } from "../formatters/base-numeric-value-formatter.mjs";
+import { displayPrecisionService } from "../get-max-display-precision.mjs";
 import { CustomOutputAffix } from "./custom-output-affix.mjs";
 import { EmptyOutputAffix } from "./empty-output-affix.mjs";
 import { OutputAffix } from "./output-affix.mjs";
@@ -42,11 +44,108 @@ export class Output {
       return input.value;
     }
 
+    const editUnit = options.unit ?? this.unit;
+    const editPrecision = this.resolveEditPrecision(input, editUnit, options.precision);
+
     return this.withOverrides({
       ...options,
+      precision: editPrecision,
       showUnit: false,
       suffix: new EmptyOutputAffix()
     }).composeFormattedValue(input, false);
+  }
+
+  /**
+   * Resolves the precision to use when formatting a value for edit.
+   * When the edit unit differs from the input unit, we need enough
+   * precision to preserve the converted value's information content,
+   * avoiding truncation that would cause information loss in the cycle.
+   *
+   * @param {object} input - The ValueInput instance
+   * @param {string} editUnit - The target edit unit
+   * @param {number|undefined} requestedPrecision - User-requested precision override
+   * @returns {number|undefined} The precision to use for edit formatting
+   */
+  resolveEditPrecision(input, editUnit, requestedPrecision) {
+    // If no unit conversion is happening (edit unit matches input unit),
+    // use the requested precision as-is — no risk of information loss
+    if (!editUnit || !input.unit || editUnit === input.unit) {
+      return requestedPrecision;
+    }
+
+    // Calculate the converted value to determine needed decimal places
+    const rawConvertedValue = baseNumericValueFormatter.converter.convert({
+      value: input.internal.value,
+      fromUnit: input.internal.unit,
+      toUnit: editUnit
+    });
+
+    // Stabilize the converted value to avoid floating-point artifacts
+    // (e.g., 90.00000000000593 instead of 90 when converting rad to deg)
+    const convertedValue = Number(rawConvertedValue.toFixed(BASE_VALUES.DECIMAL_SCAN_PRECISION));
+
+    // Count how many decimal places the stabilized converted value has
+    const valueDecimalPlaces = this.countDecimalPlaces(convertedValue);
+
+    // Get the raw max precision from the quantity's resolution (null = no resolution)
+    const maxPrecision = displayPrecisionService.getMaxPrecision(input.quantity, editUnit);
+
+    // The base precision (user-requested or this output's default)
+    const basePrecision = requestedPrecision ?? this.precision;
+
+    // Calculate safe precision:
+    // - At least enough to show the converted value without truncation
+    // - At least the base precision (if specified)
+    // - At most the max precision for the unit (if available)
+    let safePrecision;
+
+    if (basePrecision !== undefined && basePrecision !== null) {
+      safePrecision = Math.max(valueDecimalPlaces, basePrecision);
+    } else if (maxPrecision !== null && maxPrecision !== undefined) {
+      // When no precision is specified and unit conversion occurs,
+      // use the max precision for the unit to avoid information loss
+      safePrecision = Math.max(valueDecimalPlaces, maxPrecision);
+    } else {
+      safePrecision = valueDecimalPlaces;
+    }
+
+    // Cap at max precision for the unit (when resolution exists)
+    if (maxPrecision !== null && maxPrecision !== undefined) {
+      return Math.min(safePrecision, maxPrecision);
+    }
+
+    return safePrecision;
+  }
+
+  /**
+   * Counts the number of decimal places in a number, handling floating-point
+   * artifacts by using a reasonable precision ceiling.
+   *
+   * Values that are effectively integers (within floating-point tolerance
+   * of a whole number) are treated as having 0 decimal places.
+   */
+  countDecimalPlaces(value) {
+    if (!isFinite(value)) {
+      return 0;
+    }
+
+    // Check if the value is effectively an integer (within floating-point tolerance)
+    // This handles cases like 90.00000000000593 which should be treated as 90
+    const roundedToInteger = Math.round(value);
+    if (Math.abs(value - roundedToInteger) < 1e-10) {
+      return 0;
+    }
+
+    // Use DECIMAL_SCAN_PRECISION to avoid floating-point artifacts
+    // (e.g., 90.000000000006.toFixed(15) reveals binary noise as "90.000000000005997")
+    const text = value.toFixed(BASE_VALUES.DECIMAL_SCAN_PRECISION).replace(/0+$/u, "").replace(/\.$/u, "");
+    const dotIndex = text.indexOf(".");
+
+    if (dotIndex === -1) {
+      return 0;
+    }
+
+    return text.length - dotIndex - 1;
   }
 
   withOverrides(options = {}) {

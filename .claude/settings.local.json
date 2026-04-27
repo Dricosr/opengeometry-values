@@ -22,7 +22,12 @@
       "Bash(git push *)",
       "WebFetch(domain:opensource.guide)",
       "Bash(cat tests/visual/specialists/time-engineering-value-io-visual-test.mjs)",
-      "Bash(find tests/visual -name \"*time*\")"
+      "Bash(find tests/visual -name \"*time*\")",
+      "Bash(npx vitest *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:d[k] for k in ['scripts','devDependencies'] if k in d}, indent=2\\)\\)\")",
+      "Bash(vitest run *)",
+      "Bash(npm install *)",
+      "Bash(git checkout *)"
     ]
   }
 }
