@@ -38,7 +38,8 @@
       "Bash(npm publish *)",
       "Bash(curl -s https://api.ipify.org)",
       "Bash(npm config *)",
-      "Bash(npm login *)"
+      "Bash(npm login *)",
+      "Bash(git commit *)"
     ]
   }
 }
