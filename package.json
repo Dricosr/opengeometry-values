@@ -3,20 +3,30 @@
   "version": "0.1.0-alpha.1",
   "description": "Structured engineering values with type, quantity, unit conversion, internal normalization and UI formatting for OpenGeometry.",
   "type": "module",
-  "main": "./src/index.mjs",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "browser": "./dist/index.iife.min.js",
   "exports": {
-    ".": "./src/index.mjs"
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.esm.js"
+    }
   },
   "publishConfig": {
       "registry": "https://registry.npmjs.org/",
       "access": "public"
   },
   "files": [
-    "src"
+    "src",
+    "dist"
   ],
   "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c --watch",
     "check:customizations": "node ./scripts/check-customizations.mjs",
-"test": "vitest run",
+    "prepublishOnly": "npm test && npm run build",
+    "test": "vitest run",
     "test:visual": "vitest run tests/visual",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
@@ -43,8 +53,20 @@
   "dependencies": {
     "mathjs": "15.2.0"
   },
+  "peerDependencies": {
+    "mathjs": ">=15.0.0"
+  },
+  "peerDependenciesMeta": {
+    "mathjs": {
+      "optional": false
+    }
+  },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "29.0.2",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "@rollup/plugin-terser": "1.0.0",
     "@vitest/coverage-v8": "4.1.5",
+    "rollup": "4.60.2",
     "vitest": "4.1.5"
   },
   "engines": {
