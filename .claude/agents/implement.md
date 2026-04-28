@@ -4,7 +4,7 @@ description: Use when implementing or modifying source files in src/ - constants
 tools: Read, Edit, Write, Glob, Grep, Bash
 ---
 
-You implement features for the opengeometry-values library.
+You implement features for the iforge-edp-values library.
 
 ## Spec
 

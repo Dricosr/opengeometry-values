@@ -1,6 +1,6 @@
 # Library Conformance Checklist
 
-Checklist for a cross-platform (Node.js + browser) ESM library like `opengeometry-values`.
+Checklist for a cross-platform (Node.js + browser) ESM library like `iforge-edp-values`.
 Before every major change, validate these items. Keep this file updated when adding new compliance requirements.
 
 ---
@@ -39,8 +39,8 @@ Before every major change, validate these items. Keep this file updated when add
 
 ## 3. Backend Compatibility
 
-- [ ] **Node.js import** — `import { createValue } from "@dricosr/opengeometry-values"` resolves from `dist/`
-- [ ] **Node.js require** — `const { createValue } = require("@dricosr/opengeometry-values")` works via CJS build
+- [ ] **Node.js import** — `import { createValue } from "@dricosr/iforge-edp-values"` resolves from `dist/`
+- [ ] **Node.js require** — `const { createValue } = require("@dricosr/iforge-edp-values")` works via CJS build
 - [ ] **mathjs peerDep resolves** — consumer's `node_modules` provides it; no bundle-time error
 - [ ] **All source is .mjs** — no CommonJS, no TypeScript
 - [ ] **Node engine constraint** — `>= 24.0.0` matches current stable
@@ -49,7 +49,7 @@ Before every major change, validate these items. Keep this file updated when add
 
 ## 4. Browser Compatibility
 
-- [ ] **IIFE via CDN** — `<script src="...index.iife.min.js">` exposes `window.OpenGeometryValues`
+- [ ] **IIFE via CDN** — `<script src="...index.iife.min.js">` exposes `window.IForgeEdpValues`
 - [ ] **ESM via bundler** — Vite/Rollup/esbuild resolve `"module"` entry and tree-shake
 - [ ] **No DOM APIs** — no `document`, `window`, `navigator`, `localStorage`
 - [ ] **No Node.js APIs** — no `fs`, `path`, `process`, `Buffer`

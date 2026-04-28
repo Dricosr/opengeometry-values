@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contributing to opengeometry-values. Contributions of all kinds are welcome: bug reports, documentation improvements, new quantity profiles, test coverage, and code changes.
+Thank you for your interest in contributing to iforge-edp-values. Contributions of all kinds are welcome: bug reports, documentation improvements, new quantity profiles, test coverage, and code changes.
 
 Please read and follow the [Code of Conduct](./CODE_OF_CONDUCT.md) in all interactions.
 
@@ -20,8 +20,8 @@ Please read and follow the [Code of Conduct](./CODE_OF_CONDUCT.md) in all intera
 ## Setup
 
 ```bash
-git clone https://github.com/Dricosr/opengeometry-values.git
-cd opengeometry-values
+git clone https://github.com/Dricosr/iforge-edp-values.git
+cd iforge-edp-values
 npm install
 ```
 
@@ -81,4 +81,4 @@ test: add coverage for formatEditValue with mm unit
 
 ## Reporting issues
 
-Open an issue at [github.com/Dricosr/opengeometry-values/issues](https://github.com/Dricosr/opengeometry-values/issues) with a minimal reproduction.
+Open an issue at [github.com/Dricosr/iforge-edp-values/issues](https://github.com/Dricosr/iforge-edp-values/issues) with a minimal reproduction.

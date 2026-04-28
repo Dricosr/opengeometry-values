@@ -1,5 +1,5 @@
 
-# OpenGeometry Values - Especificação
+# iForge EDP Values - Especificação
 
 > Este documento define as regras de domínio da biblioteca. Para a API pública atual, exemplos de uso e instalação, consulte o [README](../../README.md).
 
@@ -39,7 +39,7 @@ unit(90, "deg").toNumber("rad");
 
 ---
 
-# 2. Responsabilidade do OpenGeometry Values
+# 2. Responsabilidade do iForge EDP Values
 
 A nossa lib cuida do que é específico do sistema:
 
@@ -57,7 +57,7 @@ regras de exibição
 ```
 
 O Math.js calcula.
-O OpenGeometry define as regras de domínio.
+O iForge EDP define as regras de domínio.
 
 ---
 
@@ -856,7 +856,7 @@ Para a lista completa com descrições consulte o [README](../../README.md).
 # 24. Exemplo completo
 
 ```js
-import { createValue, Output, formatDisplayValue, formatEditValue } from "opengeometry-values";
+import { createValue, Output, formatDisplayValue, formatEditValue } from "iforge-edp-values";
 
 const value = createValue({
   id: "beam-span",
@@ -893,7 +893,7 @@ As decisões consolidadas:
 
 2. Math.js será usado para conversão e cálculo de unidades.
 
-3. O OpenGeometry Values define o modelo de domínio.
+3. O iForge EDP Values define o modelo de domínio.
 
 4. Valores numéricos com grandeza devem ser salvos com input original e valor interno.
 
@@ -970,13 +970,13 @@ catálogos normativos
 Math.js
   unidade, conversão, formatação numérica
 
-opengeometry-values
+iforge-edp-values
   valor estruturado, unidade interna, resolução interna, regra de domínio
 
-OpenGeometry UI
+iForge EDP UI
   preferência de unidade, precisão, prefixo, sufixo, modo leitura/edição
 
-OpenGeometry Core
+iForge EDP Core
   geometria, famílias, constraints, catálogos e interoperabilidade usando internal.value
 ```
 

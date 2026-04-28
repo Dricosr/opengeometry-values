@@ -24,6 +24,6 @@ labels: bug
 
 ## Environment
 
-- opengeometry-values version:
+- iforge-edp-values version:
 - Node.js version:
 - OS:

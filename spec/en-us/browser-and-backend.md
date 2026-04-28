@@ -1,6 +1,6 @@
 # Browser and Backend Usage
 
-opengeometry-values is designed to work in both Node.js and the browser from the same source files, with no build step and no double maintenance.
+iforge-edp-values is designed to work in both Node.js and the browser from the same source files, with no build step and no double maintenance.
 
 ---
 
@@ -20,7 +20,7 @@ The canonical source of truth is [`src/core/mathjs-api.mjs`](../../src/core/math
 Consumers can also import the contract directly at runtime:
 
 ```js
-import { mathjsApi } from "@dricosr/opengeometry-values";
+import { mathjsApi } from "@dricosr/iforge-edp-values";
 // mathjsApi: { evaluate, format, typeOf, unit }
 ```
 
@@ -41,10 +41,10 @@ The library source stays untouched. The consuming application handles environmen
 Import the library directly. No configuration needed.
 
 ```js
-import { createValue } from "opengeometry-values"
+import { createValue } from "iforge-edp-values"
 ```
 
-Node.js resolves `"mathjs"` and `"opengeometry-values"` through its standard module resolution from `node_modules`.
+Node.js resolves `"mathjs"` and `"iforge-edp-values"` through its standard module resolution from `node_modules`.
 
 ### Browser
 
@@ -52,7 +52,7 @@ Node.js resolves `"mathjs"` and `"opengeometry-values"` through its standard mod
 
 ```js
 app.use("/mathjs", express.static("node_modules/mathjs/lib/esm"))
-app.use("/opengeometry-values", express.static("node_modules/opengeometry-values/src"))
+app.use("/iforge-edp-values", express.static("node_modules/iforge-edp-values/src"))
 ```
 
 **HTML:**
@@ -62,13 +62,13 @@ app.use("/opengeometry-values", express.static("node_modules/opengeometry-values
 {
   "imports": {
     "mathjs": "/mathjs/index.js",
-    "opengeometry-values": "/opengeometry-values/index.mjs"
+    "iforge-edp-values": "/iforge-edp-values/index.mjs"
   }
 }
 </script>
 
 <script type="module">
-  import { createValue } from "opengeometry-values"
+  import { createValue } from "iforge-edp-values"
 </script>
 ```
 

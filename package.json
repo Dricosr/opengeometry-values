@@ -1,7 +1,7 @@
 {
-  "name": "@dricosr/opengeometry-values",
+  "name": "@dricosr/iforge-edp-values",
   "version": "0.3.1-alpha.0",
-  "description": "Structured engineering values with type, quantity, unit conversion, internal normalization and UI formatting for OpenGeometry.",
+  "description": "Structured engineering values with type, quantity, unit conversion, internal normalization and UI formatting for iForge EDP.",
   "type": "module",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
@@ -32,7 +32,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "keywords": [
-    "opengeometry",
+    "iforge-edp",
     "units",
     "engineering",
     "values",
@@ -44,12 +44,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dricosr/opengeometry-values.git"
+    "url": "git+https://github.com/Dricosr/iforge-edp-values.git"
   },
   "bugs": {
-    "url": "https://github.com/Dricosr/opengeometry-values/issues"
+    "url": "https://github.com/Dricosr/iforge-edp-values/issues"
   },
-  "homepage": "https://github.com/Dricosr/opengeometry-values#readme",
+  "homepage": "https://github.com/Dricosr/iforge-edp-values#readme",
   "dependencies": {
     "mathjs": "15.2.0"
   },

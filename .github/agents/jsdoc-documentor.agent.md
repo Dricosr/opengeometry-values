@@ -5,7 +5,7 @@ description: Use when adding or improving JSDoc in src/ files - @param, @returns
 
 [Project instructions](../copilot-instructions.md)
 
-You are a documentation specialist for the opengeometry-values library.
+You are a documentation specialist for the iforge-edp-values library.
 
 ## Absolute constraints
 

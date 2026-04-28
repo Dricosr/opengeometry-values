@@ -1,6 +1,6 @@
-# opengeometry-values
+# iforge-edp-values
 
-Structured engineering values for the OpenGeometry ecosystem - type, quantity, unit, internal normalization, and UI-friendly formatting.
+Structured engineering values for the iForge EDP ecosystem - type, quantity, unit, internal normalization, and UI-friendly formatting.
 
 Built with pure JavaScript ES Modules (`.mjs`) and [Math.js](https://mathjs.org/) for unit conversion and numeric formatting.
 
@@ -10,7 +10,7 @@ The domain rules behind this library - quantities, internal units, resolution, a
 
 ## What it does
 
-Every value in OpenGeometry carries more than a number:
+Every value in iForge EDP carries more than a number:
 
 ```js
 {
@@ -55,7 +55,7 @@ The geometry engine always uses `internal.value`. The user always sees a unit-aw
 ## Install
 
 ```bash
-npm install @dricosr/opengeometry-values@alpha
+npm install @dricosr/iforge-edp-values@alpha
 ```
 
 The current release line is published on the public npm registry under the `alpha` dist-tag.
@@ -75,7 +75,7 @@ import {
   tryCreateValue,
   formatDisplayValue,
   formatEditValue
-} from "@dricosr/opengeometry-values";
+} from "@dricosr/iforge-edp-values";
 
 const value = createValue({
   id: "input:length:beam-1",
@@ -286,7 +286,7 @@ The fractional inch system supports four precision tiers — use the one that ma
 Parses fractional inch strings into decimal inches, with strict validation:
 
 ```js
-import { FractionalInchParser, FRACTIONAL_INCH_DENOMINATORS } from "@dricosr/opengeometry-values";
+import { FractionalInchParser, FRACTIONAL_INCH_DENOMINATORS } from "@dricosr/iforge-edp-values";
 
 const parser = new FractionalInchParser({
   denominatorCategory: FRACTIONAL_INCH_DENOMINATORS.MACHINING  // default
@@ -326,7 +326,7 @@ parser.parse("abc");   // ❌ Error — non-numeric
 Converts decimal inch values back to fractional strings, with automatic reduction:
 
 ```js
-import { FractionalInchFormatter } from "@dricosr/opengeometry-values";
+import { FractionalInchFormatter } from "@dricosr/iforge-edp-values";
 
 const formatter = new FractionalInchFormatter(); // default maxDenominator: 64
 
@@ -357,7 +357,7 @@ Integrates parsing + formatting + unit conversion into the standard `createValue
 Accepts both **numeric** and **fractional string** inputs:
 
 ```js
-import { createValue, FractionalInchOutput, MATHJS_STRINGS, OUTPUT_SUFFIX_MODES } from "@dricosr/opengeometry-values";
+import { createValue, FractionalInchOutput, MATHJS_STRINGS, OUTPUT_SUFFIX_MODES } from "@dricosr/iforge-edp-values";
 
 // === Input: string fraction ===
 const pipe = createValue({
@@ -508,7 +508,7 @@ The library uses exactly four named exports from mathjs. Any shim or import map 
 The canonical source is [`src/core/mathjs-api.mjs`](src/core/mathjs-api.mjs). Adding a new mathjs symbol to the library requires updating that file first, making the contract change visible in diffs. Consumers can also import the object at runtime:
 
 ```js
-import { mathjsApi } from "@dricosr/opengeometry-values";
+import { mathjsApi } from "@dricosr/iforge-edp-values";
 // mathjsApi: { evaluate, format, typeOf, unit }
 ```
 
@@ -517,7 +517,7 @@ import { mathjsApi } from "@dricosr/opengeometry-values";
 ```js
 // Serve mathjs ESM files and the library as static
 app.use("/mathjs", express.static("node_modules/mathjs/lib/esm"))
-app.use("/opengeometry-values", express.static("node_modules/@dricosr/opengeometry-values/src"))
+app.use("/iforge-edp-values", express.static("node_modules/@dricosr/iforge-edp-values/src"))
 ```
 
 **HTML:**
@@ -527,13 +527,13 @@ app.use("/opengeometry-values", express.static("node_modules/@dricosr/opengeomet
 {
   "imports": {
     "mathjs": "/mathjs/index.js",
-    "@dricosr/opengeometry-values": "/opengeometry-values/index.mjs"
+    "@dricosr/iforge-edp-values": "/iforge-edp-values/index.mjs"
   }
 }
 </script>
 
 <script type="module">
-  import { createValue, formatDisplayValue } from "@dricosr/opengeometry-values"
+  import { createValue, formatDisplayValue } from "@dricosr/iforge-edp-values"
 </script>
 ```
 

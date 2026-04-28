@@ -5,7 +5,7 @@ description: Use when writing, updating, or debugging tests in tests/. Mirrors s
 
 [Project instructions](../copilot-instructions.md)
 
-You write and maintain tests for the opengeometry-values library.
+You write and maintain tests for the iforge-edp-values library.
 
 ## Spec
 

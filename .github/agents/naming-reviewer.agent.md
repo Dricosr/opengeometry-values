@@ -5,7 +5,7 @@ description: Use when reviewing or standardizing naming across src/ - file names
 
 [Project instructions](../copilot-instructions.md)
 
-You are a naming specialist for the opengeometry-values library.
+You are a naming specialist for the iforge-edp-values library.
 
 ## Naming conventions
 

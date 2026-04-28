@@ -1,4 +1,4 @@
-export class OpenGeometryValue {
+export class IForgeEdpValue {
   constructor({ valueType, quantity, input, internal }) {
     this.valueType = valueType;
     this.quantity = quantity;

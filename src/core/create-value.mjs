@@ -10,7 +10,7 @@ import { formulaParser } from "./parsers/formula-parser.mjs";
 import { strictNumberParser } from "./parsers/strict-number-parser.mjs";
 import { unitInputParser } from "./parsers/unit-input-parser.mjs";
 import { InternalValue } from "./models/internal-value.mjs";
-import { OpenGeometryValue } from "./models/opengeometry-value.mjs";
+import { IForgeEdpValue } from "./models/iforge-edp-value.mjs";
 import { Output } from "./models/output.mjs";
 import { ValueInput } from "./models/value-input.mjs";
 import { quantityProfileRegistry } from "./quantities/quantity-profile-registry.mjs";
@@ -44,7 +44,7 @@ export class ValueFactory {
     if (valueType === VALUE_TYPES.STRING) {
       const internalValue = new InternalValue({ value });
 
-      return new OpenGeometryValue({
+      return new IForgeEdpValue({
         valueType,
         quantity: resolvedQuantity,
         input: new ValueInput({
@@ -68,7 +68,7 @@ export class ValueFactory {
       const parsedValue = this.booleanParser.parse(value);
       const internalValue = new InternalValue({ value: parsedValue });
 
-      return new OpenGeometryValue({
+      return new IForgeEdpValue({
         valueType,
         quantity: resolvedQuantity,
         input: new ValueInput({
@@ -124,7 +124,7 @@ export class ValueFactory {
       unit: normalizedInternal.unit
     });
 
-    return new OpenGeometryValue({
+    return new IForgeEdpValue({
       valueType,
       quantity: resolvedQuantity,
       input: new ValueInput({

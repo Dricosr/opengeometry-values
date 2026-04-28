@@ -240,7 +240,7 @@ Uma fórmula que não pode ser avaliada, ou cujo resultado é incompatível com 
 ## Exemplos completos
 
 ```js
-import { createValue } from "@dricosr/opengeometry-values";
+import { createValue } from "@dricosr/iforge-edp-values";
 
 // Fórmula simples: hipotenusa pelo teorema de Pitágoras
 const hipotenusa = createValue({

@@ -1,6 +1,6 @@
 # Uso no Browser e no Backend
 
-opengeometry-values foi projetado para funcionar tanto no Node.js quanto no browser a partir dos mesmos arquivos fonte, sem build step e sem manutenção duplicada.
+iforge-edp-values foi projetado para funcionar tanto no Node.js quanto no browser a partir dos mesmos arquivos fonte, sem build step e sem manutenção duplicada.
 
 ---
 
@@ -20,7 +20,7 @@ A fonte canônica da verdade é [`src/core/mathjs-api.mjs`](../../src/core/mathj
 Consumidores também podem importar o contrato diretamente em runtime:
 
 ```js
-import { mathjsApi } from "@dricosr/opengeometry-values";
+import { mathjsApi } from "@dricosr/iforge-edp-values";
 // mathjsApi: { evaluate, format, typeOf, unit }
 ```
 
@@ -41,10 +41,10 @@ O código fonte da biblioteca não muda. O app consumidor lida com a resolução
 Importe a biblioteca diretamente. Nenhuma configuração necessária.
 
 ```js
-import { createValue } from "opengeometry-values"
+import { createValue } from "iforge-edp-values"
 ```
 
-O Node.js resolve `"mathjs"` e `"opengeometry-values"` pela resolução padrão de módulos a partir do `node_modules`.
+O Node.js resolve `"mathjs"` e `"iforge-edp-values"` pela resolução padrão de módulos a partir do `node_modules`.
 
 ### Browser
 
@@ -52,7 +52,7 @@ O Node.js resolve `"mathjs"` e `"opengeometry-values"` pela resolução padrão 
 
 ```js
 app.use("/mathjs", express.static("node_modules/mathjs/lib/esm"))
-app.use("/opengeometry-values", express.static("node_modules/opengeometry-values/src"))
+app.use("/iforge-edp-values", express.static("node_modules/iforge-edp-values/src"))
 ```
 
 **HTML:**
@@ -62,13 +62,13 @@ app.use("/opengeometry-values", express.static("node_modules/opengeometry-values
 {
   "imports": {
     "mathjs": "/mathjs/index.js",
-    "opengeometry-values": "/opengeometry-values/index.mjs"
+    "iforge-edp-values": "/iforge-edp-values/index.mjs"
   }
 }
 </script>
 
 <script type="module">
-  import { createValue } from "opengeometry-values"
+  import { createValue } from "iforge-edp-values"
 </script>
 ```
 

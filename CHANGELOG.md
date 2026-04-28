@@ -65,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Improved agent and prompt discovery text for Copilot and Claude customization files
-- Package distribution is now published as `@dricosr/opengeometry-values` on the public npm registry, with the scoped package registry, publish access, and README install instructions aligned to the `alpha` release flow
+- Package distribution is now published as `@dricosr/iforge-edp-values` on the public npm registry, with the scoped package registry, publish access, and README install instructions aligned to the `alpha` release flow
 
 ## [0.1.0] - 2026-04-24
 

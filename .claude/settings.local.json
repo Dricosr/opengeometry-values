@@ -6,19 +6,19 @@
       "WebFetch(domain:code.visualstudio.com)",
       "Bash(gh auth *)",
       "PowerShell(gh auth status)",
-      "PowerShell(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" remote -v)",
+      "PowerShell(git -C \"e:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values\" remote -v)",
       "PowerShell(winget list GitHub.cli)",
       "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\GitHub CLI\" -ErrorAction SilentlyContinue; Get-ChildItem \"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\" -ErrorAction SilentlyContinue)",
       "PowerShell($env:PATH += \";C:\\\\Program Files\\\\GitHub CLI\"; gh --version)",
       "PowerShell($env:PATH += \";C:\\\\Program Files\\\\GitHub CLI\"; gh auth status)",
-      "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" log --oneline -10)",
-      "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\" status)",
+      "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values\" log --oneline -10)",
+      "Bash(git -C \"e:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values\" status)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(npm test *)",
       "WebFetch(domain:www.linkedin.com)",
       "WebFetch(domain:br.linkedin.com)",
-      "PowerShell(Copy-Item -Recurse \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\\\\demo\\\\public\" \"E:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values-demo\\\\public\")",
+      "PowerShell(Copy-Item -Recurse \"E:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values\\\\demo\\\\public\" \"E:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values-demo\\\\public\")",
       "Bash(git push *)",
       "WebFetch(domain:opensource.guide)",
       "Bash(cat tests/visual/specialists/time-engineering-value-io-visual-test.mjs)",
@@ -29,7 +29,7 @@
       "Bash(npm install *)",
       "Bash(git checkout *)",
       "Bash(echo \"exit: $?\")",
-      "PowerShell(cd \"e:\\\\Cloud\\\\Git\\\\og\\\\opengeometry-values\"; npx vitest --version 2>&1; Write-Host \"exit: $LASTEXITCODE\")",
+      "PowerShell(cd \"e:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values\"; npx vitest --version 2>&1; Write-Host \"exit: $LASTEXITCODE\")",
       "Bash(npm show *)",
       "Bash(npm run *)",
       "Bash(npm whoami *)",
@@ -41,7 +41,9 @@
       "Bash(npm login *)",
       "Bash(git commit *)",
       "Bash(node -e \"const p = JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json'\\)\\); console.log\\(p.version\\)\")",
-      "Bash(node -e \"console.log\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json'\\)\\).version\\)\")"
+      "Bash(node -e \"console.log\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json'\\)\\).version\\)\")",
+      "Bash(gh repo *)",
+      "Bash(git remote *)"
     ]
   }
 }

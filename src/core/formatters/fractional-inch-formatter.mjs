@@ -27,10 +27,10 @@ export class FractionalInchFormatter {
   }
 
   /**
-   * Formats an OpenGeometry value as a fractional inch string.
+   * Formats an iForge EDP value as a fractional inch string.
    * The value is converted from internal unit to inches first.
    *
-   * @param {object} ogValue - OpenGeometry value object
+   * @param {object} ogValue - iForge EDP value object
    * @param {object} [options]
    * @param {number} [options.precision] - Not used for fractional output, kept for interface compatibility
    * @returns {string} Fractional inch string (e.g., "1 1/4")

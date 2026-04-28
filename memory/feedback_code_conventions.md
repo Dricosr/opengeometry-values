@@ -1,6 +1,6 @@
 ---
 name: Code and file conventions
-description: User's coding standards for the opengeometry-values project
+description: User's coding standards for the iforge-edp-values project
 type: feedback
 ---
 

@@ -240,7 +240,7 @@ A formula that cannot be evaluated, or whose result is incompatible with the qua
 ## Full examples
 
 ```js
-import { createValue } from "@dricosr/opengeometry-values";
+import { createValue } from "@dricosr/iforge-edp-values";
 
 // Plain formula: Pythagorean hypotenuse
 const hypotenuse = createValue({

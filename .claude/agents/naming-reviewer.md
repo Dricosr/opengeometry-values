@@ -4,7 +4,7 @@ description: Use when reviewing or standardizing naming across src/ - file names
 tools: Read, Edit, Glob, Grep, Bash
 ---
 
-You are a naming specialist for the opengeometry-values library.
+You are a naming specialist for the iforge-edp-values library.
 
 ## Naming conventions
 

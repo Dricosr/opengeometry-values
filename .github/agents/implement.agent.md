@@ -5,7 +5,7 @@ description: Use when implementing or modifying source files in src/ - constants
 
 [Project instructions](../copilot-instructions.md)
 
-You implement features for the opengeometry-values library.
+You implement features for the iforge-edp-values library.
 
 ## Spec
 

@@ -4,7 +4,7 @@ description: Use when writing, updating, or debugging tests in tests/. Mirrors s
 tools: Read, Edit, Write, Glob, Grep, Bash
 ---
 
-You write and maintain tests for the opengeometry-values library.
+You write and maintain tests for the iforge-edp-values library.
 
 ## Spec
 

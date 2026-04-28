@@ -1,11 +1,11 @@
 # Publishing to npm
 
-This document describes how to publish a new version of `@dricosr/opengeometry-values` to the npm registry from the command line.
+This document describes how to publish a new version of `@dricosr/iforge-edp-values` to the npm registry from the command line.
 
 ## Requirements
 
 - Node.js 24+
-- npm account with maintainer access to `@dricosr/opengeometry-values`
+- npm account with maintainer access to `@dricosr/iforge-edp-values`
 
 ---
 
@@ -51,7 +51,7 @@ npm will print a URL. Open it in the browser and authenticate with your security
 ## Step 1 — Bump the version
 
 ```powershell
-cd "e:\Cloud\Git\og\opengeometry-values"
+cd "e:\Cloud\Git\iforge_edp\values"
 
 # Show current version
 node -p "require('./package.json').version"
@@ -95,13 +95,13 @@ The `prepublishOnly` script runs automatically before publishing: it executes `n
 After publishing, point `latest` to the new version:
 
 ```powershell
-npm dist-tag add @dricosr/opengeometry-values@<version> latest
+npm dist-tag add @dricosr/iforge-edp-values@<version> latest
 ```
 
 Verify:
 
 ```powershell
-npm dist-tag ls @dricosr/opengeometry-values
+npm dist-tag ls @dricosr/iforge-edp-values
 ```
 
 ---
@@ -109,7 +109,7 @@ npm dist-tag ls @dricosr/opengeometry-values
 ## Full example
 
 ```powershell
-cd "e:\Cloud\Git\og\opengeometry-values"
+cd "e:\Cloud\Git\iforge_edp\values"
 
 # 1. Verify auth
 npm whoami                                          # dricosr
@@ -121,10 +121,10 @@ npm version prerelease --preid=alpha --no-git-tag-version
 npm publish --access public --tag alpha
 
 # 4. Update latest tag (replace <version> with the bumped version)
-npm dist-tag add @dricosr/opengeometry-values@<version> latest
+npm dist-tag add @dricosr/iforge-edp-values@<version> latest
 
 # 5. Confirm tags
-npm dist-tag ls @dricosr/opengeometry-values
+npm dist-tag ls @dricosr/iforge-edp-values
 ```
 
 ---

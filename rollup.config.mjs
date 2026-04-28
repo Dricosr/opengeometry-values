@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
 
 const input = "src/index.mjs";
-const name = "OpenGeometryValues";
+const name = "IForgeEdpValues";
 
 // mathjs is a peer dependency - kept external in ESM and CJS builds
 // so consumers don't get a duplicate copy when they already have it.
