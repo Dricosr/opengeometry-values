@@ -1,6 +1,6 @@
 import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
 
-const QUANTITY_TYPE_ENTRIES = Object.freeze({
+const QUANTITY_ENTRIES = Object.freeze({
   NONE: "none",
   LENGTH: "length",
   AREA: "area",
@@ -14,11 +14,11 @@ const QUANTITY_TYPE_ENTRIES = Object.freeze({
   RATIO: "ratio"
 });
 
-export class QuantityTypeCatalog extends ReadOnlyCatalog {
+export class QuantityCatalog extends ReadOnlyCatalog {
   constructor() {
-    super(QUANTITY_TYPE_ENTRIES);
+    super(QUANTITY_ENTRIES);
   }
 }
 
-export const quantityTypeCatalog = new QuantityTypeCatalog();
-export const QUANTITY_TYPES = quantityTypeCatalog.all();
+export const quantityCatalog = new QuantityCatalog();
+export const QUANTITIES = quantityCatalog.all();

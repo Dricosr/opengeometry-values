@@ -1,13 +1,29 @@
+// ─── Canonical catalog exports (preferred) ──────────────────────────
+export { UNITS, unitCatalog, UnitCatalog } from "./constants/unit-catalog.mjs";
+export { QUANTITIES, quantityCatalog, QuantityCatalog } from "./constants/quantity-catalog.mjs";
+export { SUFFIX_MODES, suffixModeCatalog, SuffixModeCatalog } from "./constants/suffix-mode-catalog.mjs";
+export { AFFIX_TYPES, affixTypeCatalog, AffixTypeCatalog } from "./constants/affix-type-catalog.mjs";
+export { DOMAIN, domainCatalog, DomainCatalog } from "./constants/domain-catalog.mjs";
 export { BASE_VALUES, baseValueCatalog, BaseValueCatalog } from "./constants/base-value-catalog.mjs";
-export { DOMAIN_STRINGS, domainStringCatalog, DomainStringCatalog } from "./constants/domain-string-catalog.mjs";
 export { INTERNAL_RESOLUTION, internalResolutionCatalog, InternalResolutionCatalog } from "./constants/internal-resolution.mjs";
 export { INTERNAL_UNITS, internalUnitCatalog, InternalUnitCatalog } from "./constants/internal-units.mjs";
-export { MATHJS_STRINGS, mathJsStringCatalog, MathJsStringCatalog } from "./constants/mathjs-string-catalog.mjs";
-export { OUTPUT_AFFIX_TYPES, outputAffixTypeCatalog, OutputAffixTypeCatalog } from "./constants/output-affix-types.mjs";
-export { OUTPUT_SUFFIX_MODES, outputSuffixModeCatalog, OutputSuffixModeCatalog } from "./constants/output-suffix-modes.mjs";
-export { QUANTITY_TYPES, quantityTypeCatalog, QuantityTypeCatalog } from "./constants/quantity-types.mjs";
 export { UNIT_SYMBOLS, unitSymbolCatalog, UnitSymbolCatalog } from "./constants/unit-symbols.mjs";
 export { VALUE_TYPES, valueTypeCatalog, ValueTypeCatalog } from "./constants/value-types.mjs";
+export {
+  SEPARATORS, FRACTION_DENOMINATORS, FRACTION_DEFAULTS,
+  fractionalSeparatorCatalog, FractionalSeparatorCatalog,
+  fractionalInchDenominatorCatalog, FractionalInchDenominatorCatalog,
+  fractionalInchDefaultCatalog, FractionalInchDefaultCatalog
+} from "./constants/fractional-inch-catalog.mjs";
+
+// ─── Legacy re-exports (deprecated, kept for backward compatibility) ──
+export { MATHJS_STRINGS, mathJsStringCatalog, MathJsStringCatalog } from "./constants/mathjs-string-catalog.mjs";
+export { QUANTITY_TYPES, quantityTypeCatalog, QuantityTypeCatalog } from "./constants/quantity-types.mjs";
+export { OUTPUT_SUFFIX_MODES, outputSuffixModeCatalog, OutputSuffixModeCatalog } from "./constants/output-suffix-modes.mjs";
+export { OUTPUT_AFFIX_TYPES, outputAffixTypeCatalog, OutputAffixTypeCatalog } from "./constants/output-affix-types.mjs";
+export { DOMAIN_STRINGS, domainStringCatalog, DomainStringCatalog } from "./constants/domain-string-catalog.mjs";
+
+// ─── Core utilities ─────────────────────────────────────────────────
 export { createReferenceId } from "./core/base/create-reference-id.mjs";
 export { applyInternalResolution, InternalResolutionApplier, internalResolutionApplier } from "./core/apply-internal-resolution.mjs";
 export { convertValue, UnitConverter, unitConverter } from "./core/convert-value.mjs";
@@ -18,14 +34,20 @@ export { formatEditValue, EditValueFormatter, editValueFormatter } from "./core/
 export { getMaxDisplayPrecision, DisplayPrecisionService, displayPrecisionService } from "./core/get-max-display-precision.mjs";
 export { createValuePreview, ValuePreviewService, valuePreviewService } from "./core/services/create-value-preview.mjs";
 export { buildOutput, OutputBuilder, outputBuilder } from "./core/services/output-builder.mjs";
+
+// ─── Models ─────────────────────────────────────────────────────────
 export { CustomOutputAffix } from "./core/models/custom-output-affix.mjs";
 export { EmptyOutputAffix } from "./core/models/empty-output-affix.mjs";
 export { OutputAffix } from "./core/models/output-affix.mjs";
 export { Output } from "./core/models/output.mjs";
 export { UnitCodeOutputAffix } from "./core/models/unit-code-output-affix.mjs";
 export { UnitSymbolOutputAffix } from "./core/models/unit-symbol-output-affix.mjs";
+
+// ─── Presets & Samples ──────────────────────────────────────────────
 export { OUTPUT_PRESETS, outputPresetCatalog, OutputPresetCatalog } from "./presets/output-preset-catalog.mjs";
 export { PARAMETER_SAMPLES, parameterSampleCatalog, ParameterSampleCatalog } from "./samples/parameter-sample-catalog.mjs";
+
+// ─── Quantity profiles ──────────────────────────────────────────────
 export { QUANTITY_PROFILES, QuantityProfileRegistry, quantityProfileRegistry } from "./core/quantities/quantity-profile-registry.mjs";
 export { QuantityProfile } from "./core/quantities/quantity-profile.mjs";
 export { LengthQuantityProfile } from "./core/quantities/length-quantity-profile.mjs";
@@ -37,6 +59,8 @@ export { MassQuantityProfile } from "./core/quantities/mass-quantity-profile.mjs
 export { ForceQuantityProfile } from "./core/quantities/force-quantity-profile.mjs";
 export { PressureQuantityProfile } from "./core/quantities/pressure-quantity-profile.mjs";
 export { TimeQuantityProfile } from "./core/quantities/time-quantity-profile.mjs";
+
+// ─── Services ───────────────────────────────────────────────────────
 export { resolveDisplayPrecision, DisplayPrecisionResolver, displayPrecisionResolver } from "./core/resolve-display-precision.mjs";
 export { parseBoolean, BooleanTextParser, booleanTextParser } from "./core/parsers/boolean-text-parser.mjs";
 export { parseFormula, FormulaParser, formulaParser } from "./core/parsers/formula-parser.mjs";

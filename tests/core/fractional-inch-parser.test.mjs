@@ -121,11 +121,21 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — hyphen as separator is not valid", () => {
-    it("should throw on hyphen-separated mixed numbers (use space instead)", () => {
-      expect(() => fractionalInchParser.parse("1-1/4")).toThrow();
-      expect(() => fractionalInchParser.parse("2-1/2")).toThrow();
-      expect(() => fractionalInchParser.parse("10-7/8")).toThrow();
+  describe("parse — hyphen as separator is valid", () => {
+    it("should parse hyphen-separated mixed numbers", () => {
+      expect(fractionalInchParser.parse("1-1/4")).toBe(1.25);
+      expect(fractionalInchParser.parse("2-1/2")).toBe(2.5);
+      expect(fractionalInchParser.parse("10-7/8")).toBe(10.875);
+    });
+
+    it("should parse negative hyphen-separated mixed numbers", () => {
+      expect(fractionalInchParser.parse("-1-1/4")).toBe(-1.25);
+      expect(fractionalInchParser.parse("-2-1/2")).toBe(-2.5);
+      expect(fractionalInchParser.parse("-10-7/8")).toBe(-10.875);
+    });
+
+    it("should parse multiple hyphens as valid", () => {
+      expect(fractionalInchParser.parse("24-1/2")).toBe(24.5);
     });
   });
 
@@ -211,6 +221,13 @@ describe("FractionalInchParser", () => {
       expect(fractionalInchParser.canParse("3/4")).toBe(true);
     });
 
+    it("should return true for hyphen-separated mixed numbers", () => {
+      expect(fractionalInchParser.canParse("1-1/4")).toBe(true);
+      expect(fractionalInchParser.canParse("2-1/2")).toBe(true);
+      expect(fractionalInchParser.canParse("-1-1/4")).toBe(true);
+      expect(fractionalInchParser.canParse("24-1/2")).toBe(true);
+    });
+
     it("should return false for invalid strings", () => {
       expect(fractionalInchParser.canParse("")).toBe(false);
       expect(fractionalInchParser.canParse("abc")).toBe(false);
@@ -218,7 +235,6 @@ describe("FractionalInchParser", () => {
       expect(fractionalInchParser.canParse("3/2")).toBe(false);
       expect(fractionalInchParser.canParse("1/0")).toBe(false);
       expect(fractionalInchParser.canParse("1 1/4 1/2")).toBe(false);
-      expect(fractionalInchParser.canParse("1-1/4")).toBe(false);
       expect(fractionalInchParser.canParse(null)).toBe(false);
       expect(fractionalInchParser.canParse(undefined)).toBe(false);
     });

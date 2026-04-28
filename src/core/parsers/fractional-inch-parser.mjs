@@ -29,18 +29,19 @@ const DENOMINATOR_LIMITS = Object.freeze({
 const DEFAULT_MAX_DENOMINATOR = 64;
 
 /**
- * Parser for fractional inch input strings (e.g., "1 1/4", "1/2", "3/4").
+ * Parser for fractional inch input strings (e.g., "1 1/4", "1-1/4", "1/2", "3/4").
  *
  * Accepts the following patterns per ANSI/ASME Y14.5:
- * - Mixed number:   "1 1/4"  (space between integer and fraction)
- * - Pure fraction:  "3/4"    (value < 1)
- * - Integer:        "2"      (no fraction)
- * - Decimal fallback: "1.25" (standard decimal is also accepted)
+ * - Mixed number (space): "1 1/4"
+ * - Mixed number (hyphen): "1-1/4"
+ * - Pure fraction:         "3/4"     (value < 1)
+ * - Integer:               "2"       (no fraction)
+ * - Decimal fallback:      "1.25"    (standard decimal is also accepted)
  *
  * Hyphen usage:
- * - Leading hyphen is the negative sign: "-1 1/4", "-3/4"
- * - Hyphen is NOT a valid separator between whole and fraction
- *   ("1-1/4" is not accepted — use "1 1/4" with a space)
+ * - Leading hyphen is the negative sign: "-1 1/4", "-1-1/4", "-3/4"
+ * - Hyphen between whole and fraction is a valid separator: "1-1/4"
+ * - A space is also a valid separator: "1 1/4"
  *
  * Validation rules:
  * - Denominator must be a power of 2 (2, 4, 8, 16, 32, 64, 128)
@@ -108,8 +109,8 @@ export class FractionalInchParser {
       return isNegative ? -fractionalValue : fractionalValue;
     }
 
-    // Try mixed number: whole digits, one or more spaces, then fraction
-    const MIXED_NUMBER_PATTERN = /^(\d+)\s+(\d+)\/(\d+)$/u;
+    // Try mixed number: whole digits, then separator (one or more hyphens or spaces), then fraction
+    const MIXED_NUMBER_PATTERN = /^(\d+)[-\s]+(\d+)\/(\d+)$/u;
     const mixedMatch = MIXED_NUMBER_PATTERN.exec(positiveText);
 
     if (mixedMatch) {

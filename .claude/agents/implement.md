@@ -26,5 +26,5 @@ When editing any spec file, always update both language versions in the same pas
 - **Hydrate samples and tests**: whenever you add or modify a feature (new quantity, new value type, new parser, new formatter, etc.), also:
   1. Add representative entries to `src/samples/parameter-sample-catalog.mjs` covering the new capability
   2. Add or update tests in `tests/` that exercise the new capability (happy path + edge cases)
-  3. Run `npx vitest run` (via PowerShell) and fix any failures before finishing
+  3. Run `npx vitest run` **using PowerShell** (never cmd.exe - Vitest 4.x crashes on Windows under cmd.exe with `TypeError: Cannot read properties of undefined (reading 'config')`) and fix any failures before finishing
 - **Research real-world usage**: before adding samples for a quantity, search for real AEC/industrial use cases (e.g. typical pipe spool lengths, common vessel pressures, standard beam spans) so samples reflect genuine engineering scenarios rather than arbitrary numbers

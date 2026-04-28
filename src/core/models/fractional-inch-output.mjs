@@ -33,6 +33,7 @@ export class FractionalInchOutput {
    * @param {boolean} [options.showUnit=true] - Whether to show the unit suffix
    * @param {string} [options.suffixMode="symbol"] - Suffix mode (symbol, code, custom, none)
    * @param {number} [options.maxDenominator=64] - Max denominator for fraction output
+   * @param {string} [options.separator="space"] - Separator between whole and fraction ("space" or "hyphen")
    */
   constructor({
     id,
@@ -41,17 +42,20 @@ export class FractionalInchOutput {
     suffix,
     showUnit = true,
     suffixMode = OUTPUT_SUFFIX_MODES.SYMBOL,
-    maxDenominator = 64
+    maxDenominator = 64,
+    separator = "space"
   } = {}) {
     this.id = createReferenceId("output", id);
     this.unit = "in";
     this.precision = precision;
     this.showUnit = showUnit;
     this.suffixMode = suffixMode;
+    this.separator = separator;
     this.prefix = this.resolvePrefixAffix(prefix);
     this.suffix = this.resolveSuffixAffix(suffix, showUnit, suffixMode);
     this.formatter = new FractionalInchFormatter({
-      maxDenominator
+      maxDenominator,
+      separator
     });
 
     Object.freeze(this);
@@ -100,7 +104,8 @@ export class FractionalInchOutput {
       suffix: this.resolveOverrideSuffixAffix(options.suffix, this.unit, resolvedShowUnit),
       showUnit: resolvedShowUnit,
       suffixMode: options.suffixMode ?? this.suffixMode,
-      maxDenominator: options.maxDenominator ?? this.formatter.maxDenominator
+      maxDenominator: options.maxDenominator ?? this.formatter.maxDenominator,
+      separator: this.separator
     });
   }
 

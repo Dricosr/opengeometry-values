@@ -4,8 +4,16 @@ description: Vitest 4.x fails under cmd.exe on Windows - always use PowerShell o
 type: feedback
 ---
 
-Always run Vitest from PowerShell or bash, never from `cmd.exe`.
+**Vitest 4.x does NOT work under cmd.exe on Windows.**  
+Always use PowerShell or bash. This is not optional.
 
-**Why:** `cmd.exe` on Windows has known incompatibilities with Vite/Vitest 4.x that cause `TypeError: Cannot read properties of undefined (reading 'config')` even on a minimal two-line test file. The error looks like a configuration or code problem but is caused entirely by the shell.
+**Symptom:** `TypeError: Cannot read properties of undefined (reading 'config')` on every test file, including a minimal `describe("x", () => { it("works", () => expect(1).toBe(1)) })`. Zero tests execute. The error appears on the `describe` call — but the real cause is the shell, not the code.
 
-**How to apply:** Use `npx vitest run` or `npm test` from PowerShell. When spawning a subprocess to run tests (e.g. from an agent), ensure the shell is PowerShell (`pwsh` or `powershell`) or bash, not `cmd.exe`.
+**Root cause:** Vite/Vitest 4.x internals depend on shell features that `cmd.exe` doesn't provide. Even basic `import` resolution fails silently.
+
+**Rule:** Never use `cmd.exe` to run `npm test`, `vitest`, or any Vite-based tool in this project. Always use PowerShell (`powershell`, `pwsh`) or a Unix-compatible shell (Git Bash, WSL bash).
+
+**How to enforce:**  
+- In VS Code, set PowerShell as the default terminal profile (Ctrl+Shift+P → "Terminal: Select Default Profile" → "Windows PowerShell").  
+- When programmatically spawning test commands (CI, scripts, agents), explicitly pass `shell: "powershell.exe"` or `shell: "pwsh"`.  
+- When using Cline/Claude, all `execute_command` calls that invoke vitest must use a `powershell -Command "..."` wrapper.

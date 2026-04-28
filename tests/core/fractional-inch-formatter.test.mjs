@@ -149,6 +149,41 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
+  describe("decimalToFraction — hyphen separator", () => {
+    const hyphenFormatter = new FractionalInchFormatter({ separator: "hyphen" });
+
+    it("should use hyphen separator for mixed numbers", () => {
+      expect(hyphenFormatter.decimalToFraction(1.25)).toBe("1-1/4");
+      expect(hyphenFormatter.decimalToFraction(2.5)).toBe("2-1/2");
+      expect(hyphenFormatter.decimalToFraction(10.875)).toBe("10-7/8");
+    });
+
+    it("should use hyphen for negative mixed numbers", () => {
+      expect(hyphenFormatter.decimalToFraction(-1.25)).toBe("-1-1/4");
+      expect(hyphenFormatter.decimalToFraction(-2.5)).toBe("-2-1/2");
+    });
+
+    it("should use hyphen for large mixed numbers", () => {
+      expect(hyphenFormatter.decimalToFraction(24.5)).toBe("24-1/2");
+      expect(hyphenFormatter.decimalToFraction(100.5)).toBe("100-1/2");
+    });
+
+    it("should use hyphen for construction precision", () => {
+      const construction = new FractionalInchFormatter({ maxDenominator: 16, separator: "hyphen" });
+      expect(construction.decimalToFraction(1.25)).toBe("1-1/4");
+      expect(construction.decimalToFraction(2.75)).toBe("2-3/4");
+    });
+
+    it("should use hyphen for fine precision", () => {
+      const fine = new FractionalInchFormatter({ maxDenominator: 128, separator: "hyphen" });
+      expect(fine.decimalToFraction(10.0078125)).toBe("10-1/128");
+    });
+
+    it("should still use space for default separator", () => {
+      expect(fractionalInchFormatter.decimalToFraction(1.25)).toBe("1 1/4");
+    });
+  });
+
   describe("decimalToFraction — fine precision (maxDenominator=128)", () => {
     const fine = new FractionalInchFormatter({ maxDenominator: 128 });
 

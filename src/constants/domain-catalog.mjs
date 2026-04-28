@@ -1,6 +1,6 @@
 import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
 
-const DOMAIN_STRING_ENTRIES = Object.freeze({
+const DOMAIN_ENTRIES = Object.freeze({
   BOOLEAN_TRUE: "true",
   BOOLEAN_YES: "yes",
   BOOLEAN_ONE: "1",
@@ -21,11 +21,11 @@ const DOMAIN_STRING_ENTRIES = Object.freeze({
   SPACE: " "
 });
 
-export class DomainStringCatalog extends ReadOnlyCatalog {
+export class DomainCatalog extends ReadOnlyCatalog {
   constructor() {
-    super(DOMAIN_STRING_ENTRIES);
+    super(DOMAIN_ENTRIES);
   }
 }
 
-export const domainStringCatalog = new DomainStringCatalog();
-export const DOMAIN_STRINGS = domainStringCatalog.all();
+export const domainCatalog = new DomainCatalog();
+export const DOMAIN = domainCatalog.all();

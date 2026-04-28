@@ -1,6 +1,6 @@
 import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
 
-const MATHJS_STRING_ENTRIES = Object.freeze({
+const UNIT_ENTRIES = Object.freeze({
   METER: "m",
   CENTIMETER: "cm",
   MILLIMETER: "mm",
@@ -31,11 +31,11 @@ const MATHJS_STRING_ENTRIES = Object.freeze({
   FIXED_NOTATION: "fixed"
 });
 
-export class MathJsStringCatalog extends ReadOnlyCatalog {
+export class UnitCatalog extends ReadOnlyCatalog {
   constructor() {
-    super(MATHJS_STRING_ENTRIES);
+    super(UNIT_ENTRIES);
   }
 }
 
-export const mathJsStringCatalog = new MathJsStringCatalog();
-export const MATHJS_STRINGS = mathJsStringCatalog.all();
+export const unitCatalog = new UnitCatalog();
+export const UNITS = unitCatalog.all();

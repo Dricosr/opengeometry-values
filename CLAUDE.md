@@ -5,11 +5,14 @@
 
 ## Running tests
 
-Always run tests via PowerShell or bash - never via `cmd.exe`. Vitest fails silently or with cryptic errors (`Cannot read properties of undefined (reading 'config')`) when spawned through `cmd.exe` on Windows.
+**🚨 CRITICAL: Vitest 4.x requires PowerShell on Windows.**  
+Never use `cmd.exe` — it causes a silent `TypeError: Cannot read properties of undefined (reading 'config')` that looks like a code bug but is purely a shell incompatibility.
 
-```bash
-npx vitest run           # all tests
-npx vitest run <file>    # single file
+```powershell
+npm run test                # all 27 test files, 463 tests
+npm run test:visual         # visual tests only
+npm run test:coverage       # with coverage
+npx vitest run <file>       # single file
 ```
 
 ## Responses

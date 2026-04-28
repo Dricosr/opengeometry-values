@@ -27,13 +27,20 @@ npm install
 
 ## Running tests
 
-```bash
+> **Windows note:** Vitest 4.x does **not** work under `cmd.exe`. Always use **PowerShell** or Git Bash / WSL.
+
+```powershell
+# PowerShell (recommended on Windows):
 npm test
+npm run test:watch
+npm run test:coverage
+npm run test:visual
 ```
 
-Watch mode during development:
+On Linux / macOS or WSL:
 
 ```bash
+npm test
 npm run test:watch
 ```
 
