@@ -47,12 +47,12 @@ describe("createValue - plain number input (unchanged behavior)", () => {
   it("edit in same unit returns converted number", () => {
     const v = make(200, MATHJS_STRINGS.CENTIMETER);
     const edit = v.input.formatForEdit();
-    expect(edit).toBe("200.00");
+    expect(edit).toBe("200.0000");
   });
 
   it("edit in different unit still converts numerically", () => {
     const result = editInDifferent(200, MATHJS_STRINGS.CENTIMETER, MATHJS_STRINGS.MILLIMETER);
-    expect(result).toBe("2000.0");
+    expect(result).toBe("2000.000");
   });
 });
 
@@ -96,7 +96,7 @@ describe("createValue - unit-embedded numeric input", () => {
 
   it("edit in different unit converts numerically (no formula suffix)", () => {
     const result = editInDifferent("200cm", MATHJS_STRINGS.CENTIMETER, MATHJS_STRINGS.MILLIMETER);
-    expect(result).toBe("2000.0");
+    expect(result).toBe("2000.000");
   });
 
   it("formulaHasEmbeddedUnits is false for unit input", () => {

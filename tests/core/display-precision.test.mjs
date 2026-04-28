@@ -6,14 +6,15 @@ import { resolveDisplayPrecision } from "../../src/core/resolve-display-precisio
 
 describe("display precision services", () => {
   it("derives the max precision from the internal resolution per display unit", () => {
-    expect(getMaxDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.METER)).toBe(4);
-    expect(getMaxDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.CENTIMETER)).toBe(2);
-    expect(getMaxDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.MILLIMETER)).toBe(1);
+    // step = 0.000001 m → 6 decimal places in m, 4 in cm, 3 in mm
+    expect(getMaxDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.METER)).toBe(6);
+    expect(getMaxDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.CENTIMETER)).toBe(4);
+    expect(getMaxDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.MILLIMETER)).toBe(3);
   });
 
   it("caps requested precision against the internal resolution", () => {
-    expect(resolveDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.MILLIMETER, 3)).toBe(1);
-    expect(resolveDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.METER)).toBe(4);
+    expect(resolveDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.MILLIMETER, 3)).toBe(3);
+    expect(resolveDisplayPrecision(QUANTITY_TYPES.LENGTH, MATHJS_STRINGS.METER)).toBe(6);
     expect(resolveDisplayPrecision(QUANTITY_TYPES.ANGLE, MATHJS_STRINGS.DEGREE, null)).toBe(2);
   });
 });

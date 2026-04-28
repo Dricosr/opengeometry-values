@@ -29,18 +29,18 @@ const DENOMINATOR_LIMITS = Object.freeze({
 const DEFAULT_MAX_DENOMINATOR = 64;
 
 /**
- * Parser for fractional inch input strings (e.g., "1 1/4", "1/2", "3/4", "1-1/4").
+ * Parser for fractional inch input strings (e.g., "1 1/4", "1/2", "3/4").
  *
  * Accepts the following patterns per ANSI/ASME Y14.5:
  * - Mixed number:   "1 1/4"  (space between integer and fraction)
- * - Mixed number:   "1-1/4"  (hyphen between integer and fraction - optional)
  * - Pure fraction:  "3/4"    (value < 1)
  * - Integer:        "2"      (no fraction)
  * - Decimal fallback: "1.25" (standard decimal is also accepted)
  *
- * Edge cases:
- * - Negative values: "-1 1/4"
- * - Zero: "0", "0 1/2"
+ * Hyphen usage:
+ * - Leading hyphen is the negative sign: "-1 1/4", "-3/4"
+ * - Hyphen is NOT a valid separator between whole and fraction
+ *   ("1-1/4" is not accepted — use "1 1/4" with a space)
  *
  * Validation rules:
  * - Denominator must be a power of 2 (2, 4, 8, 16, 32, 64, 128)
@@ -50,10 +50,11 @@ const DEFAULT_MAX_DENOMINATOR = 64;
 export class FractionalInchParser {
   /**
    * @param {Object} [options]
-   * @param {string} [options.denominatorCategory="machining"] - Max denominator category
+   * @param {string} [options.denominatorCategory] - Max denominator category
+   * @param {number} [options.maxDenominator] - Explicit max denominator (takes precedence over denominatorCategory)
    */
-  constructor({ denominatorCategory = FRACTIONAL_INCH_DENOMINATORS.MACHINING } = {}) {
-    this.maxDenominator = DENOMINATOR_LIMITS[denominatorCategory] ?? DEFAULT_MAX_DENOMINATOR;
+  constructor({ denominatorCategory = FRACTIONAL_INCH_DENOMINATORS.MACHINING, maxDenominator } = {}) {
+    this.maxDenominator = maxDenominator ?? DENOMINATOR_LIMITS[denominatorCategory] ?? DEFAULT_MAX_DENOMINATOR;
   }
 
   /**
@@ -85,59 +86,66 @@ export class FractionalInchParser {
 
     // Check if it's already a valid decimal number (delegate to standard number)
     if (/^-?\d+(\.\d+)?$/u.test(normalizedText)) {
-      return Number(normalizedText);
+      const val = Number(normalizedText);
+      // Normalize -0 to 0
+      return val === 0 ? 0 : val;
     }
 
-    // Detect and extract leading negative sign
+    // Detect and extract leading negative sign.
     // The negative sign applies to the entire value, so we parse the positive form
     // and negate the result. This avoids issues like -1 + 1/4 = -0.75 instead of -1.25.
     const isNegative = normalizedText.startsWith("-");
     const positiveText = isNegative ? normalizedText.slice(1).trimStart() : normalizedText;
 
-    // Pattern: optional whole number, optional dash/space, then fraction
-    // Accepts both space-separated ("1 1/4") and hyphen-separated ("1-1/4")
-    const FRACTION_PATTERN = /^(\d+)?\s*[- ]?\s*(\d+)\/(\d+)$/u;
-    const match = FRACTION_PATTERN.exec(positiveText);
+    // Try pure fraction first: digits/digits with no whole part
+    const PURE_FRACTION_PATTERN = /^(\d+)\/(\d+)$/u;
+    const pureMatch = PURE_FRACTION_PATTERN.exec(positiveText);
 
-    if (!match) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+    if (pureMatch) {
+      const numerator = parseInt(pureMatch[1], 10);
+      const denominator = parseInt(pureMatch[2], 10);
+      const fractionalValue = this.validateAndComputeFraction(numerator, denominator, text);
+      return isNegative ? -fractionalValue : fractionalValue;
     }
 
-    const wholePart = match[1] !== undefined ? match[1] : null;
-    const numerator = parseInt(match[2], 10);
-    const denominator = parseInt(match[3], 10);
+    // Try mixed number: whole digits, one or more spaces, then fraction
+    const MIXED_NUMBER_PATTERN = /^(\d+)\s+(\d+)\/(\d+)$/u;
+    const mixedMatch = MIXED_NUMBER_PATTERN.exec(positiveText);
 
-    // Validate denominator is a positive integer
+    if (mixedMatch) {
+      const wholeValue = parseInt(mixedMatch[1], 10);
+      const numerator = parseInt(mixedMatch[2], 10);
+      const denominator = parseInt(mixedMatch[3], 10);
+      const fractionalValue = this.validateAndComputeFraction(numerator, denominator, text);
+      const result = wholeValue + fractionalValue;
+      return isNegative ? -result : result;
+    }
+
+    throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+  }
+
+  validateAndComputeFraction(numerator, denominator, originalText) {
     if (denominator <= 0) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
-    // Validate denominator is a power of 2
     if (!this.isPowerOfTwo(denominator)) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
-    // Validate denominator does not exceed max
     if (denominator > this.maxDenominator) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
-    // Validate numerator is a positive integer
     if (numerator <= 0) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
-    // Validate fraction is proper (numerator < denominator)
     if (numerator >= denominator) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
-    // Calculate decimal value
-    const fractionalValue = numerator / denominator;
-    const wholeValue = wholePart !== null ? parseInt(wholePart, 10) : 0;
-    const result = wholeValue + fractionalValue;
-
-    return isNegative ? -result : result;
+    return numerator / denominator;
   }
 
   isPowerOfTwo(n) {

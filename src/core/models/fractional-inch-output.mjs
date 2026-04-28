@@ -1,4 +1,3 @@
-import { OUTPUT_AFFIX_TYPES } from "../../constants/output-affix-types.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../constants/output-suffix-modes.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { DOMAIN_STRINGS } from "../../constants/domain-string-catalog.mjs";
@@ -135,13 +134,13 @@ export class FractionalInchOutput {
 
     // Double prime goes directly without space (ANSI/ASME Y14.5)
     // e.g., "1 1/4\"" not "1 1/4 \""
-    if (this.suffix.type === OUTPUT_AFFIX_TYPES.UNIT_SYMBOL && suffixText === "\"") {
+    if (this.suffixMode === OUTPUT_SUFFIX_MODES.SYMBOL) {
       return suffixText;
     }
 
-    // Unit code suffix uses space
-    if (suffixText === "in" && !(this.suffix instanceof CustomOutputAffix)) {
-      return `${DOMAIN_STRINGS.SPACE}in`;
+    // Code suffix uses a space before the unit (e.g., "1 1/4 in")
+    if (this.suffixMode === OUTPUT_SUFFIX_MODES.CODE) {
+      return `${DOMAIN_STRINGS.SPACE}${suffixText}`;
     }
 
     // Custom suffix follows the affix's own spacing

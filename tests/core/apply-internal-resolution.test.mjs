@@ -4,7 +4,7 @@ import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 
 describe("InternalResolutionApplier", () => {
   it("rounds length values to the configured system step", () => {
-    expect(applyInternalResolution(2.123456, QUANTITY_TYPES.LENGTH)).toBe(2.1235);
+    expect(applyInternalResolution(2.123456, QUANTITY_TYPES.LENGTH)).toBe(2.123456);
   });
 
   it("leaves unsupported quantities and non-numeric values unchanged", () => {

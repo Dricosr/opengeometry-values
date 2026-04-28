@@ -90,7 +90,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — mixed numbers (space)", () => {
+  describe("parse — mixed numbers (space separator)", () => {
     const cases = [
       ["1 1/4", 1.25],
       ["2 1/2", 2.5],
@@ -108,20 +108,6 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — mixed numbers with hyphens", () => {
-    const cases = [
-      ["1-1/4", 1.25],
-      ["2-1/2", 2.5],
-      ["10-7/8", 10.875],
-      ["1-1/8", 1.125],
-      ["5-1/16", 5.0625]
-    ];
-
-    it.each(cases)("should parse '%s' as %s", (input, expected) => {
-      expect(fractionalInchParser.parse(input)).toBe(expected);
-    });
-  });
-
   describe("parse — negative mixed numbers", () => {
     it("should parse negative mixed numbers with space", () => {
       expect(fractionalInchParser.parse("-1 1/4")).toBe(-1.25);
@@ -129,15 +115,17 @@ describe("FractionalInchParser", () => {
       expect(fractionalInchParser.parse("-10 7/8")).toBe(-10.875);
     });
 
-    it("should parse negative mixed numbers with hyphen", () => {
-      expect(fractionalInchParser.parse("-1-1/4")).toBe(-1.25);
-      expect(fractionalInchParser.parse("-2-1/2")).toBe(-2.5);
-      expect(fractionalInchParser.parse("-10-7/8")).toBe(-10.875);
-    });
-
     it("should parse negative mixed numbers with space after dash", () => {
       expect(fractionalInchParser.parse("- 1 1/4")).toBe(-1.25);
       expect(fractionalInchParser.parse("- 2 1/2")).toBe(-2.5);
+    });
+  });
+
+  describe("parse — hyphen as separator is not valid", () => {
+    it("should throw on hyphen-separated mixed numbers (use space instead)", () => {
+      expect(() => fractionalInchParser.parse("1-1/4")).toThrow();
+      expect(() => fractionalInchParser.parse("2-1/2")).toThrow();
+      expect(() => fractionalInchParser.parse("10-7/8")).toThrow();
     });
   });
 
@@ -151,11 +139,6 @@ describe("FractionalInchParser", () => {
     it("should handle multiple spaces between whole and fraction", () => {
       expect(fractionalInchParser.parse("1   1/4")).toBe(1.25);
       expect(fractionalInchParser.parse("1     1/2")).toBe(1.5);
-    });
-
-    it("should handle multiple spaces around hyphen", () => {
-      expect(fractionalInchParser.parse("1 - 1/4")).toBe(1.25);
-      expect(fractionalInchParser.parse("2   -   1/2")).toBe(2.5);
     });
 
     it("should handle tab characters", () => {
@@ -223,7 +206,6 @@ describe("FractionalInchParser", () => {
       expect(fractionalInchParser.canParse("1")).toBe(true);
       expect(fractionalInchParser.canParse("1.25")).toBe(true);
       expect(fractionalInchParser.canParse("1 1/4")).toBe(true);
-      expect(fractionalInchParser.canParse("1-1/4")).toBe(true);
       expect(fractionalInchParser.canParse("1/2")).toBe(true);
       expect(fractionalInchParser.canParse("-1 1/4")).toBe(true);
       expect(fractionalInchParser.canParse("3/4")).toBe(true);
@@ -236,6 +218,7 @@ describe("FractionalInchParser", () => {
       expect(fractionalInchParser.canParse("3/2")).toBe(false);
       expect(fractionalInchParser.canParse("1/0")).toBe(false);
       expect(fractionalInchParser.canParse("1 1/4 1/2")).toBe(false);
+      expect(fractionalInchParser.canParse("1-1/4")).toBe(false);
       expect(fractionalInchParser.canParse(null)).toBe(false);
       expect(fractionalInchParser.canParse(undefined)).toBe(false);
     });
@@ -279,6 +262,8 @@ describe("FractionalInchParser", () => {
     it("should respect explicit maxDenominator override", () => {
       const parser = new FractionalInchParser({ maxDenominator: 32 });
       expect(parser.maxDenominator).toBe(32);
+      expect(parser.parse("1/32")).toBe(0.03125);
+      expect(() => parser.parse("1/64")).toThrow();
     });
   });
 

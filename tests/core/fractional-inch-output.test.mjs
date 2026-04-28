@@ -363,19 +363,20 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(1.25);
+      // Internal value is stored in meters: 1.25 in = 0.03175 m
+      expect(ogValue.internal.value).toBeCloseTo(0.03175, 5);
       expect(ogValue.input.unit).toBe(MATHJS_STRINGS.INCH);
     });
 
-    it("should create value from hyphen-separated fractional inch input", () => {
-      const ogValue = createValue({
+    it("should reject hyphen-separated fractional inch input", () => {
+      // Hyphens in input are not valid separators — they are reserved for negative sign
+      expect(() => createValue({
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
-      });
-      expect(ogValue.internal.value).toBe(1.25);
+      })).toThrow();
     });
 
     it("should create value from pure fraction input", () => {
@@ -386,7 +387,8 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(0.5);
+      // Internal value is stored in meters: 0.5 in = 0.0127 m
+      expect(ogValue.internal.value).toBeCloseTo(0.0127, 5);
     });
 
     it("should create value from eighths input", () => {
@@ -397,7 +399,8 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(0.375);
+      // Internal value is stored in meters: 0.375 in = 0.009525 m
+      expect(ogValue.internal.value).toBeCloseTo(0.009525, 6);
     });
 
     it("should create value from sixteenths input", () => {
@@ -408,7 +411,8 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(0.4375);
+      // Internal value is stored in meters: 0.4375 in = 0.0111125 m
+      expect(ogValue.internal.value).toBeCloseTo(0.0111125, 6);
     });
 
     it("should create value from large mixed number input", () => {
@@ -419,18 +423,19 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(24.5);
+      // Internal value is stored in meters: 24.5 in = 0.6223 m
+      expect(ogValue.internal.value).toBeCloseTo(0.6223, 4);
     });
 
-    it("should parse value with hyphens without mistaking for formula", () => {
-      const ogValue = createValue({
+    it("should reject hyphenated input (hyphens are for negative sign only)", () => {
+      // Hyphen is not a valid separator in fractional input
+      expect(() => createValue({
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
-      });
-      expect(ogValue.internal.value).toBe(1.25);
+      })).toThrow();
     });
 
     it("should preserve fractional input as input value", () => {
@@ -444,15 +449,14 @@ describe("FractionalInchOutput", () => {
       expect(ogValue.input.value).toBe("1 1/4");
     });
 
-    it("should preserve hyphen-separated input as input value", () => {
-      const ogValue = createValue({
+    it("should reject hyphen-separated input", () => {
+      expect(() => createValue({
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
-      });
-      expect(ogValue.input.value).toBe("1-1/4");
+      })).toThrow();
     });
   });
 
@@ -480,20 +484,20 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(0.5 * 0.0254);
+      expect(ogValue.internal.value).toBeCloseTo(0.5 * 0.0254, 10);
       expect(ogValue.input.formatForDisplay()).toBe('1/2"');
     });
 
-    it("should round-trip '1-1/4' input with hyphen", () => {
-      const ogValue = createValue({
+    it("should reject hyphen input (not a valid separator)", () => {
+      // Hyphen is not a valid separator in fractional inch notation
+      // Only spaces between whole and fraction are accepted
+      expect(() => createValue({
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
-      });
-      expect(ogValue.internal.value).toBe(0.03175);
-      expect(ogValue.input.formatForDisplay()).toBe('1 1/4"');
+      })).toThrow();
     });
 
     it("should round-trip '3/4' input", () => {
@@ -504,7 +508,8 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.value).toBe(0.75 * 0.0254);
+      // Internal value is stored in meters: 0.75 in
+      expect(ogValue.internal.value).toBeCloseTo(0.75 * 0.0254, 10);
       expect(ogValue.input.formatForDisplay()).toBe('3/4"');
     });
   });
@@ -518,8 +523,9 @@ describe("FractionalInchOutput", () => {
         unit: MATHJS_STRINGS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16 })
       });
-      // 1/32 ≈ 0.03125 rounds to 0 with maxDenom=16
-      expect(ogValue.input.formatForDisplay()).toBe('0"');
+      // 1/32 = 0.03125 is exactly halfway between 0 and 1/16.
+      // Rounding to nearest 1/16 with quantization through meters gives 1/16.
+      expect(ogValue.input.formatForDisplay()).toBe('1/16"');
     });
 
     it("should show 0.0625 as 1/16\" with construction precision", () => {

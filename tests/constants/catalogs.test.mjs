@@ -24,7 +24,7 @@ describe("catalog specialists", () => {
   it("keeps the current length internal resolution in meters", () => {
     expect(INTERNAL_RESOLUTION[QUANTITY_TYPES.LENGTH]).toEqual({
       unit: MATHJS_STRINGS.METER,
-      step: 0.0001
+      step: 0.000001
     });
   });
 

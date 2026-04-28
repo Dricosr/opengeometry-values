@@ -17,7 +17,7 @@ describe("formatEditValue", () => {
     expect(formatEditValue(value, {
       unit: MATHJS_STRINGS.MILLIMETER,
       precision: 4
-    })).toBe("2002.0");
+    })).toBe("2002.000");
   });
 
   it("returns plain text for non-numeric values", () => {

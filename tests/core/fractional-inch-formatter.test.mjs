@@ -177,7 +177,8 @@ describe("FractionalInchFormatter", () => {
     });
 
     it("should format NPS 3/4 pipe OD (1.050 in)", () => {
-      expect(fractionalInchFormatter.decimalToFraction(1.05)).toBe("1 1/16");
+      // 0.05 approximates best to 3/64 (error=0.003125) vs 1/16 (error=0.0125)
+      expect(fractionalInchFormatter.decimalToFraction(1.05)).toBe("1 3/64");
     });
 
     it("should format NPS 1 pipe OD (1.315 in)", () => {
@@ -220,7 +221,8 @@ describe("FractionalInchFormatter", () => {
 
     it("should format 14 ga (0.0781 in)", () => {
       const result = fractionalInchFormatter.decimalToFraction(0.078125);
-      expect(result).toBe("1/16"); // rounds to nearest 1/64 = 5/64 = 0.078125
+      // 0.078125 = 5/64 exactly
+      expect(result).toBe("5/64");
     });
 
     it("should format 12 ga (0.1094 in)", () => {

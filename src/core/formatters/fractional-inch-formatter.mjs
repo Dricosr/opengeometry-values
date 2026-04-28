@@ -9,8 +9,8 @@ import { unitConverter } from "../convert-value.mjs";
  * - "2" for 2.0 (integer only, no fraction)
  * - "-1 1/4" for -1.25 (negative mixed number)
  *
- * Uses continued fractions algorithm to find the best fraction approximation
- * up to the specified max denominator.
+ * Only power-of-2 denominators (2, 4, 8, 16, 32, 64, ...) are used,
+ * matching ANSI/ASME Y14.5 inch fraction conventions.
  */
 export class FractionalInchFormatter {
   /**
@@ -53,6 +53,11 @@ export class FractionalInchFormatter {
       return String(decimal);
     }
 
+    // Treat values within floating-point tolerance of zero as zero
+    if (Math.abs(decimal) < 1e-10) {
+      return "0";
+    }
+
     // Handle negative values
     if (decimal < 0) {
       return `-${this.decimalToFraction(-decimal)}`;
@@ -66,7 +71,7 @@ export class FractionalInchFormatter {
       return String(wholePart);
     }
 
-    // Find best fraction approximation
+    // Find best fraction approximation using only power-of-2 denominators
     const { numerator, denominator } = this.approximateFraction(fractionalPart, this.maxDenominator);
 
     // If numerator rounds to 0, just return the whole part
@@ -86,10 +91,10 @@ export class FractionalInchFormatter {
 
   /**
    * Finds the best fraction approximation for a decimal value
-   * using continued fractions, capped at maxDenominator.
+   * using only power-of-2 denominators (2, 4, 8, 16, ...) up to maxDenominator.
    *
    * @param {number} value - Fractional part (0 < value < 1)
-   * @param {number} maxDenominator - Maximum denominator
+   * @param {number} maxDenominator - Maximum denominator (must be a power of 2)
    * @returns {{ numerator: number, denominator: number }}
    */
   approximateFraction(value, maxDenominator) {
@@ -97,7 +102,7 @@ export class FractionalInchFormatter {
     let bestDenom = 1;
     let bestError = Infinity;
 
-    for (let denom = 1; denom <= maxDenominator; denom++) {
+    for (let denom = 1; denom <= maxDenominator; denom *= 2) {
       const numer = Math.round(value * denom);
       const error = Math.abs(value - numer / denom);
 
