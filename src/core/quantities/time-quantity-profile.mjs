@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { QuantityProfile } from "./quantity-profile.mjs";
 
@@ -6,11 +6,11 @@ export class TimeQuantityProfile extends QuantityProfile {
   constructor() {
     super({
       quantityType: QUANTITY_TYPES.TIME,
-      internalUnit: MATHJS_STRINGS.SECOND,
+      internalUnit: UNIT_TOKENS.SECOND,
       supportedUnits: [
-        MATHJS_STRINGS.SECOND,
-        MATHJS_STRINGS.MINUTE,
-        MATHJS_STRINGS.HOUR
+        UNIT_TOKENS.SECOND,
+        UNIT_TOKENS.MINUTE,
+        UNIT_TOKENS.HOUR
       ]
     });
   }

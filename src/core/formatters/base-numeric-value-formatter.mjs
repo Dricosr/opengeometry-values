@@ -1,5 +1,5 @@
-import { format } from "../mathjs-api.mjs";
-import { MATHJS_STRINGS } from "../../constants/mathjs-string-catalog.mjs";
+﻿import { format } from "../mathjs-api.mjs";
+import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
 import { displayPrecisionResolver } from "../resolve-display-precision.mjs";
 import { unitConverter } from "../convert-value.mjs";
 
@@ -23,7 +23,7 @@ export class BaseNumericValueFormatter {
     );
 
     return format(convertedValue, {
-      notation: MATHJS_STRINGS.FIXED_NOTATION,
+      notation: UNIT_TOKENS.FIXED_NOTATION,
       precision
     });
   }

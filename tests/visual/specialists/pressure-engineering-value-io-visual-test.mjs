@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,29 +8,29 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
       {
         value: 250000,
         quantity: QUANTITY_TYPES.PRESSURE,
-        unit: MATHJS_STRINGS.PASCAL,
-        outputUnit: MATHJS_STRINGS.KILOPASCAL,
+        unit: UNIT_TOKENS.PASCAL,
+        outputUnit: UNIT_TOKENS.KILOPASCAL,
         precision: 0
       },
       {
         value: 2.5,
         quantity: QUANTITY_TYPES.PRESSURE,
-        unit: MATHJS_STRINGS.BAR,
-        outputUnit: MATHJS_STRINGS.KILOPASCAL,
+        unit: UNIT_TOKENS.BAR,
+        outputUnit: UNIT_TOKENS.KILOPASCAL,
         precision: 0
       },
       {
         value: 2.5,
         quantity: QUANTITY_TYPES.PRESSURE,
-        unit: MATHJS_STRINGS.MEGAPASCAL,
-        outputUnit: MATHJS_STRINGS.BAR,
+        unit: UNIT_TOKENS.MEGAPASCAL,
+        outputUnit: UNIT_TOKENS.BAR,
         precision: 0
       },
       {
         value: "=1 MPa + 500 kPa",
         quantity: QUANTITY_TYPES.PRESSURE,
-        unit: MATHJS_STRINGS.MEGAPASCAL,
-        outputUnit: MATHJS_STRINGS.MEGAPASCAL,
+        unit: UNIT_TOKENS.MEGAPASCAL,
+        outputUnit: UNIT_TOKENS.MEGAPASCAL,
         precision: 2
       }
     ];
@@ -78,12 +78,12 @@ export class PressureEngineeringValueIoVisualTest extends EngineeringValueIoVisu
       {
         value: "250k",
         quantity: QUANTITY_TYPES.PRESSURE,
-        unit: MATHJS_STRINGS.PASCAL
+        unit: UNIT_TOKENS.PASCAL
       },
       {
         value: 250000,
         quantity: QUANTITY_TYPES.PRESSURE,
-        unit: MATHJS_STRINGS.METER
+        unit: UNIT_TOKENS.METER
       }
     ];
   }

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { MATHJS_STRINGS } from "../../src/constants/mathjs-string-catalog.mjs";
+﻿import { describe, expect, it } from "vitest";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { createValue } from "../../src/core/create-value.mjs";
@@ -13,11 +13,11 @@ describe("formatDisplayValue", () => {
       value: 2002,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     });
 
     expect(formatDisplayValue(value, {
-      unit: MATHJS_STRINGS.METER,
+      unit: UNIT_TOKENS.METER,
       precision: 0
     })).toBe("2 m");
   });
@@ -37,14 +37,14 @@ describe("formatDisplayValue", () => {
       value: 90,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.ANGLE,
-      unit: MATHJS_STRINGS.DEGREE,
+      unit: UNIT_TOKENS.DEGREE,
       output: new Output({
         id: "output:angle:symbol",
-        unit: MATHJS_STRINGS.DEGREE,
+        unit: UNIT_TOKENS.DEGREE,
         precision: 0,
         suffix: new UnitSymbolOutputAffix({
           id: "suffix:angle-symbol",
-          unit: MATHJS_STRINGS.DEGREE
+          unit: UNIT_TOKENS.DEGREE
         })
       })
     });

@@ -1,4 +1,4 @@
-import { DOMAIN_STRINGS } from "../constants/domain-string-catalog.mjs";
+import { DOMAIN } from "../constants/domain-catalog.mjs";
 import { unitSymbolCatalog } from "../constants/unit-symbols.mjs";
 import { baseNumericValueFormatter } from "./formatters/base-numeric-value-formatter.mjs";
 
@@ -34,7 +34,7 @@ export class DisplayValueFormatter {
       return "";
     }
 
-    return `${DOMAIN_STRINGS.SPACE}${this.symbolCatalog.get(unitName) ?? unitName}`;
+    return `${DOMAIN.SPACE}${this.symbolCatalog.get(unitName) ?? unitName}`;
   }
 }
 

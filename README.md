@@ -1,4 +1,4 @@
-# iforge-edp-values
+﻿# iforge-edp-values
 
 Structured engineering values for the iForge EDP ecosystem - type, quantity, unit, internal normalization, and UI-friendly formatting.
 
@@ -357,14 +357,14 @@ Integrates parsing + formatting + unit conversion into the standard `createValue
 Accepts both **numeric** and **fractional string** inputs:
 
 ```js
-import { createValue, FractionalInchOutput, MATHJS_STRINGS, OUTPUT_SUFFIX_MODES } from "@dricosr/iforge-edp-values";
+import { createValue, FractionalInchOutput, UNIT_TOKENS, OUTPUT_SUFFIX_MODES } from "@dricosr/iforge-edp-values";
 
 // === Input: string fraction ===
 const pipe = createValue({
   value: "1 1/4",                          // ← fractional string input
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({
     id: "nps-1-1-4",
     prefix: "⌀ "                           // diameter prefix
@@ -380,7 +380,7 @@ const plate = createValue({
   value: 0.375,                            // ← numeric input
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({
     id: "3-8-plate"
   })
@@ -394,7 +394,7 @@ const metricPipe = createValue({
   value: 762,                              // 762 mm = 30 inches
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.MILLIMETER,
+  unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({
     id: "metric-to-inches"
   })

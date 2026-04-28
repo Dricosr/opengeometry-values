@@ -1,4 +1,4 @@
-# Library Conformance Checklist
+﻿# Library Conformance Checklist
 
 Checklist for a cross-platform (Node.js + browser) ESM library like `iforge-edp-values`.
 Before every major change, validate these items. Keep this file updated when adding new compliance requirements.
@@ -65,8 +65,8 @@ Before every major change, validate these items. Keep this file updated when add
   - Classes: `PascalCase` (`ValueFactory`, `Output`, `FractionalInchParser`)
   - Singletons: `camelCase` (`valueFactory`, `outputBuilder`, `fractionalInchParser`)
   - Functions: `camelCase` (`createValue`, `parseFractionalInch`, `formatDisplayValue`)
-  - Constants/catalogs: `UPPER_SNAKE_CASE` (`MATHJS_STRINGS`, `QUANTITY_TYPES`, `OUTPUT_SUFFIX_MODES`)
-  - Catalog instances: `camelCase` (`mathJsStringCatalog`, `valueTypeCatalog`)
+  - Constants/catalogs: `UPPER_SNAKE_CASE` (`UNIT_TOKENS`, `QUANTITY_TYPES`, `OUTPUT_SUFFIX_MODES`)
+  - Catalog instances: `camelCase` (`unitTokenCatalog`, `valueTypeCatalog`)
 - [ ] **Error types exported** — e.g. `ValueInputError`, structured error codes
 - [ ] **try* variants for validation** — `tryCreateValue` alongside `createValue` for UI-safe input handling
 - [ ] **Duck typing supported** — custom Output, OutputAffix can be injected without class inheritance

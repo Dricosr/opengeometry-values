@@ -1,4 +1,4 @@
-import { DOMAIN_STRINGS } from "../../constants/domain-string-catalog.mjs";
+import { DOMAIN } from "../../constants/domain-catalog.mjs";
 
 /**
  * Enum for common inch fraction denominator types.
@@ -82,7 +82,7 @@ export class FractionalInchParser {
     const normalizedText = String(text).trim();
 
     if (!normalizedText) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+      throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
     }
 
     // Check if it's already a valid decimal number (delegate to standard number)
@@ -122,28 +122,28 @@ export class FractionalInchParser {
       return isNegative ? -result : result;
     }
 
-    throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
+    throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${text}`);
   }
 
   validateAndComputeFraction(numerator, denominator, originalText) {
     if (denominator <= 0) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
+      throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
     if (!this.isPowerOfTwo(denominator)) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
+      throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
     if (denominator > this.maxDenominator) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
+      throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
     if (numerator <= 0) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
+      throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
     if (numerator >= denominator) {
-      throw new Error(`${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
+      throw new Error(`${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${originalText}`);
     }
 
     return numerator / denominator;

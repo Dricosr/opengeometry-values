@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,22 +8,22 @@ export class ForceEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
       {
         value: 1500,
         quantity: QUANTITY_TYPES.FORCE,
-        unit: MATHJS_STRINGS.NEWTON,
-        outputUnit: MATHJS_STRINGS.KILONEWTON,
+        unit: UNIT_TOKENS.NEWTON,
+        outputUnit: UNIT_TOKENS.KILONEWTON,
         precision: 1
       },
       {
         value: 2.5,
         quantity: QUANTITY_TYPES.FORCE,
-        unit: MATHJS_STRINGS.KILONEWTON,
-        outputUnit: MATHJS_STRINGS.NEWTON,
+        unit: UNIT_TOKENS.KILONEWTON,
+        outputUnit: UNIT_TOKENS.NEWTON,
         precision: 0
       },
       {
         value: "=1 kN + 500 N",
         quantity: QUANTITY_TYPES.FORCE,
-        unit: MATHJS_STRINGS.KILONEWTON,
-        outputUnit: MATHJS_STRINGS.KILONEWTON,
+        unit: UNIT_TOKENS.KILONEWTON,
+        outputUnit: UNIT_TOKENS.KILONEWTON,
         precision: 1
       }
     ];
@@ -63,12 +63,12 @@ export class ForceEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
       {
         value: "1.5k",
         quantity: QUANTITY_TYPES.FORCE,
-        unit: MATHJS_STRINGS.NEWTON
+        unit: UNIT_TOKENS.NEWTON
       },
       {
         value: 1500,
         quantity: QUANTITY_TYPES.FORCE,
-        unit: MATHJS_STRINGS.PASCAL
+        unit: UNIT_TOKENS.PASCAL
       }
     ];
   }

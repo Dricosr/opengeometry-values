@@ -1,6 +1,6 @@
 import { OUTPUT_SUFFIX_MODES } from "../../constants/output-suffix-modes.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
-import { DOMAIN_STRINGS } from "../../constants/domain-string-catalog.mjs";
+import { DOMAIN } from "../../constants/domain-catalog.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
 import { FractionalInchFormatter, fractionalInchFormatter } from "../formatters/fractional-inch-formatter.mjs";
 import { baseNumericValueFormatter } from "../formatters/base-numeric-value-formatter.mjs";
@@ -145,7 +145,7 @@ export class FractionalInchOutput {
 
     // Code suffix uses a space before the unit (e.g., "1 1/4 in")
     if (this.suffixMode === OUTPUT_SUFFIX_MODES.CODE) {
-      return `${DOMAIN_STRINGS.SPACE}${suffixText}`;
+      return `${DOMAIN.SPACE}${suffixText}`;
     }
 
     // Custom suffix follows the affix's own spacing

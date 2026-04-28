@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Changed
+
+- **Breaking:** `mathjs-string-catalog.mjs` renamed to `unit-token-catalog.mjs`. All exported symbols replaced with no backward-compat aliases: `MATHJS_STRINGS` → `UNIT_TOKENS`, `MathJsStringCatalog` → `UnitTokenCatalog`, `mathJsStringCatalog` → `unitTokenCatalog`. The internal constant `MATHJS_STRING_ENTRIES` is now `UNIT_TOKEN_ENTRIES`.
+- `domain-string-catalog.mjs` removed; `domain-catalog.mjs` is now the single source of truth. All internal imports migrated from `DOMAIN_STRINGS` to `DOMAIN`. The deprecated symbols `DOMAIN_STRINGS`, `domainStringCatalog`, and `DomainStringCatalog` are re-exported as aliases from `domain-catalog.mjs` and remain available in the public API for backward compatibility.
 
 ### Added
 
@@ -25,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Visual test specialists (`length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`) hydrated with embedded unit formula scenarios, plain formula scenarios, and unit-embedded numeric input scenarios
 - Windows shell compatibility note added to `CLAUDE.md`, `.claude/agents/test.md`, `.github/agents/test.agent.md`, `.github/copilot-instructions.md`, and `memory/feedback_windows_shell.md`: Vitest 4.x fails under `cmd.exe` on Windows; always use PowerShell or bash
 - Version `0.1.0-alpha.1` tag in `package.json`
-- Liter (`L`) as a supported volume unit: added `LITER` to `mathjs-string-catalog.mjs`, `unit-symbols.mjs`, `VolumeQuantityProfile`, a `volume:tank-liter` output preset, a `volume:storage-tank-liter` parameter sample, and two liter visual test scenarios
+- Liter (`L`) as a supported volume unit: added `LITER` to `unit-token-catalog.mjs`, `unit-symbols.mjs`, `VolumeQuantityProfile`, a `volume:tank-liter` output preset, a `volume:storage-tank-liter` parameter sample, and two liter visual test scenarios
 - Reusable parameter samples grouped by quantity and a curated output preset mini library for common engineering views
 - Public preview helpers for building interactive UIs: `createValuePreview`, `buildOutput`, `OUTPUT_PRESETS`, and `PARAMETER_SAMPLES`
 - Customization sync check for mirrored Copilot, Claude, and memory guidance files

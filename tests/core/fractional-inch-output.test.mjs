@@ -1,9 +1,9 @@
-import { describe, it, expect } from "vitest";
+﻿import { describe, it, expect } from "vitest";
 import { FractionalInchOutput } from "../../src/core/models/fractional-inch-output.mjs";
 import { createValue } from "../../src/core/create-value.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
-import { MATHJS_STRINGS } from "../../src/constants/mathjs-string-catalog.mjs";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../src/constants/output-suffix-modes.mjs";
 
 describe("FractionalInchOutput", () => {
@@ -78,7 +78,7 @@ describe("FractionalInchOutput", () => {
         value: 0.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-1-2", prefix: "⌀ " })
       });
       expect(ogValue.input.formatForDisplay()).toBe('⌀ 1/2"');
@@ -89,7 +89,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-1-1-4", prefix: "⌀ " })
       });
       expect(ogValue.input.formatForDisplay()).toBe('⌀ 1 1/4"');
@@ -100,7 +100,7 @@ describe("FractionalInchOutput", () => {
         value: 4.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-4" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('4 1/2"');
@@ -111,7 +111,7 @@ describe("FractionalInchOutput", () => {
         value: 6.625,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-6" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('6 5/8"');
@@ -124,7 +124,7 @@ describe("FractionalInchOutput", () => {
         value: 0.0625,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "plate" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1/16"');
@@ -135,7 +135,7 @@ describe("FractionalInchOutput", () => {
         value: 0.125,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "plate" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1/8"');
@@ -146,7 +146,7 @@ describe("FractionalInchOutput", () => {
         value: 0.375,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "plate" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('3/8"');
@@ -159,7 +159,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1 1/4"');
@@ -170,7 +170,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           suffixMode: OUTPUT_SUFFIX_MODES.CODE
@@ -184,7 +184,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           suffixMode: OUTPUT_SUFFIX_MODES.NONE
@@ -198,7 +198,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           showUnit: false
@@ -214,7 +214,7 @@ describe("FractionalInchOutput", () => {
         value: 0.375,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           prefix: "⌀ "
@@ -228,7 +228,7 @@ describe("FractionalInchOutput", () => {
         value: 1.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           prefix: "≈ "
@@ -242,7 +242,7 @@ describe("FractionalInchOutput", () => {
         value: 2,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('2"');
@@ -255,7 +255,7 @@ describe("FractionalInchOutput", () => {
         value: 762,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.MILLIMETER,
+        unit: UNIT_TOKENS.MILLIMETER,
         output: new FractionalInchOutput({ id: "test" })
       });
       // 762 mm = 30 inches
@@ -267,7 +267,7 @@ describe("FractionalInchOutput", () => {
         value: 5.08,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.CENTIMETER,
+        unit: UNIT_TOKENS.CENTIMETER,
         output: new FractionalInchOutput({ id: "test" })
       });
       // 5.08 cm = 2 inches
@@ -279,7 +279,7 @@ describe("FractionalInchOutput", () => {
         value: 1,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.METER,
+        unit: UNIT_TOKENS.METER,
         output: new FractionalInchOutput({ id: "test" })
       });
       // 1 m = 39.3701 inches → 39 3/8 (approximately)
@@ -293,7 +293,7 @@ describe("FractionalInchOutput", () => {
         value: 3.175,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // 3.175 = 3 1/8" (approximately)
@@ -305,7 +305,7 @@ describe("FractionalInchOutput", () => {
         value: 0.1875,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('3/16"');
@@ -316,7 +316,7 @@ describe("FractionalInchOutput", () => {
         value: 0.65625,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('21/32"');
@@ -329,7 +329,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForEdit()).toBe("1 1/4");
@@ -340,7 +340,7 @@ describe("FractionalInchOutput", () => {
         value: 2,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForEdit()).toBe("2");
@@ -351,7 +351,7 @@ describe("FractionalInchOutput", () => {
         value: 0.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForEdit()).toBe("1/2");
@@ -362,7 +362,7 @@ describe("FractionalInchOutput", () => {
         value: -1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.formatForEdit()).toBe("-1 1/4");
@@ -375,12 +375,12 @@ describe("FractionalInchOutput", () => {
         value: "1 1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal value is stored in meters: 1.25 in = 0.03175 m
       expect(ogValue.internal.value).toBeCloseTo(0.03175, 5);
-      expect(ogValue.input.unit).toBe(MATHJS_STRINGS.INCH);
+      expect(ogValue.input.unit).toBe(UNIT_TOKENS.INCH);
     });
 
     it("should accept hyphen-separated fractional inch input", () => {
@@ -388,11 +388,11 @@ describe("FractionalInchOutput", () => {
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.internal.value).toBeCloseTo(0.03175, 5);
-      expect(ogValue.input.unit).toBe(MATHJS_STRINGS.INCH);
+      expect(ogValue.input.unit).toBe(UNIT_TOKENS.INCH);
     });
 
     it("should create value from pure fraction input", () => {
@@ -400,7 +400,7 @@ describe("FractionalInchOutput", () => {
         value: "1/2",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal value is stored in meters: 0.5 in = 0.0127 m
@@ -412,7 +412,7 @@ describe("FractionalInchOutput", () => {
         value: "3/8",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal value is stored in meters: 0.375 in = 0.009525 m
@@ -424,7 +424,7 @@ describe("FractionalInchOutput", () => {
         value: "7/16",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal value is stored in meters: 0.4375 in = 0.0111125 m
@@ -436,7 +436,7 @@ describe("FractionalInchOutput", () => {
         value: "24 1/2",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal value is stored in meters: 24.5 in = 0.6223 m
@@ -448,11 +448,11 @@ describe("FractionalInchOutput", () => {
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.internal.value).toBeCloseTo(0.03175, 5);
-      expect(ogValue.input.unit).toBe(MATHJS_STRINGS.INCH);
+      expect(ogValue.input.unit).toBe(UNIT_TOKENS.INCH);
     });
 
     it("should preserve fractional input as input value", () => {
@@ -460,7 +460,7 @@ describe("FractionalInchOutput", () => {
         value: "1 1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.input.value).toBe("1 1/4");
@@ -471,7 +471,7 @@ describe("FractionalInchOutput", () => {
         value: "24-1/2",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.internal.value).toBeCloseTo(0.6223, 4);
@@ -485,11 +485,11 @@ describe("FractionalInchOutput", () => {
         value: "1 1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal is in meters: 1.25 in = 0.03175 m
-      expect(ogValue.internal.unit).toBe(MATHJS_STRINGS.METER);
+      expect(ogValue.internal.unit).toBe(UNIT_TOKENS.METER);
       expect(ogValue.internal.value).toBe(0.03175);
       // Format back should give fractional display
       expect(ogValue.input.formatForDisplay()).toBe('1 1/4"');
@@ -500,7 +500,7 @@ describe("FractionalInchOutput", () => {
         value: "1/2",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       expect(ogValue.internal.value).toBeCloseTo(0.5 * 0.0254, 10);
@@ -512,10 +512,10 @@ describe("FractionalInchOutput", () => {
         value: "1-1/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
-      expect(ogValue.internal.unit).toBe(MATHJS_STRINGS.METER);
+      expect(ogValue.internal.unit).toBe(UNIT_TOKENS.METER);
       expect(ogValue.internal.value).toBe(0.03175);
       // Format back should give fractional display with space, since
       // the output formatter uses space by default (display formatting is
@@ -528,7 +528,7 @@ describe("FractionalInchOutput", () => {
         value: "3/4",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
       });
       // Internal value is stored in meters: 0.75 in
@@ -543,7 +543,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1-1/4"');
@@ -554,7 +554,7 @@ describe("FractionalInchOutput", () => {
         value: -1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('-1-1/4"');
@@ -565,7 +565,7 @@ describe("FractionalInchOutput", () => {
         value: 24.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('24-1/2"');
@@ -576,7 +576,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
       });
       expect(ogValue.input.formatForEdit()).toBe("1-1/4");
@@ -587,7 +587,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           separator: "hyphen",
@@ -602,7 +602,7 @@ describe("FractionalInchOutput", () => {
         value: 1.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
           separator: "hyphen",
@@ -617,7 +617,7 @@ describe("FractionalInchOutput", () => {
         value: 2.75,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16, separator: "hyphen" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('2-3/4"');
@@ -630,7 +630,7 @@ describe("FractionalInchOutput", () => {
         value: 0.03125,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16 })
       });
       // 1/32 = 0.03125 is exactly halfway between 0 and 1/16.
@@ -643,7 +643,7 @@ describe("FractionalInchOutput", () => {
         value: 0.0625,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16 })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1/16"');
@@ -656,7 +656,7 @@ describe("FractionalInchOutput", () => {
         value: "1/3",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH
+        unit: UNIT_TOKENS.INCH
       })).toThrow();
     });
 
@@ -665,7 +665,7 @@ describe("FractionalInchOutput", () => {
         value: "3/2",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH
+        unit: UNIT_TOKENS.INCH
       })).toThrow();
     });
 
@@ -674,7 +674,7 @@ describe("FractionalInchOutput", () => {
         value: "abc",
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH
+        unit: UNIT_TOKENS.INCH
       })).toThrow();
     });
   });
@@ -685,7 +685,7 @@ describe("FractionalInchOutput", () => {
         value: 1.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "lumber" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1 1/2"');
@@ -696,7 +696,7 @@ describe("FractionalInchOutput", () => {
         value: 3.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "lumber" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('3 1/2"');
@@ -707,7 +707,7 @@ describe("FractionalInchOutput", () => {
         value: 16,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "framing" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('16"');
@@ -718,7 +718,7 @@ describe("FractionalInchOutput", () => {
         value: 12,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "framing" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('12"');
@@ -731,7 +731,7 @@ describe("FractionalInchOutput", () => {
         value: 0.25,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "bolt" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1/4"');
@@ -742,7 +742,7 @@ describe("FractionalInchOutput", () => {
         value: 2.5,
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
-        unit: MATHJS_STRINGS.INCH,
+        unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "bolt-length" })
       });
       expect(ogValue.input.formatForDisplay()).toBe('2 1/2"');

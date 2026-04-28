@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,29 +8,29 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
       {
         value: 30,
         quantity: QUANTITY_TYPES.TEMPERATURE,
-        unit: MATHJS_STRINGS.DEGREE_CELSIUS,
-        outputUnit: MATHJS_STRINGS.DEGREE_FAHRENHEIT,
+        unit: UNIT_TOKENS.DEGREE_CELSIUS,
+        outputUnit: UNIT_TOKENS.DEGREE_FAHRENHEIT,
         precision: 0
       },
       {
         value: 32,
         quantity: QUANTITY_TYPES.TEMPERATURE,
-        unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT,
-        outputUnit: MATHJS_STRINGS.DEGREE_CELSIUS,
+        unit: UNIT_TOKENS.DEGREE_FAHRENHEIT,
+        outputUnit: UNIT_TOKENS.DEGREE_CELSIUS,
         precision: 0
       },
       {
         value: 273.15,
         quantity: QUANTITY_TYPES.TEMPERATURE,
-        unit: MATHJS_STRINGS.KELVIN,
-        outputUnit: MATHJS_STRINGS.DEGREE_CELSIUS,
+        unit: UNIT_TOKENS.KELVIN,
+        outputUnit: UNIT_TOKENS.DEGREE_CELSIUS,
         precision: 0
       },
       {
         value: "=100 - 32",
         quantity: QUANTITY_TYPES.TEMPERATURE,
-        unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT,
-        outputUnit: MATHJS_STRINGS.DEGREE_CELSIUS,
+        unit: UNIT_TOKENS.DEGREE_FAHRENHEIT,
+        outputUnit: UNIT_TOKENS.DEGREE_CELSIUS,
         precision: 0
       }
     ];
@@ -78,12 +78,12 @@ export class TemperatureEngineeringValueIoVisualTest extends EngineeringValueIoV
       {
         value: "30C",
         quantity: QUANTITY_TYPES.TEMPERATURE,
-        unit: MATHJS_STRINGS.DEGREE_CELSIUS
+        unit: UNIT_TOKENS.DEGREE_CELSIUS
       },
       {
         value: 30,
         quantity: QUANTITY_TYPES.TEMPERATURE,
-        unit: MATHJS_STRINGS.METER
+        unit: UNIT_TOKENS.METER
       }
     ];
   }

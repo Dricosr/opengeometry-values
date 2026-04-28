@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Manual verification script — checks that all fractional inch exports
  * are accessible from the public API and work as documented.
  *
@@ -16,7 +16,7 @@ import {
   FractionalInchOutput,
   createValue,
   tryCreateValue,
-  MATHJS_STRINGS,
+  UNIT_TOKENS,
   OUTPUT_SUFFIX_MODES,
   CustomOutputAffix
 } from "../src/index.mjs";
@@ -104,7 +104,7 @@ const fractionalVal = createValue({
   value: "1 1/4",
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({ id: "test-create" })
 });
 assert(typeof fractionalVal === "object", "createValue returned object");
@@ -120,7 +120,7 @@ const numericVal = createValue({
   value: 0.375,
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({ id: "numeric-test" })
 });
 assert(numericVal.input.formatForDisplay().includes("3/8"), 'numeric input display includes "3/8"');
@@ -132,7 +132,7 @@ const metricVal = createValue({
   value: 762,
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.MILLIMETER,
+  unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({ id: "metric-test" })
 });
 assert(metricVal.input.formatForDisplay().includes("30"), 'metric input display includes "30"');
@@ -144,7 +144,7 @@ const prefixed = createValue({
   value: "1 1/4",
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({ id: "prefix-test", prefix: "\u2300 " })
 });
 const displayText = prefixed.input.formatForDisplay();
@@ -158,7 +158,7 @@ const result = tryCreateValue({
   value: "1/3",
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({ id: "invalid-test" })
 });
 assert(result.ok === false, 'result.ok === false for invalid fraction');
@@ -180,7 +180,7 @@ const rt = createValue({
   value: "1 1/4",
   valueType: "float",
   quantity: "length",
-  unit: MATHJS_STRINGS.INCH,
+  unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({ id: "roundtrip" })
 });
 assert(rt.input.formatForEdit() === "1 1/4", 'round-trip edit: "1 1/4"');

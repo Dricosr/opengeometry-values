@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,15 +8,15 @@ export class MassEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
       {
         value: 12.5,
         quantity: QUANTITY_TYPES.MASS,
-        unit: MATHJS_STRINGS.KILOGRAM,
-        outputUnit: MATHJS_STRINGS.KILOGRAM,
+        unit: UNIT_TOKENS.KILOGRAM,
+        outputUnit: UNIT_TOKENS.KILOGRAM,
         precision: 1
       },
       {
         value: "=5 kg + 500 g",
         quantity: QUANTITY_TYPES.MASS,
-        unit: MATHJS_STRINGS.KILOGRAM,
-        outputUnit: MATHJS_STRINGS.KILOGRAM,
+        unit: UNIT_TOKENS.KILOGRAM,
+        outputUnit: UNIT_TOKENS.KILOGRAM,
         precision: 2
       }
     ];
@@ -48,12 +48,12 @@ export class MassEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
       {
         value: "12,5",
         quantity: QUANTITY_TYPES.MASS,
-        unit: MATHJS_STRINGS.KILOGRAM
+        unit: UNIT_TOKENS.KILOGRAM
       },
       {
         value: 12.5,
         quantity: QUANTITY_TYPES.MASS,
-        unit: MATHJS_STRINGS.NEWTON
+        unit: UNIT_TOKENS.NEWTON
       }
     ];
   }

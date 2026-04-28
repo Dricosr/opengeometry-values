@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,29 +8,29 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
       {
         value: 7200,
         quantity: QUANTITY_TYPES.TIME,
-        unit: MATHJS_STRINGS.SECOND,
-        outputUnit: MATHJS_STRINGS.HOUR,
+        unit: UNIT_TOKENS.SECOND,
+        outputUnit: UNIT_TOKENS.HOUR,
         precision: 0
       },
       {
         value: 90,
         quantity: QUANTITY_TYPES.TIME,
-        unit: MATHJS_STRINGS.MINUTE,
-        outputUnit: MATHJS_STRINGS.HOUR,
+        unit: UNIT_TOKENS.MINUTE,
+        outputUnit: UNIT_TOKENS.HOUR,
         precision: 1
       },
       {
         value: "7h",
         quantity: QUANTITY_TYPES.TIME,
-        unit: MATHJS_STRINGS.HOUR,
-        outputUnit: MATHJS_STRINGS.HOUR,
+        unit: UNIT_TOKENS.HOUR,
+        outputUnit: UNIT_TOKENS.HOUR,
         precision: 0
       },
       {
         value: "=1 h + 30 min",
         quantity: QUANTITY_TYPES.TIME,
-        unit: MATHJS_STRINGS.HOUR,
-        outputUnit: MATHJS_STRINGS.HOUR,
+        unit: UNIT_TOKENS.HOUR,
+        outputUnit: UNIT_TOKENS.HOUR,
         precision: 1
       }
     ];
@@ -78,7 +78,7 @@ export class TimeEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
       {
         value: 7200,
         quantity: QUANTITY_TYPES.TIME,
-        unit: MATHJS_STRINGS.KILOGRAM
+        unit: UNIT_TOKENS.KILOGRAM
       }
     ];
   }

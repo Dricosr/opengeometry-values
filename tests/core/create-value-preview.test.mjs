@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { MATHJS_STRINGS } from "../../src/constants/mathjs-string-catalog.mjs";
+﻿import { describe, expect, it } from "vitest";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { parameterSampleCatalog } from "../../src/samples/parameter-sample-catalog.mjs";
 import { outputPresetCatalog } from "../../src/presets/output-preset-catalog.mjs";
@@ -17,7 +17,7 @@ describe("createValuePreview", () => {
     expect(preview.parameter.quantity).toBe(QUANTITY_TYPES.LENGTH);
     expect(preview.internal).toEqual({
       value: 7.2,
-      unit: MATHJS_STRINGS.METER
+      unit: UNIT_TOKENS.METER
     });
     expect(preview.previews).toEqual({
       display: "7.200 m",

@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,22 +8,22 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
       {
         value: 90,
         quantity: QUANTITY_TYPES.ANGLE,
-        unit: MATHJS_STRINGS.DEGREE,
-        outputUnit: MATHJS_STRINGS.DEGREE,
+        unit: UNIT_TOKENS.DEGREE,
+        outputUnit: UNIT_TOKENS.DEGREE,
         precision: 0
       },
       {
         value: 1.570796326795,
         quantity: QUANTITY_TYPES.ANGLE,
-        unit: MATHJS_STRINGS.RADIAN,
-        outputUnit: MATHJS_STRINGS.DEGREE,
+        unit: UNIT_TOKENS.RADIAN,
+        outputUnit: UNIT_TOKENS.DEGREE,
         precision: 0
       },
       {
         value: "=90 deg + 45 deg",
         quantity: QUANTITY_TYPES.ANGLE,
-        unit: MATHJS_STRINGS.DEGREE,
-        outputUnit: MATHJS_STRINGS.DEGREE,
+        unit: UNIT_TOKENS.DEGREE,
+        outputUnit: UNIT_TOKENS.DEGREE,
         precision: 0
       }
     ];
@@ -63,12 +63,12 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
       {
         value: "ninety",
         quantity: QUANTITY_TYPES.ANGLE,
-        unit: MATHJS_STRINGS.DEGREE
+        unit: UNIT_TOKENS.DEGREE
       },
       {
         value: 90,
         quantity: QUANTITY_TYPES.ANGLE,
-        unit: MATHJS_STRINGS.METER
+        unit: UNIT_TOKENS.METER
       },
       {
         value: 90,

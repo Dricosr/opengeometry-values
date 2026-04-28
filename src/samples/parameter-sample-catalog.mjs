@@ -1,5 +1,5 @@
-import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
-import { MATHJS_STRINGS } from "../constants/mathjs-string-catalog.mjs";
+﻿import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
+import { UNIT_TOKENS } from "../constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../constants/value-types.mjs";
 
@@ -23,7 +23,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical architectural wall thickness used in modeled partitions.",
     input: {
       value: 120,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
   }),
@@ -35,7 +35,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Primary beam span for structural coordination and shop drawings.",
     input: {
       value: 7.2,
-      unit: MATHJS_STRINGS.METER
+      unit: UNIT_TOKENS.METER
     },
     recommendedOutputPresetIds: ["length:annotation-meter", "length:detail-inch"]
   }),
@@ -47,7 +47,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Common industrial spool length for shop fabrication and installation checks.",
     input: {
       value: 3657,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:process-meter", "length:detail-inch"]
   }),
@@ -59,7 +59,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Industrial MEP offset used for tray and conduit coordination.",
     input: {
       value: 450,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
   }),
@@ -71,7 +71,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal pipe outside diameter for piping isometric spools and fabrication.",
     input: {
       value: 168.3,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:diameter-mm", "length:detail-inch"]
   }),
@@ -83,7 +83,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Pressure vessel nozzle outside diameter for vessel GA and nozzle schedule.",
     input: {
       value: 0.508,
-      unit: MATHJS_STRINGS.METER
+      unit: UNIT_TOKENS.METER
     },
     recommendedOutputPresetIds: ["length:diameter-meter", "length:diameter-mm"]
   }),
@@ -95,7 +95,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Steel reinforcement bar diameter for structural detailing and bar bending schedules.",
     input: {
       value: 25,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:diameter-mm"]
   }),
@@ -107,7 +107,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Penetration or opening diameter for MEP coordination and structural embeds.",
     input: {
       value: 2.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -115,11 +115,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:lumber-2x4",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "2×4 Lumber Actual Width",
-    description: "Actual dressed width of nominal 2×4 lumber — 1.5 in × 3.5 in per NIST HB 130.",
+    name: "2x4 Lumber Actual Width",
+    description: "Actual dressed width of nominal 2x4 lumber — 1.5 in x 3.5 in per NIST HB 130.",
     input: {
       value: 1.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-inch"]
   }),
@@ -127,11 +127,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:lumber-2x6",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "2×6 Lumber Width",
-    description: "Actual dressed width of nominal 2×6 — 1.5 in × 5.5 in.",
+    name: "2x6 Lumber Width",
+    description: "Actual dressed width of nominal 2x6 — 1.5 in x 5.5 in.",
     input: {
       value: 5.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -139,11 +139,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:lumber-4x4",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "4×4 Post Actual",
-    description: "Actual dressed dimension of nominal 4×4 post — 3.5 in × 3.5 in.",
+    name: "4x4 Post Actual",
+    description: "Actual dressed dimension of nominal 4x4 post — 3.5 in x 3.5 in.",
     input: {
       value: 3.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -151,11 +151,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:lumber-2x10",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "2×10 Joist Depth",
-    description: "Actual dressed depth of nominal 2×10 joist — 1.5 in × 9.25 in.",
+    name: "2x10 Joist Depth",
+    description: "Actual dressed depth of nominal 2x10 joist — 1.5 in x 9.25 in.",
     input: {
       value: 9.25,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -163,11 +163,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:lumber-2x12",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "2×12 Joist Depth",
-    description: "Actual dressed depth of nominal 2×12 — 1.5 in × 11.25 in.",
+    name: "2x12 Joist Depth",
+    description: "Actual dressed depth of nominal 2x12 — 1.5 in x 11.25 in.",
     input: {
       value: 11.25,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -179,7 +179,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard stud spacing on-center for residential and light commercial walls.",
     input: {
       value: 16,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -191,7 +191,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 1/2″ — actual OD 0.840 in per ASME B36.10.",
     input: {
       value: 0.84,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -203,7 +203,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 3/4″ — actual OD 1.050 in per ASME B36.10.",
     input: {
       value: 1.05,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -215,7 +215,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 1″ — actual OD 1.315 in per ASME B36.10.",
     input: {
       value: 1.315,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -227,7 +227,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 2″ — actual OD 2.375 in per ASME B36.10.",
     input: {
       value: 2.375,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -239,7 +239,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 3″ — actual OD 3.5 in per ASME B36.10.",
     input: {
       value: 3.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -251,7 +251,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 6″ — actual OD 6.625 in per ASME B36.10.",
     input: {
       value: 6.625,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -263,7 +263,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 8″ — actual OD 8.625 in per ASME B36.10.",
     input: {
       value: 8.625,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -275,7 +275,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal Pipe Size 10″ — actual OD 10.75 in per ASME B36.10.",
     input: {
       value: 10.75,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -287,7 +287,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ASME B36.10 Schedule 40 wall thickness for 2″ pipe — 0.154 in.",
     input: {
       value: 0.154,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -299,7 +299,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ASME B36.10 Schedule 80 wall thickness for 2″ pipe — 0.218 in.",
     input: {
       value: 0.218,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -311,7 +311,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard steel sheet thickness for 16 gauge — 0.0598 in per ASTM A 653 / U.S. Standard Gauge.",
     input: {
       value: 0.0598,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -323,7 +323,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard steel sheet thickness for 14 gauge — 0.0747 in.",
     input: {
       value: 0.0747,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -335,7 +335,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard steel sheet thickness for 12 gauge — 0.1046 in.",
     input: {
       value: 0.1046,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -347,7 +347,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard steel sheet thickness for 10 gauge — 0.1345 in.",
     input: {
       value: 0.1345,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -359,7 +359,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard steel sheet thickness for 7 gauge — 0.1793 in.",
     input: {
       value: 0.1793,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -371,7 +371,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Common steel plate thickness — 0.375 in for baseplates, brackets, and gussets.",
     input: {
       value: 0.375,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -383,7 +383,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Common steel plate thickness — 0.5 in for bearing plates and stiffeners.",
     input: {
       value: 0.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -395,7 +395,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal bolt diameter 1/4″ — SAE grade 5 / ASTM A325 common fastener.",
     input: {
       value: 0.25,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -407,7 +407,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal bolt diameter 3/8″ — structural and machinery fastener.",
     input: {
       value: 0.375,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -419,7 +419,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal bolt diameter 1/2″ — common structural bolt size.",
     input: {
       value: 0.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -431,7 +431,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal bolt diameter 5/8″ — heavy structural connection bolt.",
     input: {
       value: 0.625,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -443,7 +443,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal bolt diameter 3/4″ — large structural bolt per ASTM A325 / A490.",
     input: {
       value: 0.75,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -455,7 +455,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Nominal bolt diameter 1″ — heavy bracing and column splice bolts.",
     input: {
       value: 1,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -467,7 +467,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Common fillet weld leg size for light structural connections per AWS D1.1.",
     input: {
       value: 0.25,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -479,7 +479,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Medium fillet weld leg size for beam-to-column connections per AWS D1.1.",
     input: {
       value: 0.375,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -491,7 +491,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Heavy fillet weld leg size for large moment connections and splices.",
     input: {
       value: 0.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -503,7 +503,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #4 reinforcing bar — 1/2″ diameter per ASTM A615.",
     input: {
       value: 0.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -515,7 +515,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #5 reinforcing bar — 5/8″ diameter per ASTM A615.",
     input: {
       value: 0.625,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -527,7 +527,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #6 reinforcing bar — 3/4″ diameter per ASTM A615.",
     input: {
       value: 0.75,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -539,7 +539,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #8 reinforcing bar — 1″ diameter per ASTM A615.",
     input: {
       value: 1,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -551,7 +551,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #10 reinforcing bar — 1-1/4″ diameter (1.27 in actual) for heavy sections.",
     input: {
       value: 1.27,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -563,7 +563,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Minimum concrete cover for cast-in-place slabs and walls per ACI 318.",
     input: {
       value: 0.75,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -575,7 +575,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Minimum cover for exterior beams and columns exposed to weather per ACI 318.",
     input: {
       value: 1.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -587,7 +587,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical residential slab-on-grade thickness — 4 in per IRC.",
     input: {
       value: 4,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -599,7 +599,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Commercial/industrial slab-on-grade thickness — 6 in for heavy loads.",
     input: {
       value: 6,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -611,7 +611,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical continuous footing width for two-story bearing wall — 24 in.",
     input: {
       value: 24,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -619,11 +619,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:structural-beam-w8x10-flange",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "W8×10 Flange Thickness",
-    description: "AISC W8×10 wide-flange flange thickness — 0.205 in.",
+    name: "W8x10 Flange Thickness",
+    description: "AISC W8x10 wide-flange flange thickness — 0.205 in.",
     input: {
       value: 0.205,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -631,11 +631,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "length:structural-beam-w10x22-flange",
     quantity: QUANTITY_TYPES.LENGTH,
     valueType: VALUE_TYPES.FLOAT,
-    name: "W10×22 Flange Thickness",
-    description: "AISC W10×22 wide-flange flange thickness — 0.29 in.",
+    name: "W10x22 Flange Thickness",
+    description: "AISC W10x22 wide-flange flange thickness — 0.29 in.",
     input: {
       value: 0.29,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -647,7 +647,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard gauge 4 ft 8.5 in = 56.5 in between rails per AREMA.",
     input: {
       value: 56.5,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
@@ -659,7 +659,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Navigation channel depth in fathoms — 6 ft per fathom, common in hydrographic surveys.",
     input: {
       value: 18,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:annotation-meter"]
   }),
@@ -671,7 +671,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "No. 100 sieve opening — 0.0059 in (149 µm) per ASTM E11.",
     input: {
       value: 0.0059,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -683,7 +683,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "No. 200 sieve opening — 0.0029 in (74 µm) per ASTM E11.",
     input: {
       value: 0.0029,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -695,7 +695,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Common card stock thickness — 10 mil = 0.010 in.",
     input: {
       value: 0.01,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -707,7 +707,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Cast-in-place concrete pile diameter 12 in per IBC / ACI 318 deep foundations.",
     input: {
       value: 12,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -719,7 +719,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Cast-in-place concrete pile diameter 18 in for high-load foundations.",
     input: {
       value: 18,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -731,7 +731,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "American Wire Gauge #12 conductor diameter — 0.0808 in per ASTM B258.",
     input: {
       value: 0.0808,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -743,7 +743,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "American Wire Gauge #10 conductor diameter — 0.1019 in per ASTM B258.",
     input: {
       value: 0.1019,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
   }),
@@ -755,7 +755,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Stainless steel instrument tubing OD — 0.25 in for pneumatic and hydraulic lines.",
     input: {
       value: 0.25,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -767,7 +767,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Stainless steel instrument tubing OD — 0.375 in for process impulse lines.",
     input: {
       value: 0.375,
-      unit: MATHJS_STRINGS.INCH
+      unit: UNIT_TOKENS.INCH
     },
     recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
   }),
@@ -783,7 +783,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Pipe segment sum with embedded units — 7200 mm + 150 mm.",
     input: {
       value: "=7200 mm + 150 mm",
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
   }),
@@ -795,7 +795,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 2500 - 150.",
     input: {
       value: "=2500 - 150",
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:annotation-meter"]
   }),
@@ -807,7 +807,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 4000mm.",
     input: {
       value: "4000mm",
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     },
     recommendedOutputPresetIds: ["length:model-mm", "length:detail-inch"]
   }),
@@ -823,7 +823,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Area takeoff for a concrete slab or finish zone.",
     input: {
       value: 42.35,
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter"]
   }),
@@ -835,7 +835,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Architectural finishing area for flooring, ceiling, or paint packages.",
     input: {
       value: 18.75,
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
   }),
@@ -847,7 +847,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Compact industrial sealing surface often checked in square centimeters or square inches.",
     input: {
       value: 2400,
-      unit: MATHJS_STRINGS.SQUARE_CENTIMETER
+      unit: UNIT_TOKENS.SQUARE_CENTIMETER
     },
     recommendedOutputPresetIds: ["area:detail-square-centimeter", "area:fabrication-square-inch"]
   }),
@@ -859,7 +859,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Facade or equipment enclosure panel area used in procurement and detailing.",
     input: {
       value: 12.8,
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
   }),
@@ -871,7 +871,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plywood or OSB roof sheathing area for residential framing takeoff.",
     input: {
       value: 1280,
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
   }),
@@ -883,7 +883,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical paint coverage per gallon — 350 sq ft at 1 coat per manufacturer specs.",
     input: {
       value: 350,
-      unit: MATHJS_STRINGS.SQUARE_INCH
+      unit: UNIT_TOKENS.SQUARE_INCH
     },
     recommendedOutputPresetIds: ["area:fabrication-square-inch", "area:schedule-square-meter"]
   }),
@@ -891,11 +891,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "area:floor-tile-12x12",
     quantity: QUANTITY_TYPES.AREA,
     valueType: VALUE_TYPES.FLOAT,
-    name: "12×12 Tile Area (sq in)",
-    description: "Single 12 in × 12 in floor tile area — 144 sq in per piece.",
+    name: "12x12 Tile Area (sq in)",
+    description: "Single 12 in x 12 in floor tile area — 144 sq in per piece.",
     input: {
       value: 144,
-      unit: MATHJS_STRINGS.SQUARE_INCH
+      unit: UNIT_TOKENS.SQUARE_INCH
     },
     recommendedOutputPresetIds: ["area:fabrication-square-inch"]
   }),
@@ -907,7 +907,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Vertical formwork contact area for 100 ft of 8 ft high wall — 800 sq ft.",
     input: {
       value: 74.32,
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
   }),
@@ -919,7 +919,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard building lot — 0.25 acre ~= 1012 sq m.",
     input: {
       value: 1012,
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter"]
   }),
@@ -931,7 +931,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Large electrical conductor 500,000 circular mils = 253 mm² per NEC.",
     input: {
       value: 253,
-      unit: MATHJS_STRINGS.SQUARE_CENTIMETER
+      unit: UNIT_TOKENS.SQUARE_CENTIMETER
     },
     recommendedOutputPresetIds: ["area:detail-square-centimeter"]
   }),
@@ -943,7 +943,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Area from length x width with embedded units — 8 m * 5 m.",
     input: {
       value: "=8 m * 5 m",
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter"]
   }),
@@ -955,7 +955,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 2.5 * 1.8.",
     input: {
       value: "=2.5 * 1.8",
-      unit: MATHJS_STRINGS.SQUARE_METER
+      unit: UNIT_TOKENS.SQUARE_METER
     },
     recommendedOutputPresetIds: ["area:schedule-square-meter", "area:coating-square-meter"]
   }),
@@ -967,7 +967,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 2400cm^2.",
     input: {
       value: "2400cm^2",
-      unit: MATHJS_STRINGS.SQUARE_CENTIMETER
+      unit: UNIT_TOKENS.SQUARE_CENTIMETER
     },
     recommendedOutputPresetIds: ["area:detail-square-centimeter", "area:fabrication-square-inch"]
   }),
@@ -983,7 +983,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Concrete pour quantity for structural elements or foundations.",
     input: {
       value: 2.4,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:concrete-cubic-meter"]
   }),
@@ -995,7 +995,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Industrial tank or sump capacity for process and utility packages.",
     input: {
       value: 18.75,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter", "volume:concrete-cubic-meter"]
   }),
@@ -1007,7 +1007,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Small industrial volume typically reviewed in cubic centimeters.",
     input: {
       value: 950,
-      unit: MATHJS_STRINGS.CUBIC_CENTIMETER
+      unit: UNIT_TOKENS.CUBIC_CENTIMETER
     },
     recommendedOutputPresetIds: ["volume:detail-cubic-centimeter", "volume:fabrication-cubic-inch"]
   }),
@@ -1019,7 +1019,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Vertical storage tank capacity entered in liters for process and utility applications.",
     input: {
       value: 50000,
-      unit: MATHJS_STRINGS.LITER
+      unit: UNIT_TOKENS.LITER
     },
     recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter"]
   }),
@@ -1031,7 +1031,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Mechanical plenum volume for airflow balancing and commissioning checks.",
     input: {
       value: 0.38,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:process-cubic-meter", "volume:concrete-cubic-meter"]
   }),
@@ -1043,7 +1043,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US concrete truck load — 10 cubic yards for a standard ready-mix delivery.",
     input: {
       value: 7.65,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:concrete-cubic-meter", "volume:process-cubic-meter"]
   }),
@@ -1055,7 +1055,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard 275-gallon residential fuel oil tank.",
     input: {
       value: 275,
-      unit: MATHJS_STRINGS.LITER
+      unit: UNIT_TOKENS.LITER
     },
     recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter"]
   }),
@@ -1067,7 +1067,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Internal volume per foot of 2″ Sch 40 pipe — 0.0603 cu ft/ft (1.71 L/m).",
     input: {
       value: 0.0603,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:process-cubic-meter", "volume:tank-liter"]
   }),
@@ -1079,7 +1079,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Residential in-ground pool — 20,000 US gallons (~75.7 m³).",
     input: {
       value: 75.7,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter"]
   }),
@@ -1091,7 +1091,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard dump truck heaped capacity — ~12 m³ aggregates.",
     input: {
       value: 12,
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:concrete-cubic-meter", "volume:process-cubic-meter"]
   }),
@@ -1103,7 +1103,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Volume from L x W x H with embedded units — 4 m * 0.8 m * 0.3 m.",
     input: {
       value: "=4 m * 0.8 m * 0.3 m",
-      unit: MATHJS_STRINGS.CUBIC_METER
+      unit: UNIT_TOKENS.CUBIC_METER
     },
     recommendedOutputPresetIds: ["volume:process-cubic-meter", "volume:concrete-cubic-meter"]
   }),
@@ -1115,7 +1115,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 15000 + 35000.",
     input: {
       value: "=15000 + 35000",
-      unit: MATHJS_STRINGS.LITER
+      unit: UNIT_TOKENS.LITER
     },
     recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter"]
   }),
@@ -1127,7 +1127,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 950cm^3.",
     input: {
       value: "950cm^3",
-      unit: MATHJS_STRINGS.CUBIC_CENTIMETER
+      unit: UNIT_TOKENS.CUBIC_CENTIMETER
     },
     recommendedOutputPresetIds: ["volume:detail-cubic-centimeter", "volume:fabrication-cubic-inch"]
   }),
@@ -1143,7 +1143,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Roof pitch angle for detailing and annotation previews.",
     input: {
       value: 30,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-degree", "angle:annotation-symbol"]
   }),
@@ -1155,7 +1155,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Process and drainage slope angle for routing and fabrication drawings.",
     input: {
       value: 1.5,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:slope-symbol", "angle:annotation-degree"]
   }),
@@ -1167,7 +1167,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Equipment nozzle orientation often exchanged in radians inside industrial tools.",
     input: {
       value: 1.0471975512,
-      unit: MATHJS_STRINGS.RADIAN
+      unit: UNIT_TOKENS.RADIAN
     },
     recommendedOutputPresetIds: ["angle:process-radian", "angle:annotation-symbol"]
   }),
@@ -1179,7 +1179,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Architectural turning angle for stairs, ramps, or handrail transitions.",
     input: {
       value: 45,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-symbol", "angle:slope-symbol"]
   }),
@@ -1191,7 +1191,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Roof truss slope 4 in 12 = 18.43° — common residential slope.",
     input: {
       value: 18.43,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:slope-symbol", "angle:annotation-degree"]
   }),
@@ -1203,7 +1203,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Roof truss slope 6 in 12 = 26.57° — steep slope for snow shedding.",
     input: {
       value: 26.57,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:slope-symbol", "angle:annotation-degree"]
   }),
@@ -1215,7 +1215,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Roof truss slope 12 in 12 = 45° — steep pitch for cathedral ceilings.",
     input: {
       value: 45,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:slope-symbol", "angle:annotation-symbol"]
   }),
@@ -1224,10 +1224,10 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     quantity: QUANTITY_TYPES.ANGLE,
     valueType: VALUE_TYPES.FLOAT,
     name: "Stair Stringer Cut Angle",
-    description: "Typical stair stringer rise/run for 7″ rise × 11″ run = ~32.5° per IBC.",
+    description: "Typical stair stringer rise/run for 7″ rise x 11″ run = ~32.5° per IBC.",
     input: {
       value: 32.5,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:slope-symbol", "angle:annotation-degree"]
   }),
@@ -1239,7 +1239,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ASME conical bottom slope — 60° included angle for hopper bottoms.",
     input: {
       value: 60,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-symbol", "angle:annotation-degree"]
   }),
@@ -1251,7 +1251,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Diagonal brace angle for X-bracing in steel frames — typically 45° or 30-60°.",
     input: {
       value: 45,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-symbol", "angle:slope-symbol"]
   }),
@@ -1263,7 +1263,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Screw conveyor/auger flight pitch angle — typically ~25° for granular materials.",
     input: {
       value: 25,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-degree", "angle:process-radian"]
   }),
@@ -1275,7 +1275,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Angle sum with embedded units — 30 deg + 15 deg.",
     input: {
       value: "=30 deg + 15 deg",
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-degree", "angle:annotation-symbol"]
   }),
@@ -1287,7 +1287,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 90 - 5.",
     input: {
       value: "=90 - 5",
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     },
     recommendedOutputPresetIds: ["angle:annotation-degree", "angle:slope-symbol"]
   }),
@@ -1299,7 +1299,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 1.0472rad.",
     input: {
       value: "1.0472rad",
-      unit: MATHJS_STRINGS.RADIAN
+      unit: UNIT_TOKENS.RADIAN
     },
     recommendedOutputPresetIds: ["angle:process-radian", "angle:annotation-symbol"]
   }),
@@ -1315,7 +1315,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "HVAC room setpoint used in mechanical schedules.",
     input: {
       value: 22,
-      unit: MATHJS_STRINGS.DEGREE_CELSIUS
+      unit: UNIT_TOKENS.DEGREE_CELSIUS
     },
     recommendedOutputPresetIds: ["temperature:celsius-room", "temperature:fahrenheit-room"]
   }),
@@ -1327,7 +1327,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Mechanical chilled water supply temperature for plant and HVAC coordination.",
     input: {
       value: 6,
-      unit: MATHJS_STRINGS.DEGREE_CELSIUS
+      unit: UNIT_TOKENS.DEGREE_CELSIUS
     },
     recommendedOutputPresetIds: ["temperature:celsius-room", "temperature:celsius-process"]
   }),
@@ -1339,7 +1339,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Industrial equipment shell temperature limit — 180 °F for ASME Section VIII Div 1.",
     input: {
       value: 180,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1351,7 +1351,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Process reactor jacket setpoint — 338.15 K (65 °C) for exothermic batch.",
     input: {
       value: 338.15,
-      unit: MATHJS_STRINGS.KELVIN
+      unit: UNIT_TOKENS.KELVIN
     },
     recommendedOutputPresetIds: ["temperature:process-kelvin", "temperature:celsius-process"]
   }),
@@ -1363,7 +1363,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Minimum preheat temperature for 1″ thick A36 steel — 150 °F per AWS D1.1.",
     input: {
       value: 150,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1375,7 +1375,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Maximum interpass temperature for quenched-and-tempered steel — 400 °F per AWS D1.1.",
     input: {
       value: 400,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1387,7 +1387,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Post-weld heat treatment soak temp for carbon steel — 1100 °F per ASME Section VIII.",
     input: {
       value: 1100,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1399,7 +1399,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical cooling supply air temperature — 55 °F (12.8 °C) for AHU.",
     input: {
       value: 55,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1411,7 +1411,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical return air temperature setpoint — 75 °F (23.9 °C) per ASHRAE 55.",
     input: {
       value: 75,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-room"]
   }),
@@ -1423,7 +1423,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Hot water boiler supply — 180 °F (82 °C) for hydronic heating per ASHRAE.",
     input: {
       value: 180,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1435,7 +1435,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Diesel generator coolant operating temp — 195 °F (90 °C).",
     input: {
       value: 195,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1447,7 +1447,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Hot mix asphalt discharge temp — 300 °F (149 °C) per AASHTO specs.",
     input: {
       value: 300,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1459,7 +1459,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard fire sprinkler head activation temp — 155 °F (68 °C) per NFPA 13.",
     input: {
       value: 155,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1471,7 +1471,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Full anneal temp for low-carbon steel — 1600 °F (871 °C) per ASTM A 919.",
     input: {
       value: 1600,
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1483,7 +1483,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 22 + 8.",
     input: {
       value: "=22 + 8",
-      unit: MATHJS_STRINGS.DEGREE_CELSIUS
+      unit: UNIT_TOKENS.DEGREE_CELSIUS
     },
     recommendedOutputPresetIds: ["temperature:celsius-room", "temperature:celsius-process"]
   }),
@@ -1495,7 +1495,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 180degF.",
     input: {
       value: "180degF",
-      unit: MATHJS_STRINGS.DEGREE_FAHRENHEIT
+      unit: UNIT_TOKENS.DEGREE_FAHRENHEIT
     },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
@@ -1511,7 +1511,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Assembly mass for coordination, transportation, and lifting checks.",
     input: {
       value: 12.5,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram"]
   }),
@@ -1523,7 +1523,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Industrial valve mass used in supports, handling, and procurement schedules.",
     input: {
       value: 48.3,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram", "mass:shipping-kilogram"]
   }),
@@ -1535,7 +1535,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Installation logistics mass for electrical packages and site planning.",
     input: {
       value: 520,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:shipping-kilogram", "mass:rigging-kilogram"]
   }),
@@ -1547,7 +1547,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Skid package mass for rigging, transport, and structural support checks.",
     input: {
       value: 1840,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:shipping-kilogram", "mass:rigging-kilogram"]
   }),
@@ -1555,11 +1555,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "mass:steel-beam-w8x10",
     quantity: QUANTITY_TYPES.MASS,
     valueType: VALUE_TYPES.FLOAT,
-    name: "W8×10 Beam Mass per Foot",
-    description: "AISC W8×10 weight — 10 lb/ft (14.9 kg/m) for structural steel takeoff.",
+    name: "W8x10 Beam Mass per Foot",
+    description: "AISC W8x10 weight — 10 lb/ft (14.9 kg/m) for structural steel takeoff.",
     input: {
       value: 14.9,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram"]
   }),
@@ -1567,11 +1567,11 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     id: "mass:steel-beam-w12x26",
     quantity: QUANTITY_TYPES.MASS,
     valueType: VALUE_TYPES.FLOAT,
-    name: "W12×26 Beam Mass per Foot",
-    description: "AISC W12×26 weight — 26 lb/ft (38.7 kg/m) for structural steel takeoff.",
+    name: "W12x26 Beam Mass per Foot",
+    description: "AISC W12x26 weight — 26 lb/ft (38.7 kg/m) for structural steel takeoff.",
     input: {
       value: 38.7,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram", "mass:shipping-kilogram"]
   }),
@@ -1583,7 +1583,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #4 rebar (1/2″) — 0.668 lb/ft = 0.994 kg/m per ASTM A615.",
     input: {
       value: 0.994,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram"]
   }),
@@ -1595,7 +1595,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "US #8 rebar (1″) — 2.670 lb/ft = 3.973 kg/m.",
     input: {
       value: 3.973,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram", "mass:shipping-kilogram"]
   }),
@@ -1607,7 +1607,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "NPS 2″ Schedule 40 — 3.653 lb/ft (5.44 kg/m) per ASME B36.10.",
     input: {
       value: 5.44,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram"]
   }),
@@ -1616,10 +1616,10 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     quantity: QUANTITY_TYPES.MASS,
     valueType: VALUE_TYPES.FLOAT,
     name: "3/4″ Wire Rope Weight per ft",
-    description: "6×19 IWRC wire rope — 3/4″ dia = 1.53 lb/ft (2.28 kg/m) per API 9A.",
+    description: "6x19 IWRC wire rope — 3/4″ dia = 1.53 lb/ft (2.28 kg/m) per API 9A.",
     input: {
       value: 2.28,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram"]
   }),
@@ -1631,7 +1631,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Normal weight concrete — 2400 kg/m³ per ACI 318.",
     input: {
       value: 2400,
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:shipping-kilogram"]
   }),
@@ -1643,7 +1643,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 12.5 + 48.3 + 520.",
     input: {
       value: "=12.5 + 48.3 + 520",
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:schedule-kilogram", "mass:shipping-kilogram"]
   }),
@@ -1655,7 +1655,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 520kg.",
     input: {
       value: "520kg",
-      unit: MATHJS_STRINGS.KILOGRAM
+      unit: UNIT_TOKENS.KILOGRAM
     },
     recommendedOutputPresetIds: ["mass:shipping-kilogram", "mass:rigging-kilogram"]
   }),
@@ -1671,7 +1671,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Factored anchor load for structural detailing and reports.",
     input: {
       value: 18,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton"]
   }),
@@ -1683,7 +1683,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Structural reaction used in baseplate, grout, and anchor sizing checks.",
     input: {
       value: 125,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1695,7 +1695,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Equipment actuator thrust typically checked in Newtons for industrial packages.",
     input: {
       value: 3500,
-      unit: MATHJS_STRINGS.NEWTON
+      unit: UNIT_TOKENS.NEWTON
     },
     recommendedOutputPresetIds: ["force:equipment-newton", "force:structural-kilonewton"]
   }),
@@ -1707,7 +1707,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Rigging verification load for lifting lugs and temporary erection conditions.",
     input: {
       value: 42.5,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:loadcase-kilonewton", "force:structural-kilonewton"]
   }),
@@ -1719,7 +1719,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ASTM A325 3/4″ bolt minimum pretension — 28 kips (124.5 kN) per RCSC / AISC.",
     input: {
       value: 124.5,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1731,7 +1731,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ASTM A325 7/8″ bolt minimum pretension — 39 kips (173.5 kN) per RCSC.",
     input: {
       value: 173.5,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1743,7 +1743,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Bridle cable tension for suspended loads — 10 kips (44.5 kN) typical lift.",
     input: {
       value: 44.5,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1755,7 +1755,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Wind load reaction at base for 30 ft building column — 15 kN per ASCE 7.",
     input: {
       value: 15,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1767,7 +1767,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Seismic base shear for 3-story steel frame per ASCE 7 — 250 kN.",
     input: {
       value: 250,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:loadcase-kilonewton", "force:structural-kilonewton"]
   }),
@@ -1779,7 +1779,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Mobile crane lifting capacity — 50 ton (445 kN) at minimum radius.",
     input: {
       value: 445,
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1791,7 +1791,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 125 + 18 + 42.5.",
     input: {
       value: "=125 + 18 + 42.5",
-      unit: MATHJS_STRINGS.KILONEWTON
+      unit: UNIT_TOKENS.KILONEWTON
     },
     recommendedOutputPresetIds: ["force:structural-kilonewton", "force:loadcase-kilonewton"]
   }),
@@ -1803,7 +1803,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 3500N.",
     input: {
       value: "3500N",
-      unit: MATHJS_STRINGS.NEWTON
+      unit: UNIT_TOKENS.NEWTON
     },
     recommendedOutputPresetIds: ["force:equipment-newton", "force:structural-kilonewton"]
   }),
@@ -1819,7 +1819,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Static pressure point for HVAC coordination and balancing.",
     input: {
       value: 250,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
@@ -1831,7 +1831,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Industrial pumping discharge pressure for piping and rotating equipment coordination.",
     input: {
       value: 8.5,
-      unit: MATHJS_STRINGS.BAR
+      unit: UNIT_TOKENS.BAR
     },
     recommendedOutputPresetIds: ["pressure:piping-bar", "pressure:vessel-megapascal"]
   }),
@@ -1843,7 +1843,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Pressure vessel or skid design pressure per ASME Section VIII Div 1.",
     input: {
       value: 1.6,
-      unit: MATHJS_STRINGS.MEGAPASCAL
+      unit: UNIT_TOKENS.MEGAPASCAL
     },
     recommendedOutputPresetIds: ["pressure:vessel-megapascal", "pressure:piping-bar"]
   }),
@@ -1855,7 +1855,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plant utility pressure for pneumatic systems and distribution headers.",
     input: {
       value: 690,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
@@ -1867,7 +1867,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical municipal water main — 60 psi (414 kPa) per AWWA standards.",
     input: {
       value: 414,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
@@ -1879,7 +1879,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical passenger tire inflation — 32 psi (220 kPa) per DOT specs.",
     input: {
       value: 220,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
@@ -1891,7 +1891,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Fan static pressure — 2.0 in w.g. = 498 Pa per ASHRAE.",
     input: {
       value: 498,
-      unit: MATHJS_STRINGS.PASCAL
+      unit: UNIT_TOKENS.PASCAL
     },
     recommendedOutputPresetIds: ["pressure:instrumentation-pascal", "pressure:hvac-kilopascal"]
   }),
@@ -1903,7 +1903,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Pump discharge head — 100 ft water column = 298.9 kPa (43.4 psi) per HI.",
     input: {
       value: 298.9,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:piping-bar", "pressure:hvac-kilopascal"]
   }),
@@ -1915,7 +1915,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ASCE 7 wind pressure at 100 mph exposure C — 25.6 psf (1.225 kPa).",
     input: {
       value: 1.225,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:instrumentation-pascal"]
   }),
@@ -1927,7 +1927,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Allowable soil bearing — 3,000 psf (143.6 kPa) for medium sand/clay per IBC.",
     input: {
       value: 143.6,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal"]
   }),
@@ -1939,7 +1939,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ANSI/ASME B16.5 Class 150 flange rating — 285 psi (1.96 MPa) at 100 °F.",
     input: {
       value: 1.96,
-      unit: MATHJS_STRINGS.MEGAPASCAL
+      unit: UNIT_TOKENS.MEGAPASCAL
     },
     recommendedOutputPresetIds: ["pressure:vessel-megapascal", "pressure:piping-bar"]
   }),
@@ -1951,7 +1951,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ANSI/ASME B16.5 Class 300 flange rating — 740 psi (5.1 MPa) at 100 °F.",
     input: {
       value: 5.1,
-      unit: MATHJS_STRINGS.MEGAPASCAL
+      unit: UNIT_TOKENS.MEGAPASCAL
     },
     recommendedOutputPresetIds: ["pressure:vessel-megapascal", "pressure:piping-bar"]
   }),
@@ -1963,7 +1963,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Minimum residual hydrant pressure — 20 psi (138 kPa) per NFPA 24.",
     input: {
       value: 138,
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
@@ -1975,7 +1975,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Pressure sum with embedded units — 1.6 MPa + 0.5 bar.",
     input: {
       value: "=1.6 MPa + 0.5 bar",
-      unit: MATHJS_STRINGS.MEGAPASCAL
+      unit: UNIT_TOKENS.MEGAPASCAL
     },
     recommendedOutputPresetIds: ["pressure:vessel-megapascal", "pressure:piping-bar"]
   }),
@@ -1987,7 +1987,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 250 + 690.",
     input: {
       value: "=250 + 690",
-      unit: MATHJS_STRINGS.KILOPASCAL
+      unit: UNIT_TOKENS.KILOPASCAL
     },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
@@ -1999,7 +1999,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 8.5bar.",
     input: {
       value: "8.5bar",
-      unit: MATHJS_STRINGS.BAR
+      unit: UNIT_TOKENS.BAR
     },
     recommendedOutputPresetIds: ["pressure:piping-bar", "pressure:vessel-megapascal"]
   }),
@@ -2015,7 +2015,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Duration-driven parameter for fire assemblies and curing windows.",
     input: {
       value: 120,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:schedule-hour", "time:coordination-minute"]
   }),
@@ -2027,7 +2027,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Concrete curing or waiting window used in planning and execution sequences.",
     input: {
       value: 72,
-      unit: MATHJS_STRINGS.HOUR
+      unit: UNIT_TOKENS.HOUR
     },
     recommendedOutputPresetIds: ["time:schedule-hour", "time:curing-hour"]
   }),
@@ -2039,7 +2039,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Industrial coating dwell or flash-off time for QA and production instructions.",
     input: {
       value: 45,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2051,7 +2051,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Shutdown or maintenance duration used in industrial planning and site coordination.",
     input: {
       value: 8,
-      unit: MATHJS_STRINGS.HOUR
+      unit: UNIT_TOKENS.HOUR
     },
     recommendedOutputPresetIds: ["time:schedule-hour", "time:curing-hour"]
   }),
@@ -2063,7 +2063,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Arc-on time per weld pass — 3.5 minutes for a 1/4″ fillet 6″ long.",
     input: {
       value: 3.5,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2075,7 +2075,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard 1-hour fire-resistance rated assembly per IBC Table 721 / ASTM E119.",
     input: {
       value: 60,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2087,7 +2087,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard 2-hour fire-resistance rated floor/ceiling assembly per ASTM E119.",
     input: {
       value: 120,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2099,7 +2099,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Alkyd enamel dry-to-touch time at 77 °F — 6 hours per manufacturer.",
     input: {
       value: 6,
-      unit: MATHJS_STRINGS.HOUR
+      unit: UNIT_TOKENS.HOUR
     },
     recommendedOutputPresetIds: ["time:schedule-hour", "time:curing-hour"]
   }),
@@ -2111,7 +2111,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Non-shrink grout initial set time — 30 minutes per ASTM C1107.",
     input: {
       value: 30,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2123,7 +2123,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Type S mortar initial set — 2.5 hours per ASTM C270.",
     input: {
       value: 150,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2135,7 +2135,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "HMA cooldown to rolling temp (175 °F) — 20 minutes per AASHTO.",
     input: {
       value: 20,
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2147,7 +2147,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula without embedded units — 120 + 72 + 45.",
     input: {
       value: "=120 + 72 + 45",
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2159,7 +2159,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Duration sum with embedded units — 3 days + 8 h.",
     input: {
       value: "=3 days + 8 h",
-      unit: MATHJS_STRINGS.HOUR
+      unit: UNIT_TOKENS.HOUR
     },
     recommendedOutputPresetIds: ["time:schedule-hour", "time:curing-hour"]
   }),
@@ -2171,7 +2171,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Numeric value with inline unit suffix — 45min.",
     input: {
       value: "45min",
-      unit: MATHJS_STRINGS.MINUTE
+      unit: UNIT_TOKENS.MINUTE
     },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
@@ -2187,7 +2187,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Plain numeric formula — =85 (percentual).",
     input: {
       value: "=85",
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:process-percent"]
   }),
@@ -2199,7 +2199,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Control valve opening percentage used in industrial operations dashboards.",
     input: {
       value: 85,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:process-percent"]
   }),
@@ -2211,7 +2211,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Equipment utilization ratio for AEC operations and industrial dashboards.",
     input: {
       value: 73.5,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -2223,7 +2223,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "AEC and clean-room humidity target used in controls and commissioning views.",
     input: {
       value: 55,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:utilization-percent"]
   }),
@@ -2235,7 +2235,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Production and commissioning yield indicator tracked as a percentage.",
     input: {
       value: 92.3,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -2247,7 +2247,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "ADA maximum ramp slope — 1:12 = 8.33% for accessible routes per 2010 ADA Standards.",
     input: {
       value: 8.33,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -2259,7 +2259,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Standard parking lot cross-slope — 2% (1/4″ per foot) per IBC.",
     input: {
       value: 2,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -2271,7 +2271,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Water-cement ratio for 4000 psi concrete mix — 0.45 per ACI 318.",
     input: {
       value: 45,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -2280,10 +2280,10 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.FLOAT,
     name: "Reinforcement Ratio (ρ)",
-    description: "Steel reinforcement ratio for 24×24 beam — 1.2% per ACI 318.",
+    description: "Steel reinforcement ratio for 24x24 beam — 1.2% per ACI 318.",
     input: {
       value: 1.2,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -2295,7 +2295,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Typical sand void ratio — 0.45 (45%) per geotechnical CPT data.",
     input: {
       value: 45,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent"]
   }),
@@ -2307,7 +2307,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "NEMA Premium IE3 motor efficiency at full load — 95.4%.",
     input: {
       value: 95.4,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:utilization-percent", "ratio:process-percent"]
   }),
@@ -2319,7 +2319,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Office space ventilation — 4 ACH per ASHRAE 62.1.",
     input: {
       value: 4,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -2331,7 +2331,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Propylene glycol freeze protection for hydronic loop — 30% by volume.",
     input: {
       value: 30,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -2343,7 +2343,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Fire/smoke damper open position feedback — 100% open = normal operation.",
     input: {
       value: 100,
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:process-percent"]
   }),
@@ -2355,7 +2355,7 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
     description: "Ratio formula — 250 / 300 * 100 (%) = 83.3%.",
     input: {
       value: "=250 / 300 * 100",
-      unit: MATHJS_STRINGS.PERCENT
+      unit: UNIT_TOKENS.PERCENT
     },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   })

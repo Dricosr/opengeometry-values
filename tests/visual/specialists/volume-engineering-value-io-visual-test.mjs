@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,36 +8,36 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
       {
         value: 3000,
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.CUBIC_CENTIMETER,
-        outputUnit: MATHJS_STRINGS.CUBIC_CENTIMETER,
+        unit: UNIT_TOKENS.CUBIC_CENTIMETER,
+        outputUnit: UNIT_TOKENS.CUBIC_CENTIMETER,
         precision: 0
       },
       {
         value: 0.003,
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.CUBIC_METER,
-        outputUnit: MATHJS_STRINGS.CUBIC_CENTIMETER,
+        unit: UNIT_TOKENS.CUBIC_METER,
+        outputUnit: UNIT_TOKENS.CUBIC_CENTIMETER,
         precision: 0
       },
       {
         value: 50000,
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.LITER,
-        outputUnit: MATHJS_STRINGS.LITER,
+        unit: UNIT_TOKENS.LITER,
+        outputUnit: UNIT_TOKENS.LITER,
         precision: 0
       },
       {
         value: 18.75,
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.CUBIC_METER,
-        outputUnit: MATHJS_STRINGS.LITER,
+        unit: UNIT_TOKENS.CUBIC_METER,
+        outputUnit: UNIT_TOKENS.LITER,
         precision: 0
       },
       {
         value: "=1 m^3 + 500 L",
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.CUBIC_METER,
-        outputUnit: MATHJS_STRINGS.LITER,
+        unit: UNIT_TOKENS.CUBIC_METER,
+        outputUnit: UNIT_TOKENS.LITER,
         precision: 0
       }
     ];
@@ -93,12 +93,12 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
       {
         value: "3,000",
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.CUBIC_CENTIMETER
+        unit: UNIT_TOKENS.CUBIC_CENTIMETER
       },
       {
         value: 3000,
         quantity: QUANTITY_TYPES.VOLUME,
-        unit: MATHJS_STRINGS.SQUARE_CENTIMETER
+        unit: UNIT_TOKENS.SQUARE_CENTIMETER
       }
     ];
   }

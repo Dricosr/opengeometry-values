@@ -44,7 +44,9 @@
       "Bash(node -e \"console.log\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json'\\)\\).version\\)\")",
       "Bash(gh repo *)",
       "Bash(git remote *)",
-      "Bash(node -p \"require\\('./package.json'\\).version\")"
+      "Bash(node -p \"require\\('./package.json'\\).version\")",
+      "Bash(powershell -Command \"cd 'e:/Cloud/Git/iforge_edp/values'; npx vitest run 2>&1\")",
+      "Bash(powershell -Command ' *)"
     ]
   }
 }

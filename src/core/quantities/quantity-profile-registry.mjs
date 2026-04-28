@@ -1,5 +1,5 @@
-import { ReadOnlyCatalog } from "../base/read-only-catalog.mjs";
-import { MATHJS_STRINGS } from "../../constants/mathjs-string-catalog.mjs";
+﻿import { ReadOnlyCatalog } from "../base/read-only-catalog.mjs";
+import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { AngleQuantityProfile } from "./angle-quantity-profile.mjs";
 import { AreaQuantityProfile } from "./area-quantity-profile.mjs";
@@ -27,7 +27,7 @@ const quantityProfiles = Object.freeze({
   [QUANTITY_TYPES.TIME]: new TimeQuantityProfile(),
   [QUANTITY_TYPES.RATIO]: new SimpleQuantityProfile({
     quantityType: QUANTITY_TYPES.RATIO,
-    supportedUnits: [MATHJS_STRINGS.PERCENT]
+    supportedUnits: [UNIT_TOKENS.PERCENT]
   })
 });
 

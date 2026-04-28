@@ -1,6 +1,6 @@
 import { OUTPUT_AFFIX_TYPES } from "../../constants/output-affix-types.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
-import { DOMAIN_STRINGS } from "../../constants/domain-string-catalog.mjs";
+import { DOMAIN } from "../../constants/domain-catalog.mjs";
 import { BASE_VALUES } from "../../constants/base-value-catalog.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
 import { baseNumericValueFormatter } from "../formatters/base-numeric-value-formatter.mjs";
@@ -194,7 +194,7 @@ export class Output {
     }
 
     if (this.suffix.type === OUTPUT_AFFIX_TYPES.UNIT_CODE || this.suffix.type === OUTPUT_AFFIX_TYPES.UNIT_SYMBOL) {
-      return `${DOMAIN_STRINGS.SPACE}${suffixText}`;
+      return `${DOMAIN.SPACE}${suffixText}`;
     }
 
     return suffixText;

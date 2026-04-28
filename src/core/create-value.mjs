@@ -1,5 +1,5 @@
-import { DOMAIN_STRINGS } from "../constants/domain-string-catalog.mjs";
-import { MATHJS_STRINGS } from "../constants/mathjs-string-catalog.mjs";
+﻿import { DOMAIN } from "../constants/domain-catalog.mjs";
+import { UNIT_TOKENS } from "../constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../constants/value-types.mjs";
 import { internalResolutionApplier } from "./apply-internal-resolution.mjs";
@@ -97,9 +97,9 @@ export class ValueFactory {
 
     if (valueType === VALUE_TYPES.INTEGER && !Number.isInteger(numericValue)) {
       throw this.createInputError({
-        code: DOMAIN_STRINGS.ERROR_CODE_INVALID_INTEGER_VALUE,
-        field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
-        message: `${DOMAIN_STRINGS.ERROR_INVALID_INTEGER_VALUE_PREFIX}: ${value}`,
+        code: DOMAIN.ERROR_CODE_INVALID_INTEGER_VALUE,
+        field: DOMAIN.ERROR_FIELD_VALUE,
+        message: `${DOMAIN.ERROR_INVALID_INTEGER_VALUE_PREFIX}: ${value}`,
         value,
         valueType,
         quantity: resolvedQuantity,
@@ -203,7 +203,7 @@ export class ValueFactory {
       return false;
     }
     // Must have unit "in" or no unit (unit coming from context)
-    return !unit || unit === MATHJS_STRINGS.INCH || unit === QUANTITY_TYPES.NONE;
+    return !unit || unit === UNIT_TOKENS.INCH || unit === QUANTITY_TYPES.NONE;
   }
 
   tryFractionalInch(value) {
@@ -229,13 +229,13 @@ export class ValueFactory {
       parsed = this.formulaParser.parseWithUnit(value);
     } catch (error) {
       throw this.normalizeInputError(error, {
-        code: DOMAIN_STRINGS.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
-        field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+        code: DOMAIN.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
+        field: DOMAIN.ERROR_FIELD_VALUE,
         value,
         valueType,
         quantity,
         unit,
-        fallbackMessage: `${DOMAIN_STRINGS.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`
+        fallbackMessage: `${DOMAIN.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`
       });
     }
 
@@ -248,9 +248,9 @@ export class ValueFactory {
         numericValue = parsed.mathjsUnit.toNumber(internalUnit);
       } catch {
         throw this.createInputError({
-          code: DOMAIN_STRINGS.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
-          field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
-          message: `${DOMAIN_STRINGS.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`,
+          code: DOMAIN.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
+          field: DOMAIN.ERROR_FIELD_VALUE,
+          message: `${DOMAIN.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`,
           value,
           valueType,
           quantity,
@@ -260,9 +260,9 @@ export class ValueFactory {
 
       if (!isFinite(numericValue)) {
         throw this.createInputError({
-          code: DOMAIN_STRINGS.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
-          field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
-          message: `${DOMAIN_STRINGS.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`,
+          code: DOMAIN.ERROR_CODE_INVALID_FORMULA_EXPRESSION,
+          field: DOMAIN.ERROR_FIELD_VALUE,
+          message: `${DOMAIN.ERROR_INVALID_FORMULA_EXPRESSION_PREFIX}: ${value}`,
           value,
           valueType,
           quantity,
@@ -295,13 +295,13 @@ export class ValueFactory {
       return { numericValue: parsed.value, inputValue: value, effectiveUnit: parsed.unit, hasEmbeddedUnits: false, isFractionalInput: false };
     } catch (error) {
       throw this.normalizeInputError(error, {
-        code: DOMAIN_STRINGS.ERROR_CODE_INVALID_NUMERIC_VALUE,
-        field: DOMAIN_STRINGS.ERROR_FIELD_VALUE,
+        code: DOMAIN.ERROR_CODE_INVALID_NUMERIC_VALUE,
+        field: DOMAIN.ERROR_FIELD_VALUE,
         value,
         valueType,
         quantity,
         unit,
-        fallbackMessage: `${DOMAIN_STRINGS.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${value}`
+        fallbackMessage: `${DOMAIN.ERROR_INVALID_NUMERIC_VALUE_PREFIX}: ${value}`
       });
     }
   }
@@ -337,15 +337,15 @@ export class ValueFactory {
 
     const isKnownUnit = this.converter.isKnownUnit(unit);
     const code = isKnownUnit
-      ? DOMAIN_STRINGS.ERROR_CODE_UNSUPPORTED_INPUT_UNIT
-      : DOMAIN_STRINGS.ERROR_CODE_UNKNOWN_INPUT_UNIT;
+      ? DOMAIN.ERROR_CODE_UNSUPPORTED_INPUT_UNIT
+      : DOMAIN.ERROR_CODE_UNKNOWN_INPUT_UNIT;
     const prefix = isKnownUnit
-      ? DOMAIN_STRINGS.ERROR_UNSUPPORTED_INPUT_UNIT_PREFIX
-      : DOMAIN_STRINGS.ERROR_UNKNOWN_INPUT_UNIT_PREFIX;
+      ? DOMAIN.ERROR_UNSUPPORTED_INPUT_UNIT_PREFIX
+      : DOMAIN.ERROR_UNKNOWN_INPUT_UNIT_PREFIX;
 
     throw this.createInputError({
       code,
-      field: DOMAIN_STRINGS.ERROR_FIELD_UNIT,
+      field: DOMAIN.ERROR_FIELD_UNIT,
       message: `${prefix}: ${unit}`,
       value,
       valueType,
@@ -376,11 +376,11 @@ export class ValueFactory {
       return error;
     }
 
-    const message = error instanceof Error ? error.message : `${DOMAIN_STRINGS.ERROR_INCOMPATIBLE_INPUT_UNIT_PREFIX}: ${quantity}`;
+    const message = error instanceof Error ? error.message : `${DOMAIN.ERROR_INCOMPATIBLE_INPUT_UNIT_PREFIX}: ${quantity}`;
 
     return this.createInputError({
-      code: DOMAIN_STRINGS.ERROR_CODE_INCOMPATIBLE_INPUT_UNIT,
-      field: DOMAIN_STRINGS.ERROR_FIELD_UNIT,
+      code: DOMAIN.ERROR_CODE_INCOMPATIBLE_INPUT_UNIT,
+      field: DOMAIN.ERROR_FIELD_UNIT,
       message,
       value,
       valueType,

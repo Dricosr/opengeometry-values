@@ -1,9 +1,9 @@
-import { DOMAIN_STRINGS } from "../../constants/domain-string-catalog.mjs";
+import { DOMAIN } from "../../constants/domain-catalog.mjs";
 
 const TRUE_VALUES = Object.freeze([
-  DOMAIN_STRINGS.BOOLEAN_TRUE,
-  DOMAIN_STRINGS.BOOLEAN_YES,
-  DOMAIN_STRINGS.BOOLEAN_ONE
+  DOMAIN.BOOLEAN_TRUE,
+  DOMAIN.BOOLEAN_YES,
+  DOMAIN.BOOLEAN_ONE
 ]);
 
 export class BooleanTextParser {

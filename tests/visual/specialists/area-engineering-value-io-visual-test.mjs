@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../../src/constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../../src/constants/quantity-types.mjs";
 import { EngineeringValueIoVisualTestBase } from "../support/engineering-value-io-visual-test-base.mjs";
 
@@ -8,22 +8,22 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
       {
         value: 20000,
         quantity: QUANTITY_TYPES.AREA,
-        unit: MATHJS_STRINGS.SQUARE_CENTIMETER,
-        outputUnit: MATHJS_STRINGS.SQUARE_METER,
+        unit: UNIT_TOKENS.SQUARE_CENTIMETER,
+        outputUnit: UNIT_TOKENS.SQUARE_METER,
         precision: 2
       },
       {
         value: 2,
         quantity: QUANTITY_TYPES.AREA,
-        unit: MATHJS_STRINGS.SQUARE_METER,
-        outputUnit: MATHJS_STRINGS.SQUARE_CENTIMETER,
+        unit: UNIT_TOKENS.SQUARE_METER,
+        outputUnit: UNIT_TOKENS.SQUARE_CENTIMETER,
         precision: 0
       },
       {
         value: "=2 m^2 + 5000 cm^2",
         quantity: QUANTITY_TYPES.AREA,
-        unit: MATHJS_STRINGS.SQUARE_METER,
-        outputUnit: MATHJS_STRINGS.SQUARE_METER,
+        unit: UNIT_TOKENS.SQUARE_METER,
+        outputUnit: UNIT_TOKENS.SQUARE_METER,
         precision: 2
       }
     ];
@@ -63,12 +63,12 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
       {
         value: "20 000",
         quantity: QUANTITY_TYPES.AREA,
-        unit: MATHJS_STRINGS.SQUARE_CENTIMETER
+        unit: UNIT_TOKENS.SQUARE_CENTIMETER
       },
       {
         value: 20,
         quantity: QUANTITY_TYPES.AREA,
-        unit: MATHJS_STRINGS.METER
+        unit: UNIT_TOKENS.METER
       }
     ];
   }

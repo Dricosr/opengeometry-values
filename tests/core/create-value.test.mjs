@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { MATHJS_STRINGS } from "../../src/constants/mathjs-string-catalog.mjs";
+﻿import { describe, expect, it } from "vitest";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { createValue, tryCreateValue } from "../../src/core/create-value.mjs";
@@ -41,21 +41,21 @@ describe("createValue", () => {
       value: 2002,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     });
 
     expect(value.input.value).toBe(2002);
-    expect(value.input.unit).toBe(MATHJS_STRINGS.MILLIMETER);
+    expect(value.input.unit).toBe(UNIT_TOKENS.MILLIMETER);
     expect(value.input.quantity).toBe(QUANTITY_TYPES.LENGTH);
     expect(value.input.internal).toBe(value.internal);
-    expect(value.input.output.unit).toBe(MATHJS_STRINGS.MILLIMETER);
-    expect(value.internal).toEqual({ value: 2.002, unit: MATHJS_STRINGS.METER });
+    expect(value.input.output.unit).toBe(UNIT_TOKENS.MILLIMETER);
+    expect(value.internal).toEqual({ value: 2.002, unit: UNIT_TOKENS.METER });
   });
 
   it("attaches a typed output with affix ids to the input", () => {
     const output = new Output({
       id: "output:length:display",
-      unit: MATHJS_STRINGS.METER,
+      unit: UNIT_TOKENS.METER,
       precision: 0,
       prefix: new CustomOutputAffix({
         id: "prefix:approx",
@@ -72,7 +72,7 @@ describe("createValue", () => {
       value: 2002,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER,
+      unit: UNIT_TOKENS.MILLIMETER,
       output
     });
 
@@ -96,7 +96,7 @@ describe("createValue", () => {
       value: "10,5",
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     });
 
     expect(result.ok).toBe(false);
@@ -108,7 +108,7 @@ describe("createValue", () => {
       value: "10,5",
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     });
   });
 
@@ -117,7 +117,7 @@ describe("createValue", () => {
       value: 90,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.DEGREE
+      unit: UNIT_TOKENS.DEGREE
     });
 
     expect(result.ok).toBe(false);

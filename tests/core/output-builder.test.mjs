@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { MATHJS_STRINGS } from "../../src/constants/mathjs-string-catalog.mjs";
+﻿import { describe, expect, it } from "vitest";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../src/constants/output-suffix-modes.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
@@ -16,18 +16,18 @@ describe("outputBuilder", () => {
       value: 90,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.ANGLE,
-      unit: MATHJS_STRINGS.DEGREE,
+      unit: UNIT_TOKENS.DEGREE,
       output: built.output
     });
 
-    expect(built.config.unit).toBe(MATHJS_STRINGS.DEGREE);
+    expect(built.config.unit).toBe(UNIT_TOKENS.DEGREE);
     expect(built.config.suffixMode).toBe(OUTPUT_SUFFIX_MODES.SYMBOL);
     expect(value.input.formatForDisplay()).toBe("90°");
   });
 
   it("supports direct overrides for custom prefixes and suffixes", () => {
     const built = outputBuilder.build({
-      unit: MATHJS_STRINGS.MEGAPASCAL,
+      unit: UNIT_TOKENS.MEGAPASCAL,
       precision: 2,
       prefix: "~ ",
       suffix: " MPa(g)",
@@ -39,7 +39,7 @@ describe("outputBuilder", () => {
       value: 250000,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.PRESSURE,
-      unit: MATHJS_STRINGS.PASCAL,
+      unit: UNIT_TOKENS.PASCAL,
       output: built.output
     });
 
@@ -55,7 +55,7 @@ describe("outputBuilder", () => {
       value: 168.3,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER,
+      unit: UNIT_TOKENS.MILLIMETER,
       output: builtMm.output
     });
 
@@ -70,7 +70,7 @@ describe("outputBuilder", () => {
       value: 0.508,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.METER,
+      unit: UNIT_TOKENS.METER,
       output: builtMeter.output
     });
 
@@ -85,7 +85,7 @@ describe("outputBuilder", () => {
       value: 2.5,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.INCH,
+      unit: UNIT_TOKENS.INCH,
       output: builtInch.output
     });
 

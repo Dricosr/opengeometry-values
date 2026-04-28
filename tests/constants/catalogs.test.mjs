@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { MATHJS_STRINGS, mathJsStringCatalog } from "../../src/constants/mathjs-string-catalog.mjs";
+﻿import { describe, expect, it } from "vitest";
+import { UNIT_TOKENS, unitTokenCatalog, UnitTokenCatalog } from "../../src/constants/unit-token-catalog.mjs";
 import { INTERNAL_RESOLUTION } from "../../src/constants/internal-resolution.mjs";
 import { INTERNAL_UNITS } from "../../src/constants/internal-units.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
@@ -8,10 +8,10 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 describe("catalog specialists", () => {
   it("reuses mathjs strings across internal units and UI symbols", () => {
-    expect(INTERNAL_UNITS[QUANTITY_TYPES.LENGTH]).toBe(MATHJS_STRINGS.METER);
-    expect(INTERNAL_UNITS[QUANTITY_TYPES.AREA]).toBe(MATHJS_STRINGS.SQUARE_METER);
-    expect(UNIT_SYMBOLS[MATHJS_STRINGS.INCH]).toBe("in");
-    expect(UNIT_SYMBOLS[MATHJS_STRINGS.DEGREE_CELSIUS]).toBe("°C");
+    expect(INTERNAL_UNITS[QUANTITY_TYPES.LENGTH]).toBe(UNIT_TOKENS.METER);
+    expect(INTERNAL_UNITS[QUANTITY_TYPES.AREA]).toBe(UNIT_TOKENS.SQUARE_METER);
+    expect(UNIT_SYMBOLS[UNIT_TOKENS.INCH]).toBe("in");
+    expect(UNIT_SYMBOLS[UNIT_TOKENS.DEGREE_CELSIUS]).toBe("°C");
   });
 
   it("exposes frozen domain enumerations", () => {
@@ -23,13 +23,13 @@ describe("catalog specialists", () => {
 
   it("keeps the current length internal resolution in meters", () => {
     expect(INTERNAL_RESOLUTION[QUANTITY_TYPES.LENGTH]).toEqual({
-      unit: MATHJS_STRINGS.METER,
+      unit: UNIT_TOKENS.METER,
       step: 0.000001
     });
   });
 
   it("provides specialist catalog lookup helpers", () => {
-    expect(mathJsStringCatalog.has("MILLIMETER")).toBe(true);
-    expect(mathJsStringCatalog.get("MILLIMETER")).toBe(MATHJS_STRINGS.MILLIMETER);
+    expect(unitTokenCatalog.has("MILLIMETER")).toBe(true);
+    expect(unitTokenCatalog.get("MILLIMETER")).toBe(UNIT_TOKENS.MILLIMETER);
   });
 });

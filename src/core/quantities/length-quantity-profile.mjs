@@ -1,4 +1,4 @@
-import { MATHJS_STRINGS } from "../../constants/mathjs-string-catalog.mjs";
+﻿import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { QuantityProfile } from "./quantity-profile.mjs";
 
@@ -6,16 +6,16 @@ export class LengthQuantityProfile extends QuantityProfile {
   constructor() {
     super({
       quantityType: QUANTITY_TYPES.LENGTH,
-      internalUnit: MATHJS_STRINGS.METER,
+      internalUnit: UNIT_TOKENS.METER,
       resolution: Object.freeze({
-        unit: MATHJS_STRINGS.METER,
+        unit: UNIT_TOKENS.METER,
         step: 0.000001
       }),
       supportedUnits: [
-        MATHJS_STRINGS.MILLIMETER,
-        MATHJS_STRINGS.CENTIMETER,
-        MATHJS_STRINGS.METER,
-        MATHJS_STRINGS.INCH
+        UNIT_TOKENS.MILLIMETER,
+        UNIT_TOKENS.CENTIMETER,
+        UNIT_TOKENS.METER,
+        UNIT_TOKENS.INCH
       ]
     });
   }

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { MATHJS_STRINGS } from "../../src/constants/mathjs-string-catalog.mjs";
+﻿import { describe, expect, it } from "vitest";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { createValue } from "../../src/core/create-value.mjs";
@@ -11,11 +11,11 @@ describe("formatEditValue", () => {
       value: 2002,
       valueType: VALUE_TYPES.FLOAT,
       quantity: QUANTITY_TYPES.LENGTH,
-      unit: MATHJS_STRINGS.MILLIMETER
+      unit: UNIT_TOKENS.MILLIMETER
     });
 
     expect(formatEditValue(value, {
-      unit: MATHJS_STRINGS.MILLIMETER,
+      unit: UNIT_TOKENS.MILLIMETER,
       precision: 4
     })).toBe("2002.000");
   });
