@@ -1,6 +1,7 @@
 @.github/copilot-instructions.md
 @.claude/agents/index.md
 @memory/MEMORY.md
+@memory/library-conformance-checklist.md
 
 ## Running tests
 

@@ -9,7 +9,7 @@ export class LengthQuantityProfile extends QuantityProfile {
       internalUnit: MATHJS_STRINGS.METER,
       resolution: Object.freeze({
         unit: MATHJS_STRINGS.METER,
-        step: 0.0001
+        step: 0.000001
       }),
       supportedUnits: [
         MATHJS_STRINGS.MILLIMETER,

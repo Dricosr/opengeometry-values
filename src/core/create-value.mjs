@@ -1,9 +1,11 @@
 import { DOMAIN_STRINGS } from "../constants/domain-string-catalog.mjs";
+import { MATHJS_STRINGS } from "../constants/mathjs-string-catalog.mjs";
 import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../constants/value-types.mjs";
 import { internalResolutionApplier } from "./apply-internal-resolution.mjs";
 import { ValueInputError } from "./errors/value-input-error.mjs";
 import { booleanTextParser } from "./parsers/boolean-text-parser.mjs";
+import { fractionalInchParser } from "./parsers/fractional-inch-parser.mjs";
 import { formulaParser } from "./parsers/formula-parser.mjs";
 import { strictNumberParser } from "./parsers/strict-number-parser.mjs";
 import { unitInputParser } from "./parsers/unit-input-parser.mjs";
@@ -20,6 +22,7 @@ export class ValueFactory {
     booleanParser = booleanTextParser,
     formulaParser: formulaParserArg = formulaParser,
     unitInputParser: unitInputParserArg = unitInputParser,
+    fractionalInchParser: fractionalInchParserArg = fractionalInchParser,
     converter = unitConverter,
     resolutionApplier = internalResolutionApplier,
     quantityProfiles = quantityProfileRegistry
@@ -28,6 +31,7 @@ export class ValueFactory {
     this.booleanParser = booleanParser;
     this.formulaParser = formulaParserArg;
     this.unitInputParser = unitInputParserArg;
+    this.fractionalInchParser = fractionalInchParserArg;
     this.converter = converter;
     this.resolutionApplier = resolutionApplier;
     this.quantityProfiles = quantityProfiles;
@@ -84,7 +88,7 @@ export class ValueFactory {
       });
     }
 
-    const { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits } = this.resolveNumericInput({
+    const { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits, isFractionalInput } = this.resolveNumericInput({
       value,
       valueType,
       quantity: resolvedQuantity,
@@ -161,7 +165,7 @@ export class ValueFactory {
     }
   }
 
-  // Returns { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits }
+  // Returns { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits, isFractionalInput }
   resolveNumericInput({ value, valueType, quantity, unit }) {
     // --- Formula path (starts with =) ---
     if (this.formulaParser.isFormula(value)) {
@@ -172,11 +176,42 @@ export class ValueFactory {
     const strictResult = this.tryStrictNumber(value);
 
     if (strictResult !== null) {
-      return { numericValue: strictResult, inputValue: strictResult, effectiveUnit: unit, hasEmbeddedUnits: false };
+      return { numericValue: strictResult, inputValue: strictResult, effectiveUnit: unit, hasEmbeddedUnits: false, isFractionalInput: false };
+    }
+
+    // --- Fractional inch path ("1 1/4", "1/2", "1-1/4") ---
+    if (this.isPotentialFractionalInchInput(value, unit)) {
+      const fractionalResult = this.tryFractionalInch(value);
+
+      if (fractionalResult !== null) {
+        return { numericValue: fractionalResult, inputValue: value, effectiveUnit: unit, hasEmbeddedUnits: false, isFractionalInput: true };
+      }
     }
 
     // --- Number-with-unit path ("2m", "4000mm", "100 degC") ---
     return this.resolveUnitInput({ value, valueType, quantity, unit });
+  }
+
+  /**
+   * Checks if the input could be a fractional inch value.
+   * Candidates: strings containing "/" (fraction pattern) with unit "in" or no unit.
+   */
+  isPotentialFractionalInchInput(value, unit) {
+    const str = String(value).trim();
+    // Must contain a slash (fraction pattern)
+    if (!str.includes("/")) {
+      return false;
+    }
+    // Must have unit "in" or no unit (unit coming from context)
+    return !unit || unit === MATHJS_STRINGS.INCH || unit === QUANTITY_TYPES.NONE;
+  }
+
+  tryFractionalInch(value) {
+    try {
+      return this.fractionalInchParser.parse(value);
+    } catch {
+      return null;
+    }
   }
 
   tryStrictNumber(value) {
@@ -239,7 +274,8 @@ export class ValueFactory {
         numericValue,
         inputValue: parsed.cleanText,
         effectiveUnit: internalUnit ?? unit,
-        hasEmbeddedUnits: true
+        hasEmbeddedUnits: true,
+        isFractionalInput: false
       };
     }
 
@@ -248,14 +284,15 @@ export class ValueFactory {
       numericValue: parsed.value,
       inputValue: parsed.cleanText,
       effectiveUnit: unit,
-      hasEmbeddedUnits: false
+      hasEmbeddedUnits: false,
+      isFractionalInput: false
     };
   }
 
   resolveUnitInput({ value, valueType, quantity, unit }) {
     try {
       const parsed = this.unitInputParser.parse(value);
-      return { numericValue: parsed.value, inputValue: value, effectiveUnit: parsed.unit, hasEmbeddedUnits: false };
+      return { numericValue: parsed.value, inputValue: value, effectiveUnit: parsed.unit, hasEmbeddedUnits: false, isFractionalInput: false };
     } catch (error) {
       throw this.normalizeInputError(error, {
         code: DOMAIN_STRINGS.ERROR_CODE_INVALID_NUMERIC_VALUE,
@@ -367,8 +404,13 @@ export class ValueFactory {
   }
 
   resolveOutput({ output, outputId, inputUnit, internalValue }) {
-    if (output instanceof Output) {
-      return output;
+    // Accept any output object that has formatDisplay interface (duck typing)
+    // This supports Output, FractionalInchOutput, and other custom output types
+    if (output !== undefined && output !== null) {
+      // Check for Output class instance or any object with id and formatDisplay
+      if (output instanceof Output || (typeof output.formatDisplay === "function" && output.id !== undefined)) {
+        return output;
+      }
     }
 
     const outputUnit = inputUnit !== QUANTITY_TYPES.NONE ? inputUnit : (internalValue.unit ?? QUANTITY_TYPES.NONE);

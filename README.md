@@ -264,6 +264,232 @@ This ensures compatibility with JavaScript, JSON, Math.js, and external APIs.
 
 ---
 
+## Fractional inch I/O (imperial)
+
+The library provides specialized handling for **fractional inches** — the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements.
+
+Fractional inch support follows **ANSI/ASME Y14.5** and **ISO 129-1** standards for dimensioning and tolerancing.
+
+### Denominator categories
+
+The fractional inch system supports four precision tiers — use the one that matches your domain:
+
+| Category | Max denominator | Domain |
+|---|---|---|
+| `CONSTRUCTION` | 1/16 (16) | Piping, lumber, framing, valve sizes |
+| `PRECISION` | 1/32 (32) | Sheet metal, plate thickness |
+| `MACHINING` (default) | 1/64 (64) | Machining, tooling, general fabrication |
+| `FINE` | 1/128 (128) | Tool & die, fine machining, metrology |
+
+### Input formatting: `FractionalInchParser`
+
+Parses fractional inch strings into decimal inches, with strict validation:
+
+```js
+import { FractionalInchParser, FRACTIONAL_INCH_DENOMINATORS } from "@dricosr/opengeometry-values";
+
+const parser = new FractionalInchParser({
+  denominatorCategory: FRACTIONAL_INCH_DENOMINATORS.MACHINING  // default
+});
+
+parser.parse("1 1/4");    // → 1.25   (mixed number, space)
+parser.parse("1-1/4");    // → 1.25   (mixed number, hyphen)
+parser.parse("1/2");      // → 0.5    (pure fraction)
+parser.parse("3/4");      // → 0.75
+parser.parse("2");        // → 2      (integer)
+parser.parse("-1 1/4");   // → -1.25  (negative)
+parser.parse("0");        // → 0
+parser.parse("1.25");     // → 1.25   (decimal fallback)
+
+parser.canParse("1 1/4"); // → true
+parser.canParse("1/3");   // → false  (not power of 2)
+```
+
+**Validation rules enforced:**
+- Denominator **must** be a power of 2 (2, 4, 8, 16, 32, 64, 128)
+- Fraction **must** be proper (numerator < denominator)
+- Numerator and denominator **must** be positive integers
+- Denominator **must** not exceed the category limit
+- Only **one** fraction per input (no `1/2 1/4`)
+- Accepts space (`1 1/4`), hyphen (`1-1/4`), or decimal (`1.25`) interchangeably
+
+```js
+parser.parse("1/3");   // ❌ Error — denominator is not a power of 2
+parser.parse("3/2");   // ❌ Error — improper fraction (numer >= denom)
+parser.parse("1/0");   // ❌ Error — zero denominator
+parser.parse("1/128"); // ❌ Error — exceeds machining max (64)
+parser.parse("abc");   // ❌ Error — non-numeric
+```
+
+### Output formatting: `FractionalInchFormatter`
+
+Converts decimal inch values back to fractional strings, with automatic reduction:
+
+```js
+import { FractionalInchFormatter } from "@dricosr/opengeometry-values";
+
+const formatter = new FractionalInchFormatter(); // default maxDenominator: 64
+
+formatter.decimalToFraction(1.25);     // → "1 1/4"
+formatter.decimalToFraction(0.5);      // → "1/2"
+formatter.decimalToFraction(0.75);     // → "3/4"
+formatter.decimalToFraction(2.375);    // → "2 3/8"     (NPS 2 pipe OD)
+formatter.decimalToFraction(6.625);    // → "6 5/8"     (NPS 6 pipe OD)
+formatter.decimalToFraction(0.0625);   // → "1/16"      (16 ga sheet)
+formatter.decimalToFraction(0.1875);   // → "3/16"      (#10 screw)
+formatter.decimalToFraction(-1.25);    // → "-1 1/4"
+formatter.decimalToFraction(0);        // → "0"
+```
+
+**Custom precision (construction — max 1/16):**
+
+```js
+const construction = new FractionalInchFormatter({ maxDenominator: 16 });
+
+construction.decimalToFraction(0.0625);   // → "1/16"
+construction.decimalToFraction(0.03125);  // → "0"      (1/32 rounds to 0)
+construction.decimalToFraction(0.09375);  // → "1/8"    (3/32 rounds up)
+```
+
+### Full I/O model: `FractionalInchOutput`
+
+Integrates parsing + formatting + unit conversion into the standard `createValue` flow.
+Accepts both **numeric** and **fractional string** inputs:
+
+```js
+import { createValue, FractionalInchOutput, MATHJS_STRINGS, OUTPUT_SUFFIX_MODES } from "@dricosr/opengeometry-values";
+
+// === Input: string fraction ===
+const pipe = createValue({
+  value: "1 1/4",                          // ← fractional string input
+  valueType: "float",
+  quantity: "length",
+  unit: MATHJS_STRINGS.INCH,
+  output: new FractionalInchOutput({
+    id: "nps-1-1-4",
+    prefix: "⌀ "                           // diameter prefix
+  })
+});
+
+pipe.internal;            // { value: 0.03175, unit: "m" }   → 1.25 in = 0.03175 m
+pipe.input.formatForDisplay();  // '⌀ 1 1/4"'
+pipe.input.formatForEdit();     // "1 1/4"
+
+// === Input: numeric decimal ===
+const plate = createValue({
+  value: 0.375,                            // ← numeric input
+  valueType: "float",
+  quantity: "length",
+  unit: MATHJS_STRINGS.INCH,
+  output: new FractionalInchOutput({
+    id: "3-8-plate"
+  })
+});
+
+plate.input.formatForDisplay();   // '3/8"'
+plate.input.formatForEdit();      // "3/8"
+
+// === Input: metric, output: fractional inches ===
+const metricPipe = createValue({
+  value: 762,                              // 762 mm = 30 inches
+  valueType: "float",
+  quantity: "length",
+  unit: MATHJS_STRINGS.MILLIMETER,
+  output: new FractionalInchOutput({
+    id: "metric-to-inches"
+  })
+});
+
+metricPipe.input.formatForDisplay();  // '30"'
+```
+
+### Output configuration options
+
+| Option | Values | Default | Description |
+|---|---|---|---|
+| `suffixMode` | `SYMBOL`, `CODE`, `NONE`, `CUSTOM` | `SYMBOL` | Unit suffix style |
+| `showUnit` | `true`, `false` | `true` | Show/hide unit suffix entirely |
+| `prefix` | `string` or `OutputAffix` | empty | Text prepended to value |
+| `maxDenominator` | `16`, `32`, `64`, `128` | `64` | Maximum fraction denominator |
+
+```js
+// Suffix: code (in)
+new FractionalInchOutput({ id: "test", suffixMode: OUTPUT_SUFFIX_MODES.CODE });
+// → "1 1/4 in"
+
+// Suffix: none
+new FractionalInchOutput({ id: "test", suffixMode: OUTPUT_SUFFIX_MODES.NONE });
+// → "1 1/4"
+
+// Prefix: diameter symbol
+new FractionalInchOutput({ id: "test", prefix: "⌀ " });
+// → '⌀ 1 1/4"'
+```
+
+### Real-world examples
+
+**NPS pipe outer diameters (OD):**
+
+| NPS | OD (in) | Display |
+|---|---|---|
+| 1/2" | 0.840 | `⌀ 27/32"` |
+| 3/4" | 1.050 | `⌀ 1 1/16"` |
+| 1" | 1.315 | `⌀ 1 5/16"` |
+| 1-1/2" | 1.900 | `⌀ 1 7/8"` |
+| 2" | 2.375 | `⌀ 2 3/8"` |
+| 4" | 4.500 | `⌀ 4 1/2"` |
+| 6" | 6.625 | `⌀ 6 5/8"` |
+| 10" | 10.750 | `⌀ 10 3/4"` |
+
+**Sheet metal thickness (gauge → fraction):**
+
+| Gauge | Thickness (in) | Display |
+|---|---|---|
+| 16 ga | 0.0625 | `1/16"` |
+| 12 ga | 0.1094 | `7/64"` |
+| 10 ga | 0.1406 | `9/64"` |
+| 1/4" plate | 0.250 | `1/4"` |
+| 3/8" plate | 0.375 | `3/8"` |
+
+**Fasteners:**
+
+| Size | Diameter (in) | Display |
+|---|---|---|
+| 1/4"-20 UNC | 0.250 | `1/4"` |
+| 1/2"-13 UNC | 0.500 | `1/2"` |
+| 3/4"-10 UNC | 0.750 | `3/4"` |
+
+**Construction:**
+
+| Material | Nominal (in) | Display |
+|---|---|---|
+| 2x4 lumber | 1.5 | `1 1/2"` |
+| 4x4 lumber | 3.5 | `3 1/2"` |
+| Stud spacing | 16 | `16"` |
+| Joist spacing | 12 | `12"` |
+
+### Architecture
+
+Fractional inch handling adds three small, focused classes to the standard `createValue` pipeline:
+
+```
+FractionalInchParser      — parses "1 1/4" → 1.25 (with validation)
+FractionalInchFormatter   — formats 1.25 → "1 1/4" (with reduction)
+FractionalInchOutput      — orchestrates I/O, affixes, unit conversion
+```
+
+`FractionalInchOutput` is designed as a **duck-typed drop-in** for the standard `Output` class. It exposes the same `formatDisplay()` and `formatEdit()` contract expected by `createValue`. When an `output` parameter is passed to `createValue`, the system checks for duck-typing compatibility rather than requiring the exact `Output` class — so `FractionalInchOutput` works transparently.
+
+**Key behaviors:**
+- Internal storage is always in meters (SI), regardless of input unit
+- Conversion to inches happens at formatting time
+- `formatForEdit()` returns the fraction without unit suffix — ready for text input
+- `formatForDisplay()` returns the fraction with the configured affix (prefix + suffix)
+- Metric units (mm, cm, m) are accepted as input and converted automatically
+- Round-trip guaranteed: `"1 1/4" → internal.meters → "1 1/4"` display
+
+---
+
 ## Browser usage
 
 The library works in the browser without a build step, using [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) to resolve dependencies locally from your Express server.
