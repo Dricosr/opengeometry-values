@@ -2,6 +2,8 @@
 
 This document describes how to publish a new version of `@dricosr/iforge-edp-values` to the npm registry from the command line.
 
+> **Current state:** the package was renamed from `@dricosr/opengeometry-values` (last published: `0.3.0`) to `@dricosr/iforge-edp-values`. The first publish under the new name will be `0.3.1`.
+
 ## Requirements
 
 - Node.js 24+
@@ -56,14 +58,14 @@ cd "e:\Cloud\Git\iforge_edp\values"
 # Show current version
 node -p "require('./package.json').version"
 
-# Prerelease (e.g. 0.2.1-alpha.0 → 0.2.1-alpha.1)
-npm version prerelease --preid=alpha --no-git-tag-version
-
-# Patch (e.g. 0.2.1 → 0.2.2)
+# Patch (e.g. 0.3.1 → 0.3.2)
 npm version patch --no-git-tag-version
 
-# Minor (e.g. 0.2.1 → 0.3.0)
+# Minor (e.g. 0.3.1 → 0.4.0)
 npm version minor --no-git-tag-version
+
+# Major (e.g. 0.3.1 → 1.0.0)
+npm version major --no-git-tag-version
 ```
 
 `--no-git-tag-version` prevents npm from creating a git commit and tag automatically, leaving that control to you.
@@ -71,16 +73,6 @@ npm version minor --no-git-tag-version
 ---
 
 ## Step 2 — Publish
-
-### Prerelease version (alpha, beta, rc)
-
-Prerelease versions **must** include `--tag` to avoid accidentally updating `latest`:
-
-```powershell
-npm publish --access public --tag alpha
-```
-
-### Stable version
 
 ```powershell
 npm publish --access public
@@ -90,15 +82,7 @@ The `prepublishOnly` script runs automatically before publishing: it executes `n
 
 ---
 
-## Step 3 — Move the `latest` tag
-
-After publishing, point `latest` to the new version:
-
-```powershell
-npm dist-tag add @dricosr/iforge-edp-values@<version> latest
-```
-
-Verify:
+## Step 3 — Confirm
 
 ```powershell
 npm dist-tag ls @dricosr/iforge-edp-values
@@ -115,15 +99,12 @@ cd "e:\Cloud\Git\iforge_edp\values"
 npm whoami                                          # dricosr
 
 # 2. Bump version
-npm version prerelease --preid=alpha --no-git-tag-version
+npm version patch --no-git-tag-version
 
 # 3. Publish
-npm publish --access public --tag alpha
+npm publish --access public
 
-# 4. Update latest tag (replace <version> with the bumped version)
-npm dist-tag add @dricosr/iforge-edp-values@<version> latest
-
-# 5. Confirm tags
+# 4. Confirm
 npm dist-tag ls @dricosr/iforge-edp-values
 ```
 
