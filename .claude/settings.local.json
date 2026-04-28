@@ -46,7 +46,10 @@
       "Bash(git remote *)",
       "Bash(node -p \"require\\('./package.json'\\).version\")",
       "Bash(powershell -Command \"cd 'e:/Cloud/Git/iforge_edp/values'; npx vitest run 2>&1\")",
-      "Bash(powershell -Command ' *)"
+      "Bash(powershell -Command ' *)",
+      "Bash(cd /d \"E:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values\")",
+      "Bash(powershell -Command \"npx vitest run 2>&1\")",
+      "Bash(powershell -Command \"cd 'E:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values'; npx vitest run 2>&1\")"
     ]
   }
 }

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Output preset catalog split into per-quantity files (`src/presets/length-presets.mjs`, `area-presets.mjs`, `volume-presets.mjs`, `angle-presets.mjs`, `temperature-presets.mjs`, `mass-presets.mjs`, `force-presets.mjs`, `pressure-presets.mjs`, `time-presets.mjs`, `ratio-presets.mjs`). A shared `src/presets/create-preset.mjs` helper is extracted so each file reuses the same freeze pattern. Public exports unchanged (`OUTPUT_PRESETS`, `outputPresetCatalog`, `OutputPresetCatalog`).
+
+- Parameter sample catalog split into per-quantity files (`src/samples/length-samples.mjs`, `area-samples.mjs`, `volume-samples.mjs`, `angle-samples.mjs`, `temperature-samples.mjs`, `mass-samples.mjs`, `force-samples.mjs`, `pressure-samples.mjs`, `time-samples.mjs`, `ratio-samples.mjs`). A shared `src/samples/create-sample.mjs` helper is extracted so each file reuses the same freeze pattern. Coverage expanded to include all supported units and both value types (`float` and `integer`) per quantity, plus the three formula input forms (`formula-embedded-units`, `formula-plain`, `inline-unit`) in every applicable quantity. Public exports unchanged (`PARAMETER_SAMPLES`, `parameterSampleCatalog`, `ParameterSampleCatalog`).
+
 - **Breaking:** `mathjs-string-catalog.mjs` renamed to `unit-token-catalog.mjs`. All exported symbols replaced with no backward-compat aliases: `MATHJS_STRINGS` → `UNIT_TOKENS`, `MathJsStringCatalog` → `UnitTokenCatalog`, `mathJsStringCatalog` → `unitTokenCatalog`. The internal constant `MATHJS_STRING_ENTRIES` is now `UNIT_TOKEN_ENTRIES`.
 - `domain-string-catalog.mjs` removed; `domain-catalog.mjs` is now the single source of truth. All internal imports migrated from `DOMAIN_STRINGS` to `DOMAIN`. The deprecated symbols `DOMAIN_STRINGS`, `domainStringCatalog`, and `DomainStringCatalog` are re-exported as aliases from `domain-catalog.mjs` and remain available in the public API for backward compatibility.
 
