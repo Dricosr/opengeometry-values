@@ -24,8 +24,7 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c --watch",
-    "check:customizations": "node ./scripts/check-customizations.mjs",
-    "prepublishOnly": "npm test && npm run build",
+"prepublishOnly": "npm test && npm run build",
     "test": "vitest run",
     "test:visual": "vitest run tests/visual",
     "test:watch": "vitest",

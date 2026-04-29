@@ -51,7 +51,8 @@
       "Bash(powershell -Command \"npx vitest run 2>&1\")",
       "Bash(powershell -Command \"cd 'E:\\\\Cloud\\\\Git\\\\iforge_edp\\\\values'; npx vitest run 2>&1\")",
       "Bash(find \"e:\\\\\\\\Cloud\\\\\\\\Git\\\\\\\\iforge_edp\\\\\\\\values\" -maxdepth 3 -name \"*.md\" -not -path \"*/node_modules/*\")",
-      "WebFetch(domain:agents.md)"
+      "WebFetch(domain:agents.md)",
+      "Bash(git -C \"e:/Cloud/Git/iforge_edp/values\" rm -r scripts/)"
     ]
   }
 }
