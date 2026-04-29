@@ -5,6 +5,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../src/constants/output-suffix-modes.mjs";
+import { SEPARATORS } from "../../src/constants/fractional-inch-catalog.mjs";
 
 describe("FractionalInchOutput", () => {
   describe("constructor", () => {
@@ -59,15 +60,15 @@ describe("FractionalInchOutput", () => {
     it("should create with hyphen separator", () => {
       const output = new FractionalInchOutput({
         id: "test",
-        separator: "hyphen"
+        separator: SEPARATORS.HYPHEN
       });
-      expect(output.separator).toBe("hyphen");
+      expect(output.separator).toBe(SEPARATORS.HYPHEN);
       expect(output.formatter.separator).toBe("-");
     });
 
     it("should default to space separator", () => {
       const output = new FractionalInchOutput({ id: "test" });
-      expect(output.separator).toBe("space");
+      expect(output.separator).toBe(SEPARATORS.SPACE);
       expect(output.formatter.separator).toBe(" ");
     });
   });
@@ -544,7 +545,7 @@ describe("FractionalInchOutput", () => {
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
-        output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
+        output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
       });
       expect(ogValue.input.formatForDisplay()).toBe('1-1/4"');
     });
@@ -555,7 +556,7 @@ describe("FractionalInchOutput", () => {
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
-        output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
+        output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
       });
       expect(ogValue.input.formatForDisplay()).toBe('-1-1/4"');
     });
@@ -566,7 +567,7 @@ describe("FractionalInchOutput", () => {
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
-        output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
+        output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
       });
       expect(ogValue.input.formatForDisplay()).toBe('24-1/2"');
     });
@@ -577,7 +578,7 @@ describe("FractionalInchOutput", () => {
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
-        output: new FractionalInchOutput({ id: "test", separator: "hyphen" })
+        output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
       });
       expect(ogValue.input.formatForEdit()).toBe("1-1/4");
     });
@@ -590,7 +591,7 @@ describe("FractionalInchOutput", () => {
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
-          separator: "hyphen",
+          separator: SEPARATORS.HYPHEN,
           suffixMode: OUTPUT_SUFFIX_MODES.CODE
         })
       });
@@ -605,7 +606,7 @@ describe("FractionalInchOutput", () => {
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
           id: "test",
-          separator: "hyphen",
+          separator: SEPARATORS.HYPHEN,
           prefix: "⌀ "
         })
       });
@@ -618,7 +619,7 @@ describe("FractionalInchOutput", () => {
         valueType: VALUE_TYPES.FLOAT,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
-        output: new FractionalInchOutput({ id: "test", maxDenominator: 16, separator: "hyphen" })
+        output: new FractionalInchOutput({ id: "test", maxDenominator: 16, separator: SEPARATORS.HYPHEN })
       });
       expect(ogValue.input.formatForDisplay()).toBe('2-3/4"');
     });

@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `FractionalInchOutput` model: specialized output for fractional inch display following ANSI/ASME Y14.5 standards, with configurable suffix modes (`SYMBOL`, `CODE`, `NONE`, `CUSTOM`) and separator types (`SPACE`, `HYPHEN`) via dedicated catalogs
+- `FractionalInchFormatter`: converts decimal inch values to fractional inch strings using power-of-2 denominators (2, 4, 8, 16, 32, 64, 128) with automatic fraction reduction
+- `FractionalSeparatorCatalog` and `FractionalInchDenominatorCatalog` in `fractional-inch-catalog.mjs`: centralized catalogs for separator types (`space`, `hyphen`) and denominator precision levels (`construction`, `precision`, `machining`, `fine`)
+- `SEPARATORS` and `FRACTION_DENOMINATORS` exports from `fractional-inch-catalog.mjs` for use across the library
+- `FractionalInchDefaultCatalog` with sensible defaults (`maxDenominator: 64`, `separator: "space"`, `suffixMode: "symbol"`, `unitCode: "in"`)
+- Diameter presets (`length:diameter-mm`, `length:diameter-cm`, `length:diameter-in`, `length:diameter-ft`) with `⌀ ` prefix in `length-presets.mjs`
+- Diameter parameter samples (`length:diameter-mm`, `length:diameter-cm`, `length:diameter-in`, `length:diameter-ft`) in `length-samples.mjs`
+- Temperature, time, and volume parameter samples with full unit coverage
+- Sample `samples/length/input-mm-to-output-fractional-in.mjs`: demonstrates mm input converted to fractional inches with all suffix modes and separator types
+
 ### Changed
 
 - Output preset catalog split into per-quantity files (`src/presets/length-presets.mjs`, `area-presets.mjs`, `volume-presets.mjs`, `angle-presets.mjs`, `temperature-presets.mjs`, `mass-presets.mjs`, `force-presets.mjs`, `pressure-presets.mjs`, `time-presets.mjs`, `ratio-presets.mjs`). A shared `src/presets/create-preset.mjs` helper is extracted so each file reuses the same freeze pattern. Public exports unchanged (`OUTPUT_PRESETS`, `outputPresetCatalog`, `OutputPresetCatalog`).
@@ -15,50 +27,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Breaking:** `mathjs-string-catalog.mjs` renamed to `unit-token-catalog.mjs`. All exported symbols replaced with no backward-compat aliases: `MATHJS_STRINGS` → `UNIT_TOKENS`, `MathJsStringCatalog` → `UnitTokenCatalog`, `mathJsStringCatalog` → `unitTokenCatalog`. The internal constant `MATHJS_STRING_ENTRIES` is now `UNIT_TOKEN_ENTRIES`.
 - `domain-string-catalog.mjs` removed; `domain-catalog.mjs` is now the single source of truth. All internal imports migrated from `DOMAIN_STRINGS` to `DOMAIN`. The deprecated symbols `DOMAIN_STRINGS`, `domainStringCatalog`, and `DomainStringCatalog` are re-exported as aliases from `domain-catalog.mjs` and remain available in the public API for backward compatibility.
-
-### Added
-
-- `src/core/mathjs-api.mjs`: canonical re-export of the four mathjs symbols used by the library (`unit`, `format`, `evaluate`, `typeOf`). All internal imports now route through this file instead of importing directly from `"mathjs"`, making the contract visible in diffs when new symbols are added.
-- `mathjsApi` namespace export from `src/index.mjs`: consumers can import `{ mathjsApi }` to get the exact set of mathjs symbols the library depends on — useful for building browser shims without guessing.
-- Browser integration section in `README.md` and `spec/en-us/browser-and-backend.md` (+ PT-BR mirror) documenting the required mathjs exports and referencing `src/core/mathjs-api.mjs` as the canonical source of truth.
-- Formula input with embedded units: formulas can now include mathjs unit tokens directly (e.g. `"=4 m + 200 cm"`, `"=1 h + 30 min"`, `"=1 kN + 500 N"`). The mathjs unit arithmetic is resolved at parse time; the result is converted to the quantity's internal unit. The flag `formulaHasEmbeddedUnits` is stored on `ValueInput` and controls edit behavior.
-- Unit-embedded numeric input: a string like `"4000mm"` or `"7h"` (number + recognized unit, no `=`) is now a valid input form. The inline unit wins over the parameter unit. Parsed by the new `UnitInputParser`.
-- `UnitInputParser` class, `unitInputParser` singleton, and `parseUnitInput` function exported from `src/index.mjs`
-- `formulaHasEmbeddedUnits` field on `ValueInput` (default `false`); `true` when the input was a formula whose expression carried mathjs unit tokens
-- Edit behavior for plain formulas: when the output unit differs from the formula's original unit, `formatEdit` appends the original unit to the formula text (e.g. `"=2*3 m"`). Formulas with embedded units always return the formula as-is.
-- Formula input support: numeric values can now be entered as mathjs expressions prefixed with `=` (e.g. `"=sqrt(3^2 + 4^2)"`, `"=2 * pi"`). The original formula text is preserved in `input.value`; the evaluated number enters the standard pipeline (unit conversion, internal resolution, type validation). Applies to `float` and `integer` value types across all quantities. Invalid or non-finite results throw `ValueInputError` with code `invalid_formula_expression`.
-- `FormulaParser` class, `formulaParser` singleton, and `parseFormula` function exported from `src/index.mjs`
-- `ERROR_CODE_INVALID_FORMULA_EXPRESSION` and `ERROR_INVALID_FORMULA_EXPRESSION_PREFIX` added to `domain-string-catalog.mjs`
-- `spec/en-us/formulas.md` and `spec/pt-br/formulas.md` - full expression reference covering all input forms, arithmetic operators, math functions, trigonometric functions, constants, embedded unit formulas, edit behavior, error conditions, and known limitations
-- `vitest.config.mjs` added to the project root: sets `isolate: false` and `maxWorkers: 1`, reducing test suite runtime from ~8s to ~2s
-- Visual test specialists (`length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`) hydrated with embedded unit formula scenarios, plain formula scenarios, and unit-embedded numeric input scenarios
-- Windows shell compatibility note added to `CLAUDE.md`, `.claude/agents/test.md`, `.github/agents/test.agent.md`, `.github/copilot-instructions.md`, and `memory/feedback_windows_shell.md`: Vitest 4.x fails under `cmd.exe` on Windows; always use PowerShell or bash
-- Version `0.1.0-alpha.1` tag in `package.json`
-- Liter (`L`) as a supported volume unit: added `LITER` to `unit-token-catalog.mjs`, `unit-symbols.mjs`, `VolumeQuantityProfile`, a `volume:tank-liter` output preset, a `volume:storage-tank-liter` parameter sample, and two liter visual test scenarios
-- Reusable parameter samples grouped by quantity and a curated output preset mini library for common engineering views
-- Public preview helpers for building interactive UIs: `createValuePreview`, `buildOutput`, `OUTPUT_PRESETS`, and `PARAMETER_SAMPLES`
-- Customization sync check for mirrored Copilot, Claude, and memory guidance files
-- Initial class-oriented implementation for values, catalogs, parsing, conversion, precision resolution, and formatting in `src/`
-- Vitest coverage for constants, value creation, conversion, precision, formatting, and the public index
-- Specialist quantity profiles for `length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, and `time`, wired into normalization and precision decisions
-- Visual engineering I/O tests covering raw user-facing value flows such as `90 deg`, `2000 mm`, `200 cm`, `30 in`, `12.5 kg`, `1.5 kN`, `250 kPa`, `2 h`, and temperature conversion
-- Structured `tryCreateValue` validation results for UI-facing input rejection, including numeric and unit errors
-- Expanded specialist visual tests with valid multi-unit scenarios and invalid input cases for engineering UIs
-- Public value creation input is now structurally `{ value, unit }`, and `ValueInput` no longer stores raw text
-- `Output` and typed affix models with ids, so each `ValueInput` now stores normalized internal data together with its display configuration
-
-### Build
-
-- Rollup build system added: `npm run build` generates three distribution formats in `dist/`
-  - `dist/index.esm.js` - ES module, tree-shakeable, mathjs kept external (~85 KB)
-  - `dist/index.cjs.js` - CommonJS, mathjs kept external (~88 KB)
-  - `dist/index.iife.min.js` - self-contained IIFE, mathjs bundled and minified (~687 KB), for CDN and direct `<script>` use
-- `package.json` exports updated: `"import"` → ESM build, `"require"` → CJS build, `"browser"` → IIFE build
-- `mathjs` declared as `peerDependency` (required, `>=15.0.0`) in addition to `dependencies`
-- `dist/` added to `.gitignore`; `dist/` added to `files` so built artifacts are included in the npm package
-- `prepublishOnly` script runs tests then build automatically before every `npm publish`
-- `.github/workflows/release.yml` - GitHub Actions workflow that runs tests, builds, and publishes to npm on every GitHub Release
-- New dev dependencies: `rollup 4.60.2`, `@rollup/plugin-node-resolve 16.0.3`, `@rollup/plugin-commonjs 29.0.2`, `@rollup/plugin-terser 1.0.0`
+- `FractionalInchFormatter` and `FractionalInchOutput` now import `SEPARATORS` from `fractional-inch-catalog.mjs` instead of using raw string literals for separator values
+- `suffix-mode-catalog.mjs` removed; `output-suffix-modes.mjs` is now the single source of truth for suffix mode constants
+- `src/index.mjs` exports updated: removed `suffixModeCatalog` and `SuffixModeCatalog` references, added `FractionalInchOutput` and `FractionalInchFormatter` exports
 
 ### Fixed
 
@@ -70,11 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `formatForComposition` and `formatForFriendlyValue` from `ValueInput` - both delegated identically to `formatDisplay`, making them redundant aliases with no distinct behavior
 - `formatComposition` and `formatFriendlyValue` from `Output` for the same reason
 - `composition` and `friendly` keys from the `createValuePreview` response payload
-
-### Changed
-
-- Improved agent and prompt discovery text for Copilot and Claude customization files
-- Package distribution is now published as `@dricosr/iforge-edp-values` on the public npm registry, with the scoped package registry, publish access, and README install instructions aligned to the `alpha` release flow
+- `suffix-mode-catalog.mjs` file (consolidated into `output-suffix-modes.mjs`)
 
 ## [0.1.0] - 2026-04-24
 

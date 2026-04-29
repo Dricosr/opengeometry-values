@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { FractionalInchFormatter, fractionalInchFormatter } from "../../src/core/formatters/fractional-inch-formatter.mjs";
+import { SEPARATORS } from "../../src/constants/fractional-inch-catalog.mjs";
 
 describe("FractionalInchFormatter", () => {
   describe("decimalToFraction — whole inches", () => {
@@ -150,7 +151,7 @@ describe("FractionalInchFormatter", () => {
   });
 
   describe("decimalToFraction — hyphen separator", () => {
-    const hyphenFormatter = new FractionalInchFormatter({ separator: "hyphen" });
+    const hyphenFormatter = new FractionalInchFormatter({ separator: SEPARATORS.HYPHEN });
 
     it("should use hyphen separator for mixed numbers", () => {
       expect(hyphenFormatter.decimalToFraction(1.25)).toBe("1-1/4");
@@ -169,13 +170,13 @@ describe("FractionalInchFormatter", () => {
     });
 
     it("should use hyphen for construction precision", () => {
-      const construction = new FractionalInchFormatter({ maxDenominator: 16, separator: "hyphen" });
+      const construction = new FractionalInchFormatter({ maxDenominator: 16, separator: SEPARATORS.HYPHEN });
       expect(construction.decimalToFraction(1.25)).toBe("1-1/4");
       expect(construction.decimalToFraction(2.75)).toBe("2-3/4");
     });
 
     it("should use hyphen for fine precision", () => {
-      const fine = new FractionalInchFormatter({ maxDenominator: 128, separator: "hyphen" });
+      const fine = new FractionalInchFormatter({ maxDenominator: 128, separator: SEPARATORS.HYPHEN });
       expect(fine.decimalToFraction(10.0078125)).toBe("10-1/128");
     });
 

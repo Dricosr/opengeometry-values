@@ -1,0 +1,37 @@
+/**
+ * Example: Precision control on time output
+ *
+ * Shows how different precision values affect formatting.
+ * Useful for choosing the right precision for each annotation context.
+ */
+
+import { createValue } from "../../src/core/create-value.mjs";
+import { Output } from "../../src/core/models/output.mjs";
+import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
+import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
+import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
+
+const inputValue = 120; // min
+
+function createWithPrecision(precision) {
+  return createValue({
+    value: inputValue,
+    valueType: VALUE_TYPES.FLOAT,
+    quantity: QUANTITY_TYPES.TIME,
+    unit: UNIT_TOKENS.MINUTE,
+    output: new Output({
+      id: "precision",
+      unit: UNIT_TOKENS.HOUR,
+      precision,
+      showUnit: true
+    })
+  });
+}
+
+console.log("=== Precision control (120 min → h) ===");
+console.log("");
+
+for (const p of [0, 1, 2, 3, 4]) {
+  const v = createWithPrecision(p);
+  console.log(`precision: ${p} → Display: "${v.input.formatForDisplay()}"  Edit: "${v.input.formatForEdit()}"`);
+}

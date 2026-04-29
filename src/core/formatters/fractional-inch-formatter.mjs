@@ -1,3 +1,4 @@
+import { SEPARATORS } from "../../constants/fractional-inch-catalog.mjs";
 import { unitConverter } from "../convert-value.mjs";
 
 /**
@@ -5,7 +6,7 @@ import { unitConverter } from "../convert-value.mjs";
  *
  * Converts according to ANSI/ASME Y14.5 standards:
  * - "1 1/4" for 1.25 (mixed number with space, default)
- * - "1-1/4" for 1.25 (mixed number with hyphen, use separator="hyphen")
+ * - "1-1/4" for 1.25 (mixed number with hyphen, use SEPARATORS.HYPHEN)
  * - "1/2" for 0.5 (pure fraction for values < 1")
  * - "2" for 2.0 (integer only, no fraction)
  * - "-1 1/4" for -1.25 (negative mixed number)
@@ -17,12 +18,12 @@ export class FractionalInchFormatter {
   /**
    * @param {Object} [options]
    * @param {number} [options.maxDenominator=64] - Maximum denominator to use (must be power of 2)
-   * @param {string} [options.separator="space"] - Separator between whole and fraction ("space" or "hyphen")
+   * @param {string} [options.separator=SEPARATORS.SPACE] - Separator between whole and fraction (SEPARATORS.SPACE or SEPARATORS.HYPHEN)
    * @param {Object} [options.converter] - Unit converter dependency
    */
-  constructor({ maxDenominator = 64, separator = "space", converter = unitConverter } = {}) {
+  constructor({ maxDenominator = 64, separator = SEPARATORS.SPACE, converter = unitConverter } = {}) {
     this.maxDenominator = maxDenominator;
-    this.separator = separator === "hyphen" ? "-" : " ";
+    this.separator = separator === SEPARATORS.HYPHEN ? "-" : " ";
     this.converter = converter;
   }
 

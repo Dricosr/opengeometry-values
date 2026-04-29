@@ -3,7 +3,7 @@ name: jsdoc-documentor
 description: Use when adding or improving JSDoc in src/ files - @param, @returns, @throws, @typedef, @fileoverview. Only documents non-obvious contracts; never alters runtime behavior or adds noise to simple code.
 ---
 
-[Project instructions](../copilot-instructions.md)
+[Project instructions](../../AGENTS.md)
 
 You are a documentation specialist for the iforge-edp-values library.
 

@@ -1,4 +1,5 @@
 import { OUTPUT_SUFFIX_MODES } from "../../constants/output-suffix-modes.mjs";
+import { SEPARATORS } from "../../constants/fractional-inch-catalog.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { DOMAIN } from "../../constants/domain-catalog.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
@@ -17,11 +18,15 @@ import { OutputAffix } from "./output-affix.mjs";
  *
  * Supports all affix types:
  * - Prefix: any text (e.g., ⌀, custom)
- * - Suffix modes:
- *   - SYMBOL: " (double prime)
- *   - CODE: in
- *   - CUSTOM: user-defined
- *   - NONE: empty
+ * - Suffix modes (use OUTPUT_SUFFIX_MODES catalog):
+ *   - OUTPUT_SUFFIX_MODES.SYMBOL: " (double prime)
+ *   - OUTPUT_SUFFIX_MODES.CODE: in
+ *   - OUTPUT_SUFFIX_MODES.CUSTOM: user-defined
+ *   - OUTPUT_SUFFIX_MODES.NONE: empty
+ *
+ * Separator between whole and fraction comes from the SEPARATORS catalog:
+ *   - SEPARATORS.SPACE  (default): "1 1/4"
+ *   - SEPARATORS.HYPHEN          : "1-1/4"
  */
 export class FractionalInchOutput {
   /**
@@ -31,9 +36,9 @@ export class FractionalInchOutput {
    * @param {OutputAffix} [options.prefix] - Prefix affix
    * @param {OutputAffix} [options.suffix] - Suffix affix
    * @param {boolean} [options.showUnit=true] - Whether to show the unit suffix
-   * @param {string} [options.suffixMode="symbol"] - Suffix mode (symbol, code, custom, none)
+   * @param {string} [options.suffixMode=OUTPUT_SUFFIX_MODES.SYMBOL] - Suffix mode from OUTPUT_SUFFIX_MODES catalog (SYMBOL, CODE, CUSTOM, NONE)
    * @param {number} [options.maxDenominator=64] - Max denominator for fraction output
-   * @param {string} [options.separator="space"] - Separator between whole and fraction ("space" or "hyphen")
+   * @param {string} [options.separator=SEPARATORS.SPACE] - Separator between whole and fraction (SEPARATORS.SPACE or SEPARATORS.HYPHEN)
    */
   constructor({
     id,
@@ -43,7 +48,7 @@ export class FractionalInchOutput {
     showUnit = true,
     suffixMode = OUTPUT_SUFFIX_MODES.SYMBOL,
     maxDenominator = 64,
-    separator = "space"
+    separator = SEPARATORS.SPACE
   } = {}) {
     this.id = createReferenceId("output", id);
     this.unit = "in";

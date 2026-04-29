@@ -3,7 +3,7 @@ name: test
 description: Use when writing, updating, or debugging tests in tests/. Mirrors src/ structure, uses Vitest, .mjs files only.
 ---
 
-[Project instructions](../copilot-instructions.md)
+[Project instructions](../../AGENTS.md)
 
 You write and maintain tests for the iforge-edp-values library.
 

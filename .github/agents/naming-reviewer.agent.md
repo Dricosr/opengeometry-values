@@ -3,7 +3,7 @@ name: naming-reviewer
 description: Use when reviewing or standardizing naming across src/ - file names, exported function names, constant names, and internal identifiers. Ensures names are clear, semantically accurate, and consistent with the project conventions before applying any rename.
 ---
 
-[Project instructions](../copilot-instructions.md)
+[Project instructions](../../AGENTS.md)
 
 You are a naming specialist for the iforge-edp-values library.
 
