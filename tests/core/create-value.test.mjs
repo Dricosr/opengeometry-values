@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
@@ -39,7 +39,7 @@ describe("createValue", () => {
   it("normalizes numeric values into the internal unit and applies internal resolution", () => {
     const value = createValue({
       value: 2002,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.MILLIMETER
     });
@@ -70,7 +70,7 @@ describe("createValue", () => {
     const value = createValue({
       id: "input:length:primary",
       value: 2002,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.MILLIMETER,
       output
@@ -83,18 +83,19 @@ describe("createValue", () => {
     expect(value.input.formatForDisplay()).toBe("~ 2 m ref");
   });
 
-  it("rejects decimal values for integer type", () => {
+  it("rejects decimal values for unit count (UN)", () => {
     expect(() => createValue({
       value: 10.5,
-      valueType: VALUE_TYPES.INTEGER,
-      quantity: QUANTITY_TYPES.NONE
+      valueType: VALUE_TYPES.NUMBER,
+      quantity: QUANTITY_TYPES.NONE,
+      unit: UNIT_TOKENS.UN
     })).toThrow("Invalid integer value");
   });
 
   it("returns a structured validation result for invalid numeric text", () => {
     const result = tryCreateValue({
       value: "10,5",
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.MILLIMETER
     });
@@ -106,7 +107,7 @@ describe("createValue", () => {
       field: "value",
       message: "Invalid numeric value: 10,5",
       value: "10,5",
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.MILLIMETER
     });
@@ -115,7 +116,7 @@ describe("createValue", () => {
   it("returns a structured validation result for unsupported known units", () => {
     const result = tryCreateValue({
       value: 90,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.DEGREE
     });
@@ -129,7 +130,7 @@ describe("createValue", () => {
   it("returns a structured validation result for unknown units", () => {
     const result = tryCreateValue({
       value: 90,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.ANGLE,
       unit: "foo"
     });
@@ -138,5 +139,27 @@ describe("createValue", () => {
     expect(result.error.code).toBe("unknown_input_unit");
     expect(result.error.field).toBe("unit");
     expect(result.error.message).toBe("Unknown input unit: foo");
+  });
+
+  it("rejects formula input for boolean value type", () => {
+    const result = tryCreateValue({
+      value: "=1+2",
+      valueType: VALUE_TYPES.BOOLEAN,
+      quantity: QUANTITY_TYPES.NONE
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.error).toBeInstanceOf(ValueInputError);
+    expect(result.error.code).toBe("invalid_formula_expression");
+    expect(result.error.field).toBe("value");
+    expect(result.error.message).toBe("Invalid formula expression: =1+2");
+  });
+
+  it("rejects formula input for boolean via createValue (throws)", () => {
+    expect(() => createValue({
+      value: "=true",
+      valueType: VALUE_TYPES.BOOLEAN,
+      quantity: QUANTITY_TYPES.NONE
+    })).toThrow("Invalid formula expression");
   });
 });

@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
@@ -11,7 +11,7 @@ describe("formatDisplayValue", () => {
   it("formats display text with unit symbols and capped precision", () => {
     const value = createValue({
       value: 2002,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.MILLIMETER
     });
@@ -35,7 +35,7 @@ describe("formatDisplayValue", () => {
   it("uses the output instance attached to input for visual formatting", () => {
     const value = createValue({
       value: 90,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.ANGLE,
       unit: UNIT_TOKENS.DEGREE,
       output: new Output({

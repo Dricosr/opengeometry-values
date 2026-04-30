@@ -28,7 +28,9 @@ const UNIT_TOKEN_ENTRIES = Object.freeze({
   MINUTE: "min",
   HOUR: "h",
   PERCENT: "percent",
-  FIXED_NOTATION: "fixed"
+  FIXED_NOTATION: "fixed",
+  UN: "un",
+  BOOL: "bool"
 });
 
 export class UnitTokenCatalog extends ReadOnlyCatalog {

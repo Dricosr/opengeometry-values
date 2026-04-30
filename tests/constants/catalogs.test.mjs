@@ -15,7 +15,7 @@ describe("catalog specialists", () => {
   });
 
   it("exposes frozen domain enumerations", () => {
-    expect(VALUE_TYPES.FLOAT).toBe("float");
+    expect(VALUE_TYPES.NUMBER).toBe("number");
     expect(QUANTITY_TYPES.PRESSURE).toBe("pressure");
     expect(Object.isFrozen(VALUE_TYPES)).toBe(true);
     expect(Object.isFrozen(QUANTITY_TYPES)).toBe(true);

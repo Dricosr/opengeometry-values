@@ -19,7 +19,7 @@ export class EngineeringValueIoVisualTestBase {
 
     const createdValue = createValue({
       value,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity,
       unit,
       output
@@ -43,7 +43,7 @@ export class EngineeringValueIoVisualTestBase {
     value,
     quantity,
     unit,
-    valueType = VALUE_TYPES.FLOAT
+    valueType = VALUE_TYPES.NUMBER
   }) {
     const result = tryCreateValue({
       value,

@@ -14,7 +14,7 @@ Every value in iForge EDP carries more than a number:
 
 ```js
 {
-  valueType: "float",
+  valueType: "number",
   quantity: "length",
 
   input: {
@@ -80,7 +80,7 @@ import {
 const value = createValue({
   id: "input:length:beam-1",
   value: 2002,
-  valueType: "float",
+  valueType: "number",
   quantity: "length",
   unit: "mm",
   output: new Output({
@@ -105,7 +105,7 @@ console.log(formatEditValue(value, { unit: "mm", precision: 4 }));
 
 const invalidValueResult = tryCreateValue({
   value: "10,5",
-  valueType: "float",
+  valueType: "number",
   quantity: "length",
   unit: "mm"
 });
@@ -362,7 +362,7 @@ import { createValue, FractionalInchOutput, UNIT_TOKENS, OUTPUT_SUFFIX_MODES } f
 // === Input: string fraction ===
 const pipe = createValue({
   value: "1 1/4",                          // ← fractional string input
-  valueType: "float",
+  valueType: "number",
   quantity: "length",
   unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({
@@ -378,7 +378,7 @@ pipe.input.formatForEdit();     // "1 1/4"
 // === Input: numeric decimal ===
 const plate = createValue({
   value: 0.375,                            // ← numeric input
-  valueType: "float",
+  valueType: "number",
   quantity: "length",
   unit: UNIT_TOKENS.INCH,
   output: new FractionalInchOutput({
@@ -392,7 +392,7 @@ plate.input.formatForEdit();      // "3/8"
 // === Input: metric, output: fractional inches ===
 const metricPipe = createValue({
   value: 762,                              // 762 mm = 30 inches
-  valueType: "float",
+  valueType: "number",
   quantity: "length",
   unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({

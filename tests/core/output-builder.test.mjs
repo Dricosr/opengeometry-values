@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../src/constants/output-suffix-modes.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
@@ -14,7 +14,7 @@ describe("outputBuilder", () => {
 
     const value = createValue({
       value: 90,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.ANGLE,
       unit: UNIT_TOKENS.DEGREE,
       output: built.output
@@ -37,7 +37,7 @@ describe("outputBuilder", () => {
 
     const value = createValue({
       value: 250000,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.PRESSURE,
       unit: UNIT_TOKENS.PASCAL,
       output: built.output
@@ -53,7 +53,7 @@ describe("outputBuilder", () => {
 
     const valueMm = createValue({
       value: 168.3,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.MILLIMETER,
       output: builtMm.output
@@ -68,7 +68,7 @@ describe("outputBuilder", () => {
 
     const valueMeter = createValue({
       value: 0.508,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.METER,
       output: builtMeter.output
@@ -83,7 +83,7 @@ describe("outputBuilder", () => {
 
     const valueInch = createValue({
       value: 2.5,
-      valueType: VALUE_TYPES.FLOAT,
+      valueType: VALUE_TYPES.NUMBER,
       quantity: QUANTITY_TYPES.LENGTH,
       unit: UNIT_TOKENS.INCH,
       output: builtInch.output

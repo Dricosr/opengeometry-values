@@ -2,6 +2,7 @@
 import { UNIT_TOKENS } from "../constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../constants/value-types.mjs";
+import { BOOLEAN_LABEL_PRESETS } from "../constants/boolean-label-catalog.mjs";
 import { internalResolutionApplier } from "./apply-internal-resolution.mjs";
 import { ValueInputError } from "./errors/value-input-error.mjs";
 import { booleanTextParser } from "./parsers/boolean-text-parser.mjs";
@@ -64,9 +65,10 @@ export class ValueFactory {
       });
     }
 
+    // --- Boolean path (valueType === BOOLEAN) ---
     if (valueType === VALUE_TYPES.BOOLEAN) {
       const parsedValue = this.booleanParser.parse(value);
-      const internalValue = new InternalValue({ value: parsedValue });
+      const internalValue = new InternalValue({ value: parsedValue, unit: UNIT_TOKENS.BOOL });
 
       return new IForgeEdpValue({
         valueType,
@@ -95,7 +97,8 @@ export class ValueFactory {
       unit: inputUnit
     });
 
-    if (valueType === VALUE_TYPES.INTEGER && !Number.isInteger(numericValue)) {
+    // --- Unit count path (unit === UN) requires integer values ---
+    if (inputUnit === UNIT_TOKENS.UN && !Number.isInteger(numericValue)) {
       throw this.createInputError({
         code: DOMAIN.ERROR_CODE_INVALID_INTEGER_VALUE,
         field: DOMAIN.ERROR_FIELD_VALUE,

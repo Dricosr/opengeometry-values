@@ -2,8 +2,7 @@ import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
 
 const VALUE_TYPE_ENTRIES = Object.freeze({
   STRING: "string",
-  INTEGER: "integer",
-  FLOAT: "float",
+  NUMBER: "number",
   BOOLEAN: "boolean"
 });
 

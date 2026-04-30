@@ -1,3 +1,4 @@
+import { BOOLEAN_LABEL_PRESETS } from "../../constants/boolean-label-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../constants/output-suffix-modes.mjs";
 import { outputPresetCatalog } from "../../presets/output-preset-catalog.mjs";
 import { CustomOutputAffix } from "../models/custom-output-affix.mjs";
@@ -22,12 +23,16 @@ export class OutputBuilder {
       showUnit: configuration.showUnit ?? preset?.showUnit ?? true,
       prefix: configuration.prefix ?? preset?.prefix ?? "",
       suffix: configuration.suffix ?? preset?.suffix ?? "",
-      suffixMode: configuration.suffixMode ?? preset?.suffixMode ?? OUTPUT_SUFFIX_MODES.CODE
+      suffixMode: configuration.suffixMode ?? preset?.suffixMode ?? OUTPUT_SUFFIX_MODES.CODE,
+      booleanLabelKey: preset?.booleanLabelKey ?? null
     });
   }
 
   build(configuration = {}) {
     const resolved = this.resolve(configuration);
+    const booleanLabels = resolved.booleanLabelKey
+      ? BOOLEAN_LABEL_PRESETS[resolved.booleanLabelKey]
+      : null;
 
     return Object.freeze({
       config: resolved,
@@ -37,7 +42,8 @@ export class OutputBuilder {
         precision: resolved.precision,
         prefix: resolved.prefix,
         suffix: this.createSuffixAffix(resolved),
-        showUnit: resolved.showUnit
+        showUnit: resolved.showUnit,
+        booleanLabels
       })
     });
   }

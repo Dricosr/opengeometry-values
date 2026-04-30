@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Manual verification script — checks that all fractional inch exports
  * are accessible from the public API and work as documented.
  *
@@ -145,10 +145,10 @@ const prefixed = createValue({
   valueType: "float",
   quantity: "length",
   unit: UNIT_TOKENS.INCH,
-  output: new FractionalInchOutput({ id: "prefix-test", prefix: "\u2300 " })
+  output: new FractionalInchOutput({ id: "prefix-test", prefix: "⌀ " })
 });
 const displayText = prefixed.input.formatForDisplay();
-assert(displayText.startsWith("\u2300"), 'prefixed display starts with diameter sign');
+assert(displayText.startsWith("⌀"), 'prefixed display starts with diameter sign');
 assert(displayText.includes("1 1/4"), 'prefixed display includes "1 1/4"');
 
 // ──────────────────────────────────────────────

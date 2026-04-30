@@ -28,7 +28,9 @@ const UNIT_ENTRIES = Object.freeze({
   MINUTE: "min",
   HOUR: "h",
   PERCENT: "percent",
-  FIXED_NOTATION: "fixed"
+  FIXED_NOTATION: "fixed",
+  UN: "un",
+  BOOL: "bool"
 });
 
 export class UnitCatalog extends ReadOnlyCatalog {

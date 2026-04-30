@@ -1,5 +1,7 @@
 import { OUTPUT_AFFIX_TYPES } from "../../constants/output-affix-types.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
+import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
+import { BOOLEAN_LABEL_PRESETS } from "../../constants/boolean-label-catalog.mjs";
 import { DOMAIN } from "../../constants/domain-catalog.mjs";
 import { BASE_VALUES } from "../../constants/base-value-catalog.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
@@ -12,13 +14,14 @@ import { UnitCodeOutputAffix } from "./unit-code-output-affix.mjs";
 import { UnitSymbolOutputAffix } from "./unit-symbol-output-affix.mjs";
 
 export class Output {
-  constructor({ id, unit, precision, prefix, suffix, showUnit = true }) {
+  constructor({ id, unit, precision, prefix, suffix, showUnit = true, booleanLabels }) {
     this.id = createReferenceId("output", id);
     this.unit = unit;
     this.precision = precision;
     this.showUnit = showUnit;
     this.prefix = this.resolvePrefixAffix(prefix);
     this.suffix = this.resolveInitialSuffixAffix(suffix, unit, showUnit);
+    this.booleanLabels = booleanLabels ?? null;
 
     Object.freeze(this);
   }
@@ -28,6 +31,12 @@ export class Output {
   }
 
   formatEdit(input, options = {}) {
+    // Boolean edit: always return "0" or "1"
+    const outputUnit = options.unit ?? this.unit;
+    if (outputUnit === UNIT_TOKENS.BOOL) {
+      return String(input.internal.value); // "0" or "1"
+    }
+
     if (typeof input.value === "string" && input.value.startsWith("=")) {
       // Formulas with embedded units are always self-contained - return as-is
       if (input.formulaHasEmbeddedUnits) {
@@ -159,7 +168,8 @@ export class Output {
       precision: resolvedPrecision,
       prefix: this.resolveOverrideAffix(options.prefix, this.prefix),
       suffix: this.resolveOverrideSuffixAffix(options.suffix, resolvedUnit, resolvedShowUnit),
-      showUnit: resolvedShowUnit
+      showUnit: resolvedShowUnit,
+      booleanLabels: options.booleanLabels ?? this.booleanLabels
     });
   }
 
@@ -169,6 +179,17 @@ export class Output {
     }
 
     const outputUnit = this.unit === QUANTITY_TYPES.NONE ? undefined : (this.unit ?? input.internal.unit);
+
+    // Boolean path: use labels for display, raw number for edit
+    if (this.unit === UNIT_TOKENS.BOOL) {
+      if (!includeAffixes) {
+        return String(input.internal.value); // edit: "0" or "1"
+      }
+
+      const labels = this.booleanLabels ?? BOOLEAN_LABEL_PRESETS.YES_NO;
+      return labels[input.internal.value] ?? String(input.internal.value);
+    }
+
     const numericText = baseNumericValueFormatter.formatNumber(input, outputUnit, this.precision);
 
     if (!includeAffixes) {

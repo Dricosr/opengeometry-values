@@ -39,7 +39,7 @@ export class ValuePreviewService {
       id: parameter.id,
       name: parameter.name ?? parameter.id ?? "",
       quantity: parameter.quantity,
-      valueType: parameter.valueType ?? VALUE_TYPES.FLOAT,
+      valueType: parameter.valueType ?? VALUE_TYPES.NUMBER,
       input: Object.freeze({
         value: parameter?.input?.value,
         unit: parameter?.input?.unit

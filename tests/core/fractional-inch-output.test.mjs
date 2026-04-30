@@ -77,7 +77,7 @@ describe("FractionalInchOutput", () => {
     it("should display NPS 1/2 as 1/2\"", () => {
       const ogValue = createValue({
         value: 0.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-1-2", prefix: "⌀ " })
@@ -88,7 +88,7 @@ describe("FractionalInchOutput", () => {
     it("should display NPS 1 1/4 as 1 1/4\"", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-1-1-4", prefix: "⌀ " })
@@ -99,7 +99,7 @@ describe("FractionalInchOutput", () => {
     it("should display NPS 4 pipe (4.5 in OD) as 4 1/2\"", () => {
       const ogValue = createValue({
         value: 4.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-4" })
@@ -110,7 +110,7 @@ describe("FractionalInchOutput", () => {
     it("should display NPS 6 pipe (6.625 in OD) as 6 5/8\"", () => {
       const ogValue = createValue({
         value: 6.625,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "nps-6" })
@@ -123,7 +123,7 @@ describe("FractionalInchOutput", () => {
     it("should display 1/16 in plate thickness", () => {
       const ogValue = createValue({
         value: 0.0625,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "plate" })
@@ -134,7 +134,7 @@ describe("FractionalInchOutput", () => {
     it("should display 1/8 in plate thickness", () => {
       const ogValue = createValue({
         value: 0.125,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "plate" })
@@ -145,7 +145,7 @@ describe("FractionalInchOutput", () => {
     it("should display 3/8 in plate thickness", () => {
       const ogValue = createValue({
         value: 0.375,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "plate" })
@@ -158,7 +158,7 @@ describe("FractionalInchOutput", () => {
     it("should display with double prime (default)", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -169,7 +169,7 @@ describe("FractionalInchOutput", () => {
     it("should display with code suffix (in)", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -183,7 +183,7 @@ describe("FractionalInchOutput", () => {
     it("should display without suffix (none)", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -197,7 +197,7 @@ describe("FractionalInchOutput", () => {
     it("should display with showUnit=false", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -213,7 +213,7 @@ describe("FractionalInchOutput", () => {
     it("should display with diameter prefix (⌀ )", () => {
       const ogValue = createValue({
         value: 0.375,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -227,7 +227,7 @@ describe("FractionalInchOutput", () => {
     it("should display with custom prefix", () => {
       const ogValue = createValue({
         value: 1.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -241,7 +241,7 @@ describe("FractionalInchOutput", () => {
     it("should display without prefix", () => {
       const ogValue = createValue({
         value: 2,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -254,7 +254,7 @@ describe("FractionalInchOutput", () => {
     it("should display millimeter input converted to fractional inches", () => {
       const ogValue = createValue({
         value: 762,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.MILLIMETER,
         output: new FractionalInchOutput({ id: "test" })
@@ -266,7 +266,7 @@ describe("FractionalInchOutput", () => {
     it("should display centimeter input converted to fractional inches", () => {
       const ogValue = createValue({
         value: 5.08,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.CENTIMETER,
         output: new FractionalInchOutput({ id: "test" })
@@ -278,7 +278,7 @@ describe("FractionalInchOutput", () => {
     it("should display meter input converted to fractional inches", () => {
       const ogValue = createValue({
         value: 1,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.METER,
         output: new FractionalInchOutput({ id: "test" })
@@ -286,13 +286,35 @@ describe("FractionalInchOutput", () => {
       // 1 m = 39.3701 inches → 39 3/8 (approximately)
       expect(ogValue.input.formatForDisplay()).toMatch(/^39 \d+\/\d+"$/);
     });
+
+    it("should format 125 mm as 4 29/32 inches (denominator 32)", () => {
+      const ogValue = createValue({
+        value: 125,
+        unit: UNIT_TOKENS.MILLIMETER,
+        valueType: VALUE_TYPES.NUMBER,
+        quantity: QUANTITY_TYPES.LENGTH
+      });
+      const output = new FractionalInchOutput({ id: "125mm-test", maxDenominator: 32 });
+      expect(output.formatDisplay(ogValue)).toBe('4 29/32"');
+    });
+
+    it("should format 125 mm as 4 15/16 inches (denominator 16)", () => {
+      const ogValue = createValue({
+        value: 125,
+        unit: UNIT_TOKENS.MILLIMETER,
+        valueType: VALUE_TYPES.NUMBER,
+        quantity: QUANTITY_TYPES.LENGTH
+      });
+      const output = new FractionalInchOutput({ id: "125mm-test", maxDenominator: 16 });
+      expect(output.formatDisplay(ogValue)).toBe('4 15/16"');
+    });
   });
 
   describe("formatDisplay — various decimal inputs", () => {
     it("should display 3.175 in as fraction", () => {
       const ogValue = createValue({
         value: 3.175,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -304,7 +326,7 @@ describe("FractionalInchOutput", () => {
     it("should display 0.1875 in as 3/16\"", () => {
       const ogValue = createValue({
         value: 0.1875,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -315,7 +337,7 @@ describe("FractionalInchOutput", () => {
     it("should display 0.65625 in as 21/32\"", () => {
       const ogValue = createValue({
         value: 0.65625,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -328,7 +350,7 @@ describe("FractionalInchOutput", () => {
     it("should edit without suffix", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -339,7 +361,7 @@ describe("FractionalInchOutput", () => {
     it("should edit whole inches without suffix", () => {
       const ogValue = createValue({
         value: 2,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -350,7 +372,7 @@ describe("FractionalInchOutput", () => {
     it("should edit fractions without suffix", () => {
       const ogValue = createValue({
         value: 0.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -361,7 +383,7 @@ describe("FractionalInchOutput", () => {
     it("should edit negative values without suffix", () => {
       const ogValue = createValue({
         value: -1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -374,7 +396,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from fractional inch string input", () => {
       const ogValue = createValue({
         value: "1 1/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -387,7 +409,7 @@ describe("FractionalInchOutput", () => {
     it("should accept hyphen-separated fractional inch input", () => {
       const ogValue = createValue({
         value: "1-1/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -399,7 +421,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from pure fraction input", () => {
       const ogValue = createValue({
         value: "1/2",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -411,7 +433,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from eighths input", () => {
       const ogValue = createValue({
         value: "3/8",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -423,7 +445,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from sixteenths input", () => {
       const ogValue = createValue({
         value: "7/16",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -435,7 +457,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from large mixed number input", () => {
       const ogValue = createValue({
         value: "24 1/2",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -447,7 +469,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from hyphen-separated fractional inch input", () => {
       const ogValue = createValue({
         value: "1-1/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -459,7 +481,7 @@ describe("FractionalInchOutput", () => {
     it("should preserve fractional input as input value", () => {
       const ogValue = createValue({
         value: "1 1/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -470,7 +492,7 @@ describe("FractionalInchOutput", () => {
     it("should create value from large hyphen-separated mixed number", () => {
       const ogValue = createValue({
         value: "24-1/2",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -484,7 +506,7 @@ describe("FractionalInchOutput", () => {
     it("should round-trip '1 1/4' input through internal meters and back to display", () => {
       const ogValue = createValue({
         value: "1 1/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -499,7 +521,7 @@ describe("FractionalInchOutput", () => {
     it("should round-trip '1/2' input through internal meters and back to display", () => {
       const ogValue = createValue({
         value: "1/2",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -511,7 +533,7 @@ describe("FractionalInchOutput", () => {
     it("should round-trip hyphen-separated input through internal meters and back to display", () => {
       const ogValue = createValue({
         value: "1-1/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -527,7 +549,7 @@ describe("FractionalInchOutput", () => {
     it("should round-trip '3/4' input", () => {
       const ogValue = createValue({
         value: "3/4",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test" })
@@ -542,7 +564,7 @@ describe("FractionalInchOutput", () => {
     it("should display with hyphen separator when configured", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
@@ -553,7 +575,7 @@ describe("FractionalInchOutput", () => {
     it("should display with hyphen separator for negative values", () => {
       const ogValue = createValue({
         value: -1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
@@ -564,7 +586,7 @@ describe("FractionalInchOutput", () => {
     it("should display with hyphen separator for large values", () => {
       const ogValue = createValue({
         value: 24.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
@@ -575,7 +597,7 @@ describe("FractionalInchOutput", () => {
     it("should use hyphen separator in edit mode", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", separator: SEPARATORS.HYPHEN })
@@ -586,7 +608,7 @@ describe("FractionalInchOutput", () => {
     it("should display with hyphen separator and code suffix", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -601,7 +623,7 @@ describe("FractionalInchOutput", () => {
     it("should display with hyphen separator and prefix", () => {
       const ogValue = createValue({
         value: 1.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({
@@ -616,7 +638,7 @@ describe("FractionalInchOutput", () => {
     it("should display hyphen-separated with construction precision", () => {
       const ogValue = createValue({
         value: 2.75,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16, separator: SEPARATORS.HYPHEN })
@@ -629,7 +651,7 @@ describe("FractionalInchOutput", () => {
     it("should round 0.03125 to nearest 1/16", () => {
       const ogValue = createValue({
         value: 0.03125,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16 })
@@ -642,7 +664,7 @@ describe("FractionalInchOutput", () => {
     it("should show 0.0625 as 1/16\" with construction precision", () => {
       const ogValue = createValue({
         value: 0.0625,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "test", maxDenominator: 16 })
@@ -655,7 +677,7 @@ describe("FractionalInchOutput", () => {
     it("should reject invalid fraction input (non-power-of-2 denominator)", () => {
       expect(() => createValue({
         value: "1/3",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH
       })).toThrow();
@@ -664,7 +686,7 @@ describe("FractionalInchOutput", () => {
     it("should reject improper fraction input", () => {
       expect(() => createValue({
         value: "3/2",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH
       })).toThrow();
@@ -673,7 +695,7 @@ describe("FractionalInchOutput", () => {
     it("should reject non-numeric input", () => {
       expect(() => createValue({
         value: "abc",
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH
       })).toThrow();
@@ -684,7 +706,7 @@ describe("FractionalInchOutput", () => {
     it("should display 2x4 lumber nominal (1.5 in) as 1 1/2\"", () => {
       const ogValue = createValue({
         value: 1.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "lumber" })
@@ -695,7 +717,7 @@ describe("FractionalInchOutput", () => {
     it("should display 4x4 lumber nominal (3.5 in) as 3 1/2\"", () => {
       const ogValue = createValue({
         value: 3.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "lumber" })
@@ -706,7 +728,7 @@ describe("FractionalInchOutput", () => {
     it("should display standard stud spacing (16 in)", () => {
       const ogValue = createValue({
         value: 16,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "framing" })
@@ -717,7 +739,7 @@ describe("FractionalInchOutput", () => {
     it("should display standard joist spacing (12 in)", () => {
       const ogValue = createValue({
         value: 12,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "framing" })
@@ -730,7 +752,7 @@ describe("FractionalInchOutput", () => {
     it("should display 1/4-20 bolt diameter", () => {
       const ogValue = createValue({
         value: 0.25,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "bolt" })
@@ -741,7 +763,7 @@ describe("FractionalInchOutput", () => {
     it("should display bolt length 2 1/2", () => {
       const ogValue = createValue({
         value: 2.5,
-        valueType: VALUE_TYPES.FLOAT,
+        valueType: VALUE_TYPES.NUMBER,
         quantity: QUANTITY_TYPES.LENGTH,
         unit: UNIT_TOKENS.INCH,
         output: new FractionalInchOutput({ id: "bolt-length" })

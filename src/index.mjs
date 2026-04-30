@@ -9,6 +9,7 @@ export { INTERNAL_UNITS, internalUnitCatalog, InternalUnitCatalog } from "./cons
 export { UNIT_SYMBOLS, unitSymbolCatalog, UnitSymbolCatalog } from "./constants/unit-symbols.mjs";
 export { UNIT_TOKENS, unitTokenCatalog, UnitTokenCatalog } from "./constants/unit-token-catalog.mjs";
 export { VALUE_TYPES, valueTypeCatalog, ValueTypeCatalog } from "./constants/value-types.mjs";
+export { BOOLEAN_LABEL_PRESETS, booleanLabelCatalog, BooleanLabelCatalog } from "./constants/boolean-label-catalog.mjs";
 export {
   SEPARATORS, FRACTION_DENOMINATORS, FRACTION_DEFAULTS,
   fractionalSeparatorCatalog, FractionalSeparatorCatalog,
@@ -45,6 +46,7 @@ export { UnitSymbolOutputAffix } from "./core/models/unit-symbol-output-affix.mj
 
 // ─── Presets & Samples ──────────────────────────────────────────────
 export { OUTPUT_PRESETS, outputPresetCatalog, OutputPresetCatalog } from "./presets/output-preset-catalog.mjs";
+export { NONE_PRESETS } from "./presets/none-presets.mjs";
 export { PARAMETER_SAMPLES, parameterSampleCatalog, ParameterSampleCatalog } from "./samples/parameter-sample-catalog.mjs";
 
 // ─── Quantity profiles ──────────────────────────────────────────────

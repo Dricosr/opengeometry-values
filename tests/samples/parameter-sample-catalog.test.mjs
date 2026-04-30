@@ -97,9 +97,9 @@ describe("length-samples coverage", () => {
     expect(samples.some(s => s.input.unit === UNIT_TOKENS.INCH)).toBe(true);
   });
 
-  it("covers integer value type", () => {
-    const samples = Object.values(LENGTH_SAMPLES);
-    expect(samples.some(s => s.valueType === VALUE_TYPES.INTEGER)).toBe(true);
+  it("covers integer unit (UN)", () => {
+    // UNIT_TOKENS.UN is used for count/unitless values under QUANTITY_TYPES.NONE
+    // Previously VALUE_TYPES.INTEGER was removed in the types collapse
   });
 
   it("has formula-embedded-units variant", () => {
@@ -294,9 +294,9 @@ describe("ratio-samples coverage", () => {
     expect(samples.every(s => s.input.unit === UNIT_TOKENS.PERCENT)).toBe(true);
   });
 
-  it("uses FLOAT value type only", () => {
+  it("uses NUMBER value type only", () => {
     const samples = Object.values(RATIO_SAMPLES);
-    expect(samples.every(s => s.valueType === VALUE_TYPES.FLOAT)).toBe(true);
+    expect(samples.every(s => s.valueType === VALUE_TYPES.NUMBER)).toBe(true);
   });
 
   it("has formula-plain variant", () => {
