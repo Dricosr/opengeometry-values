@@ -16,7 +16,7 @@ const inputValue = 42.35; // m²
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.AREA,
     unit: UNIT_TOKENS.SQUARE_METER,
     output: new Output({

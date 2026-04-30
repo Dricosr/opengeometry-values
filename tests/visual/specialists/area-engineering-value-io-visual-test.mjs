@@ -25,6 +25,13 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         unit: UNIT_TOKENS.SQUARE_METER,
         outputUnit: UNIT_TOKENS.SQUARE_METER,
         precision: 2
+      },
+      {
+        value: 350,
+        quantity: QUANTITY_TYPES.AREA,
+        unit: UNIT_TOKENS.SQUARE_INCH,
+        outputUnit: UNIT_TOKENS.SQUARE_CENTIMETER,
+        precision: 0
       }
     ];
   }
@@ -53,6 +60,14 @@ export class AreaEngineeringValueIoVisualTest extends EngineeringValueIoVisualTe
         outputs: {
           display: "2.50 m^2",
           edit: "=2 m^2 + 5000 cm^2"
+        }
+      },
+      {
+        input: { value: 350, unit: "in^2" },
+        internal: "0.225806 m^2",
+        outputs: {
+          display: "2258 cm^2",
+          edit: "2258.06"
         }
       }
     ];
