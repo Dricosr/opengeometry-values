@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `samples/none/` directory with 4 visual sample scripts covering BOOL and UN:
+  - `input-bool-to-output-bool.mjs` — boolean input with Open/Closed label display
+  - `output-boolean-labels.mjs` — comparison of 5 boolean label sets (YES_NO, OPEN_CLOSED, ENABLED_DISABLED, COMPLIANT_NON_COMPLIANT, APPROVED_NOT_APPROVED)
+  - `input-un-to-output-un.mjs` — unit count input (UN) with "12 un" display
+  - `output-precision.mjs` — precision control on unit count output
+
+### Fixed
+
+- `tests/samples/parameter-sample-catalog.test.mjs`: added NONE samples coverage — import of NONE_SAMPLES, inclusion in allKeys and expectedQuantities, plus dedicated `describe("none-samples coverage")` block with 7 tests covering BOOL unit, UN unit, BOOLEAN/NUMBER value types, minimum sample count, and preset validation
+
+## [0.4.2] - 2026-04-30
+
+## [0.4.1] - 2026-04-30
+
 ## [0.4.0] - 2026-04-30
 
 ### Added
