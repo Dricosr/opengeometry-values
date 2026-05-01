@@ -53,7 +53,8 @@
       "Bash(find \"e:\\\\\\\\Cloud\\\\\\\\Git\\\\\\\\iforge_edp\\\\\\\\values\" -maxdepth 3 -name \"*.md\" -not -path \"*/node_modules/*\")",
       "WebFetch(domain:agents.md)",
       "Bash(git -C \"e:/Cloud/Git/iforge_edp/values\" rm -r scripts/)",
-      "Bash(git -C \"e:/Cloud/Git/iforge_edp/values\" rm .github/workflows/customization-sync.yml)"
+      "Bash(git -C \"e:/Cloud/Git/iforge_edp/values\" rm .github/workflows/customization-sync.yml)",
+      "Bash(node -e \"const p = JSON.parse\\(require\\('fs'\\).readFileSync\\('package.json','utf8'\\)\\); console.log\\(p.version\\)\")"
     ]
   }
 }

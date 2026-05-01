@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-05-01
+
 ### Added
 
 - `samples/none/` directory with 4 visual sample scripts covering BOOL and UN:
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `quantity-profile-registry.mjs`: `QUANTITY_TYPES.NONE` profile was missing `supportedUnits`, causing an empty unit dropdown and a validation error (`unit: ""`) when applying NONE samples in the demo app — added `supportedUnits: [UNIT_TOKENS.UN, UNIT_TOKENS.BOOL]`
 - `tests/samples/parameter-sample-catalog.test.mjs`: added NONE samples coverage — import of NONE_SAMPLES, inclusion in allKeys and expectedQuantities, plus dedicated `describe("none-samples coverage")` block with 7 tests covering BOOL unit, UN unit, BOOLEAN/NUMBER value types, minimum sample count, and preset validation
 
 ## [0.4.2] - 2026-04-30
