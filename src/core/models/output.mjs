@@ -1,5 +1,4 @@
 import { OUTPUT_AFFIX_TYPES } from "../../constants/output-affix-types.mjs";
-import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
 import { unitTokenCatalog } from "../../constants/unit-token-catalog.mjs";
 
@@ -19,7 +18,7 @@ import { UnitSymbolOutputAffix } from "./unit-symbol-output-affix.mjs";
 
 export class Output {
   constructor({ id, unit, precision, prefix, suffix, showUnit = true, booleanLabels }) {
-    if (unit !== undefined && unit !== null && unit !== QUANTITY_TYPES.NONE) {
+    if (unit !== undefined && unit !== null) {
       assertCatalogValue(unit, unitTokenCatalog, "UNIT_TOKENS");
     }
 
@@ -44,7 +43,7 @@ export class Output {
     // Boolean edit: always return "0" or "1"
     const outputUnit = options.unit ?? this.unit;
     if (outputUnit === UNIT_TOKENS.BOOL) {
-      return String(input.internal.value); // "0" or "1"
+      return input.internal.value ? "1" : "0";
     }
 
     if (typeof input.value === "string" && input.value.startsWith("=")) {
@@ -56,7 +55,7 @@ export class Output {
       // Dimensionless formula: append original unit when editing in a different unit
       const editUnit = options.unit ?? this.unit;
 
-      if (input.unit && input.unit !== QUANTITY_TYPES.NONE && editUnit !== input.unit) {
+      if (input.unit && editUnit !== input.unit) {
         return `${input.value} ${input.unit}`;
       }
 
@@ -184,20 +183,22 @@ export class Output {
   }
 
   composeFormattedValue(input, includeAffixes) {
-    if (typeof input.internal.value !== "number") {
-      return String(input.internal.value ?? "");
-    }
+    const outputUnit = this.unit ?? input.internal.unit;
 
-    const outputUnit = this.unit === QUANTITY_TYPES.NONE ? undefined : (this.unit ?? input.internal.unit);
-
-    // Boolean path: use labels for display, raw number for edit
+    // Boolean path: use labels for display, "0"/"1" for edit
     if (this.unit === UNIT_TOKENS.BOOL) {
+      const raw = !!input.internal.value;
+
       if (!includeAffixes) {
-        return String(input.internal.value); // edit: "0" or "1"
+        return raw ? "1" : "0"; // edit
       }
 
       const labels = this.booleanLabels ?? BOOLEAN_LABEL_PRESETS.YES_NO;
-      return labels[input.internal.value] ?? String(input.internal.value);
+      return raw ? labels["1"] : labels["0"];
+    }
+
+    if (typeof input.internal.value !== "number") {
+      return String(input.internal.value ?? "");
     }
 
     const numericText = baseNumericValueFormatter.formatNumber(input, outputUnit, this.precision);
@@ -256,7 +257,7 @@ export class Output {
       });
     }
 
-    if (!showUnit || !unit || unit === QUANTITY_TYPES.NONE) {
+    if (!showUnit || !unit) {
       return new EmptyOutputAffix();
     }
 
@@ -276,7 +277,7 @@ export class Output {
       return this.resolveInitialSuffixAffix(overrideAffix, unit, showUnit);
     }
 
-    if (!showUnit || !unit || unit === QUANTITY_TYPES.NONE) {
+    if (!showUnit || !unit) {
       return new EmptyOutputAffix();
     }
 

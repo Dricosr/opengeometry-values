@@ -9,7 +9,8 @@ import { FORCE_PRESETS } from "./force-presets.mjs";
 import { PRESSURE_PRESETS } from "./pressure-presets.mjs";
 import { TIME_PRESETS } from "./time-presets.mjs";
 import { RATIO_PRESETS } from "./ratio-presets.mjs";
-import { NONE_PRESETS } from "./none-presets.mjs";
+import { BOOL_PRESETS } from "./bool-presets.mjs";
+import { COUNT_PRESETS } from "./count-presets.mjs";
 
 const OUTPUT_PRESET_ENTRIES = Object.freeze({
   ...LENGTH_PRESETS,
@@ -22,7 +23,8 @@ const OUTPUT_PRESET_ENTRIES = Object.freeze({
   ...PRESSURE_PRESETS,
   ...TIME_PRESETS,
   ...RATIO_PRESETS,
-  ...NONE_PRESETS
+  ...BOOL_PRESETS,
+  ...COUNT_PRESETS
 });
 
 export class OutputPresetCatalog extends ReadOnlyCatalog {

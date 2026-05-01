@@ -15,7 +15,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 const value = createValue({
   value: 12,
   valueType: VALUE_TYPES.NUMBER,
-  quantity: QUANTITY_TYPES.NONE,
+  quantity: QUANTITY_TYPES.COUNT,
   unit: UNIT_TOKENS.UN,
   output: new Output({
     id: "example",

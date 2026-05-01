@@ -20,13 +20,21 @@ describe("formatEditValue", () => {
     })).toBe("2002.000");
   });
 
-  it("returns plain text for non-numeric values (boolean)", () => {
-    const value = createValue({
+  it("returns 0/1 for boolean values in edit mode", () => {
+    const valueFalse = createValue({
       value: "no",
       valueType: VALUE_TYPES.BOOLEAN,
-      quantity: QUANTITY_TYPES.NONE
+      quantity: QUANTITY_TYPES.BOOL
     });
 
-    expect(formatEditValue(value, { unit: UNIT_TOKENS.BOOL })).toBe("false");
+    expect(formatEditValue(valueFalse, { unit: UNIT_TOKENS.BOOL })).toBe("0");
+
+    const valueTrue = createValue({
+      value: "yes",
+      valueType: VALUE_TYPES.BOOLEAN,
+      quantity: QUANTITY_TYPES.BOOL
+    });
+
+    expect(formatEditValue(valueTrue, { unit: UNIT_TOKENS.BOOL })).toBe("1");
   });
 });

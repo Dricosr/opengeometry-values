@@ -162,7 +162,8 @@ console.log(preview.previews.display);
 | `pressure`    | `Pa`        |
 | `time`        | `s`         |
 | `ratio`       | -             |
-| `none`        | -             |
+| `bool`        | -             |
+| `count`       | -             |
 
 ---
 

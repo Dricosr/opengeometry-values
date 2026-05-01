@@ -1,6 +1,5 @@
 ﻿import { DOMAIN } from "../constants/domain-catalog.mjs";
 import { UNIT_TOKENS } from "../constants/unit-token-catalog.mjs";
-import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../constants/value-types.mjs";
 import { BOOLEAN_LABEL_PRESETS } from "../constants/boolean-label-catalog.mjs";
 import { internalResolutionApplier } from "./apply-internal-resolution.mjs";
@@ -39,25 +38,23 @@ export class ValueFactory {
   }
 
   create({ id, output, outputId, value, valueType, quantity, unit }) {
-    const inputUnit = unit ?? QUANTITY_TYPES.NONE;
-    const resolvedQuantity = quantity ?? QUANTITY_TYPES.NONE;
-
     if (valueType === VALUE_TYPES.STRING) {
       const internalValue = new InternalValue({ value });
 
       return new IForgeEdpValue({
         valueType,
-        quantity: resolvedQuantity,
+        quantity,
         input: new ValueInput({
           id,
           value,
-          unit: inputUnit,
-          quantity: resolvedQuantity,
+          valueType,
+          unit,
+          quantity,
           internal: internalValue,
           output: this.resolveOutput({
             output,
             outputId,
-            inputUnit,
+            inputUnit: unit,
             internalValue
           })
         }),
@@ -72,17 +69,18 @@ export class ValueFactory {
 
       return new IForgeEdpValue({
         valueType,
-        quantity: resolvedQuantity,
+        quantity,
         input: new ValueInput({
           id,
           value: parsedValue,
-          unit: inputUnit,
-          quantity: resolvedQuantity,
+          valueType,
+          unit,
+          quantity,
           internal: internalValue,
           output: this.resolveOutput({
             output,
             outputId,
-            inputUnit,
+            inputUnit: unit,
             internalValue
           })
         }),
@@ -93,32 +91,32 @@ export class ValueFactory {
     const { numericValue, inputValue, effectiveUnit, hasEmbeddedUnits, isFractionalInput } = this.resolveNumericInput({
       value,
       valueType,
-      quantity: resolvedQuantity,
-      unit: inputUnit
+      quantity,
+      unit
     });
 
     // --- Unit count path (unit === UN) requires integer values ---
-    if (inputUnit === UNIT_TOKENS.UN && !Number.isInteger(numericValue)) {
+    if (unit === UNIT_TOKENS.UN && !Number.isInteger(numericValue)) {
       throw this.createInputError({
         code: DOMAIN.ERROR_CODE_INVALID_INTEGER_VALUE,
         field: DOMAIN.ERROR_FIELD_VALUE,
         message: `${DOMAIN.ERROR_INVALID_INTEGER_VALUE_PREFIX}: ${value}`,
         value,
         valueType,
-        quantity: resolvedQuantity,
+        quantity,
         unit: effectiveUnit
       });
     }
 
-    const quantityProfile = this.quantityProfiles.getProfile(resolvedQuantity);
-    this.assertSupportedUnit({ quantityProfile, value, valueType, quantity: resolvedQuantity, unit: effectiveUnit });
+    const quantityProfile = this.quantityProfiles.getProfile(quantity);
+    this.assertSupportedUnit({ quantityProfile, value, valueType, quantity, unit: effectiveUnit });
 
     const normalizedInternal = this.normalizeNumericValue({
       quantityProfile,
       numericValue,
       value,
       valueType,
-      quantity: resolvedQuantity,
+      quantity,
       unit: effectiveUnit
     });
 
@@ -129,12 +127,13 @@ export class ValueFactory {
 
     return new IForgeEdpValue({
       valueType,
-      quantity: resolvedQuantity,
+      quantity,
       input: new ValueInput({
         id,
         value: inputValue,
+        valueType,
         unit: effectiveUnit,
-        quantity: resolvedQuantity,
+        quantity,
         internal: internalValue,
         formulaHasEmbeddedUnits: hasEmbeddedUnits,
         output: this.resolveOutput({
@@ -206,7 +205,7 @@ export class ValueFactory {
       return false;
     }
     // Must have unit "in" or no unit (unit coming from context)
-    return !unit || unit === UNIT_TOKENS.INCH || unit === QUANTITY_TYPES.NONE;
+    return !unit || unit === UNIT_TOKENS.INCH;
   }
 
   tryFractionalInch(value) {
@@ -313,10 +312,10 @@ export class ValueFactory {
     try {
       return quantityProfile?.normalizeNumericValue(
         numericValue,
-        unit === QUANTITY_TYPES.NONE ? undefined : unit,
+        unit,
         this.converter,
         this.resolutionApplier
-      ) ?? { value: numericValue, unit: unit === QUANTITY_TYPES.NONE ? undefined : unit };
+      ) ?? { value: numericValue, unit };
     } catch (error) {
       throw this.normalizeUnitError(error, {
         value,
@@ -328,7 +327,7 @@ export class ValueFactory {
   }
 
   assertSupportedUnit({ quantityProfile, value, valueType, quantity, unit }) {
-    if (!quantityProfile || !unit || unit === QUANTITY_TYPES.NONE) {
+    if (!quantityProfile || !unit) {
       return;
     }
 
@@ -416,12 +415,12 @@ export class ValueFactory {
       }
     }
 
-    const outputUnit = inputUnit !== QUANTITY_TYPES.NONE ? inputUnit : (internalValue.unit ?? QUANTITY_TYPES.NONE);
+    const outputUnit = inputUnit ?? internalValue.unit;
 
     return new Output({
       id: outputId,
       unit: outputUnit,
-      showUnit: outputUnit !== QUANTITY_TYPES.NONE
+      showUnit: outputUnit != null
     });
   }
 }

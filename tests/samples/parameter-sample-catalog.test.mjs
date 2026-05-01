@@ -14,7 +14,8 @@ import { FORCE_SAMPLES } from "../../src/samples/force-samples.mjs";
 import { PRESSURE_SAMPLES } from "../../src/samples/pressure-samples.mjs";
 import { TIME_SAMPLES } from "../../src/samples/time-samples.mjs";
 import { RATIO_SAMPLES } from "../../src/samples/ratio-samples.mjs";
-import { NONE_SAMPLES } from "../../src/samples/none-samples.mjs";
+import { BOOL_SAMPLES } from "../../src/samples/bool-samples.mjs";
+import { COUNT_SAMPLES } from "../../src/samples/count-samples.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
@@ -45,7 +46,8 @@ describe("parameter-sample-catalog", () => {
       ...Object.keys(PRESSURE_SAMPLES),
       ...Object.keys(TIME_SAMPLES),
       ...Object.keys(RATIO_SAMPLES),
-      ...Object.keys(NONE_SAMPLES)
+      ...Object.keys(BOOL_SAMPLES),
+      ...Object.keys(COUNT_SAMPLES)
     ];
 
     for (const key of allKeys) {
@@ -100,8 +102,7 @@ describe("length-samples coverage", () => {
   });
 
   it("covers integer unit (UN)", () => {
-    // UNIT_TOKENS.UN is used for count/unitless values under QUANTITY_TYPES.NONE
-    // Previously VALUE_TYPES.INTEGER was removed in the types collapse
+    // UNIT_TOKENS.UN is used for discrete count values under QUANTITY_TYPES.COUNT
   });
 
   it("has formula-embedded-units variant", () => {
@@ -314,43 +315,49 @@ describe("ratio-samples coverage", () => {
   });
 });
 
-describe("none-samples coverage", () => {
-  const samples = Object.values(NONE_SAMPLES);
+describe("bool-samples coverage", () => {
+  const samples = Object.values(BOOL_SAMPLES);
 
-  it("covers BOOL unit (boolean inputs)", () => {
+  it("covers BOOL unit", () => {
     expect(samples.some(s => s.input.unit === UNIT_TOKENS.BOOL)).toBe(true);
-  });
-
-  it("covers UN unit (unit count inputs)", () => {
-    expect(samples.some(s => s.input.unit === UNIT_TOKENS.UN)).toBe(true);
   });
 
   it("has BOOLEAN value type samples", () => {
     expect(samples.some(s => s.valueType === VALUE_TYPES.BOOLEAN)).toBe(true);
   });
 
-  it("has NUMBER value type samples", () => {
-    expect(samples.some(s => s.valueType === VALUE_TYPES.NUMBER)).toBe(true);
-  });
-
-  it("has at least 8 samples (4 boolean + 4 count)", () => {
-    expect(Object.keys(NONE_SAMPLES).length).toBeGreaterThanOrEqual(8);
+  it("has at least 4 samples", () => {
+    expect(Object.keys(BOOL_SAMPLES).length).toBeGreaterThanOrEqual(4);
   });
 
   it("boolean samples reference valid output presets", () => {
-    const boolSamples = samples.filter(s => s.valueType === VALUE_TYPES.BOOLEAN);
-    const validPresets = ["none:open-closed", "none:yes-no"];
-    for (const sample of boolSamples) {
+    const validPresets = ["bool:open-closed", "bool:yes-no"];
+    for (const sample of samples) {
       for (const presetId of sample.recommendedOutputPresetIds) {
         expect(validPresets).toContain(presetId);
       }
     }
   });
+});
+
+describe("count-samples coverage", () => {
+  const samples = Object.values(COUNT_SAMPLES);
+
+  it("covers UN unit", () => {
+    expect(samples.some(s => s.input.unit === UNIT_TOKENS.UN)).toBe(true);
+  });
+
+  it("has NUMBER value type samples", () => {
+    expect(samples.some(s => s.valueType === VALUE_TYPES.NUMBER)).toBe(true);
+  });
+
+  it("has at least 4 samples", () => {
+    expect(Object.keys(COUNT_SAMPLES).length).toBeGreaterThanOrEqual(4);
+  });
 
   it("UN samples reference count output presets", () => {
-    const unSamples = samples.filter(s => s.input.unit === UNIT_TOKENS.UN);
-    const validPresets = ["none:count"];
-    for (const sample of unSamples) {
+    const validPresets = ["count:count"];
+    for (const sample of samples) {
       for (const presetId of sample.recommendedOutputPresetIds) {
         expect(validPresets).toContain(presetId);
       }
@@ -385,7 +392,8 @@ describe("catalog methods", () => {
       QUANTITY_TYPES.PRESSURE,
       QUANTITY_TYPES.TIME,
       QUANTITY_TYPES.RATIO,
-      QUANTITY_TYPES.NONE
+      QUANTITY_TYPES.BOOL,
+      QUANTITY_TYPES.COUNT
     ];
 
     for (const q of expectedQuantities) {

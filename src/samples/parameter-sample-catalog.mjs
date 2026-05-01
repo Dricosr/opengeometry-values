@@ -16,7 +16,8 @@ import { FORCE_SAMPLES } from "./force-samples.mjs";
 import { PRESSURE_SAMPLES } from "./pressure-samples.mjs";
 import { TIME_SAMPLES } from "./time-samples.mjs";
 import { RATIO_SAMPLES } from "./ratio-samples.mjs";
-import { NONE_SAMPLES } from "./none-samples.mjs";
+import { BOOL_SAMPLES } from "./bool-samples.mjs";
+import { COUNT_SAMPLES } from "./count-samples.mjs";
 
 const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
   ...LENGTH_SAMPLES,
@@ -29,7 +30,8 @@ const PARAMETER_SAMPLE_ENTRIES = Object.freeze({
   ...PRESSURE_SAMPLES,
   ...TIME_SAMPLES,
   ...RATIO_SAMPLES,
-  ...NONE_SAMPLES
+  ...BOOL_SAMPLES,
+  ...COUNT_SAMPLES
 });
 
 export class ParameterSampleCatalog extends ReadOnlyCatalog {

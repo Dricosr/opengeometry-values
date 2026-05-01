@@ -1,15 +1,17 @@
 import { assertCatalogValue } from "../base/assert-catalog-value.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
-import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
+import { VALUE_TYPES } from "../../constants/value-types.mjs";
 import { quantityTypeCatalog } from "../../constants/quantity-types.mjs";
 import { unitTokenCatalog } from "../../constants/unit-token-catalog.mjs";
 
 export class ValueInput {
-    constructor({ id, value, unit, quantity, internal, output, formulaHasEmbeddedUnits = false }) {
-        if (unit !== undefined && unit !== null && unit !== QUANTITY_TYPES.NONE) {
+    constructor({ id, value, unit, quantity, valueType, internal, output, formulaHasEmbeddedUnits = false }) {
+        if (unit !== undefined && unit !== null) {
             assertCatalogValue(unit, unitTokenCatalog, "UNIT_TOKENS");
         }
-        assertCatalogValue(quantity, quantityTypeCatalog, "QUANTITY_TYPES");
+        if (valueType !== VALUE_TYPES.STRING) {
+            assertCatalogValue(quantity, quantityTypeCatalog, "QUANTITY_TYPES");
+        }
 
 
         this.id = createReferenceId("input", id);

@@ -12,18 +12,19 @@ import { Output } from "../../src/core/models/output.mjs";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
+import { BOOLEAN_LABEL_PRESETS } from "../../src/constants/boolean-label-catalog.mjs";
 
 const value = createValue({
   value: "true",
   valueType: VALUE_TYPES.BOOLEAN,
-  quantity: QUANTITY_TYPES.NONE,
+  quantity: QUANTITY_TYPES.BOOL,
   unit: UNIT_TOKENS.BOOL,
   output: new Output({
     id: "example",
     unit: UNIT_TOKENS.BOOL,
     precision: 0,
     showUnit: false,
-    booleanLabelKey: "OPEN_CLOSED"
+    booleanLabels: BOOLEAN_LABEL_PRESETS.OPEN_CLOSED
   })
 });
 

@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Boolean display formatting**: `Output.composeFormattedValue()` now indexes boolean label maps with string keys `"0"`/`"1"` instead of raw boolean `true`/`false`, resolving a bug where presets like `bool:active-inactive` displayed `"true"`/`"false"` instead of `"Active"`/`"Inactive"`. The root cause was that `BOOLEAN_LABEL_PRESETS` entries use string keys but `internal.value` is a JavaScript boolean.
+- **Boolean edit formatting**: `Output.formatEdit()` now returns `"0"`/`"1"` instead of `String(boolean)` (which produced `"true"`/`"false"`), matching the documented contract.
+- **Tests**: Fixed false-positive in `format-edit-value.test.mjs` that asserted `"false"` instead of `"0"`. Added comprehensive boolean display/end-to-end tests to `format-display-value.test.mjs` covering all label presets and the `booleanLabels` default fallback.
+
+## [0.4.4] - 2026-05-01
+
+### Changed (Breaking)
+
+- `QUANTITY_TYPES.NONE` removed; replaced by `QUANTITY_TYPES.BOOL` (boolean status values, `UNIT_TOKENS.BOOL`) and `QUANTITY_TYPES.COUNT` (discrete integer counts, `UNIT_TOKENS.UN`)
+- `NONE_PRESETS` replaced by `BOOL_PRESETS` and `COUNT_PRESETS`; all preset keys renamed from `none:*` to `bool:*` and `count:*` respectively
+- `none-presets.mjs` split into `bool-presets.mjs` and `count-presets.mjs`
+- `none-samples.mjs` split into `bool-samples.mjs` and `count-samples.mjs`; all sample keys renamed accordingly
+- `samples/none/` directory replaced by `samples/bool/` and `samples/count/`
+- STRING values no longer require a `quantity` type (`quantity` may be `undefined` for `VALUE_TYPES.STRING`)
+- Core models (`Output`, `ValueInput`, `FractionalInchOutput`) and `create-value.mjs` no longer use `QUANTITY_TYPES.NONE` as a sentinel; unit absence is now represented by `undefined`/`null`
+
 ## [0.4.3] - 2026-05-01
 
 ### Added

@@ -1,7 +1,8 @@
 import { ReadOnlyCatalog } from "../core/base/read-only-catalog.mjs";
 
 const QUANTITY_ENTRIES = Object.freeze({
-  NONE: "none",
+  BOOL: "bool",
+  COUNT: "count",
   LENGTH: "length",
   AREA: "area",
   VOLUME: "volume",

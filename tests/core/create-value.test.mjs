@@ -11,12 +11,11 @@ describe("createValue", () => {
   it("preserves string values without numeric conversion", () => {
     const value = createValue({
       value: "pipe-A",
-      valueType: VALUE_TYPES.STRING,
-      quantity: QUANTITY_TYPES.NONE
+      valueType: VALUE_TYPES.STRING
     });
 
     expect(value.input.value).toBe("pipe-A");
-    expect(value.input.unit).toBe(QUANTITY_TYPES.NONE);
+    expect(value.input.unit).toBeUndefined();
     expect(typeof value.input.id).toBe("string");
     expect(value.input.internal).toBe(value.internal);
     expect(value.internal.value).toBe("pipe-A");
@@ -27,11 +26,11 @@ describe("createValue", () => {
     const value = createValue({
       value: "yes",
       valueType: VALUE_TYPES.BOOLEAN,
-      quantity: QUANTITY_TYPES.NONE
+      quantity: QUANTITY_TYPES.BOOL
     });
 
     expect(value.input.value).toBe(true);
-    expect(value.input.unit).toBe(QUANTITY_TYPES.NONE);
+    expect(value.input.unit).toBeUndefined();
     expect(typeof value.input.output.id).toBe("string");
     expect(value.internal.value).toBe(true);
   });
@@ -87,7 +86,7 @@ describe("createValue", () => {
     expect(() => createValue({
       value: 10.5,
       valueType: VALUE_TYPES.NUMBER,
-      quantity: QUANTITY_TYPES.NONE,
+      quantity: QUANTITY_TYPES.COUNT,
       unit: UNIT_TOKENS.UN
     })).toThrow("Invalid integer value");
   });
@@ -145,7 +144,7 @@ describe("createValue", () => {
     const result = tryCreateValue({
       value: "=1+2",
       valueType: VALUE_TYPES.BOOLEAN,
-      quantity: QUANTITY_TYPES.NONE
+      quantity: QUANTITY_TYPES.BOOL
     });
 
     expect(result.ok).toBe(false);
@@ -159,7 +158,7 @@ describe("createValue", () => {
     expect(() => createValue({
       value: "=true",
       valueType: VALUE_TYPES.BOOLEAN,
-      quantity: QUANTITY_TYPES.NONE
+      quantity: QUANTITY_TYPES.BOOL
     })).toThrow("Invalid formula expression");
   });
 });

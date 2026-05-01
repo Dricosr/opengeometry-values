@@ -3,34 +3,10 @@ import { UNIT_TOKENS } from "../constants/unit-token-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../constants/output-suffix-modes.mjs";
 import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
 
-export const NONE_PRESETS = Object.freeze({
-  "none:count": createPreset({
-    id: "none:count",
-    quantity: QUANTITY_TYPES.NONE,
-    name: "Unit Count",
-    description: "Generic whole-number count with unit suffix for discrete items.",
-    unit: UNIT_TOKENS.UN,
-    precision: 0,
-    showUnit: true,
-    prefix: "",
-    suffix: "",
-    suffixMode: OUTPUT_SUFFIX_MODES.CODE
-  }),
-  "none:count-pcs": createPreset({
-    id: "none:count-pcs",
-    quantity: QUANTITY_TYPES.NONE,
-    name: "Unit Count (pcs)",
-    description: "Whole-number count with 'pcs' custom suffix for parts or components.",
-    unit: UNIT_TOKENS.UN,
-    precision: 0,
-    showUnit: false,
-    prefix: "Qty ",
-    suffix: " pcs",
-    suffixMode: OUTPUT_SUFFIX_MODES.CUSTOM
-  }),
-  "none:yes-no": createPreset({
-    id: "none:yes-no",
-    quantity: QUANTITY_TYPES.NONE,
+export const BOOL_PRESETS = Object.freeze({
+  "bool:yes-no": createPreset({
+    id: "bool:yes-no",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Yes / No",
     description: "Boolean display as Yes/No labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -41,9 +17,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "YES_NO"
   }),
-  "none:active-inactive": createPreset({
-    id: "none:active-inactive",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:active-inactive": createPreset({
+    id: "bool:active-inactive",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Active / Inactive",
     description: "Boolean display as Active/Inactive labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -54,9 +30,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "ACTIVE_INACTIVE"
   }),
-  "none:enabled-disabled": createPreset({
-    id: "none:enabled-disabled",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:enabled-disabled": createPreset({
+    id: "bool:enabled-disabled",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Enabled / Disabled",
     description: "Boolean display as Enabled/Disabled labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -67,9 +43,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "ENABLED_DISABLED"
   }),
-  "none:included-excluded": createPreset({
-    id: "none:included-excluded",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:included-excluded": createPreset({
+    id: "bool:included-excluded",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Included / Excluded",
     description: "Boolean display as Included/Excluded labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -80,9 +56,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "INCLUDED_EXCLUDED"
   }),
-  "none:valid-invalid": createPreset({
-    id: "none:valid-invalid",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:valid-invalid": createPreset({
+    id: "bool:valid-invalid",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Valid / Invalid",
     description: "Boolean display as Valid/Invalid labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -93,9 +69,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "VALID_INVALID"
   }),
-  "none:compliant-noncompliant": createPreset({
-    id: "none:compliant-noncompliant",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:compliant-noncompliant": createPreset({
+    id: "bool:compliant-noncompliant",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Compliant / Non-compliant",
     description: "Boolean display as Compliant/Non-compliant labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -106,9 +82,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "COMPLIANT_NON_COMPLIANT"
   }),
-  "none:locked-unlocked": createPreset({
-    id: "none:locked-unlocked",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:locked-unlocked": createPreset({
+    id: "bool:locked-unlocked",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Locked / Unlocked",
     description: "Boolean display as Locked/Unlocked labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -119,9 +95,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "LOCKED_UNLOCKED"
   }),
-  "none:visible-hidden": createPreset({
-    id: "none:visible-hidden",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:visible-hidden": createPreset({
+    id: "bool:visible-hidden",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Visible / Hidden",
     description: "Boolean display as Visible/Hidden labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -132,9 +108,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "VISIBLE_HIDDEN"
   }),
-  "none:open-closed": createPreset({
-    id: "none:open-closed",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:open-closed": createPreset({
+    id: "bool:open-closed",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Open / Closed",
     description: "Boolean display as Open/Closed labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -145,9 +121,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "OPEN_CLOSED"
   }),
-  "none:reviewed-not-reviewed": createPreset({
-    id: "none:reviewed-not-reviewed",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:reviewed-not-reviewed": createPreset({
+    id: "bool:reviewed-not-reviewed",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Reviewed / Not reviewed",
     description: "Boolean display as Reviewed/Not reviewed labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -158,9 +134,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "REVIEWED_NOT_REVIEWED"
   }),
-  "none:approved-not-approved": createPreset({
-    id: "none:approved-not-approved",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:approved-not-approved": createPreset({
+    id: "bool:approved-not-approved",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Approved / Not approved",
     description: "Boolean display as Approved/Not approved labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -171,9 +147,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "APPROVED_NOT_APPROVED"
   }),
-  "none:required-not-required": createPreset({
-    id: "none:required-not-required",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:required-not-required": createPreset({
+    id: "bool:required-not-required",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Required / Not required",
     description: "Boolean display as Required/Not required labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,
@@ -184,9 +160,9 @@ export const NONE_PRESETS = Object.freeze({
     suffixMode: OUTPUT_SUFFIX_MODES.NONE,
     booleanLabelKey: "REQUIRED_NOT_REQUIRED"
   }),
-  "none:applicable-not-applicable": createPreset({
-    id: "none:applicable-not-applicable",
-    quantity: QUANTITY_TYPES.NONE,
+  "bool:applicable-not-applicable": createPreset({
+    id: "bool:applicable-not-applicable",
+    quantity: QUANTITY_TYPES.BOOL,
     name: "Applicable / Not applicable",
     description: "Boolean display as Applicable/Not applicable labels with raw 0/1 editing.",
     unit: UNIT_TOKENS.BOOL,

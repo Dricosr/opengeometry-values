@@ -19,7 +19,7 @@ function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
     valueType: VALUE_TYPES.NUMBER,
-    quantity: QUANTITY_TYPES.NONE,
+    quantity: QUANTITY_TYPES.COUNT,
     unit: UNIT_TOKENS.UN,
     output: new Output({
       id: "precision",

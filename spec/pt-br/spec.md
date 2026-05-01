@@ -139,7 +139,8 @@ src/constants/quantity-types.mjs
 
 ```js
 export const QUANTITY_TYPES = Object.freeze({
-  NONE: "none",
+  BOOL: "bool",
+  COUNT: "count",
   LENGTH: "length",
   AREA: "area",
   VOLUME: "volume",
@@ -167,7 +168,8 @@ src/constants/internal-units.mjs
 
 ```js
 export const INTERNAL_UNITS = Object.freeze({
-  none: null,
+  bool: null,
+  count: null,
 
   length: "m",
   area: "m^2",
@@ -295,7 +297,8 @@ export const INTERNAL_RESOLUTION = Object.freeze({
     step: 0.0001
   },
 
-  none: null,
+  bool: null,
+  count: null,
   area: null,
   volume: null,
   angle: null,
@@ -934,7 +937,7 @@ O MVP original foi entregue. Todos os itens abaixo estão implementados.
 
 **Tipos de valor:** `string`, `integer`, `float`, `boolean`
 
-**Grandezas:** `none`, `length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`, `ratio`
+**Grandezas:** `bool`, `count`, `length`, `area`, `volume`, `angle`, `temperature`, `mass`, `force`, `pressure`, `time`, `ratio`
 
 **Funções principais:** `createValue`, `tryCreateValue`, `convertValue`, `applyInternalResolution`, `getMaxDisplayPrecision`, `resolveDisplayPrecision`, `formatDisplayValue`, `formatEditValue`
 

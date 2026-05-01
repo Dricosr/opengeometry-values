@@ -147,12 +147,12 @@ describe("createValue - formula with plain number result", () => {
   });
 
   it("integer formula with whole-number result is accepted", () => {
-    const v = createValue({ value: "=3 * 4", unit: UNIT_TOKENS.UN, quantity: QUANTITY_TYPES.NONE, valueType: VALUE_TYPES.NUMBER });
+    const v = createValue({ value: "=3 * 4", unit: UNIT_TOKENS.UN, quantity: QUANTITY_TYPES.COUNT, valueType: VALUE_TYPES.NUMBER });
     expect(v.internal.value).toBe(12);
   });
 
   it("integer formula with fractional result is rejected", () => {
-    expect(() => createValue({ value: "=3.5", unit: UNIT_TOKENS.UN, quantity: QUANTITY_TYPES.NONE, valueType: VALUE_TYPES.NUMBER })).toThrow(ValueInputError);
+    expect(() => createValue({ value: "=3.5", unit: UNIT_TOKENS.UN, quantity: QUANTITY_TYPES.COUNT, valueType: VALUE_TYPES.NUMBER })).toThrow(ValueInputError);
   });
 });
 
@@ -405,7 +405,7 @@ describe("createValue - formula error cases", () => {
   });
 
   it("throws invalid_formula_expression for division by zero", () => {
-    const result = tryCreateValue({ value: "=1 / 0", unit: QUANTITY_TYPES.NONE, quantity: QUANTITY_TYPES.NONE, valueType: VALUE_TYPES.NUMBER });
+    const result = tryCreateValue({ value: "=1 / 0", unit: undefined, quantity: QUANTITY_TYPES.COUNT, valueType: VALUE_TYPES.NUMBER });
     expect(result.ok).toBe(false);
     expect(result.error.code).toBe(DOMAIN.ERROR_CODE_INVALID_FORMULA_EXPRESSION);
   });
@@ -423,7 +423,7 @@ describe("createValue - formula error cases", () => {
   });
 
   it("throws invalid_integer_value when formula result is fractional for UN unit", () => {
-    const result = tryCreateValue({ value: "=3.5", unit: UNIT_TOKENS.UN, quantity: QUANTITY_TYPES.NONE, valueType: VALUE_TYPES.NUMBER });
+    const result = tryCreateValue({ value: "=3.5", unit: UNIT_TOKENS.UN, quantity: QUANTITY_TYPES.COUNT, valueType: VALUE_TYPES.NUMBER });
     expect(result.ok).toBe(false);
     expect(result.error.code).toBe(DOMAIN.ERROR_CODE_INVALID_INTEGER_VALUE);
   });

@@ -1,6 +1,5 @@
 import { OUTPUT_SUFFIX_MODES, outputSuffixModeCatalog } from "../../constants/output-suffix-modes.mjs";
 import { SEPARATORS, fractionalSeparatorCatalog } from "../../constants/fractional-inch-catalog.mjs";
-import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { DOMAIN } from "../../constants/domain-catalog.mjs";
 import { assertCatalogValue } from "../base/assert-catalog-value.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
@@ -89,7 +88,7 @@ export class FractionalInchOutput {
         return input.value;
       }
       const editUnit = options.unit ?? this.unit;
-      if (input.unit && input.unit !== QUANTITY_TYPES.NONE && editUnit !== input.unit) {
+      if (input.unit && editUnit !== input.unit) {
         return `${input.value} ${input.unit}`;
       }
       return input.value;

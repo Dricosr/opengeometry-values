@@ -46,7 +46,8 @@ export { UnitSymbolOutputAffix } from "./core/models/unit-symbol-output-affix.mj
 
 // ─── Presets & Samples ──────────────────────────────────────────────
 export { OUTPUT_PRESETS, outputPresetCatalog, OutputPresetCatalog } from "./presets/output-preset-catalog.mjs";
-export { NONE_PRESETS } from "./presets/none-presets.mjs";
+export { BOOL_PRESETS } from "./presets/bool-presets.mjs";
+export { COUNT_PRESETS } from "./presets/count-presets.mjs";
 export { PARAMETER_SAMPLES, parameterSampleCatalog, ParameterSampleCatalog } from "./samples/parameter-sample-catalog.mjs";
 
 // ─── Quantity profiles ──────────────────────────────────────────────

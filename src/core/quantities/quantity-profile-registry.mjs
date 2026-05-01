@@ -13,9 +13,13 @@ import { TimeQuantityProfile } from "./time-quantity-profile.mjs";
 import { VolumeQuantityProfile } from "./volume-quantity-profile.mjs";
 
 const quantityProfiles = Object.freeze({
-  [QUANTITY_TYPES.NONE]: new SimpleQuantityProfile({
-    quantityType: QUANTITY_TYPES.NONE,
-    supportedUnits: [UNIT_TOKENS.UN, UNIT_TOKENS.BOOL]
+  [QUANTITY_TYPES.BOOL]: new SimpleQuantityProfile({
+    quantityType: QUANTITY_TYPES.BOOL,
+    supportedUnits: [UNIT_TOKENS.BOOL]
+  }),
+  [QUANTITY_TYPES.COUNT]: new SimpleQuantityProfile({
+    quantityType: QUANTITY_TYPES.COUNT,
+    supportedUnits: [UNIT_TOKENS.UN]
   }),
   [QUANTITY_TYPES.LENGTH]: new LengthQuantityProfile(),
   [QUANTITY_TYPES.AREA]: new AreaQuantityProfile(),
