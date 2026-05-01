@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: "3500N",
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.FORCE,
   unit: UNIT_TOKENS.NEWTON,
   output: new Output({

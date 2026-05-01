@@ -16,7 +16,7 @@ const inputValue = 250; // kPa
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.PRESSURE,
     unit: UNIT_TOKENS.KILOPASCAL,
     output: new Output({

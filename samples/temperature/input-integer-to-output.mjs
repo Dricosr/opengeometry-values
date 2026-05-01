@@ -1,8 +1,8 @@
 /**
  * Example: Integer input 22°C → Output in °C
  *
- * The library supports VALUE_TYPES.INTEGER for values that must be
- * stored as whole numbers (no decimal places).
+ * The library supports integer values stored as whole numbers
+ * (no decimal places) via VALUE_TYPES.NUMBER.
  * Useful for setpoints that are always whole degrees.
  */
 
@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 22,
-  valueType: VALUE_TYPES.INTEGER,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.TEMPERATURE,
   unit: UNIT_TOKENS.DEGREE_CELSIUS,
   output: new Output({

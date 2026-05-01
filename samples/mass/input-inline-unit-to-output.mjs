@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: "520kg",
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.MASS,
   unit: UNIT_TOKENS.KILOGRAM,
   output: new Output({

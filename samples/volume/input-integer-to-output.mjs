@@ -1,8 +1,8 @@
 /**
  * Example: Integer input 50 m³ → Output in m³
  *
- * The library supports VALUE_TYPES.INTEGER for values that must be
- * stored as whole numbers (no decimal places).
+ * The library supports integer values stored as whole numbers
+ * (no decimal places) via VALUE_TYPES.NUMBER.
  * Useful for discrete pour quantities that are always whole numbers.
  */
 
@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 50,
-  valueType: VALUE_TYPES.INTEGER,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.VOLUME,
   unit: UNIT_TOKENS.CUBIC_METER,
   output: new Output({

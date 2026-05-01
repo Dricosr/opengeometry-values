@@ -13,7 +13,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 2.5,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.INCH,
   output: new Output({

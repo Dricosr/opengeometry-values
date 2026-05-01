@@ -26,7 +26,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 // 31.75 mm = 1 1/4"
 const symbolValue = createValue({
   value: 31.75,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({
@@ -47,7 +47,7 @@ console.log("Edit  :", symbolValue.input.formatForEdit());       // "1 1/4"
 // 3.175 mm = 1/8"
 const codeValue = createValue({
   value: 3.175,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({
@@ -66,7 +66,7 @@ console.log("Edit  :", codeValue.input.formatForEdit());       // "1/8"
 // 63.5 mm = 2 1/2"
 const noUnitValue = createValue({
   value: 63.5,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({
@@ -85,7 +85,7 @@ console.log("Edit  :", noUnitValue.input.formatForEdit());       // "2 1/2"
 // 31.75 mm = 1-1/4"
 const hyphenValue = createValue({
   value: 31.75,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({

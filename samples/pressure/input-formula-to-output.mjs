@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: "=1.6 MPa + 0.5 bar",
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.PRESSURE,
   unit: UNIT_TOKENS.MEGAPASCAL,
   output: new Output({

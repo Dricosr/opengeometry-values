@@ -13,7 +13,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 120,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.TIME,
   unit: UNIT_TOKENS.MINUTE,
   output: new Output({

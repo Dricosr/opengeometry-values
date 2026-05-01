@@ -1,8 +1,8 @@
 /**
  * Example: Integer input 3000 mm → Output in mm
  *
- * The library supports VALUE_TYPES.INTEGER for values that must be
- * stored as whole numbers (no decimal places).
+ * The library supports integer values stored as whole numbers
+ * (no decimal places) via VALUE_TYPES.NUMBER.
  * Useful for measurements that are always discrete (e.g. pin count, grid).
  */
 
@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 3000,
-  valueType: VALUE_TYPES.INTEGER,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new Output({

@@ -16,7 +16,7 @@ const inputValue = 30; // degrees
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.ANGLE,
     unit: UNIT_TOKENS.DEGREE,
     output: new Output({

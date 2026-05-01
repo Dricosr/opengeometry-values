@@ -16,7 +16,7 @@ const inputValue = 22; // °C
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.TEMPERATURE,
     unit: UNIT_TOKENS.DEGREE_CELSIUS,
     output: new Output({

@@ -25,6 +25,13 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         unit: UNIT_TOKENS.DEGREE,
         outputUnit: UNIT_TOKENS.DEGREE,
         precision: 0
+      },
+      {
+        value: 30,
+        quantity: QUANTITY_TYPES.ANGLE,
+        unit: UNIT_TOKENS.DEGREE,
+        outputUnit: UNIT_TOKENS.RADIAN,
+        precision: 3
       }
     ];
   }
@@ -53,6 +60,14 @@ export class AngleEngineeringValueIoVisualTest extends EngineeringValueIoVisualT
         outputs: {
           display: "135 deg",
           edit: "=90 deg + 45 deg"
+        }
+      },
+      {
+        input: { value: 30, unit: "deg" },
+        internal: "0.523598775598 rad",
+        outputs: {
+          display: "0.524 rad",
+          edit: "0.523598775598"
         }
       }
     ];

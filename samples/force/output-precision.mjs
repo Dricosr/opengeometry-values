@@ -16,7 +16,7 @@ const inputValue = 18; // kN
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.FORCE,
     unit: UNIT_TOKENS.KILONEWTON,
     output: new Output({

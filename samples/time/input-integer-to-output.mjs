@@ -1,8 +1,8 @@
 /**
  * Example: Integer input 60 min → Output in min
  *
- * The library supports VALUE_TYPES.INTEGER for values that must be
- * stored as whole numbers (no decimal places).
+ * The library supports integer values stored as whole numbers
+ * (no decimal places) via VALUE_TYPES.NUMBER.
  * Useful for discrete time intervals.
  */
 
@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 60,
-  valueType: VALUE_TYPES.INTEGER,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.TIME,
   unit: UNIT_TOKENS.MINUTE,
   output: new Output({

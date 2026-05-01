@@ -1,4 +1,4 @@
-as i/**
+/**
  * Example: Input "85percent" (inline unit) → Output in %
  *
  * The library accepts values with inline units (e.g. "85percent").
@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: "85percent",
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.RATIO,
   unit: UNIT_TOKENS.PERCENT,
   output: new Output({

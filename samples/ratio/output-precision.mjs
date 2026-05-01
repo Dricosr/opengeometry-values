@@ -16,7 +16,7 @@ const inputValue = 85; // %
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.RATIO,
     unit: UNIT_TOKENS.PERCENT,
     output: new Output({

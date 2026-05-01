@@ -23,7 +23,7 @@ const inputValue = 125; // mm
 function createWithSuffixMode(suffixMode, label) {
   const v = createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.LENGTH,
     unit: UNIT_TOKENS.MILLIMETER,
     output: new FractionalInchOutput({

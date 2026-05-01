@@ -16,7 +16,7 @@ const inputValue = 2.4; // m³
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.VOLUME,
     unit: UNIT_TOKENS.CUBIC_METER,
     output: new Output({

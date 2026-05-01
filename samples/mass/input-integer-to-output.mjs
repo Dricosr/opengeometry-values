@@ -1,8 +1,8 @@
 /**
  * Example: Integer input 50 kg → Output in kg
  *
- * The library supports VALUE_TYPES.INTEGER for values that must be
- * stored as whole numbers (no decimal places).
+ * The library supports integer values stored as whole numbers
+ * (no decimal places) via VALUE_TYPES.NUMBER.
  * Useful for discrete mass items like manhole covers.
  */
 
@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: 50,
-  valueType: VALUE_TYPES.INTEGER,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.MASS,
   unit: UNIT_TOKENS.KILOGRAM,
   output: new Output({

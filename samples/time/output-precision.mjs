@@ -16,7 +16,7 @@ const inputValue = 120; // min
 function createWithPrecision(precision) {
   return createValue({
     value: inputValue,
-    valueType: VALUE_TYPES.FLOAT,
+    valueType: VALUE_TYPES.NUMBER,
     quantity: QUANTITY_TYPES.TIME,
     unit: UNIT_TOKENS.MINUTE,
     output: new Output({

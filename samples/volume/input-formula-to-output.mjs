@@ -14,7 +14,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 
 const value = createValue({
   value: "=4 m * 0.8 m * 0.3 m",
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.VOLUME,
   unit: UNIT_TOKENS.CUBIC_METER,
   output: new Output({

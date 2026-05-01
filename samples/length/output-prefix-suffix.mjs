@@ -17,7 +17,7 @@ import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 // --- Diameter in mm with ⌀ prefix ---
 const diameterMm = createValue({
   value: 25,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new Output({
@@ -38,7 +38,7 @@ console.log("Edit  :", diameterMm.input.formatForEdit());       // "25"
 // --- Diameter in fractional inches with ⌀ ---
 const diameterIn = createValue({
   value: 25,
-  valueType: VALUE_TYPES.FLOAT,
+  valueType: VALUE_TYPES.NUMBER,
   quantity: QUANTITY_TYPES.LENGTH,
   unit: UNIT_TOKENS.MILLIMETER,
   output: new FractionalInchOutput({

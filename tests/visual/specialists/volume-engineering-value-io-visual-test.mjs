@@ -39,6 +39,13 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         unit: UNIT_TOKENS.CUBIC_METER,
         outputUnit: UNIT_TOKENS.LITER,
         precision: 0
+      },
+      {
+        value: 28.5,
+        quantity: QUANTITY_TYPES.VOLUME,
+        unit: UNIT_TOKENS.CUBIC_INCH,
+        outputUnit: UNIT_TOKENS.CUBIC_CENTIMETER,
+        precision: 0
       }
     ];
   }
@@ -83,6 +90,14 @@ export class VolumeEngineeringValueIoVisualTest extends EngineeringValueIoVisual
         outputs: {
           display: "1500 L",
           edit: "=1 m^3 + 500 L"
+        }
+      },
+      {
+        input: { value: 28.5, unit: "in^3" },
+        internal: "0.000467031324 m^3",
+        outputs: {
+          display: "467 cm^3",
+          edit: "467.031324"
         }
       }
     ];
