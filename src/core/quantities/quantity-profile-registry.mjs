@@ -14,7 +14,8 @@ import { VolumeQuantityProfile } from "./volume-quantity-profile.mjs";
 
 const quantityProfiles = Object.freeze({
   [QUANTITY_TYPES.NONE]: new SimpleQuantityProfile({
-    quantityType: QUANTITY_TYPES.NONE
+    quantityType: QUANTITY_TYPES.NONE,
+    supportedUnits: [UNIT_TOKENS.UN, UNIT_TOKENS.BOOL]
   }),
   [QUANTITY_TYPES.LENGTH]: new LengthQuantityProfile(),
   [QUANTITY_TYPES.AREA]: new AreaQuantityProfile(),
