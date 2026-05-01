@@ -20,6 +20,10 @@ export class ReadOnlyCatalog {
     return Object.hasOwn(this.#entries, name);
   }
 
+  hasValue(value) {
+    return Object.values(this.#entries).includes(value);
+  }
+
   keys() {
     return Object.keys(this.#entries);
   }

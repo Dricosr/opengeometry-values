@@ -1,8 +1,11 @@
-import { OUTPUT_SUFFIX_MODES } from "../../constants/output-suffix-modes.mjs";
-import { SEPARATORS } from "../../constants/fractional-inch-catalog.mjs";
+import { OUTPUT_SUFFIX_MODES, outputSuffixModeCatalog } from "../../constants/output-suffix-modes.mjs";
+import { SEPARATORS, fractionalSeparatorCatalog } from "../../constants/fractional-inch-catalog.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { DOMAIN } from "../../constants/domain-catalog.mjs";
+import { assertCatalogValue } from "../base/assert-catalog-value.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
+
+
 import { FractionalInchFormatter, fractionalInchFormatter } from "../formatters/fractional-inch-formatter.mjs";
 import { baseNumericValueFormatter } from "../formatters/base-numeric-value-formatter.mjs";
 import { CustomOutputAffix } from "./custom-output-affix.mjs";
@@ -50,8 +53,11 @@ export class FractionalInchOutput {
     maxDenominator = 64,
     separator = SEPARATORS.SPACE
   } = {}) {
+    assertCatalogValue(suffixMode, outputSuffixModeCatalog, "OUTPUT_SUFFIX_MODES");
+    assertCatalogValue(separator, fractionalSeparatorCatalog, "SEPARATORS");
     this.id = createReferenceId("output", id);
     this.unit = "in";
+
     this.precision = precision;
     this.showUnit = showUnit;
     this.suffixMode = suffixMode;

@@ -1,10 +1,14 @@
 import { OUTPUT_AFFIX_TYPES } from "../../constants/output-affix-types.mjs";
 import { QUANTITY_TYPES } from "../../constants/quantity-types.mjs";
 import { UNIT_TOKENS } from "../../constants/unit-token-catalog.mjs";
+import { unitTokenCatalog } from "../../constants/unit-token-catalog.mjs";
+
 import { BOOLEAN_LABEL_PRESETS } from "../../constants/boolean-label-catalog.mjs";
 import { DOMAIN } from "../../constants/domain-catalog.mjs";
 import { BASE_VALUES } from "../../constants/base-value-catalog.mjs";
+import { assertCatalogValue } from "../base/assert-catalog-value.mjs";
 import { createReferenceId } from "../base/create-reference-id.mjs";
+
 import { baseNumericValueFormatter } from "../formatters/base-numeric-value-formatter.mjs";
 import { displayPrecisionService } from "../get-max-display-precision.mjs";
 import { CustomOutputAffix } from "./custom-output-affix.mjs";
@@ -15,8 +19,14 @@ import { UnitSymbolOutputAffix } from "./unit-symbol-output-affix.mjs";
 
 export class Output {
   constructor({ id, unit, precision, prefix, suffix, showUnit = true, booleanLabels }) {
+    if (unit !== undefined && unit !== null && unit !== QUANTITY_TYPES.NONE) {
+      assertCatalogValue(unit, unitTokenCatalog, "UNIT_TOKENS");
+    }
+
     this.id = createReferenceId("output", id);
+
     this.unit = unit;
+
     this.precision = precision;
     this.showUnit = showUnit;
     this.prefix = this.resolvePrefixAffix(prefix);
