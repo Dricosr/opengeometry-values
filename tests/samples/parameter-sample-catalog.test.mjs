@@ -14,6 +14,7 @@ import { FORCE_SAMPLES } from "../../src/samples/force-samples.mjs";
 import { PRESSURE_SAMPLES } from "../../src/samples/pressure-samples.mjs";
 import { TIME_SAMPLES } from "../../src/samples/time-samples.mjs";
 import { RATIO_SAMPLES } from "../../src/samples/ratio-samples.mjs";
+import { NONE_SAMPLES } from "../../src/samples/none-samples.mjs";
 import { QUANTITY_TYPES } from "../../src/constants/quantity-types.mjs";
 import { VALUE_TYPES } from "../../src/constants/value-types.mjs";
 import { UNIT_TOKENS } from "../../src/constants/unit-token-catalog.mjs";
@@ -43,7 +44,8 @@ describe("parameter-sample-catalog", () => {
       ...Object.keys(FORCE_SAMPLES),
       ...Object.keys(PRESSURE_SAMPLES),
       ...Object.keys(TIME_SAMPLES),
-      ...Object.keys(RATIO_SAMPLES)
+      ...Object.keys(RATIO_SAMPLES),
+      ...Object.keys(NONE_SAMPLES)
     ];
 
     for (const key of allKeys) {
@@ -312,6 +314,50 @@ describe("ratio-samples coverage", () => {
   });
 });
 
+describe("none-samples coverage", () => {
+  const samples = Object.values(NONE_SAMPLES);
+
+  it("covers BOOL unit (boolean inputs)", () => {
+    expect(samples.some(s => s.input.unit === UNIT_TOKENS.BOOL)).toBe(true);
+  });
+
+  it("covers UN unit (unit count inputs)", () => {
+    expect(samples.some(s => s.input.unit === UNIT_TOKENS.UN)).toBe(true);
+  });
+
+  it("has BOOLEAN value type samples", () => {
+    expect(samples.some(s => s.valueType === VALUE_TYPES.BOOLEAN)).toBe(true);
+  });
+
+  it("has NUMBER value type samples", () => {
+    expect(samples.some(s => s.valueType === VALUE_TYPES.NUMBER)).toBe(true);
+  });
+
+  it("has at least 8 samples (4 boolean + 4 count)", () => {
+    expect(Object.keys(NONE_SAMPLES).length).toBeGreaterThanOrEqual(8);
+  });
+
+  it("boolean samples reference valid output presets", () => {
+    const boolSamples = samples.filter(s => s.valueType === VALUE_TYPES.BOOLEAN);
+    const validPresets = ["none:open-closed", "none:yes-no"];
+    for (const sample of boolSamples) {
+      for (const presetId of sample.recommendedOutputPresetIds) {
+        expect(validPresets).toContain(presetId);
+      }
+    }
+  });
+
+  it("UN samples reference count output presets", () => {
+    const unSamples = samples.filter(s => s.input.unit === UNIT_TOKENS.UN);
+    const validPresets = ["none:count"];
+    for (const sample of unSamples) {
+      for (const presetId of sample.recommendedOutputPresetIds) {
+        expect(validPresets).toContain(presetId);
+      }
+    }
+  });
+});
+
 describe("catalog methods", () => {
   it("list() returns an array of all samples", () => {
     const list = parameterSampleCatalog.list();
@@ -338,7 +384,8 @@ describe("catalog methods", () => {
       QUANTITY_TYPES.FORCE,
       QUANTITY_TYPES.PRESSURE,
       QUANTITY_TYPES.TIME,
-      QUANTITY_TYPES.RATIO
+      QUANTITY_TYPES.RATIO,
+      QUANTITY_TYPES.NONE
     ];
 
     for (const q of expectedQuantities) {
