@@ -7,21 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-04-30
+
 ### Added
 
-- `src/core/base/assert-catalog-value.mjs`: centralized validation helper that rejects values not present in a `ReadOnlyCatalog` — used by all base model constructors to fail fast on invalid catalog entries
+- `src/core/base/assert-catalog-value.mjs`: centralized validation helper that rejects values not present in a `ReadOnlyCatalog` - used by all base model constructors to fail fast on invalid catalog entries
 - `ReadOnlyCatalog.prototype.hasValue(value)`: checks membership without returning the entry
 - **Base model validation**: all constructors in `src/core/models/` now validate catalog parameters at the lowest level, throwing `TypeError` for invalid values:
-  - `OutputAffix` — validates `type` against `outputAffixTypeCatalog`
-  - `UnitCodeOutputAffix` — validates `unit` against `unitTokenCatalog`
-  - `UnitSymbolOutputAffix` — validates `unit` against `unitTokenCatalog`
-  - `IForgeEdpValue` — validates `valueType` and `quantity` against `valueTypeCatalog` and `quantityTypeCatalog`
-  - `ValueInput` — validates `unit` (when not `QUANTITY_TYPES.NONE`) against `unitTokenCatalog`, and `quantity` against `quantityTypeCatalog`
-  - `InternalValue` — validates `unit` against `unitTokenCatalog`
-  - `Output` — validates `unit` (when not `QUANTITY_TYPES.NONE`) against `unitTokenCatalog`
-  - `FractionalInchOutput` — validates `suffixMode` against `outputSuffixModeCatalog` and `separator` against `fractionalSeparatorCatalog`
+  - `OutputAffix` - validates `type` against `outputAffixTypeCatalog`
+  - `UnitCodeOutputAffix` - validates `unit` against `unitTokenCatalog`
+  - `UnitSymbolOutputAffix` - validates `unit` against `unitTokenCatalog`
+  - `IForgeEdpValue` - validates `valueType` and `quantity` against `valueTypeCatalog` and `quantityTypeCatalog`
+  - `ValueInput` - validates `unit` (when not `QUANTITY_TYPES.NONE`) against `unitTokenCatalog`, and `quantity` against `quantityTypeCatalog`
+  - `InternalValue` - validates `unit` against `unitTokenCatalog`
+  - `Output` - validates `unit` (when not `QUANTITY_TYPES.NONE`) against `unitTokenCatalog`
+  - `FractionalInchOutput` - validates `suffixMode` against `outputSuffixModeCatalog` and `separator` against `fractionalSeparatorCatalog`
 - `VALUE_TYPES.BOOLEAN`: new value type for boolean/status parameters (on/off, open/closed, yes/no, 1/0) with `BOOLEAN_LABEL_PRESETS` catalog for label pair configuration
-
 - `NONE_PRESETS`: output presets for `QUANTITY_TYPES.NONE` including boolean label presets (`none:yes-no`, `none:open-closed`, `none:active-inactive`, `none:enabled-disabled`, `none:included-excluded`, `none:valid-invalid`, `none:compliant-noncompliant`, `none:locked-unlocked`, `none:visible-hidden`, `none:reviewed-not-reviewed`, `none:approved-not-approved`, `none:required-not-required`, `none:applicable-not-applicable`) and unit count presets (`none:count`, `none:count-pcs`)
 - `none-samples.mjs`: parameter samples for NONE quantity covering boolean status (valve, pump, breaker, damper) and unit counts (pipe spools, flanges, bolts, valves)
 - `booleanTextParser`: specialist parser that normalizes boolean text inputs (`true`/`false`, `yes`/`no`, `1`/`0`, `on`/`off`, `active`/`inactive`, `enabled`/`disabled`, `open`/`closed`) to boolean values and rejects formula expressions
@@ -58,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Output` model: added optional `booleanLabels` property for boolean display label pair configuration
 - `createValuePreview` service: updated to handle boolean value type display
 - `README.md`: improved table formatting for supported value types and quantities; added live demo link and author LinkedIn; added Contributing section linking CONTRIBUTING.md and CODE_OF_CONDUCT.md; aligned with current lib state and added cross-references to spec
-- `spec/en-us/spec.md` and `spec/pt-br/spec.md`: aligned with current library state — updated mathjs version, file tree description, value model, createValue API, UNIT_SYMBOLS table, export list, full example; marked MVP as delivered with additions beyond original scope
+- `spec/en-us/spec.md` and `spec/pt-br/spec.md`: aligned with current library state - updated mathjs version, file tree description, value model, createValue API, UNIT_SYMBOLS table, export list, full example; marked MVP as delivered with additions beyond original scope
 - `CONTRIBUTING.md`: added warm intro, contribution types, link to CoC
 - `CODE_OF_CONDUCT.md`: added Scope section and progressive enforcement actions
 - Agent instructions: enhanced descriptions, added customization sync checks, forbid co-author trailers
@@ -67,8 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `FormulaParser`: standalone `min` unit token (e.g. `=1 h + 30 min`) conflicted with mathjs's `min()` function and caused evaluation errors — now normalized to `minute` before evaluation; `min()` function calls are unaffected
-- `resolveUnitInput` in `create-value.mjs`: error messages from the unit input parser leaked into `ValueInputError`, breaking the consistent `invalid_numeric_value` contract — now always uses the internal fallback message
+- `FormulaParser`: standalone `min` unit token (e.g. `=1 h + 30 min`) conflicted with mathjs's `min()` function and caused evaluation errors - now normalized to `minute` before evaluation; `min()` function calls are unaffected
+- `resolveUnitInput` in `create-value.mjs`: error messages from the unit input parser leaked into `ValueInputError`, breaking the consistent `invalid_numeric_value` contract - now always uses the internal fallback message
 - `booleanTextParser`: now rejects formula expressions (strings starting with `=`) with `ValueInputError` code `"invalid_formula_expression"` instead of silently returning `true`
 - `none-samples.mjs`: `recommendedOutputPresetIds` corrected to match actual preset IDs in `none-presets.mjs` (e.g. `none:open-closed` instead of `none:boolean-on-off`, `none:count` instead of `none:unit-count`)
 - Punctuation standardized across documentation files for consistency
@@ -76,11 +77,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- `formatForComposition` and `formatForFriendlyValue` from `ValueInput` — both delegated identically to `formatDisplay`, making them redundant aliases with no distinct behavior
+- `formatForComposition` and `formatForFriendlyValue` from `ValueInput` - both delegated identically to `formatDisplay`, making them redundant aliases with no distinct behavior
 - `formatComposition` and `formatFriendlyValue` from `Output` for the same reason
 - `composition` and `friendly` keys from the `createValuePreview` response payload
 - `suffix-mode-catalog.mjs` file (consolidated into `output-suffix-modes.mjs`)
 - `scripts/check-customizations.mjs`: removed as no longer needed
+
+## [0.3.2] - 2026-04-29
+
+### Added
+
+- `VALUE_TYPES.BOOLEAN`: new value type for boolean/status parameters (on/off, open/closed, yes/no, 1/0) with `BOOLEAN_LABEL_PRESETS` catalog for label pair configuration
+- `NONE_PRESETS`: output presets for `QUANTITY_TYPES.NONE` including boolean label presets and unit count presets
+- `none-samples.mjs`: parameter samples for NONE quantity
+- `booleanTextParser`: specialist parser that normalizes boolean text inputs
+- `booleanLabelCatalog` / `BooleanLabelCatalog` / `BOOLEAN_LABEL_PRESETS`: catalog of boolean label pairs
+- `booleanLabels` property on `Output` model
+- Unit count validation in `create-value.mjs`
+- `FractionalInchOutput` model, `FractionalInchFormatter`, `FractionalSeparatorCatalog`, `FractionalInchDenominatorCatalog`
+- Diameter presets and parameter samples
+- Temperature, time, and volume parameter samples with full unit coverage
+- 70+ sample scripts in `samples/` directory
+- `mathjs-api.mjs` contract file
+- `spec/en-us/samples.md`
+
+### Changed
+
+- **valueTypes collapse**: removed `VALUE_TYPES.FLOAT` and `VALUE_TYPES.INTEGER`; consolidated to just `VALUE_TYPES.NUMBER` and `VALUE_TYPES.STRING`
+- **Rebrand**: package renamed from `opengeometry-values` to `@dricosr/iforge-edp-values`; class `OpenGeometryValue` renamed to `IForgeEdpValue`; IIFE global `OpenGeometryValues` → `IForgeEdpValues`
+- Output preset catalog split into per-quantity files
+- Parameter sample catalog split into per-quantity files
+- **Breaking:** `mathjs-string-catalog.mjs` renamed to `unit-token-catalog.mjs`
+- `domain-string-catalog.mjs` removed; `domain-catalog.mjs` is now the single source of truth
+- `suffix-mode-catalog.mjs` removed; `output-suffix-modes.mjs` is now the single source of truth
+- `create-value.mjs` refactored: dispatch logic reorganized by `valueType`
+- Various documentation updates
+
+### Fixed
+
+- `FormulaParser`: standalone `min` unit token normalization
+- `resolveUnitInput`: error message leak fix
+- `booleanTextParser`: now rejects formula expressions
+- `none-samples.mjs`: corrected `recommendedOutputPresetIds`
+- Orphaned test file `e` removed
+
+### Removed
+
+- `formatForComposition` and `formatForFriendlyValue` from `ValueInput`
+- `formatComposition` and `formatFriendlyValue` from `Output`
+- `composition` and `friendly` keys from `createValuePreview` response payload
+- `suffix-mode-catalog.mjs` file
+- `scripts/check-customizations.mjs`
 
 ## [0.1.0] - 2026-04-24
 

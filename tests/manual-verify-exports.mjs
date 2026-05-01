@@ -1,5 +1,5 @@
 /**
- * Manual verification script — checks that all fractional inch exports
+ * Manual verification script - checks that all fractional inch exports
  * are accessible from the public API and work as documented.
  *
  * Run via PowerShell or bash:
@@ -81,7 +81,7 @@ assert(formatter.decimalToFraction(-1.25) === "-1 1/4", 'decimalToFraction(-1.25
 assert(formatter.decimalToFraction(0) === "0", 'decimalToFraction(0) === "0"');
 
 // ──────────────────────────────────────────────
-console.log("\n5. FractionalInchOutput — construction");
+console.log("\n5. FractionalInchOutput - construction");
 // ──────────────────────────────────────────────
 const output = new FractionalInchOutput({ id: "test" });
 assert(output.unit === "in", "unit === 'in'");
@@ -114,7 +114,7 @@ assert(fractionalVal.input.formatForDisplay().includes("1 1/4"), 'display includ
 assert(fractionalVal.input.formatForEdit() === "1 1/4", 'edit value === "1 1/4"');
 
 // ──────────────────────────────────────────────
-console.log("\n8. FractionalInchOutput — numeric decimal input");
+console.log("\n8. FractionalInchOutput - numeric decimal input");
 // ──────────────────────────────────────────────
 const numericVal = createValue({
   value: 0.375,
@@ -126,7 +126,7 @@ const numericVal = createValue({
 assert(numericVal.input.formatForDisplay().includes("3/8"), 'numeric input display includes "3/8"');
 
 // ──────────────────────────────────────────────
-console.log("\n9. FractionalInchOutput — metric input");
+console.log("\n9. FractionalInchOutput - metric input");
 // ──────────────────────────────────────────────
 const metricVal = createValue({
   value: 762,
@@ -138,7 +138,7 @@ const metricVal = createValue({
 assert(metricVal.input.formatForDisplay().includes("30"), 'metric input display includes "30"');
 
 // ──────────────────────────────────────────────
-console.log("\n10. FractionalInchOutput — prefix");
+console.log("\n10. FractionalInchOutput - prefix");
 // ──────────────────────────────────────────────
 const prefixed = createValue({
   value: "1 1/4",

@@ -3,7 +3,7 @@ import { FractionalInchFormatter, fractionalInchFormatter } from "../../src/core
 import { SEPARATORS } from "../../src/constants/fractional-inch-catalog.mjs";
 
 describe("FractionalInchFormatter", () => {
-  describe("decimalToFraction — whole inches", () => {
+  describe("decimalToFraction - whole inches", () => {
     it("should format zero", () => {
       expect(fractionalInchFormatter.decimalToFraction(0)).toBe("0");
     });
@@ -22,7 +22,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — exact fractions", () => {
+  describe("decimalToFraction - exact fractions", () => {
     const cases = [
       // halves
       [0.5, "1/2"],
@@ -54,7 +54,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — mixed numbers", () => {
+  describe("decimalToFraction - mixed numbers", () => {
     const cases = [
       [1.25, "1 1/4"],
       [2.5, "2 1/2"],
@@ -74,7 +74,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — negative values", () => {
+  describe("decimalToFraction - negative values", () => {
     const cases = [
       [-1.25, "-1 1/4"],
       [-0.5, "-1/2"],
@@ -89,7 +89,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — special values", () => {
+  describe("decimalToFraction - special values", () => {
     it("should handle Infinity", () => {
       expect(fractionalInchFormatter.decimalToFraction(Infinity)).toBe("Infinity");
       expect(fractionalInchFormatter.decimalToFraction(-Infinity)).toBe("-Infinity");
@@ -105,7 +105,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — fraction reduction", () => {
+  describe("decimalToFraction - fraction reduction", () => {
     it("should reduce 2/4 to 1/2", () => {
       // 0.5 → 2/4 approximation → reduced to 1/2
       expect(fractionalInchFormatter.decimalToFraction(0.5)).toBe("1/2");
@@ -128,7 +128,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — construction precision (maxDenominator=16)", () => {
+  describe("decimalToFraction - construction precision (maxDenominator=16)", () => {
     const construction = new FractionalInchFormatter({ maxDenominator: 16 });
 
     it("should format to nearest 1/16", () => {
@@ -150,7 +150,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — hyphen separator", () => {
+  describe("decimalToFraction - hyphen separator", () => {
     const hyphenFormatter = new FractionalInchFormatter({ separator: SEPARATORS.HYPHEN });
 
     it("should use hyphen separator for mixed numbers", () => {
@@ -185,7 +185,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — fine precision (maxDenominator=128)", () => {
+  describe("decimalToFraction - fine precision (maxDenominator=128)", () => {
     const fine = new FractionalInchFormatter({ maxDenominator: 128 });
 
     it("should format 1/128", () => {
@@ -205,7 +205,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — real-world pipe OD values", () => {
+  describe("decimalToFraction - real-world pipe OD values", () => {
     // NPS pipe outer diameters (actual OD, not nominal)
     it("should format NPS 1/2 pipe OD (0.840 in)", () => {
       const result = fractionalInchFormatter.decimalToFraction(0.84);
@@ -250,7 +250,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — real-world sheet metal thickness", () => {
+  describe("decimalToFraction - real-world sheet metal thickness", () => {
     it("should format 16 ga (0.0625 in)", () => {
       expect(fractionalInchFormatter.decimalToFraction(0.0625)).toBe("1/16");
     });
@@ -284,7 +284,7 @@ describe("FractionalInchFormatter", () => {
     });
   });
 
-  describe("decimalToFraction — real-world fastener sizes", () => {
+  describe("decimalToFraction - real-world fastener sizes", () => {
     it("should format 1/4-20 bolt diameter (0.250 in)", () => {
       expect(fractionalInchFormatter.decimalToFraction(0.25)).toBe("1/4");
     });

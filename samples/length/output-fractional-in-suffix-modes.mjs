@@ -4,7 +4,7 @@
  * FractionalInchOutput uses the OUTPUT_SUFFIX_MODES catalog to define
  * how the unit is displayed. Use the constants instead of raw strings:
  *
- *   - OUTPUT_SUFFIX_MODES.SYMBOL → " (double prime) — ANSI/ASME Y14.5 default
+ *   - OUTPUT_SUFFIX_MODES.SYMBOL → " (double prime) - ANSI/ASME Y14.5 default
  *   - OUTPUT_SUFFIX_MODES.CODE   → "in"
  *   - OUTPUT_SUFFIX_MODES.NONE   → no unit
  *

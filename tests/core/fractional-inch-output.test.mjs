@@ -73,7 +73,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — pipe diameters (NPS)", () => {
+  describe("formatDisplay - pipe diameters (NPS)", () => {
     it("should display NPS 1/2 as 1/2\"", () => {
       const ogValue = createValue({
         value: 0.5,
@@ -119,7 +119,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — sheet metal thickness", () => {
+  describe("formatDisplay - sheet metal thickness", () => {
     it("should display 1/16 in plate thickness", () => {
       const ogValue = createValue({
         value: 0.0625,
@@ -154,7 +154,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — suffix modes", () => {
+  describe("formatDisplay - suffix modes", () => {
     it("should display with double prime (default)", () => {
       const ogValue = createValue({
         value: 1.25,
@@ -209,7 +209,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — prefixes", () => {
+  describe("formatDisplay - prefixes", () => {
     it("should display with diameter prefix (⌀ )", () => {
       const ogValue = createValue({
         value: 0.375,
@@ -250,7 +250,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — unit conversion", () => {
+  describe("formatDisplay - unit conversion", () => {
     it("should display millimeter input converted to fractional inches", () => {
       const ogValue = createValue({
         value: 762,
@@ -310,7 +310,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — various decimal inputs", () => {
+  describe("formatDisplay - various decimal inputs", () => {
     it("should display 3.175 in as fraction", () => {
       const ogValue = createValue({
         value: 3.175,
@@ -560,7 +560,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — hyphen separator in output", () => {
+  describe("formatDisplay - hyphen separator in output", () => {
     it("should display with hyphen separator when configured", () => {
       const ogValue = createValue({
         value: 1.25,
@@ -647,7 +647,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — construction precision (maxDenominator=16)", () => {
+  describe("formatDisplay - construction precision (maxDenominator=16)", () => {
     it("should round 0.03125 to nearest 1/16", () => {
       const ogValue = createValue({
         value: 0.03125,
@@ -702,7 +702,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — real-world construction samples", () => {
+  describe("formatDisplay - real-world construction samples", () => {
     it("should display 2x4 lumber nominal (1.5 in) as 1 1/2\"", () => {
       const ogValue = createValue({
         value: 1.5,
@@ -748,7 +748,7 @@ describe("FractionalInchOutput", () => {
     });
   });
 
-  describe("formatDisplay — fastener samples", () => {
+  describe("formatDisplay - fastener samples", () => {
     it("should display 1/4-20 bolt diameter", () => {
       const ogValue = createValue({
         value: 0.25,

@@ -15,7 +15,7 @@ The library uses exactly four named exports from mathjs. These are the only symb
 | `evaluate` | formula evaluation |
 | `typeOf` | formula result type detection |
 
-The canonical source of truth is [`src/core/mathjs-api.mjs`](../../src/core/mathjs-api.mjs) — it re-exports all four and nothing else. When a new mathjs symbol is needed anywhere in the library, it must be added there first, making the change visible in diffs.
+The canonical source of truth is [`src/core/mathjs-api.mjs`](../../src/core/mathjs-api.mjs) - it re-exports all four and nothing else. When a new mathjs symbol is needed anywhere in the library, it must be added there first, making the change visible in diffs.
 
 Consumers can also import the contract directly at runtime:
 

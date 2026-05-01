@@ -266,13 +266,13 @@ This ensures compatibility with JavaScript, JSON, Math.js, and external APIs.
 
 ## Fractional inch I/O (imperial)
 
-The library provides specialized handling for **fractional inches** — the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements.
+The library provides specialized handling for **fractional inches** - the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements.
 
 Fractional inch support follows **ANSI/ASME Y14.5** and **ISO 129-1** standards for dimensioning and tolerancing.
 
 ### Denominator categories
 
-The fractional inch system supports four precision tiers — use the one that matches your domain:
+The fractional inch system supports four precision tiers - use the one that matches your domain:
 
 | Category | Max denominator | Domain |
 |---|---|---|
@@ -314,11 +314,11 @@ parser.canParse("1/3");   // → false  (not power of 2)
 - Accepts space (`1 1/4`), hyphen (`1-1/4`), or decimal (`1.25`) interchangeably
 
 ```js
-parser.parse("1/3");   // ❌ Error — denominator is not a power of 2
-parser.parse("3/2");   // ❌ Error — improper fraction (numer >= denom)
-parser.parse("1/0");   // ❌ Error — zero denominator
-parser.parse("1/128"); // ❌ Error — exceeds machining max (64)
-parser.parse("abc");   // ❌ Error — non-numeric
+parser.parse("1/3");   // ❌ Error - denominator is not a power of 2
+parser.parse("3/2");   // ❌ Error - improper fraction (numer >= denom)
+parser.parse("1/0");   // ❌ Error - zero denominator
+parser.parse("1/128"); // ❌ Error - exceeds machining max (64)
+parser.parse("abc");   // ❌ Error - non-numeric
 ```
 
 ### Output formatting: `FractionalInchFormatter`
@@ -341,7 +341,7 @@ formatter.decimalToFraction(-1.25);    // → "-1 1/4"
 formatter.decimalToFraction(0);        // → "0"
 ```
 
-**Custom precision (construction — max 1/16):**
+**Custom precision (construction - max 1/16):**
 
 ```js
 const construction = new FractionalInchFormatter({ maxDenominator: 16 });
@@ -473,17 +473,17 @@ new FractionalInchOutput({ id: "test", prefix: "⌀ " });
 Fractional inch handling adds three small, focused classes to the standard `createValue` pipeline:
 
 ```
-FractionalInchParser      — parses "1 1/4" → 1.25 (with validation)
-FractionalInchFormatter   — formats 1.25 → "1 1/4" (with reduction)
-FractionalInchOutput      — orchestrates I/O, affixes, unit conversion
+FractionalInchParser      - parses "1 1/4" → 1.25 (with validation)
+FractionalInchFormatter   - formats 1.25 → "1 1/4" (with reduction)
+FractionalInchOutput      - orchestrates I/O, affixes, unit conversion
 ```
 
-`FractionalInchOutput` is designed as a **duck-typed drop-in** for the standard `Output` class. It exposes the same `formatDisplay()` and `formatEdit()` contract expected by `createValue`. When an `output` parameter is passed to `createValue`, the system checks for duck-typing compatibility rather than requiring the exact `Output` class — so `FractionalInchOutput` works transparently.
+`FractionalInchOutput` is designed as a **duck-typed drop-in** for the standard `Output` class. It exposes the same `formatDisplay()` and `formatEdit()` contract expected by `createValue`. When an `output` parameter is passed to `createValue`, the system checks for duck-typing compatibility rather than requiring the exact `Output` class - so `FractionalInchOutput` works transparently.
 
 **Key behaviors:**
 - Internal storage is always in meters (SI), regardless of input unit
 - Conversion to inches happens at formatting time
-- `formatForEdit()` returns the fraction without unit suffix — ready for text input
+- `formatForEdit()` returns the fraction without unit suffix - ready for text input
 - `formatForDisplay()` returns the fraction with the configured affix (prefix + suffix)
 - Metric units (mm, cm, m) are accepted as input and converted automatically
 - Round-trip guaranteed: `"1 1/4" → internal.meters → "1 1/4"` display

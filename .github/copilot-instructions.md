@@ -1,6 +1,6 @@
 # Project instructions
 
-> **Canonical source:** [`AGENTS.md`](../AGENTS.md) — this file mirrors its content for GitHub Copilot compatibility.
+> **Canonical source:** [`AGENTS.md`](../AGENTS.md) - this file mirrors its content for GitHub Copilot compatibility.
 
 ## Language
 
@@ -67,4 +67,4 @@
 - Keep `.github/agents/*.agent.md` and `.claude/agents/*.md` with matching names semantically aligned
 - Keep `.github/prompts/*.prompt.md` mirrored in `.claude/commands/*.md` when the workflow should be available in both Copilot and Claude
 - Keep `memory/MEMORY.md` and the files it indexes aligned with these shared project rules when they change
-- Keep this file aligned with `AGENTS.md` — AGENTS.md is canonical, this file is the Copilot mirror
+- Keep this file aligned with `AGENTS.md` - AGENTS.md is canonical, this file is the Copilot mirror

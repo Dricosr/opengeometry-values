@@ -5,7 +5,7 @@
  * Uses FractionalInchOutput instead of a regular Output.
  *
  * Suffix modes are defined by the OUTPUT_SUFFIX_MODES catalog:
- *   - OUTPUT_SUFFIX_MODES.SYMBOL → uses " (double prime) — ANSI default
+ *   - OUTPUT_SUFFIX_MODES.SYMBOL → uses " (double prime) - ANSI default
  *   - OUTPUT_SUFFIX_MODES.CODE   → uses "in"
  *   - OUTPUT_SUFFIX_MODES.NONE   → no unit
  *

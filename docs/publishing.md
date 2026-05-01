@@ -2,7 +2,9 @@
 
 This document describes how to publish a new version of `@dricosr/iforge-edp-values` to the npm registry from the command line.
 
-> **Current state:** the package was renamed from `@dricosr/opengeometry-values` (last published: `0.3.0`) to `@dricosr/iforge-edp-values`. The first publish under the new name will be `0.3.1`.
+> **Current state:** the package was renamed from `@dricosr/opengeometry-values` (last published: `0.3.0`) to `@dricosr/iforge-edp-values`. Latest published version: `0.4.1`.
+
+
 
 ## Requirements
 
@@ -15,7 +17,7 @@ This document describes how to publish a new version of `@dricosr/iforge-edp-val
 
 Two methods are available:
 
-### Option A — Local access token (recommended for manual CLI publish)
+### Option A - Local access token (recommended for manual CLI publish)
 
 Create an npm **Granular Access Token** (classic read-and-publish is also fine) at:
 
@@ -40,7 +42,7 @@ npm whoami
 # Expected output: dricosr
 ```
 
-### Option B — Interactive login (requires 2FA OTP)
+### Option B - Interactive login (requires 2FA OTP)
 
 ```powershell
 npm login
@@ -50,7 +52,7 @@ npm will print a URL. Open it in the browser and authenticate with your security
 
 ---
 
-## Step 1 — Bump the version
+## Step 1 - Bump the version
 
 ```powershell
 cd "e:\Cloud\Git\iforge_edp\values"
@@ -72,7 +74,7 @@ npm version major --no-git-tag-version
 
 ---
 
-## Step 2 — Publish
+## Step 2 - Publish
 
 ```powershell
 npm publish --access public
@@ -82,7 +84,7 @@ The `prepublishOnly` script runs automatically before publishing: it executes `n
 
 ---
 
-## Step 3 — Confirm
+## Step 3 - Confirm
 
 ```powershell
 npm dist-tag ls @dricosr/iforge-edp-values
@@ -98,7 +100,9 @@ cd "e:\Cloud\Git\iforge_edp\values"
 # 1. Verify auth
 npm whoami                                          # dricosr
 
-# 2. Bump version
+# 2. Bump version - must run from project root, NOT from home (~)
+#    Running from the wrong directory creates a spurious package.json
+#    with version 0.0.1 in that location.
 npm version patch --no-git-tag-version
 
 # 3. Publish
@@ -108,11 +112,12 @@ npm publish --access public
 npm dist-tag ls @dricosr/iforge-edp-values
 ```
 
+
 ---
 
 ## Notes
 
-- Always use **PowerShell** — `cmd.exe` has known incompatibilities with the Vite/Vitest build pipeline used in `prepublishOnly`
+- Always use **PowerShell** - `cmd.exe` has known incompatibilities with the Vite/Vitest build pipeline used in `prepublishOnly`
 - The `dist/` folder is generated at publish time and is not committed to git
-- For automated publishing from CI, use an npm **Automation token** with IP restriction and store it as the `NPM_TOKEN` secret in GitHub Actions — see `.github/workflows/release.yml`
+- For automated publishing from CI, use an npm **Automation token** with IP restriction and store it as the `NPM_TOKEN` secret in GitHub Actions - see `.github/workflows/release.yml`
 - Never commit npm tokens to the repository

@@ -1,7 +1,7 @@
 /**
  * @fileoverview Parameter samples for the RATIO quantity.
  * Supported unit: percent only (RatioQuantityProfile uses UNIT_TOKENS.PERCENT).
- * Only VALUE_TYPES.NUMBER is used — ratio values are inherently decimal.
+ * Only VALUE_TYPES.NUMBER is used - ratio values are inherently decimal.
  * All values are real AEC/industrial measurements.
  */
 
@@ -54,7 +54,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Slope 1:12",
-    description: "ADA maximum ramp slope — 1:12 = 8.33% for accessible routes per 2010 ADA Standards.",
+    description: "ADA maximum ramp slope - 1:12 = 8.33% for accessible routes per 2010 ADA Standards.",
     input: { value: 8.33, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -63,7 +63,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Slope 2:12",
-    description: "Standard parking lot cross-slope — 2% (1/4″ per foot) per IBC.",
+    description: "Standard parking lot cross-slope - 2% (1/4″ per foot) per IBC.",
     input: { value: 2, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -72,7 +72,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Concrete Mix w/c Ratio",
-    description: "Water-cement ratio for 4000 psi concrete mix — 0.45 per ACI 318.",
+    description: "Water-cement ratio for 4000 psi concrete mix - 0.45 per ACI 318.",
     input: { value: 45, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -81,7 +81,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Reinforcement Ratio (ρ)",
-    description: "Steel reinforcement ratio for 24x24 beam — 1.2% per ACI 318.",
+    description: "Steel reinforcement ratio for 24x24 beam - 1.2% per ACI 318.",
     input: { value: 1.2, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -90,7 +90,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Soil Void Ratio",
-    description: "Typical sand void ratio — 0.45 (45%) per geotechnical CPT data.",
+    description: "Typical sand void ratio - 0.45 (45%) per geotechnical CPT data.",
     input: { value: 45, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent"]
   }),
@@ -99,7 +99,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Motor Efficiency",
-    description: "NEMA Premium IE3 motor efficiency at full load — 95.4%.",
+    description: "NEMA Premium IE3 motor efficiency at full load - 95.4%.",
     input: { value: 95.4, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:utilization-percent", "ratio:process-percent"]
   }),
@@ -108,7 +108,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Air Changes per Hour",
-    description: "Office space ventilation — 4 ACH per ASHRAE 62.1.",
+    description: "Office space ventilation - 4 ACH per ASHRAE 62.1.",
     input: { value: 4, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -117,7 +117,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Glycol Concentration",
-    description: "Propylene glycol freeze protection for hydronic loop — 30% by volume.",
+    description: "Propylene glycol freeze protection for hydronic loop - 30% by volume.",
     input: { value: 30, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
@@ -126,7 +126,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Damper Open Percentage",
-    description: "Fire/smoke damper open position feedback — 100% open = normal operation.",
+    description: "Fire/smoke damper open position feedback - 100% open = normal operation.",
     input: { value: 100, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:process-percent"]
   }),
@@ -135,7 +135,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Insulation Thermal Efficiency",
-    description: "Pipe insulation heat retention efficiency — 96% for 2-in mineral wool at 200 °F.",
+    description: "Pipe insulation heat retention efficiency - 96% for 2-in mineral wool at 200 °F.",
     input: { value: 96, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:utilization-percent", "ratio:process-percent"]
   }),
@@ -146,7 +146,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Setpoint (Formula)",
-    description: "Plain numeric formula — =85 (percentual).",
+    description: "Plain numeric formula - =85 (percentual).",
     input: { value: "=85", unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:dashboard-percent", "ratio:process-percent"]
   }),
@@ -155,7 +155,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Efficiency (Formula)",
-    description: "Ratio formula — 250 / 300 * 100 (%) = 83.3%.",
+    description: "Ratio formula - 250 / 300 * 100 (%) = 83.3%.",
     input: { value: "=250 / 300 * 100", unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
@@ -164,7 +164,7 @@ export const RATIO_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
     name: "Pipe Insulation Efficiency",
-    description: "Insulation efficiency for a 6-in pipe at 300 °F — 94% heat retention.",
+    description: "Insulation efficiency for a 6-in pipe at 300 °F - 94% heat retention.",
     input: { value: 94, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:utilization-percent", "ratio:process-percent"]
   })

@@ -31,8 +31,8 @@ All sample code documentation (JSDoc comments, console.log labels, variable name
 ## Adding a new sample
 
 1. Create the file under `samples/<quantity>/<descriptive-name>.mjs`
-2. Use catalog constants (`UNIT_TOKENS`, `QUANTITY_TYPES`, `VALUE_TYPES`, `OUTPUT_SUFFIX_MODES`, `SEPARATORS`) — never raw strings
-3. Add a JSDoc comment at the top explaining the use case — **always in English (en-US)**
+2. Use catalog constants (`UNIT_TOKENS`, `QUANTITY_TYPES`, `VALUE_TYPES`, `OUTPUT_SUFFIX_MODES`, `SEPARATORS`) - never raw strings
+3. Add a JSDoc comment at the top explaining the use case - **always in English (en-US)**
 4. Use English for all console.log labels and variable names
 5. Add the entry to this table
 6. Verify it runs: `node samples/<quantity>/<file>.mjs`

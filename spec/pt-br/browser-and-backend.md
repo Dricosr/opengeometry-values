@@ -15,7 +15,7 @@ A biblioteca usa exatamente quatro exports nomeados do mathjs. Esses são os ún
 | `evaluate` | avaliação de fórmulas |
 | `typeOf` | detecção do tipo de resultado de fórmulas |
 
-A fonte canônica da verdade é [`src/core/mathjs-api.mjs`](../../src/core/mathjs-api.mjs) — ele re-exporta os quatro e nada mais. Quando um novo símbolo do mathjs for necessário em qualquer lugar da biblioteca, ele deve ser adicionado lá primeiro, tornando a mudança visível nos diffs.
+A fonte canônica da verdade é [`src/core/mathjs-api.mjs`](../../src/core/mathjs-api.mjs) - ele re-exporta os quatro e nada mais. Quando um novo símbolo do mathjs for necessário em qualquer lugar da biblioteca, ele deve ser adicionado lá primeiro, tornando a mudança visível nos diffs.
 
 Consumidores também podem importar o contrato diretamente em runtime:
 

@@ -11,7 +11,7 @@ export class BooleanTextParser {
   parse(text) {
     const str = String(text).trim();
 
-    // Reject formulas — boolean does not support formula expressions
+    // Reject formulas - boolean does not support formula expressions
     if (str.startsWith("=")) {
       throw new ValueInputError({
         code: DOMAIN.ERROR_CODE_INVALID_FORMULA_EXPRESSION,

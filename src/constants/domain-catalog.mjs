@@ -30,5 +30,5 @@ export class DomainCatalog extends ReadOnlyCatalog {
 export const domainCatalog = new DomainCatalog();
 export const DOMAIN = domainCatalog.all();
 
-// Backward-compat aliases (deprecated — prefer DOMAIN / domainCatalog / DomainCatalog)
+// Backward-compat aliases (deprecated - prefer DOMAIN / domainCatalog / DomainCatalog)
 export { DomainCatalog as DomainStringCatalog, domainCatalog as domainStringCatalog, DOMAIN as DOMAIN_STRINGS };

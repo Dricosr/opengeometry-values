@@ -18,7 +18,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.BOOLEAN,
     name: "Valve Open Status",
-    description: "Isolation valve position feedback — open/closed for piping isometric verification.",
+    description: "Isolation valve position feedback - open/closed for piping isometric verification.",
     input: { value: "true", unit: UNIT_TOKENS.BOOL },
     recommendedOutputPresetIds: ["none:open-closed"]
   }),
@@ -27,7 +27,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.BOOLEAN,
     name: "Pump Running Status",
-    description: "Centrifugal pump run status — on/off for equipment schedule dashboards.",
+    description: "Centrifugal pump run status - on/off for equipment schedule dashboards.",
     input: { value: "yes", unit: UNIT_TOKENS.BOOL },
     recommendedOutputPresetIds: ["none:yes-no"]
   }),
@@ -36,7 +36,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.BOOLEAN,
     name: "Breaker Closed Status",
-    description: "MCCB breaker position — 1 = closed, 0 = open for electrical one-line diagrams.",
+    description: "MCCB breaker position - 1 = closed, 0 = open for electrical one-line diagrams.",
     input: { value: "1", unit: UNIT_TOKENS.BOOL },
     recommendedOutputPresetIds: ["none:yes-no"]
   }),
@@ -45,7 +45,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.BOOLEAN,
     name: "Damper Open Status",
-    description: "Fire damper end-switch feedback — open/closed for BAS point schedules.",
+    description: "Fire damper end-switch feedback - open/closed for BAS point schedules.",
     input: { value: "false", unit: UNIT_TOKENS.BOOL },
     recommendedOutputPresetIds: ["none:open-closed"]
   }),
@@ -56,7 +56,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.NUMBER,
     name: "Pipe Spool Count",
-    description: "Number of 6-m pipe spools for a 48-in cooling water line — 12 spools per ISO sketch.",
+    description: "Number of 6-m pipe spools for a 48-in cooling water line - 12 spools per ISO sketch.",
     input: { value: 12, unit: UNIT_TOKENS.UN },
     recommendedOutputPresetIds: ["none:count"]
   }),
@@ -65,7 +65,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.NUMBER,
     name: "Flange Joint Count",
-    description: "Number of 150# RFWN flanges on a 10-in steam header — 8 flanges per P&ID line list.",
+    description: "Number of 150# RFWN flanges on a 10-in steam header - 8 flanges per P&ID line list.",
     input: { value: 8, unit: UNIT_TOKENS.UN },
     recommendedOutputPresetIds: ["none:count"]
   }),
@@ -74,7 +74,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.NUMBER,
     name: "Bolt Count per Flange",
-    description: "Number of 3/4-in bolts for a 12-in 300# flange — 20 bolts per ASME B16.5.",
+    description: "Number of 3/4-in bolts for a 12-in 300# flange - 20 bolts per ASME B16.5.",
     input: { value: 20, unit: UNIT_TOKENS.UN },
     recommendedOutputPresetIds: ["none:count"]
   }),
@@ -83,7 +83,7 @@ export const NONE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.NONE,
     valueType: VALUE_TYPES.NUMBER,
     name: "Valve Count",
-    description: "Total gate valves on a 6-in cooling water loop — 4 valves per P&ID.",
+    description: "Total gate valves on a 6-in cooling water loop - 4 valves per P&ID.",
     input: { value: 4, unit: UNIT_TOKENS.UN },
     recommendedOutputPresetIds: ["none:count"]
   })

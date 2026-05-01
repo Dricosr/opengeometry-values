@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { FractionalInchParser, fractionalInchParser, parseFractionalInch, FRACTIONAL_INCH_DENOMINATORS } from "../../src/core/parsers/fractional-inch-parser.mjs";
 
 describe("FractionalInchParser", () => {
-  describe("parse — whole numbers", () => {
+  describe("parse - whole numbers", () => {
     it("should parse zero", () => {
       expect(fractionalInchParser.parse("0")).toBe(0);
     });
@@ -27,7 +27,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — decimal numbers (fallback)", () => {
+  describe("parse - decimal numbers (fallback)", () => {
     it("should parse positive decimals", () => {
       expect(fractionalInchParser.parse("1.25")).toBe(1.25);
       expect(fractionalInchParser.parse("0.5")).toBe(0.5);
@@ -48,7 +48,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — pure fractions (no whole part)", () => {
+  describe("parse - pure fractions (no whole part)", () => {
     const cases = [
       ["1/2", 0.5],
       ["1/4", 0.25],
@@ -76,7 +76,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — pure fractions with negative sign", () => {
+  describe("parse - pure fractions with negative sign", () => {
     it("should parse negative pure fractions", () => {
       expect(fractionalInchParser.parse("-1/2")).toBe(-0.5);
       expect(fractionalInchParser.parse("-3/4")).toBe(-0.75);
@@ -90,7 +90,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — mixed numbers (space separator)", () => {
+  describe("parse - mixed numbers (space separator)", () => {
     const cases = [
       ["1 1/4", 1.25],
       ["2 1/2", 2.5],
@@ -108,7 +108,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — negative mixed numbers", () => {
+  describe("parse - negative mixed numbers", () => {
     it("should parse negative mixed numbers with space", () => {
       expect(fractionalInchParser.parse("-1 1/4")).toBe(-1.25);
       expect(fractionalInchParser.parse("-2 1/2")).toBe(-2.5);
@@ -121,7 +121,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — hyphen as separator is valid", () => {
+  describe("parse - hyphen as separator is valid", () => {
     it("should parse hyphen-separated mixed numbers", () => {
       expect(fractionalInchParser.parse("1-1/4")).toBe(1.25);
       expect(fractionalInchParser.parse("2-1/2")).toBe(2.5);
@@ -139,7 +139,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — whitespace handling", () => {
+  describe("parse - whitespace handling", () => {
     it("should handle leading and trailing whitespace", () => {
       expect(fractionalInchParser.parse("  1 1/4")).toBe(1.25);
       expect(fractionalInchParser.parse("1 1/4  ")).toBe(1.25);
@@ -156,7 +156,7 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — validation errors", () => {
+  describe("parse - validation errors", () => {
     it("should throw on empty input", () => {
       expect(() => fractionalInchParser.parse("")).toThrow();
       expect(() => fractionalInchParser.parse("   ")).toThrow();
@@ -304,13 +304,13 @@ describe("FractionalInchParser", () => {
     });
   });
 
-  describe("parse — real-world samples (pipe diameters, NPS)", () => {
+  describe("parse - real-world samples (pipe diameters, NPS)", () => {
     // NPS (Nominal Pipe Size) - standard inch fractions for pipe OD
     // Using fine parser for NPS as pipe OD can be precise
     const fineParser = new FractionalInchParser({ denominatorCategory: FRACTIONAL_INCH_DENOMINATORS.FINE });
 
     it("should parse common pipe nominal diameters", () => {
-      // NPS 1/8" through NPS 2" — standard inch fractions for pipe
+      // NPS 1/8" through NPS 2" - standard inch fractions for pipe
       expect(fractionalInchParser.parse("1/8")).toBe(0.125);
       expect(fractionalInchParser.parse("1/4")).toBe(0.25);
       expect(fractionalInchParser.parse("3/8")).toBe(0.375);
