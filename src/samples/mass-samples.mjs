@@ -102,16 +102,6 @@ export const MASS_SAMPLES = Object.freeze({
     input: { value: 2.28, unit: UNIT_TOKENS.KILOGRAM },
     recommendedOutputPresetIds: ["mass:schedule-kilogram"]
   }),
-  "mass:concrete-density": createSample({
-    id: "mass:concrete-density",
-    quantity: QUANTITY_TYPES.MASS,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Concrete Density (kg per m3)",
-    description: "Normal weight concrete -- 2400 kg/m3 per ACI 318.",
-    input: { value: 2400, unit: UNIT_TOKENS.KILOGRAM },
-    recommendedOutputPresetIds: ["mass:shipping-kilogram"]
-  }),
-
   // -- integer value type --
   "mass:manhole-cover-integer": createSample({
     id: "mass:manhole-cover-integer",

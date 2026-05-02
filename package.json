@@ -1,6 +1,6 @@
 {
   "name": "@dricosr/iforge-edp-values",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Structured engineering values with type, quantity, unit conversion, internal normalization and UI formatting for iForge EDP.",
   "type": "module",
   "main": "./dist/index.cjs.js",
@@ -32,12 +32,16 @@
   },
   "keywords": [
     "iforge-edp",
-    "units",
     "engineering",
-    "values",
+    "units",
+    "unit-conversion",
+    "aec",
+    "bim",
     "cad",
     "mathjs",
-    "esm"
+    "esm",
+    "fractional-inch",
+    "imperial"
   ],
   "author": "Adriano Ribeiro",
   "license": "MIT",
@@ -48,7 +52,7 @@
   "bugs": {
     "url": "https://github.com/Dricosr/iforge-edp-values/issues"
   },
-  "homepage": "https://github.com/Dricosr/iforge-edp-values#readme",
+  "homepage": "https://values.iforge.org/",
   "dependencies": {
     "mathjs": "15.2.0"
   },

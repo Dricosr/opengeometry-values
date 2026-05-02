@@ -17,9 +17,9 @@ export const PRESSURE_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.PRESSURE,
     valueType: VALUE_TYPES.NUMBER,
     name: "Duct Static Pressure",
-    description: "Static pressure point for HVAC coordination and balancing.",
-    input: { value: 250, unit: UNIT_TOKENS.KILOPASCAL },
-    recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
+    description: "HVAC medium-pressure supply duct static -- 0.5 kPa (2 in w.g.) per ASHRAE HVAC Systems Handbook.",
+    input: { value: 0.5, unit: UNIT_TOKENS.KILOPASCAL },
+    recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:instrumentation-pascal"]
   }),
   "pressure:compressed-air": createSample({
     id: "pressure:compressed-air",
@@ -37,15 +37,6 @@ export const PRESSURE_SAMPLES = Object.freeze({
     name: "City Water Main Pressure",
     description: "Typical municipal water main -- 60 psi (414 kPa) per AWWA standards.",
     input: { value: 414, unit: UNIT_TOKENS.KILOPASCAL },
-    recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
-  }),
-  "pressure:tire-pressure-auto": createSample({
-    id: "pressure:tire-pressure-auto",
-    quantity: QUANTITY_TYPES.PRESSURE,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Automotive Tire Pressure",
-    description: "Typical passenger tire inflation -- 32 psi (220 kPa) per DOT specs.",
-    input: { value: 220, unit: UNIT_TOKENS.KILOPASCAL },
     recommendedOutputPresetIds: ["pressure:hvac-kilopascal", "pressure:piping-bar"]
   }),
   "pressure:pump-head-100ft": createSample({

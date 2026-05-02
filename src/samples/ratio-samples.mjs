@@ -80,19 +80,10 @@ export const RATIO_SAMPLES = Object.freeze({
     id: "ratio:reinforcement-ratio",
     quantity: QUANTITY_TYPES.RATIO,
     valueType: VALUE_TYPES.NUMBER,
-    name: "Reinforcement Ratio (ρ)",
+    name: "Reinforcement Ratio (p)",
     description: "Steel reinforcement ratio for 24x24 beam - 1.2% per ACI 318.",
     input: { value: 1.2, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
-  }),
-  "ratio:void-ratio-soil": createSample({
-    id: "ratio:void-ratio-soil",
-    quantity: QUANTITY_TYPES.RATIO,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Soil Void Ratio",
-    description: "Typical sand void ratio - 0.45 (45%) per geotechnical CPT data.",
-    input: { value: 45, unit: UNIT_TOKENS.PERCENT },
-    recommendedOutputPresetIds: ["ratio:process-percent"]
   }),
   "ratio:motor-efficiency": createSample({
     id: "ratio:motor-efficiency",
@@ -102,15 +93,6 @@ export const RATIO_SAMPLES = Object.freeze({
     description: "NEMA Premium IE3 motor efficiency at full load - 95.4%.",
     input: { value: 95.4, unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:utilization-percent", "ratio:process-percent"]
-  }),
-  "ratio:air-changes-per-hour": createSample({
-    id: "ratio:air-changes-per-hour",
-    quantity: QUANTITY_TYPES.RATIO,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Air Changes per Hour",
-    description: "Office space ventilation - 4 ACH per ASHRAE 62.1.",
-    input: { value: 4, unit: UNIT_TOKENS.PERCENT },
-    recommendedOutputPresetIds: ["ratio:process-percent", "ratio:dashboard-percent"]
   }),
   "ratio:glycol-concentration": createSample({
     id: "ratio:glycol-concentration",
@@ -159,13 +141,4 @@ export const RATIO_SAMPLES = Object.freeze({
     input: { value: "=250 / 300 * 100", unit: UNIT_TOKENS.PERCENT },
     recommendedOutputPresetIds: ["ratio:process-percent", "ratio:utilization-percent"]
   }),
-  "ratio:pipe-efficiency": createSample({
-    id: "ratio:pipe-efficiency",
-    quantity: QUANTITY_TYPES.RATIO,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Pipe Insulation Efficiency",
-    description: "Insulation efficiency for a 6-in pipe at 300 °F - 94% heat retention.",
-    input: { value: 94, unit: UNIT_TOKENS.PERCENT },
-    recommendedOutputPresetIds: ["ratio:utilization-percent", "ratio:process-percent"]
-  })
 });

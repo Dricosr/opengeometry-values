@@ -522,42 +522,6 @@ export const LENGTH_SAMPLES = Object.freeze({
     input: { value: 56.5, unit: UNIT_TOKENS.INCH },
     recommendedOutputPresetIds: ["length:detail-inch"]
   }),
-  "length:naval-depth-fathom": createSample({
-    id: "length:naval-depth-fathom",
-    quantity: QUANTITY_TYPES.LENGTH,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "River Depth (Fathoms)",
-    description: "Navigation channel depth in fathoms -- 6 ft per fathom, common in hydrographic surveys.",
-    input: { value: 18, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:annotation-meter"]
-  }),
-  "length:screen-mesh-100": createSample({
-    id: "length:screen-mesh-100",
-    quantity: QUANTITY_TYPES.LENGTH,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "100 Mesh Opening",
-    description: "No. 100 sieve opening -- 0.0059 in (149 umm) per ASTM E11.",
-    input: { value: 0.0059, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
-  }),
-  "length:screen-mesh-200": createSample({
-    id: "length:screen-mesh-200",
-    quantity: QUANTITY_TYPES.LENGTH,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "200 Mesh Opening",
-    description: "No. 200 sieve opening -- 0.0029 in (74 umm) per ASTM E11.",
-    input: { value: 0.0029, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
-  }),
-  "length:paper-mil-10": createSample({
-    id: "length:paper-mil-10",
-    quantity: QUANTITY_TYPES.LENGTH,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "10 mil Paper Thickness",
-    description: "Common card stock thickness -- 10 mil = 0.010 in.",
-    input: { value: 0.01, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
-  }),
   "length:foundation-pile-diameter-12": createSample({
     id: "length:foundation-pile-diameter-12",
     quantity: QUANTITY_TYPES.LENGTH,

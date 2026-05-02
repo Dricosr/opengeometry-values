@@ -30,15 +30,6 @@ export const ANGLE_SAMPLES = Object.freeze({
     input: { value: 1.5, unit: UNIT_TOKENS.DEGREE },
     recommendedOutputPresetIds: ["angle:slope-symbol", "angle:annotation-degree"]
   }),
-  "angle:stair-turn": createSample({
-    id: "angle:stair-turn",
-    quantity: QUANTITY_TYPES.ANGLE,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Stair Turn",
-    description: "Architectural turning angle for stairs, ramps, or handrail transitions.",
-    input: { value: 45, unit: UNIT_TOKENS.DEGREE },
-    recommendedOutputPresetIds: ["angle:annotation-symbol", "angle:slope-symbol"]
-  }),
   "angle:truss-pitch-4-12": createSample({
     id: "angle:truss-pitch-4-12",
     quantity: QUANTITY_TYPES.ANGLE,

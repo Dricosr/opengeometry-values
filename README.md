@@ -1,527 +1,199 @@
 ﻿# iforge-edp-values
 
-Structured engineering values for the iForge EDP ecosystem - type, quantity, unit, internal normalization, and UI-friendly formatting.
+[![npm version](https://img.shields.io/npm/v/@dricosr/iforge-edp-values)](https://www.npmjs.com/package/@dricosr/iforge-edp-values)
+[![license](https://img.shields.io/npm/l/@dricosr/iforge-edp-values)](./LICENSE)
+[![node](https://img.shields.io/node/v/@dricosr/iforge-edp-values)](https://nodejs.org/)
 
-Built with pure JavaScript ES Modules (`.mjs`) and [Math.js](https://mathjs.org/) for unit conversion and numeric formatting.
+Structured engineering values for AEC/industrial applications. Type-safe unit conversion, internal SI normalization, and UI-friendly formatting — built on [Math.js](https://mathjs.org/).
 
-The domain rules behind this library - quantities, internal units, resolution, and display constraints - are documented in the [specification](./spec/en-us/spec.md).
+[Live demo](https://values.iforge.org/) · [Specification](./spec/en-us/spec.md) · [Changelog](./CHANGELOG.md)
 
----
+## Features
 
-## What it does
-
-Every value in iForge EDP carries more than a number:
-
-```js
-{
-  valueType: "number",
-  quantity: "length",
-
-  input: {
-    id: "input:length:beam-1",
-    value: 2002,
-    unit: "mm",
-
-    internal: {
-      value: 2.002,
-      unit: "m"
-    },
-
-    output: {
-      id: "output:length:beam-1",
-      unit: "m"
-    }
-  },
-
-  internal: {
-    value: 2.002,
-    unit: "m"
-  }
-}
-```
-
-The library handles:
-
-- Parsing user input into a structured value
-- Converting to a stable internal unit (meters, radians, pascals…)
-- Applying internal resolution (e.g. 0.1 mm for length)
-- Formatting for reading (`2 m`) and editing (`2002.0`)
-- Resolving display precision against the system's internal resolution
-
-The geometry engine always uses `internal.value`. The user always sees a unit-aware, precision-capped display.
-
----
+- **12 engineering quantities**: length, area, volume, angle, temperature, mass, force, pressure, time, ratio, bool, and count
+- **Automatic SI normalization**: every value converts to a stable internal unit (meters, radians, pascals…) regardless of input unit
+- **Precision gating**: display precision is automatically capped by the domain's internal resolution (e.g. millimeter values never show more than 1 decimal place)
+- **Fractional inch I/O**: full imperial support following ANSI/ASME Y14.5 — parse `"1 1/4"`, format `2.375 → "2 3/8"`, with four precision tiers (construction, precision, machining, fine)
+- **BIM/AEC output presets**: curated presets for millimeter modeling, meter annotations, square-meter schedules, kilonewton structural loads, kilopascal HVAC, and more
+- **Zero-dependency browser usage**: works in the browser via import maps — no CDN, no bundler
+- **Pure ESM** (`.mjs`), tree-shakeable, no TypeScript
 
 ## Install
 
 ```bash
-npm install @dricosr/iforge-edp-values@alpha
+npm install @dricosr/iforge-edp-values
 ```
 
-The current release line is published on the public npm registry under the `alpha` dist-tag.
-
----
-
-## Quick start
+## Usage
 
 ```js
-import {
-  OUTPUT_PRESETS,
-  PARAMETER_SAMPLES,
-  CustomOutputAffix,
-  Output,
-  createValuePreview,
-  createValue,
-  tryCreateValue,
-  formatDisplayValue,
-  formatEditValue
-} from "@dricosr/iforge-edp-values";
+import { createValue, tryCreateValue, formatDisplayValue, formatEditValue } from "@dricosr/iforge-edp-values";
 
+// Create a structured engineering value
 const value = createValue({
-  id: "input:length:beam-1",
   value: 2002,
   valueType: "number",
   quantity: "length",
   unit: "mm",
-  output: new Output({
-    id: "output:length:beam-1",
-    unit: "m",
-    precision: 0,
-    prefix: new CustomOutputAffix({
-      id: "prefix:length:beam-1",
-      characters: "~ "
-    })
-  })
+  output: { id: "beam-1", unit: "m", precision: 3 }
 });
 
 console.log(value.internal);
 // { value: 2.002, unit: "m" }
 
-console.log(value.input.formatForDisplay());
-// "~ 2 m"
+console.log(formatDisplayValue(value));
+// "2.002 m"
 
 console.log(formatEditValue(value, { unit: "mm", precision: 4 }));
-// "2002.0"  - capped at 1 decimal because mm resolution is 0.1
+// "2002.0"
 
-const invalidValueResult = tryCreateValue({
+// Validate user input
+const result = tryCreateValue({
   value: "10,5",
   valueType: "number",
   quantity: "length",
   unit: "mm"
 });
 
-console.log(invalidValueResult);
-// {
-//   ok: false,
-//   value: null,
-//   error: ValueInputError {
-//     code: "invalid_numeric_value",
-//     field: "value",
-//     message: "Invalid numeric value: 10,5"
-//   }
-// }
+console.log(result);
+// { ok: false, value: null, error: ValueInputError { code: "invalid_numeric_value", ... } }
+```
 
-const preview = createValuePreview({
-  parameter: PARAMETER_SAMPLES["length:beam-span"],
-  output: {
-    presetId: "length:annotation-meter"
-  }
+### Fractional inches
+
+```js
+import { createValue, FractionalInchOutput, UNIT_TOKENS } from "@dricosr/iforge-edp-values";
+
+const pipe = createValue({
+  value: "1 1/4",
+  valueType: "number",
+  quantity: "length",
+  unit: UNIT_TOKENS.INCH,
+  output: new FractionalInchOutput({ id: "nps-1-1-4", prefix: "⌀ " })
 });
 
+console.log(pipe.input.formatForDisplay());  // '⌀ 1 1/4"'
+console.log(pipe.input.formatForEdit());     // "1 1/4"
+console.log(pipe.internal);                  // { value: 0.03175, unit: "m" }
+```
+
+### Output presets
+
+```js
+import { OUTPUT_PRESETS, PARAMETER_SAMPLES, createValuePreview } from "@dricosr/iforge-edp-values";
+
+// Explore available presets
 console.log(OUTPUT_PRESETS["pressure:hvac-kilopascal"].name);
 // "HVAC Pressure (kPa)"
+
+// Preview a parameter with a preset
+const preview = createValuePreview({
+  parameter: PARAMETER_SAMPLES["length:beam-span"],
+  output: { presetId: "length:annotation-meter" }
+});
 
 console.log(preview.previews.display);
 // "7.200 m"
 ```
 
----
-
-## Supported value types
-
-| Type        | Description    |
-| ----------- | -------------- |
-| `string`  | Free text      |
-| `integer` | Whole number   |
-| `float`   | Decimal number |
-| `boolean` | true / false   |
-
----
-
 ## Supported quantities
 
-| Quantity        | Internal unit |
-| --------------- | ------------- |
-| `length`      | `m`         |
-| `area`        | `m^2`       |
-| `volume`      | `m^3`       |
-| `angle`       | `rad`       |
-| `temperature` | `degC`      |
-| `mass`        | `kg`        |
-| `force`       | `N`         |
-| `pressure`    | `Pa`        |
-| `time`        | `s`         |
-| `ratio`       | -             |
-| `bool`        | -             |
-| `count`       | -             |
+| Quantity | Internal unit | Example inputs |
+| --- | --- | --- |
+| `length` | `m` | `mm`, `cm`, `m`, `in`, `ft` |
+| `area` | `m^2` | `mm^2`, `cm^2`, `m^2` |
+| `volume` | `m^3` | `mm^3`, `cm^3`, `m^3` |
+| `angle` | `rad` | `deg`, `rad` |
+| `temperature` | `degC` | `degC`, `degF`, `K` |
+| `mass` | `kg` | `g`, `kg`, `lb` |
+| `force` | `N` | `N`, `kN`, `lbf` |
+| `pressure` | `Pa` | `Pa`, `kPa`, `bar`, `psi` |
+| `time` | `s` | `s`, `min`, `h` |
+| `ratio` | — | dimensionless |
+| `bool` | — | `true` / `false` with configurable labels |
+| `count` | — | discrete integer counts (`un`) |
+
+Value types: `string`, `integer`, `float`, `boolean`.
+
+## Documentation
+
+- **[Specification](./spec/en-us/spec.md)** — domain rules: quantities, internal units, resolution limits, display constraints
+- **[API Reference](#api-reference)** — all public exports with descriptions
+- **[Fractional Inch Guide](#fractional-inch-io)** — imperial piping, sheet metal, fasteners, and construction
+- **[Browser Usage](#browser-usage)** — import maps setup for zero-dependency browser loading
 
 ---
 
-## API
+## API Reference
 
-### `createValue({ id, output, value, valueType, quantity, unit })`
+### Core functions
 
-Parses a value and unit pair and returns a structured value with `input` and `internal` fields.
+| Export | Description |
+| --- | --- |
+| `createValue(options)` | Parse input into a structured value with `input` and `internal` fields |
+| `tryCreateValue(options)` | Safe parse returning `{ ok, value, error }` for UI validation |
+| `createValuePreview(options)` | Build a preview payload (display + edit) from a sample parameter and output preset |
+| `formatDisplayValue(value, options?)` | Human-readable string with unit and affixes |
+| `formatEditValue(value, options?)` | Plain number string for input fields, precision-capped |
+| `convertValue({ value, fromUnit, toUnit })` | Raw unit conversion via Math.js |
 
-### `tryCreateValue({ value, valueType, quantity, unit })`
+### Configuration classes
 
-Returns `{ ok: true, value, error: null }` on success, or `{ ok: false, value: null, error }` with a structured `ValueInputError` for UI-facing validation.
+| Export | Description |
+| --- | --- |
+| `Output` | Output configuration: target unit, precision, prefix/suffix affixes |
+| `CustomOutputAffix` | User-defined prefix or suffix character sequence |
+| `FractionalInchOutput` | Drop-in `Output` replacement for fractional inch I/O |
+| `FractionalInchParser` | Parse `"1 1/4"` → `1.25` with validation |
+| `FractionalInchFormatter` | Format `1.25` → `"1 1/4"` with automatic reduction |
 
-For numeric engineering fields, the library expects the UI to pass the number and unit separately. Inputs such as `90 mm` should be split before calling the library.
+### Presets and samples
 
-### `Output`
+| Export | Description |
+| --- | --- |
+| `OUTPUT_PRESETS` | Curated BIM/AEC output presets by quantity |
+| `PARAMETER_SAMPLES` | Realistic parameter samples grouped by quantity |
+| `FRACTIONAL_INCH_DENOMINATORS` | Precision tier constants: `CONSTRUCTION`, `PRECISION`, `MACHINING`, `FINE` |
 
-Represents the output configuration attached to an input, including `id`, target `unit`, `precision`, and typed `prefix` and `suffix` affixes.
+### Advanced (specialist classes)
 
-### `OUTPUT_PRESETS`
-
-Provides a curated mini library of BIM and AEC output presets for common engineering views such as millimeter modeling, meter annotations, square-meter schedules, cubic-meter takeoffs, kilonewton structural loads, kilopascal HVAC pressure, and hour-based durations.
-
-### `PARAMETER_SAMPLES`
-
-Provides parameter samples grouped by quantity so local tools and demos can bootstrap realistic scenarios such as wall thickness, beam span, slab area, concrete pour, roof pitch, room setpoint, anchor load, and fire-rating duration.
-
-### `createValuePreview({ parameter, output })`
-
-Builds a structured preview payload with normalized `internal` data plus `display` and `edit` outputs. Useful for inspectors, playgrounds, and interactive engineering editors.
-
-### `CustomOutputAffix`
-
-Represents a user-defined prefix or suffix and stores the exact character sequence informed by the user.
-
-### `convertValue({ value, fromUnit, toUnit })`
-
-Converts a raw number between units using Math.js.
-
-### `formatDisplayValue(ogValue, options?)`
-
-Returns a human-readable string. Options: `unit`, `precision`, `prefix`, `suffix`, `showUnit`.
-
-### `formatEditValue(ogValue, options?)`
-
-Returns a plain number string for input fields, without unit suffix, precision-capped.
-
-For advanced composition, the package also exports the specialist classes behind this API, such as `ValueFactory`, `UnitConverter`, `InternalResolutionApplier`, `DisplayPrecisionService`, `DisplayPrecisionResolver`, `DisplayValueFormatter`, and `EditValueFormatter`.
-
-The quantity layer is also exposed through specialist profiles, including `LengthQuantityProfile`, `AreaQuantityProfile`, `VolumeQuantityProfile`, `AngleQuantityProfile`, `TemperatureQuantityProfile`, `MassQuantityProfile`, `ForceQuantityProfile`, `PressureQuantityProfile`, `TimeQuantityProfile`, and `QuantityProfileRegistry`.
-
-## Engineering I/O checks
-
-High-level engineering I/O scenarios are covered by the specialist visual tests in `tests/visual/`.
-
-Examples validated there include raw engineering inputs and outputs such as:
-
-- `90 deg`
-- `2000 mm`
-- `200 cm`
-- `30 in`
-- `2.00 m^2`
-- `3000 cm^3`
-- `86 degF`
-- `12.5 kg`
-- `1.5 kN`
-- `250 kPa`
-- `2 h`
-- Invalid inputs such as `ninety deg`, `2,000 mm`, `250k Pa`, and unknown units like `foo`
-
-## Precision internals
-
-### `applyInternalResolution(value, quantity)`
-
-Rounds a value to the system's internal resolution for the given quantity.
-
-### `getMaxDisplayPrecision(quantity, displayUnit)`
-
-Returns the maximum number of decimal places the UI should show for a given unit.
-
-### `resolveDisplayPrecision(quantity, displayUnit, requestedPrecision)`
-
-Returns the effective precision, capped at the internal resolution limit.
+For advanced composition, the package also exports: `ValueFactory`, `UnitConverter`, `InternalResolutionApplier`, `DisplayPrecisionService`, `DisplayPrecisionResolver`, `DisplayValueFormatter`, `EditValueFormatter`, `QuantityProfileRegistry`, and per-quantity profiles (`LengthQuantityProfile`, `AreaQuantityProfile`, …).
 
 ---
 
-## Decimal separator
+## Fractional inch I/O
 
-Only `.` is accepted as the decimal separator. Thousands separators are not supported.
+The library provides specialized handling for fractional inches — the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements. Follows **ANSI/ASME Y14.5** and **ISO 129-1**.
 
-```
-✓  2002
-✓  200.25
-✗  200,25
-✗  2.000,25
-```
+### Precision tiers
 
-This ensures compatibility with JavaScript, JSON, Math.js, and external APIs.
+| Tier | Max denominator | Use case |
+| --- | --- | --- |
+| `CONSTRUCTION` | 1/16 | Piping, lumber, framing, valve sizes |
+| `PRECISION` | 1/32 | Sheet metal, plate thickness |
+| `MACHINING` | 1/64 | Machining, tooling, general fabrication |
+| `FINE` | 1/128 | Tool & die, fine machining, metrology |
 
----
+### Validation rules
 
-## Fractional inch I/O (imperial)
-
-The library provides specialized handling for **fractional inches** - the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements.
-
-Fractional inch support follows **ANSI/ASME Y14.5** and **ISO 129-1** standards for dimensioning and tolerancing.
-
-### Denominator categories
-
-The fractional inch system supports four precision tiers - use the one that matches your domain:
-
-| Category | Max denominator | Domain |
-|---|---|---|
-| `CONSTRUCTION` | 1/16 (16) | Piping, lumber, framing, valve sizes |
-| `PRECISION` | 1/32 (32) | Sheet metal, plate thickness |
-| `MACHINING` (default) | 1/64 (64) | Machining, tooling, general fabrication |
-| `FINE` | 1/128 (128) | Tool & die, fine machining, metrology |
-
-### Input formatting: `FractionalInchParser`
-
-Parses fractional inch strings into decimal inches, with strict validation:
-
-```js
-import { FractionalInchParser, FRACTIONAL_INCH_DENOMINATORS } from "@dricosr/iforge-edp-values";
-
-const parser = new FractionalInchParser({
-  denominatorCategory: FRACTIONAL_INCH_DENOMINATORS.MACHINING  // default
-});
-
-parser.parse("1 1/4");    // → 1.25   (mixed number, space)
-parser.parse("1-1/4");    // → 1.25   (mixed number, hyphen)
-parser.parse("1/2");      // → 0.5    (pure fraction)
-parser.parse("3/4");      // → 0.75
-parser.parse("2");        // → 2      (integer)
-parser.parse("-1 1/4");   // → -1.25  (negative)
-parser.parse("0");        // → 0
-parser.parse("1.25");     // → 1.25   (decimal fallback)
-
-parser.canParse("1 1/4"); // → true
-parser.canParse("1/3");   // → false  (not power of 2)
-```
-
-**Validation rules enforced:**
-- Denominator **must** be a power of 2 (2, 4, 8, 16, 32, 64, 128)
-- Fraction **must** be proper (numerator < denominator)
-- Numerator and denominator **must** be positive integers
-- Denominator **must** not exceed the category limit
-- Only **one** fraction per input (no `1/2 1/4`)
-- Accepts space (`1 1/4`), hyphen (`1-1/4`), or decimal (`1.25`) interchangeably
-
-```js
-parser.parse("1/3");   // ❌ Error - denominator is not a power of 2
-parser.parse("3/2");   // ❌ Error - improper fraction (numer >= denom)
-parser.parse("1/0");   // ❌ Error - zero denominator
-parser.parse("1/128"); // ❌ Error - exceeds machining max (64)
-parser.parse("abc");   // ❌ Error - non-numeric
-```
-
-### Output formatting: `FractionalInchFormatter`
-
-Converts decimal inch values back to fractional strings, with automatic reduction:
-
-```js
-import { FractionalInchFormatter } from "@dricosr/iforge-edp-values";
-
-const formatter = new FractionalInchFormatter(); // default maxDenominator: 64
-
-formatter.decimalToFraction(1.25);     // → "1 1/4"
-formatter.decimalToFraction(0.5);      // → "1/2"
-formatter.decimalToFraction(0.75);     // → "3/4"
-formatter.decimalToFraction(2.375);    // → "2 3/8"     (NPS 2 pipe OD)
-formatter.decimalToFraction(6.625);    // → "6 5/8"     (NPS 6 pipe OD)
-formatter.decimalToFraction(0.0625);   // → "1/16"      (16 ga sheet)
-formatter.decimalToFraction(0.1875);   // → "3/16"      (#10 screw)
-formatter.decimalToFraction(-1.25);    // → "-1 1/4"
-formatter.decimalToFraction(0);        // → "0"
-```
-
-**Custom precision (construction - max 1/16):**
-
-```js
-const construction = new FractionalInchFormatter({ maxDenominator: 16 });
-
-construction.decimalToFraction(0.0625);   // → "1/16"
-construction.decimalToFraction(0.03125);  // → "0"      (1/32 rounds to 0)
-construction.decimalToFraction(0.09375);  // → "1/8"    (3/32 rounds up)
-```
-
-### Full I/O model: `FractionalInchOutput`
-
-Integrates parsing + formatting + unit conversion into the standard `createValue` flow.
-Accepts both **numeric** and **fractional string** inputs:
-
-```js
-import { createValue, FractionalInchOutput, UNIT_TOKENS, OUTPUT_SUFFIX_MODES } from "@dricosr/iforge-edp-values";
-
-// === Input: string fraction ===
-const pipe = createValue({
-  value: "1 1/4",                          // ← fractional string input
-  valueType: "number",
-  quantity: "length",
-  unit: UNIT_TOKENS.INCH,
-  output: new FractionalInchOutput({
-    id: "nps-1-1-4",
-    prefix: "⌀ "                           // diameter prefix
-  })
-});
-
-pipe.internal;            // { value: 0.03175, unit: "m" }   → 1.25 in = 0.03175 m
-pipe.input.formatForDisplay();  // '⌀ 1 1/4"'
-pipe.input.formatForEdit();     // "1 1/4"
-
-// === Input: numeric decimal ===
-const plate = createValue({
-  value: 0.375,                            // ← numeric input
-  valueType: "number",
-  quantity: "length",
-  unit: UNIT_TOKENS.INCH,
-  output: new FractionalInchOutput({
-    id: "3-8-plate"
-  })
-});
-
-plate.input.formatForDisplay();   // '3/8"'
-plate.input.formatForEdit();      // "3/8"
-
-// === Input: metric, output: fractional inches ===
-const metricPipe = createValue({
-  value: 762,                              // 762 mm = 30 inches
-  valueType: "number",
-  quantity: "length",
-  unit: UNIT_TOKENS.MILLIMETER,
-  output: new FractionalInchOutput({
-    id: "metric-to-inches"
-  })
-});
-
-metricPipe.input.formatForDisplay();  // '30"'
-```
-
-### Output configuration options
-
-| Option | Values | Default | Description |
-|---|---|---|---|
-| `suffixMode` | `SYMBOL`, `CODE`, `NONE`, `CUSTOM` | `SYMBOL` | Unit suffix style |
-| `showUnit` | `true`, `false` | `true` | Show/hide unit suffix entirely |
-| `prefix` | `string` or `OutputAffix` | empty | Text prepended to value |
-| `maxDenominator` | `16`, `32`, `64`, `128` | `64` | Maximum fraction denominator |
-
-```js
-// Suffix: code (in)
-new FractionalInchOutput({ id: "test", suffixMode: OUTPUT_SUFFIX_MODES.CODE });
-// → "1 1/4 in"
-
-// Suffix: none
-new FractionalInchOutput({ id: "test", suffixMode: OUTPUT_SUFFIX_MODES.NONE });
-// → "1 1/4"
-
-// Prefix: diameter symbol
-new FractionalInchOutput({ id: "test", prefix: "⌀ " });
-// → '⌀ 1 1/4"'
-```
+- Denominator must be a power of 2 (2, 4, 8, 16, 32, 64, 128)
+- Fraction must be proper (numerator < denominator)
+- Only one fraction per input; accepts space (`1 1/4`), hyphen (`1-1/4`), or decimal (`1.25`)
 
 ### Real-world examples
 
-**NPS pipe outer diameters (OD):**
-
-| NPS | OD (in) | Display |
-|---|---|---|
-| 1/2" | 0.840 | `⌀ 27/32"` |
-| 3/4" | 1.050 | `⌀ 1 1/16"` |
-| 1" | 1.315 | `⌀ 1 5/16"` |
-| 1-1/2" | 1.900 | `⌀ 1 7/8"` |
-| 2" | 2.375 | `⌀ 2 3/8"` |
-| 4" | 4.500 | `⌀ 4 1/2"` |
-| 6" | 6.625 | `⌀ 6 5/8"` |
-| 10" | 10.750 | `⌀ 10 3/4"` |
-
-**Sheet metal thickness (gauge → fraction):**
-
-| Gauge | Thickness (in) | Display |
-|---|---|---|
-| 16 ga | 0.0625 | `1/16"` |
-| 12 ga | 0.1094 | `7/64"` |
-| 10 ga | 0.1406 | `9/64"` |
-| 1/4" plate | 0.250 | `1/4"` |
-| 3/8" plate | 0.375 | `3/8"` |
-
-**Fasteners:**
-
-| Size | Diameter (in) | Display |
-|---|---|---|
-| 1/4"-20 UNC | 0.250 | `1/4"` |
-| 1/2"-13 UNC | 0.500 | `1/2"` |
-| 3/4"-10 UNC | 0.750 | `3/4"` |
-
-**Construction:**
-
-| Material | Nominal (in) | Display |
-|---|---|---|
-| 2x4 lumber | 1.5 | `1 1/2"` |
-| 4x4 lumber | 3.5 | `3 1/2"` |
-| Stud spacing | 16 | `16"` |
-| Joist spacing | 12 | `12"` |
-
-### Architecture
-
-Fractional inch handling adds three small, focused classes to the standard `createValue` pipeline:
-
-```
-FractionalInchParser      - parses "1 1/4" → 1.25 (with validation)
-FractionalInchFormatter   - formats 1.25 → "1 1/4" (with reduction)
-FractionalInchOutput      - orchestrates I/O, affixes, unit conversion
-```
-
-`FractionalInchOutput` is designed as a **duck-typed drop-in** for the standard `Output` class. It exposes the same `formatDisplay()` and `formatEdit()` contract expected by `createValue`. When an `output` parameter is passed to `createValue`, the system checks for duck-typing compatibility rather than requiring the exact `Output` class - so `FractionalInchOutput` works transparently.
-
-**Key behaviors:**
-- Internal storage is always in meters (SI), regardless of input unit
-- Conversion to inches happens at formatting time
-- `formatForEdit()` returns the fraction without unit suffix - ready for text input
-- `formatForDisplay()` returns the fraction with the configured affix (prefix + suffix)
-- Metric units (mm, cm, m) are accepted as input and converted automatically
-- Round-trip guaranteed: `"1 1/4" → internal.meters → "1 1/4"` display
+| Domain | Input | Output |
+| --- | --- | --- |
+| NPS 2" pipe OD | `2.375` in | `⌀ 2 3/8"` |
+| 16 ga sheet metal | `0.0625` in | `1/16"` |
+| 1/4"-20 UNC fastener | `0.250` in | `1/4"` |
+| 2×4 lumber (actual) | `1.5` in | `1 1/2"` |
 
 ---
 
 ## Browser usage
 
-The library works in the browser without a build step, using [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap) to resolve dependencies locally from your Express server.
-
-**Required mathjs exports**
-
-The library uses exactly four named exports from mathjs. Any shim or import map must expose all of them:
-
-| Symbol | Purpose |
-| ------ | ------- |
-| `unit` | unit conversion, precision, input parsing |
-| `format` | numeric display formatting |
-| `evaluate` | formula evaluation |
-| `typeOf` | formula result type detection |
-
-The canonical source is [`src/core/mathjs-api.mjs`](src/core/mathjs-api.mjs). Adding a new mathjs symbol to the library requires updating that file first, making the contract change visible in diffs. Consumers can also import the object at runtime:
-
-```js
-import { mathjsApi } from "@dricosr/iforge-edp-values";
-// mathjsApi: { evaluate, format, typeOf, unit }
-```
-
-**Express setup (in the consuming app):**
-
-```js
-// Serve mathjs ESM files and the library as static
-app.use("/mathjs", express.static("node_modules/mathjs/lib/esm"))
-app.use("/iforge-edp-values", express.static("node_modules/@dricosr/iforge-edp-values/src"))
-```
-
-**HTML:**
+Works in the browser without a build step using [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap):
 
 ```html
 <script type="importmap">
@@ -538,37 +210,47 @@ app.use("/iforge-edp-values", express.static("node_modules/@dricosr/iforge-edp-v
 </script>
 ```
 
-The browser loads `/mathjs/index.js` and resolves all of mathjs's internal relative imports (e.g. `./utils/is.js`) against `/mathjs/` automatically. No CDN, no bundler, no extra maintenance.
+Requires serving `mathjs/lib/esm` and the library's `src/` as static files from your Express server. See the [specification](./spec/en-us/spec.md) for full setup details.
 
-**Version sync:** mathjs version is controlled exclusively by `package.json`. After `npm install`, both Node.js and the browser use the same version from `node_modules/`.
+---
+
+## Build
+
+```bash
+git clone https://github.com/Dricosr/iforge-edp-values.git
+cd iforge-edp-values
+npm install
+npm run build       # ESM + CJS + IIFE → dist/
+```
+
+## Test
+
+```bash
+npm test                # all tests (Vitest)
+npm run test:visual     # visual I/O tests only
+npm run test:coverage   # with coverage report
+```
+
+> **Windows users**: run Vitest from PowerShell or bash — `cmd.exe` has known incompatibilities with Vitest 4.x.
 
 ---
 
 ## Design principles
 
-- Geometry and calculations always use `internal.value`
-- User input is preserved in `input` but never used for computation
-- Unit preference belongs to the UI or project config, not to the value
-- Display precision is always capped by internal resolution
-- Small specialist classes own one responsibility each, with shared strings and base values centralized in dedicated catalogs
-- Quantity-specific behavior lives in specialist profiles instead of being spread across generic conditionals
+- Calculations always use `internal.value` (SI); user input is preserved but never used for computation
+- Unit preference belongs to the UI or project config — not stored in the value
+- Display precision is always capped by the quantity's internal resolution
+- Small specialist classes with single responsibilities; shared constants in dedicated catalogs
+- Quantity-specific behavior lives in specialist profiles, not generic conditionals
 
 ---
 
 ## Contributing
 
-Contributions are welcome - bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
+Contributions are welcome — bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
 
-Please note that this project follows a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to abide by its terms.
-
-## Live demo
-
-[og-values.runcod.es](https://og-values.runcod.es)
-
-## Author
-
-Adriano Ribeiro - [linkedin.com/in/dricosr](https://www.linkedin.com/in/dricosr/)
+This project follows a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to abide by its terms.
 
 ## License
 
-[MIT](./LICENSE) - © 2026 Adriano Ribeiro
+[MIT](./LICENSE) — © 2026 Adriano Ribeiro

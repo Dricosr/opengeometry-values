@@ -12,15 +12,6 @@ import { createSample } from "./create-sample.mjs";
 export const TIME_SAMPLES = Object.freeze({
 
   // -- min --
-  "time:fire-rating": createSample({
-    id: "time:fire-rating",
-    quantity: QUANTITY_TYPES.TIME,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Fire Rating Duration",
-    description: "Duration-driven parameter for fire assemblies and curing windows.",
-    input: { value: 120, unit: UNIT_TOKENS.MINUTE },
-    recommendedOutputPresetIds: ["time:schedule-hour", "time:coordination-minute"]
-  }),
   "time:coating-dwell": createSample({
     id: "time:coating-dwell",
     quantity: QUANTITY_TYPES.TIME,
@@ -140,17 +131,6 @@ export const TIME_SAMPLES = Object.freeze({
     name: "Emergency Valve Close Time",
     description: "Process safety valve stroke time -- 15 s maximum per IEC 61511 SIL 2 loop.",
     input: { value: 15, unit: UNIT_TOKENS.SECOND },
-    recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
-  }),
-
-  // -- integer value type --
-  "time:fire-watch-integer": createSample({
-    id: "time:fire-watch-integer",
-    quantity: QUANTITY_TYPES.TIME,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Hot-Work Fire Watch (Integer min)",
-    description: "Post-hot-work fire watch duration -- 60 min as integer per NFPA 51B.",
-    input: { value: 60, unit: UNIT_TOKENS.MINUTE },
     recommendedOutputPresetIds: ["time:coordination-minute", "time:schedule-hour"]
   }),
 

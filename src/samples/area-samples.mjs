@@ -82,8 +82,8 @@ export const AREA_SAMPLES = Object.freeze({
     quantity: QUANTITY_TYPES.AREA,
     valueType: VALUE_TYPES.NUMBER,
     name: "500 kcmil Conductor Area",
-    description: "Large electrical conductor 500,000 circular mils = 253 mm2 per NEC.",
-    input: { value: 253, unit: UNIT_TOKENS.SQUARE_CENTIMETER },
+    description: "Large electrical conductor 500,000 circular mils = 253 mm² = 2.53 cm² per NEC.",
+    input: { value: 2.53, unit: UNIT_TOKENS.SQUARE_CENTIMETER },
     recommendedOutputPresetIds: ["area:detail-square-centimeter"]
   }),
   "area:nozzle-bore-cm2": createSample({
@@ -97,14 +97,14 @@ export const AREA_SAMPLES = Object.freeze({
   }),
 
   // -- in^2 --
-  "area:paint-coverage-us": createSample({
-    id: "area:paint-coverage-us",
+  "area:baseplate-18x18": createSample({
+    id: "area:baseplate-18x18",
     quantity: QUANTITY_TYPES.AREA,
     valueType: VALUE_TYPES.NUMBER,
-    name: "Paint Coverage (sq ft)",
-    description: "Typical paint coverage per gallon -- 350 sq ft at 1 coat per manufacturer specs.",
-    input: { value: 350, unit: UNIT_TOKENS.SQUARE_INCH },
-    recommendedOutputPresetIds: ["area:fabrication-square-inch", "area:schedule-square-meter"]
+    name: "Column Base Plate 18×18 in",
+    description: "Wide-flange column base plate 18 in × 18 in = 324 sq in per AISC Design Guide 1.",
+    input: { value: 324, unit: UNIT_TOKENS.SQUARE_INCH },
+    recommendedOutputPresetIds: ["area:fabrication-square-inch", "area:detail-square-centimeter"]
   }),
   "area:floor-tile-12x12": createSample({
     id: "area:floor-tile-12x12",

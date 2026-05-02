@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.6] - 2026-05-01
+
+### Added
+
+- **Fractional inch presets**: Added 4 new length presets for fractional inch display — `length:fractional-inch-construction` (1/16"), `length:fractional-inch-precision` (1/32"), `length:fractional-inch-machining` (1/64"), and `length:diameter-fractional-inch` — using `FractionalInchOutput` via the new `outputType: "fractional-inch"` dispatch in `OutputBuilder.build()`.
+- **Fractional inch sample coverage**: Updated `length-samples.mjs` — all lumber, pipe, plate, bolt, weld, rebar, concrete, and instrument tubing samples now reference appropriate fractional inch presets in `recommendedOutputPresetIds`.
+
 ## [0.4.5] - 2026-05-01
 
 ### Fixed
@@ -33,19 +40,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `samples/none/` directory with 4 visual sample scripts covering BOOL and UN:
-  - `input-bool-to-output-bool.mjs` — boolean input with Open/Closed label display
-  - `output-boolean-labels.mjs` — comparison of 5 boolean label sets (YES_NO, OPEN_CLOSED, ENABLED_DISABLED, COMPLIANT_NON_COMPLIANT, APPROVED_NOT_APPROVED)
-  - `input-un-to-output-un.mjs` — unit count input (UN) with "12 un" display
-  - `output-precision.mjs` — precision control on unit count output
+  - `input-bool-to-output-bool.mjs` - boolean input with Open/Closed label display
+  - `output-boolean-labels.mjs` - comparison of 5 boolean label sets (YES_NO, OPEN_CLOSED, ENABLED_DISABLED, COMPLIANT_NON_COMPLIANT, APPROVED_NOT_APPROVED)
+  - `input-un-to-output-un.mjs` - unit count input (UN) with "12 un" display
+  - `output-precision.mjs` - precision control on unit count output
 
 ### Fixed
 
-- `quantity-profile-registry.mjs`: `QUANTITY_TYPES.NONE` profile was missing `supportedUnits`, causing an empty unit dropdown and a validation error (`unit: ""`) when applying NONE samples in the demo app — added `supportedUnits: [UNIT_TOKENS.UN, UNIT_TOKENS.BOOL]`
-- `tests/samples/parameter-sample-catalog.test.mjs`: added NONE samples coverage — import of NONE_SAMPLES, inclusion in allKeys and expectedQuantities, plus dedicated `describe("none-samples coverage")` block with 7 tests covering BOOL unit, UN unit, BOOLEAN/NUMBER value types, minimum sample count, and preset validation
-
-## [0.4.2] - 2026-04-30
-
-## [0.4.1] - 2026-04-30
+- `quantity-profile-registry.mjs`: `QUANTITY_TYPES.NONE` profile was missing `supportedUnits`, causing an empty unit dropdown and a validation error (`unit: ""`) when applying NONE samples in the demo app - added `supportedUnits: [UNIT_TOKENS.UN, UNIT_TOKENS.BOOL]`
+- `tests/samples/parameter-sample-catalog.test.mjs`: added NONE samples coverage - import of NONE_SAMPLES, inclusion in allKeys and expectedQuantities, plus dedicated `describe("none-samples coverage")` block with 7 tests covering BOOL unit, UN unit, BOOLEAN/NUMBER value types, minimum sample count, and preset validation
 
 ## [0.4.0] - 2026-04-30
 
@@ -123,52 +126,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `suffix-mode-catalog.mjs` file (consolidated into `output-suffix-modes.mjs`)
 - `scripts/check-customizations.mjs`: removed as no longer needed
 
-## [0.3.2] - 2026-04-29
-
-### Added
-
-- `VALUE_TYPES.BOOLEAN`: new value type for boolean/status parameters (on/off, open/closed, yes/no, 1/0) with `BOOLEAN_LABEL_PRESETS` catalog for label pair configuration
-- `NONE_PRESETS`: output presets for `QUANTITY_TYPES.NONE` including boolean label presets and unit count presets
-- `none-samples.mjs`: parameter samples for NONE quantity
-- `booleanTextParser`: specialist parser that normalizes boolean text inputs
-- `booleanLabelCatalog` / `BooleanLabelCatalog` / `BOOLEAN_LABEL_PRESETS`: catalog of boolean label pairs
-- `booleanLabels` property on `Output` model
-- Unit count validation in `create-value.mjs`
-- `FractionalInchOutput` model, `FractionalInchFormatter`, `FractionalSeparatorCatalog`, `FractionalInchDenominatorCatalog`
-- Diameter presets and parameter samples
-- Temperature, time, and volume parameter samples with full unit coverage
-- 70+ sample scripts in `samples/` directory
-- `mathjs-api.mjs` contract file
-- `spec/en-us/samples.md`
-
-### Changed
-
-- **valueTypes collapse**: removed `VALUE_TYPES.FLOAT` and `VALUE_TYPES.INTEGER`; consolidated to just `VALUE_TYPES.NUMBER` and `VALUE_TYPES.STRING`
-- **Rebrand**: package renamed from `opengeometry-values` to `@dricosr/iforge-edp-values`; class `OpenGeometryValue` renamed to `IForgeEdpValue`; IIFE global `OpenGeometryValues` → `IForgeEdpValues`
-- Output preset catalog split into per-quantity files
-- Parameter sample catalog split into per-quantity files
-- **Breaking:** `mathjs-string-catalog.mjs` renamed to `unit-token-catalog.mjs`
-- `domain-string-catalog.mjs` removed; `domain-catalog.mjs` is now the single source of truth
-- `suffix-mode-catalog.mjs` removed; `output-suffix-modes.mjs` is now the single source of truth
-- `create-value.mjs` refactored: dispatch logic reorganized by `valueType`
-- Various documentation updates
-
-### Fixed
-
-- `FormulaParser`: standalone `min` unit token normalization
-- `resolveUnitInput`: error message leak fix
-- `booleanTextParser`: now rejects formula expressions
-- `none-samples.mjs`: corrected `recommendedOutputPresetIds`
-- Orphaned test file `e` removed
-
-### Removed
-
-- `formatForComposition` and `formatForFriendlyValue` from `ValueInput`
-- `formatComposition` and `formatFriendlyValue` from `Output`
-- `composition` and `friendly` keys from `createValuePreview` response payload
-- `suffix-mode-catalog.mjs` file
-- `scripts/check-customizations.mjs`
-
 ## [0.1.0] - 2026-04-24
 
 ### Added
@@ -182,3 +139,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prompt files for Copilot: `review-naming`, `document-module`
 - GitHub branch protection ruleset for `main`
 - Issue and PR templates
+
+[Unreleased]: https://github.com/Dricosr/iforge-edp-values/compare/v0.4.6...HEAD
+[0.4.6]: https://github.com/Dricosr/iforge-edp-values/compare/v0.4.5...v0.4.6
+[0.4.5]: https://github.com/Dricosr/iforge-edp-values/compare/v0.4.4...v0.4.5
+[0.4.4]: https://github.com/Dricosr/iforge-edp-values/compare/v0.4.3...v0.4.4
+[0.4.3]: https://github.com/Dricosr/iforge-edp-values/compare/v0.4.0...v0.4.3
+[0.4.0]: https://github.com/Dricosr/iforge-edp-values/compare/v0.1.0...v0.4.0
+[0.1.0]: https://github.com/Dricosr/iforge-edp-values/releases/tag/v0.1.0

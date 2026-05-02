@@ -48,13 +48,13 @@ export const VOLUME_SAMPLES = Object.freeze({
     input: { value: 7.65, unit: UNIT_TOKENS.CUBIC_METER },
     recommendedOutputPresetIds: ["volume:concrete-cubic-meter", "volume:process-cubic-meter"]
   }),
-  "volume:pipe-volume-per-foot": createSample({
-    id: "volume:pipe-volume-per-foot",
+  "volume:hydronic-loop": createSample({
+    id: "volume:hydronic-loop",
     quantity: QUANTITY_TYPES.VOLUME,
     valueType: VALUE_TYPES.NUMBER,
-    name: "Pipe Volume per Foot",
-    description: "Internal volume per foot of 2in Sch 40 pipe -- 0.0603 cu ft/ft (1.71 L/m).",
-    input: { value: 0.0603, unit: UNIT_TOKENS.CUBIC_METER },
+    name: "Hydronic Loop Volume",
+    description: "Total fluid volume of a 6-story office building hydronic heating loop -- 4.2 m³.",
+    input: { value: 4.2, unit: UNIT_TOKENS.CUBIC_METER },
     recommendedOutputPresetIds: ["volume:process-cubic-meter", "volume:tank-liter"]
   }),
   "volume:swimming-pool": createSample({
@@ -110,9 +110,9 @@ export const VOLUME_SAMPLES = Object.freeze({
     id: "volume:tank-gallons-us",
     quantity: QUANTITY_TYPES.VOLUME,
     valueType: VALUE_TYPES.NUMBER,
-    name: "Fuel Tank (gal to L)",
-    description: "Standard 275-gallon residential fuel oil tank.",
-    input: { value: 275, unit: UNIT_TOKENS.LITER },
+    name: "Fuel Tank 275 gal",
+    description: "Standard 275-gallon residential fuel oil tank -- 275 US gal = 1041 L.",
+    input: { value: 1041, unit: UNIT_TOKENS.LITER },
     recommendedOutputPresetIds: ["volume:tank-liter", "volume:process-cubic-meter"]
   }),
   "volume:fire-suppression-tank": createSample({

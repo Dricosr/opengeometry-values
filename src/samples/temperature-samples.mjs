@@ -41,15 +41,6 @@ export const TEMPERATURE_SAMPLES = Object.freeze({
   }),
 
   // -- degF -------------------------------------------------------------
-  "temperature:furnace-shell": createSample({
-    id: "temperature:furnace-shell",
-    quantity: QUANTITY_TYPES.TEMPERATURE,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Furnace Shell Limit",
-    description: "Industrial equipment shell temperature limit -- 180 degF for ASME Section VIII Div 1.",
-    input: { value: 180, unit: UNIT_TOKENS.DEGREE_FAHRENHEIT },
-    recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
-  }),
   "temperature:weld-preheat": createSample({
     id: "temperature:weld-preheat",
     quantity: QUANTITY_TYPES.TEMPERATURE,
@@ -102,15 +93,6 @@ export const TEMPERATURE_SAMPLES = Object.freeze({
     name: "Boiler Water Temperature",
     description: "Hot water boiler supply -- 180 degF (82 degC) for hydronic heating per ASHRAE.",
     input: { value: 180, unit: UNIT_TOKENS.DEGREE_FAHRENHEIT },
-    recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
-  }),
-  "temperature:engine-coolant": createSample({
-    id: "temperature:engine-coolant",
-    quantity: QUANTITY_TYPES.TEMPERATURE,
-    valueType: VALUE_TYPES.NUMBER,
-    name: "Engine Coolant Operating",
-    description: "Diesel generator coolant operating temp -- 195 degF (90 degC).",
-    input: { value: 195, unit: UNIT_TOKENS.DEGREE_FAHRENHEIT },
     recommendedOutputPresetIds: ["temperature:fahrenheit-room", "temperature:celsius-process"]
   }),
   "temperature:asphalt-paving": createSample({

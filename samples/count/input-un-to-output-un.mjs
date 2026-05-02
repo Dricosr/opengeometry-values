@@ -2,7 +2,7 @@
  * Example: Input unit count 12 → Output as "12 un"
  *
  * Shows the basic unit count case using UNIT_TOKENS.UN.
- * No unit conversion applies — UN is a dimensionless counter.
+ * No unit conversion applies - UN is a dimensionless counter.
  * Useful for pipe spool counts, flange counts, valve tallies, etc.
  */
 
