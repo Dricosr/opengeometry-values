@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-05-01
+
 ### Fixed
 
 - **Boolean display formatting**: `Output.composeFormattedValue()` now indexes boolean label maps with string keys `"0"`/`"1"` instead of raw boolean `true`/`false`, resolving a bug where presets like `bool:active-inactive` displayed `"true"`/`"false"` instead of `"Active"`/`"Inactive"`. The root cause was that `BOOLEAN_LABEL_PRESETS` entries use string keys but `internal.value` is a JavaScript boolean.
 - **Boolean edit formatting**: `Output.formatEdit()` now returns `"0"`/`"1"` instead of `String(boolean)` (which produced `"true"`/`"false"`), matching the documented contract.
 - **Tests**: Fixed false-positive in `format-edit-value.test.mjs` that asserted `"false"` instead of `"0"`. Added comprehensive boolean display/end-to-end tests to `format-display-value.test.mjs` covering all label presets and the `booleanLabels` default fallback.
+- **Boolean samples**: Fixed `samples/bool/input-bool-to-output-bool.mjs` and `samples/bool/output-boolean-labels.mjs` to pass `booleanLabels: BOOLEAN_LABEL_PRESETS.OPEN_CLOSED` instead of the nonexistent `booleanLabelKey` property, which caused silent fallback to YES_NO labels.
 
 ## [0.4.4] - 2026-05-01
 

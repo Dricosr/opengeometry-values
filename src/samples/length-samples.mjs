@@ -28,7 +28,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Pipe Spool Length",
     description: "Common industrial spool length for shop fabrication and installation checks.",
     input: { value: 3657, unit: UNIT_TOKENS.MILLIMETER },
-    recommendedOutputPresetIds: ["length:model-mm", "length:process-meter", "length:detail-inch"]
+    recommendedOutputPresetIds: ["length:model-mm", "length:process-meter", "length:detail-inch", "length:fractional-inch-construction"]
   }),
   "length:cable-tray-offset": createSample({
     id: "length:cable-tray-offset",
@@ -46,7 +46,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Pipe OD",
     description: "Nominal pipe outside diameter for piping isometric spools and fabrication.",
     input: { value: 168.3, unit: UNIT_TOKENS.MILLIMETER },
-    recommendedOutputPresetIds: ["length:diameter-mm", "length:detail-inch"]
+    recommendedOutputPresetIds: ["length:diameter-mm", "length:detail-inch", "length:diameter-fractional-inch"]
   }),
   "length:rebar-diameter": createSample({
     id: "length:rebar-diameter",
@@ -64,7 +64,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Sheet Metal 16 Gauge",
     description: "Standard steel sheet thickness for 16 gauge -- 0.0598 in per ASTM A 653 / U.S. Standard Gauge.",
     input: { value: 1.52, unit: UNIT_TOKENS.MILLIMETER },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-precision", "length:diameter-mm"]
   }),
 
   // -- cm --
@@ -124,7 +124,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Hole Diameter",
     description: "Penetration or opening diameter for MEP coordination and structural embeds.",
     input: { value: 2.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:lumber-2x4": createSample({
     id: "length:lumber-2x4",
@@ -133,7 +133,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "2x4 Lumber Actual Width",
     description: "Actual dressed width of nominal 2x4 lumber -- 1.5 in x 3.5 in per NIST HB 130.",
     input: { value: 1.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-inch"]
+    recommendedOutputPresetIds: ["length:fractional-inch-construction", "length:detail-inch", "length:diameter-inch"]
   }),
   "length:lumber-2x6": createSample({
     id: "length:lumber-2x6",
@@ -142,7 +142,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "2x6 Lumber Width",
     description: "Actual dressed width of nominal 2x6 -- 1.5 in x 5.5 in.",
     input: { value: 5.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:fractional-inch-construction", "length:detail-inch"]
   }),
   "length:lumber-4x4": createSample({
     id: "length:lumber-4x4",
@@ -151,7 +151,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "4x4 Post Actual",
     description: "Actual dressed dimension of nominal 4x4 post -- 3.5 in x 3.5 in.",
     input: { value: 3.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:fractional-inch-construction", "length:detail-inch"]
   }),
   "length:lumber-2x10": createSample({
     id: "length:lumber-2x10",
@@ -160,7 +160,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "2x10 Joist Depth",
     description: "Actual dressed depth of nominal 2x10 joist -- 1.5 in x 9.25 in.",
     input: { value: 9.25, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:fractional-inch-construction", "length:detail-inch"]
   }),
   "length:lumber-2x12": createSample({
     id: "length:lumber-2x12",
@@ -169,7 +169,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "2x12 Joist Depth",
     description: "Actual dressed depth of nominal 2x12 -- 1.5 in x 11.25 in.",
     input: { value: 11.25, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:fractional-inch-construction", "length:detail-inch"]
   }),
   "length:lumber-studs-16oc": createSample({
     id: "length:lumber-studs-16oc",
@@ -178,7 +178,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Stud Spacing 16in OC",
     description: "Standard stud spacing on-center for residential and light commercial walls.",
     input: { value: 16, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:fractional-inch-construction", "length:detail-inch"]
   }),
   "length:pipe-nps-half": createSample({
     id: "length:pipe-nps-half",
@@ -214,7 +214,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "NPS 2in Pipe OD",
     description: "Nominal Pipe Size 2in -- actual OD 2.375 in per ASME B36.10.",
     input: { value: 2.375, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:pipe-nps-3": createSample({
     id: "length:pipe-nps-3",
@@ -223,7 +223,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "NPS 3in Pipe OD",
     description: "Nominal Pipe Size 3in -- actual OD 3.5 in per ASME B36.10.",
     input: { value: 3.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:pipe-nps-6": createSample({
     id: "length:pipe-nps-6",
@@ -232,7 +232,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "NPS 6in Pipe OD",
     description: "Nominal Pipe Size 6in -- actual OD 6.625 in per ASME B36.10.",
     input: { value: 6.625, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:pipe-nps-8": createSample({
     id: "length:pipe-nps-8",
@@ -241,7 +241,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "NPS 8in Pipe OD",
     description: "Nominal Pipe Size 8in -- actual OD 8.625 in per ASME B36.10.",
     input: { value: 8.625, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:pipe-nps-10": createSample({
     id: "length:pipe-nps-10",
@@ -250,7 +250,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "NPS 10in Pipe OD",
     description: "Nominal Pipe Size 10in -- actual OD 10.75 in per ASME B36.10.",
     input: { value: 10.75, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:pipe-sch40-wall": createSample({
     id: "length:pipe-sch40-wall",
@@ -313,7 +313,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Plate 3/8in Thickness",
     description: "Common steel plate thickness -- 0.375 in for baseplates, brackets, and gussets.",
     input: { value: 0.375, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:sheetmetal-1-2inch": createSample({
     id: "length:sheetmetal-1-2inch",
@@ -322,7 +322,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Plate 1/2in Thickness",
     description: "Common steel plate thickness -- 0.5 in for bearing plates and stiffeners.",
     input: { value: 0.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:bolt-diameter-1-4": createSample({
     id: "length:bolt-diameter-1-4",
@@ -331,7 +331,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Bolt 1/4in Diameter",
     description: "Nominal bolt diameter 1/4in -- SAE grade 5 / ASTM A325 common fastener.",
     input: { value: 0.25, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:bolt-diameter-3-8": createSample({
     id: "length:bolt-diameter-3-8",
@@ -340,7 +340,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Bolt 3/8in Diameter",
     description: "Nominal bolt diameter 3/8in -- structural and machinery fastener.",
     input: { value: 0.375, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:bolt-diameter-1-2": createSample({
     id: "length:bolt-diameter-1-2",
@@ -349,7 +349,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Bolt 1/2in Diameter",
     description: "Nominal bolt diameter 1/2in -- common structural bolt size.",
     input: { value: 0.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:bolt-diameter-5-8": createSample({
     id: "length:bolt-diameter-5-8",
@@ -358,7 +358,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Bolt 5/8in Diameter",
     description: "Nominal bolt diameter 5/8in -- heavy structural connection bolt.",
     input: { value: 0.625, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:bolt-diameter-3-4": createSample({
     id: "length:bolt-diameter-3-4",
@@ -367,7 +367,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Bolt 3/4in Diameter",
     description: "Nominal bolt diameter 3/4in -- large structural bolt per ASTM A325 / A490.",
     input: { value: 0.75, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:bolt-diameter-1": createSample({
     id: "length:bolt-diameter-1",
@@ -376,7 +376,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Bolt 1in Diameter",
     description: "Nominal bolt diameter 1in -- heavy bracing and column splice bolts.",
     input: { value: 1, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:weld-leg-1-4": createSample({
     id: "length:weld-leg-1-4",
@@ -385,7 +385,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Fillet Weld Leg 1/4in",
     description: "Common fillet weld leg size for light structural connections per AWS D1.1.",
     input: { value: 0.25, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction"]
   }),
   "length:weld-leg-3-8": createSample({
     id: "length:weld-leg-3-8",
@@ -394,7 +394,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Fillet Weld Leg 3/8in",
     description: "Medium fillet weld leg size for beam-to-column connections per AWS D1.1.",
     input: { value: 0.375, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction"]
   }),
   "length:weld-leg-1-2": createSample({
     id: "length:weld-leg-1-2",
@@ -403,7 +403,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Fillet Weld Leg 1/2in",
     description: "Heavy fillet weld leg size for large moment connections and splices.",
     input: { value: 0.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction"]
   }),
   "length:rebar-us-4": createSample({
     id: "length:rebar-us-4",
@@ -412,7 +412,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "US #4 Rebar Diameter",
     description: "US #4 reinforcing bar -- 1/2in diameter per ASTM A615.",
     input: { value: 0.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:rebar-us-5": createSample({
     id: "length:rebar-us-5",
@@ -421,7 +421,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "US #5 Rebar Diameter",
     description: "US #5 reinforcing bar -- 5/8in diameter per ASTM A615.",
     input: { value: 0.625, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:rebar-us-6": createSample({
     id: "length:rebar-us-6",
@@ -430,7 +430,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "US #6 Rebar Diameter",
     description: "US #6 reinforcing bar -- 3/4in diameter per ASTM A615.",
     input: { value: 0.75, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:rebar-us-8": createSample({
     id: "length:rebar-us-8",
@@ -439,7 +439,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "US #8 Rebar Diameter",
     description: "US #8 reinforcing bar -- 1in diameter per ASTM A615.",
     input: { value: 1, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:rebar-us-10": createSample({
     id: "length:rebar-us-10",
@@ -448,7 +448,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "US #10 Rebar Diameter",
     description: "US #10 reinforcing bar -- 1-1/4in diameter (1.27 in actual) for heavy sections.",
     input: { value: 1.27, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:concrete-cover-3-4": createSample({
     id: "length:concrete-cover-3-4",
@@ -457,7 +457,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Concrete Cover 3/4in",
     description: "Minimum concrete cover for cast-in-place slabs and walls per ACI 318.",
     input: { value: 0.75, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:concrete-cover-1-5": createSample({
     id: "length:concrete-cover-1-5",
@@ -466,7 +466,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Concrete Cover 1.5in",
     description: "Minimum cover for exterior beams and columns exposed to weather per ACI 318.",
     input: { value: 1.5, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:concrete-slab-4": createSample({
     id: "length:concrete-slab-4",
@@ -475,7 +475,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Slab on Grade 4in",
     description: "Typical residential slab-on-grade thickness -- 4 in per IRC.",
     input: { value: 4, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:concrete-slab-6": createSample({
     id: "length:concrete-slab-6",
@@ -484,7 +484,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Slab on Grade 6in",
     description: "Commercial/industrial slab-on-grade thickness -- 6 in for heavy loads.",
     input: { value: 6, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:footing-width-24": createSample({
     id: "length:footing-width-24",
@@ -493,7 +493,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Strip Footing Width 24in",
     description: "Typical continuous footing width for two-story bearing wall -- 24 in.",
     input: { value: 24, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction", "length:diameter-mm"]
   }),
   "length:structural-beam-w8x10-flange": createSample({
     id: "length:structural-beam-w8x10-flange",
@@ -565,7 +565,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Pile Diameter 12in",
     description: "Cast-in-place concrete pile diameter 12 in per IBC / ACI 318 deep foundations.",
     input: { value: 12, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:foundation-pile-diameter-18": createSample({
     id: "length:foundation-pile-diameter-18",
@@ -574,7 +574,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Pile Diameter 18in",
     description: "Cast-in-place concrete pile diameter 18 in for high-load foundations.",
     input: { value: 18, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:awg-12-wire": createSample({
     id: "length:awg-12-wire",
@@ -601,7 +601,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Instrument Tubing 1/4in OD",
     description: "Stainless steel instrument tubing OD -- 0.25 in for pneumatic and hydraulic lines.",
     input: { value: 0.25, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
   "length:pipe-tubing-od-3-8": createSample({
     id: "length:pipe-tubing-od-3-8",
@@ -610,7 +610,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Instrument Tubing 3/8in OD",
     description: "Stainless steel instrument tubing OD -- 0.375 in for process impulse lines.",
     input: { value: 0.375, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-mm"]
+    recommendedOutputPresetIds: ["length:diameter-inch", "length:diameter-fractional-inch", "length:diameter-mm"]
   }),
 
   // -- integer value type --
@@ -621,7 +621,7 @@ export const LENGTH_SAMPLES = Object.freeze({
     name: "Stud Spacing 24in OC (Integer)",
     description: "24 in on-center stud spacing stored as integer inches -- common metal framing grid.",
     input: { value: 24, unit: UNIT_TOKENS.INCH },
-    recommendedOutputPresetIds: ["length:detail-inch"]
+    recommendedOutputPresetIds: ["length:detail-inch", "length:fractional-inch-construction"]
   }),
   "length:clear-height-integer-mm": createSample({
     id: "length:clear-height-integer-mm",

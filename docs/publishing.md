@@ -2,7 +2,7 @@
 
 This document describes how to publish a new version of `@dricosr/iforge-edp-values` to the npm registry from the command line.
 
-> **Current state:** the package was renamed from `@dricosr/opengeometry-values` (last published: `0.3.0`) to `@dricosr/iforge-edp-values`. Latest published version: `0.4.1`.
+> **Current state:** the package was renamed from `@dricosr/opengeometry-values` (last published: `0.3.0`) to `@dricosr/iforge-edp-values`. Latest published version: `0.4.5`.
 
 
 

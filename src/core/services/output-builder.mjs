@@ -1,8 +1,10 @@
 import { BOOLEAN_LABEL_PRESETS } from "../../constants/boolean-label-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../../constants/output-suffix-modes.mjs";
+import { SEPARATORS } from "../../constants/fractional-inch-catalog.mjs";
 import { outputPresetCatalog } from "../../presets/output-preset-catalog.mjs";
 import { CustomOutputAffix } from "../models/custom-output-affix.mjs";
 import { EmptyOutputAffix } from "../models/empty-output-affix.mjs";
+import { FractionalInchOutput } from "../models/fractional-inch-output.mjs";
 import { Output } from "../models/output.mjs";
 import { UnitCodeOutputAffix } from "../models/unit-code-output-affix.mjs";
 import { UnitSymbolOutputAffix } from "../models/unit-symbol-output-affix.mjs";
@@ -24,12 +26,31 @@ export class OutputBuilder {
       prefix: configuration.prefix ?? preset?.prefix ?? "",
       suffix: configuration.suffix ?? preset?.suffix ?? "",
       suffixMode: configuration.suffixMode ?? preset?.suffixMode ?? OUTPUT_SUFFIX_MODES.CODE,
-      booleanLabelKey: preset?.booleanLabelKey ?? null
+      booleanLabelKey: preset?.booleanLabelKey ?? null,
+      outputType: preset?.outputType ?? null,
+      maxDenominator: preset?.maxDenominator ?? null,
+      separator: preset?.separator ?? null
     });
   }
 
   build(configuration = {}) {
     const resolved = this.resolve(configuration);
+
+    if (resolved.outputType === "fractional-inch") {
+      return Object.freeze({
+        config: resolved,
+        output: new FractionalInchOutput({
+          id: resolved.id,
+          precision: resolved.precision,
+          prefix: resolved.prefix || undefined,
+          showUnit: resolved.showUnit,
+          suffixMode: resolved.suffixMode,
+          maxDenominator: resolved.maxDenominator ?? 64,
+          separator: resolved.separator ?? SEPARATORS.SPACE
+        })
+      });
+    }
+
     const booleanLabels = resolved.booleanLabelKey
       ? BOOLEAN_LABEL_PRESETS[resolved.booleanLabelKey]
       : null;

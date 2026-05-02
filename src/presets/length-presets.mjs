@@ -2,6 +2,7 @@ import { createPreset } from "./create-preset.mjs";
 import { UNIT_TOKENS } from "../constants/unit-token-catalog.mjs";
 import { OUTPUT_SUFFIX_MODES } from "../constants/output-suffix-modes.mjs";
 import { QUANTITY_TYPES } from "../constants/quantity-types.mjs";
+import { SEPARATORS, DENOMINATOR_LIMITS } from "../constants/fractional-inch-catalog.mjs";
 
 export const LENGTH_PRESETS = Object.freeze({
   "length:model-mm": createPreset({
@@ -87,5 +88,65 @@ export const LENGTH_PRESETS = Object.freeze({
     prefix: "⌀ ",
     suffix: "",
     suffixMode: OUTPUT_SUFFIX_MODES.CODE
+  }),
+  "length:fractional-inch-construction": createPreset({
+    id: "length:fractional-inch-construction",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Fractional Inch (1/16\")",
+    description: "Fractional inch for general construction and wood framing. Max denominator 1/16 per ANSI/ASME Y14.5.",
+    unit: UNIT_TOKENS.INCH,
+    outputType: "fractional-inch",
+    maxDenominator: DENOMINATOR_LIMITS.CONSTRUCTION,
+    separator: SEPARATORS.SPACE,
+    showUnit: true,
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL,
+    prefix: "",
+    suffix: "",
+    precision: 0
+  }),
+  "length:fractional-inch-precision": createPreset({
+    id: "length:fractional-inch-precision",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Fractional Inch (1/32\")",
+    description: "Fractional inch for precision fabrication and sheet metal. Max denominator 1/32.",
+    unit: UNIT_TOKENS.INCH,
+    outputType: "fractional-inch",
+    maxDenominator: DENOMINATOR_LIMITS.PRECISION,
+    separator: SEPARATORS.SPACE,
+    showUnit: true,
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL,
+    prefix: "",
+    suffix: "",
+    precision: 0
+  }),
+  "length:fractional-inch-machining": createPreset({
+    id: "length:fractional-inch-machining",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Fractional Inch (1/64\")",
+    description: "Fractional inch for machining and tooling. Max denominator 1/64.",
+    unit: UNIT_TOKENS.INCH,
+    outputType: "fractional-inch",
+    maxDenominator: DENOMINATOR_LIMITS.MACHINING,
+    separator: SEPARATORS.SPACE,
+    showUnit: true,
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL,
+    prefix: "",
+    suffix: "",
+    precision: 0
+  }),
+  "length:diameter-fractional-inch": createPreset({
+    id: "length:diameter-fractional-inch",
+    quantity: QUANTITY_TYPES.LENGTH,
+    name: "Diameter Fractional Inch",
+    description: "Fractional inch diameter callout with ⌀ prefix for bolt, rebar, and hole callouts.",
+    unit: UNIT_TOKENS.INCH,
+    outputType: "fractional-inch",
+    maxDenominator: DENOMINATOR_LIMITS.CONSTRUCTION,
+    separator: SEPARATORS.SPACE,
+    showUnit: true,
+    suffixMode: OUTPUT_SUFFIX_MODES.SYMBOL,
+    prefix: "⌀ ",
+    suffix: "",
+    precision: 0
   })
 });
