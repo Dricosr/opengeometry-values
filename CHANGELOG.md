@@ -5,16 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 0.4.7 - 2026-05-02
 
-## [0.4.6] - 2026-05-01
+### Changed
+
+- Bumped `vite` devDependency from 7.0.0 to 8.0.10.
+
+## [0.4.6][0.4.6] - 2026-05-01
 
 ### Added
 
-- **Fractional inch presets**: Added 4 new length presets for fractional inch display — `length:fractional-inch-construction` (1/16"), `length:fractional-inch-precision` (1/32"), `length:fractional-inch-machining` (1/64"), and `length:diameter-fractional-inch` — using `FractionalInchOutput` via the new `outputType: "fractional-inch"` dispatch in `OutputBuilder.build()`.
-- **Fractional inch sample coverage**: Updated `length-samples.mjs` — all lumber, pipe, plate, bolt, weld, rebar, concrete, and instrument tubing samples now reference appropriate fractional inch presets in `recommendedOutputPresetIds`.
+- **Fractional inch presets**: Added 4 new length presets for fractional inch display - `length:fractional-inch-construction` (1/16"), `length:fractional-inch-precision` (1/32"), `length:fractional-inch-machining` (1/64"), and `length:diameter-fractional-inch` - using `FractionalInchOutput` via the new `outputType: "fractional-inch"` dispatch in `OutputBuilder.build()`.
+- **Fractional inch sample coverage**: Updated `length-samples.mjs` - all lumber, pipe, plate, bolt, weld, rebar, concrete, and instrument tubing samples now reference appropriate fractional inch presets in `recommendedOutputPresetIds`.
 
-## [0.4.5] - 2026-05-01
+## [0.4.5][0.4.5] - 2026-05-01
 
 ### Fixed
 
@@ -23,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Tests**: Fixed false-positive in `format-edit-value.test.mjs` that asserted `"false"` instead of `"0"`. Added comprehensive boolean display/end-to-end tests to `format-display-value.test.mjs` covering all label presets and the `booleanLabels` default fallback.
 - **Boolean samples**: Fixed `samples/bool/input-bool-to-output-bool.mjs` and `samples/bool/output-boolean-labels.mjs` to pass `booleanLabels: BOOLEAN_LABEL_PRESETS.OPEN_CLOSED` instead of the nonexistent `booleanLabelKey` property, which caused silent fallback to YES_NO labels.
 
-## [0.4.4] - 2026-05-01
+## [0.4.4][0.4.4] - 2026-05-01
 
 ### Changed (Breaking)
 
@@ -35,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - STRING values no longer require a `quantity` type (`quantity` may be `undefined` for `VALUE_TYPES.STRING`)
 - Core models (`Output`, `ValueInput`, `FractionalInchOutput`) and `create-value.mjs` no longer use `QUANTITY_TYPES.NONE` as a sentinel; unit absence is now represented by `undefined`/`null`
 
-## [0.4.3] - 2026-05-01
+## [0.4.3][0.4.3] - 2026-05-01
 
 ### Added
 
@@ -50,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `quantity-profile-registry.mjs`: `QUANTITY_TYPES.NONE` profile was missing `supportedUnits`, causing an empty unit dropdown and a validation error (`unit: ""`) when applying NONE samples in the demo app - added `supportedUnits: [UNIT_TOKENS.UN, UNIT_TOKENS.BOOL]`
 - `tests/samples/parameter-sample-catalog.test.mjs`: added NONE samples coverage - import of NONE_SAMPLES, inclusion in allKeys and expectedQuantities, plus dedicated `describe("none-samples coverage")` block with 7 tests covering BOOL unit, UN unit, BOOLEAN/NUMBER value types, minimum sample count, and preset validation
 
-## [0.4.0] - 2026-04-30
+## [0.4.0][0.4.0] - 2026-04-30
 
 ### Added
 
@@ -126,7 +130,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `suffix-mode-catalog.mjs` file (consolidated into `output-suffix-modes.mjs`)
 - `scripts/check-customizations.mjs`: removed as no longer needed
 
-## [0.1.0] - 2026-04-24
+## [0.1.0][0.1.0] - 2026-04-24
 
 ### Added
 

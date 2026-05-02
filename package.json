@@ -1,6 +1,6 @@
 {
   "name": "@dricosr/iforge-edp-values",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Structured engineering values with type, quantity, unit conversion, internal normalization and UI formatting for iForge EDP.",
   "type": "module",
   "main": "./dist/index.cjs.js",

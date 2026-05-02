@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/npm/l/@dricosr/iforge-edp-values)](./LICENSE)
 [![node](https://img.shields.io/node/v/@dricosr/iforge-edp-values)](https://nodejs.org/)
 
-Structured engineering values for AEC/industrial applications. Type-safe unit conversion, internal SI normalization, and UI-friendly formatting — built on [Math.js](https://mathjs.org/).
+Structured engineering values for AEC/industrial applications. Type-safe unit conversion, internal SI normalization, and UI-friendly formatting - built on [Math.js](https://mathjs.org/).
 
 [Live demo](https://values.iforge.org/) · [Specification](./spec/en-us/spec.md) · [Changelog](./CHANGELOG.md)
 
@@ -13,9 +13,9 @@ Structured engineering values for AEC/industrial applications. Type-safe unit co
 - **12 engineering quantities**: length, area, volume, angle, temperature, mass, force, pressure, time, ratio, bool, and count
 - **Automatic SI normalization**: every value converts to a stable internal unit (meters, radians, pascals…) regardless of input unit
 - **Precision gating**: display precision is automatically capped by the domain's internal resolution (e.g. millimeter values never show more than 1 decimal place)
-- **Fractional inch I/O**: full imperial support following ANSI/ASME Y14.5 — parse `"1 1/4"`, format `2.375 → "2 3/8"`, with four precision tiers (construction, precision, machining, fine)
+- **Fractional inch I/O**: full imperial support following ANSI/ASME Y14.5 - parse `"1 1/4"`, format `2.375 → "2 3/8"`, with four precision tiers (construction, precision, machining, fine)
 - **BIM/AEC output presets**: curated presets for millimeter modeling, meter annotations, square-meter schedules, kilonewton structural loads, kilopascal HVAC, and more
-- **Zero-dependency browser usage**: works in the browser via import maps — no CDN, no bundler
+- **Zero-dependency browser usage**: works in the browser via import maps - no CDN, no bundler
 - **Pure ESM** (`.mjs`), tree-shakeable, no TypeScript
 
 ## Install
@@ -109,18 +109,18 @@ console.log(preview.previews.display);
 | `force` | `N` | `N`, `kN`, `lbf` |
 | `pressure` | `Pa` | `Pa`, `kPa`, `bar`, `psi` |
 | `time` | `s` | `s`, `min`, `h` |
-| `ratio` | — | dimensionless |
-| `bool` | — | `true` / `false` with configurable labels |
-| `count` | — | discrete integer counts (`un`) |
+| `ratio` | - | dimensionless |
+| `bool` | - | `true` / `false` with configurable labels |
+| `count` | - | discrete integer counts (`un`) |
 
 Value types: `string`, `integer`, `float`, `boolean`.
 
 ## Documentation
 
-- **[Specification](./spec/en-us/spec.md)** — domain rules: quantities, internal units, resolution limits, display constraints
-- **[API Reference](#api-reference)** — all public exports with descriptions
-- **[Fractional Inch Guide](#fractional-inch-io)** — imperial piping, sheet metal, fasteners, and construction
-- **[Browser Usage](#browser-usage)** — import maps setup for zero-dependency browser loading
+- **[Specification](./spec/en-us/spec.md)** - domain rules: quantities, internal units, resolution limits, display constraints
+- **[API Reference](#api-reference)** - all public exports with descriptions
+- **[Fractional Inch Guide](#fractional-inch-io)** - imperial piping, sheet metal, fasteners, and construction
+- **[Browser Usage](#browser-usage)** - import maps setup for zero-dependency browser loading
 
 ---
 
@@ -163,7 +163,7 @@ For advanced composition, the package also exports: `ValueFactory`, `UnitConvert
 
 ## Fractional inch I/O
 
-The library provides specialized handling for fractional inches — the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements. Follows **ANSI/ASME Y14.5** and **ISO 129-1**.
+The library provides specialized handling for fractional inches - the imperial standard for pipe diameters (NPS), sheet metal thickness, fastener sizes, lumber dimensions, and construction measurements. Follows **ANSI/ASME Y14.5** and **ISO 129-1**.
 
 ### Precision tiers
 
@@ -231,14 +231,14 @@ npm run test:visual     # visual I/O tests only
 npm run test:coverage   # with coverage report
 ```
 
-> **Windows users**: run Vitest from PowerShell or bash — `cmd.exe` has known incompatibilities with Vitest 4.x.
+> **Windows users**: run Vitest from PowerShell or bash - `cmd.exe` has known incompatibilities with Vitest 4.x.
 
 ---
 
 ## Design principles
 
 - Calculations always use `internal.value` (SI); user input is preserved but never used for computation
-- Unit preference belongs to the UI or project config — not stored in the value
+- Unit preference belongs to the UI or project config - not stored in the value
 - Display precision is always capped by the quantity's internal resolution
 - Small specialist classes with single responsibilities; shared constants in dedicated catalogs
 - Quantity-specific behavior lives in specialist profiles, not generic conditionals
@@ -247,10 +247,10 @@ npm run test:coverage   # with coverage report
 
 ## Contributing
 
-Contributions are welcome — bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
+Contributions are welcome - bug reports, documentation improvements, new quantity profiles, and code changes. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and guidelines.
 
 This project follows a [Code of Conduct](./CODE_OF_CONDUCT.md). By participating you agree to abide by its terms.
 
 ## License
 
-[MIT](./LICENSE) — © 2026 Adriano Ribeiro
+[MIT](./LICENSE) - © 2026 Adriano Ribeiro
